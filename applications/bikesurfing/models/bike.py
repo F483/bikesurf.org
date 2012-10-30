@@ -4,12 +4,15 @@ db.define_table(
     'bike',
     Field('name', 'string'),
     Field('description', 'text'),
-    
     Field('available' 'boolean', default=True),
+    
+    # common usefull properties to filter by
+    Field('type', 'string'), # 'mountainbike', 'roadbike', 'fixie', etc ...
     Field('lights' 'boolean', default=False), # to cycle when dark
     Field('fenders' 'boolean', default=False), # to cycle when wet
     Field('rack' 'boolean', default=False), # to carry stuff
     Field('basket' 'boolean', default=False), # to put stuff in
+    # TODO how to represent size (children, etc)
     
     Field('created_on','datetime',default=request.now,
           label=T('Created On'),writable=False,readable=False),
