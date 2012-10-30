@@ -9,3 +9,5 @@ syntax: glob
 *.bak
 applications/admin/sessions/*
 httpserver.pid
+httpserver.log
+cron.master
