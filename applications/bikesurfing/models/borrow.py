@@ -23,6 +23,20 @@ db.define_table(
     plural = 'Borrows',
 )
 
+db.define_table( # Not editable! Only Borrower rates once.
+    'borrow_rating',
+    
+    Field('borrow_id', db.borrow),
+    Field('rating', 'integer'), # 0 - 5 (stars...)
+    
+    Field('created_on','datetime',default=request.now,
+          label=T('Created On'),writable=False,readable=False),
+    
+    format = '%(borrow_id)s: %(rating)s',
+    singular = 'BorrowRating',
+    plural = 'BorrowRatings',
+)
+
 db.define_table( # Never editable! Newest log state must equal borrow state!
     'borrow_log',
 
