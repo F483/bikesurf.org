@@ -1,8 +1,6 @@
 # coding: utf8
 
 
-# TODO list all valid borrow states!
-
 db.define_table(
     'borrow',
 
@@ -12,13 +10,7 @@ db.define_table(
     Field('from','date'),
     Field('to','date'), # inclusive
     
-    Field('accepted','datetime'), # owner accepted borrow request
-    Field('confirmed','datetime'), # borrower confirmed
-    
-    # TODO how to handele stolen and bikes by borrower and 3rd party?
-    
-    Field('cancled_by', 'string'), # 'owner' or 'borrower' 
-    Field('cancled_on','datetime'), 
+    Field('state', 'string'), # 'request', 'accepted', 'confirmed', 'cancled', 'stolen'
     
     Field('created_on','datetime',default=request.now,
           label=T('Created On'),writable=False,readable=False),
@@ -29,4 +21,20 @@ db.define_table(
     format = '%(bike_id)s -> %(borrower_id)s',
     singular = 'Borrow',
     plural = 'Borrows',
+)
+
+db.define_table( # Never editable! Newest log state must equal borrow state!
+    'borrow_log',
+
+    Field('borrow_id', db.borrow),
+    Field('initiator_id', db.auth_user), # None => system
+    
+    Field('state', 'string'), # 'request', 'accepted', 'confirmed', 'cancled', 'stolen'
+    
+    Field('created_on','datetime',default=request.now,
+          label=T('Created On'),writable=False,readable=False),
+    
+    format = '%(borrow_id)s: %(initiator_id)s -> %(state)s',
+    singular = 'BorrowLog',
+    plural = 'BorrowLogs',
 )

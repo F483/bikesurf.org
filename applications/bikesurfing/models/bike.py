@@ -4,8 +4,12 @@ db.define_table(
     'bike',
     Field('name', 'string'),
     Field('description', 'text'),
-    Field('picture', 'upload', default=''),
+    
     Field('available' 'boolean', default=True),
+    Field('lights' 'boolean', default=False), # to cycle when dark
+    Field('fenders' 'boolean', default=False), # to cycle when wet
+    Field('rack' 'boolean', default=False), # to carry stuff
+    Field('basket' 'boolean', default=False), # to put stuff in
     
     Field('created_on','datetime',default=request.now,
           label=T('Created On'),writable=False,readable=False),
@@ -16,6 +20,22 @@ db.define_table(
     format = '%(name)s',
     singular = 'Bike',
     plural = 'Bikes',
+)
+
+db.define_table(
+    'bike_picture',
+    Field('bike_id', db.bike),
+    Field('picture', 'upload', default=''),
+    
+    Field('created_on','datetime',default=request.now,
+          label=T('Created On'),writable=False,readable=False),
+    Field('modified_on','datetime',default=request.now,
+          label=T('Modified On'),writable=False,readable=False,
+          update=request.now),
+    
+    format = '%(bike_id)s',
+    singular = 'BikePicture',
+    plural = 'BikePictures',
 )
 
 db.define_table(
