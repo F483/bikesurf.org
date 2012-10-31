@@ -6,6 +6,7 @@ help:
 	# server_start
 	# db_sync
 	# db_validate
+	# db_sql            APP
 	# app_create        APP
 	# shell
 
@@ -17,6 +18,9 @@ db_sync:
 
 db_validate:
 	python manage.py validate
+
+db_sql:
+	python manage.py sql $(APP)
 
 app_create:
 	python manage.py startapp $(APP)
