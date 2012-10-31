@@ -19,3 +19,15 @@ class Bike(models.Model):
     # meta
     created_on  = models.DateTimeField()
     updated_on  = models.DateTimeField()
+
+
+class BikePicture(models.Model):
+
+    bike        = models.ForeignKey(Bike)
+    image       = models.ImageField(upload_to='db/bike_images')
+    
+    # meta
+    created_on  = models.DateTimeField()
+    updated_on  = models.DateTimeField()
+
+
