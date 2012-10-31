@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from address.models import Address
 
 
 class Bike(models.Model):
@@ -8,6 +9,7 @@ class Bike(models.Model):
     name        = models.CharField(max_length=1024)
     description = models.TextField()
     available   = models.BooleanField()
+    address     = models.ForeignKey(Address)
     
     # Usefull properties to filter by.
     kind        = models.CharField(max_length=256)   # 'mountainbike', 'roadbike', 'fixie', etc ...
