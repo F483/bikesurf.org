@@ -10,6 +10,7 @@ help:
 	# db_sql            APP
 	# app_create        APP
 	# shell
+	# ubuntu_dev_env
 
 server_start:
 	python manage.py runserver
@@ -29,3 +30,6 @@ app_create:
 shell:
 	python manage.py shell
 
+ubuntu_dev_env:
+	apt-get install python-pip
+	pip install Django

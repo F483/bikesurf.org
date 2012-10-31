@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'borrow',
     'message',
     'address',
+    'cyclist',
 )
 
 # A sample logging configuration. The only tangible logging

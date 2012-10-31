@@ -9,7 +9,7 @@ class Bike(models.Model):
     name        = models.CharField(max_length=1024)
     description = models.TextField()
     available   = models.BooleanField()
-    address     = models.ForeignKey(Address)
+    address     = models.ForeignKey(Address) # must belong to owner
     
     # Usefull properties to filter by.
     kind        = models.CharField(max_length=256)   # 'mountainbike', 'roadbike', 'fixie', etc ...
