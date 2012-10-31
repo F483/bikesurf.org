@@ -1,5 +1,6 @@
 
 APP=""
+FILE=""
 
 help:
 	# COMMANDS          OPTIONS
@@ -9,6 +10,7 @@ help:
 	# db_sql            APP
 	# app_create        APP
 	# shell
+	# settings_use      FILE
 
 server_start:
 	python manage.py runserver
@@ -27,3 +29,6 @@ app_create:
 
 shell:
 	python manage.py shell
+
+settings_use:
+	ln -s $(FILE) bikesurfing/settings.py
