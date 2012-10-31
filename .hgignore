@@ -8,4 +8,3 @@ syntax: glob
 *.log
 *.bak
 db/*
-bikesurfing/settings.py

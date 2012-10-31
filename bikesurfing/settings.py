@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     # biksurfing apps
     'bike',
     'borrow',
+    'message',
 )
 
 # A sample logging configuration. The only tangible logging
