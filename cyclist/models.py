@@ -16,8 +16,8 @@ class Cyclist(models.Model):
 
 class CyclistMember(models.Model):
 
-    member      = models.ForeignKey(Cyclist)
-    group       = models.ForeignKey(Cyclist)
+    member      = models.ForeignKey(Cyclist, related_name='member_in')
+    group       = models.ForeignKey(Cyclist, related_name='members')
     role        = models.CharField(max_length=256)   # 'admin', 'mechanic', etc ...
 
     # meta
