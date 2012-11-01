@@ -8,6 +8,8 @@ help:
 	# db_sync
 	# db_validate
 	# db_sql            APP
+	# db_shell_dev
+	# db_delete_dev
 	# app_create        APP
 	# shell
 	# ubuntu_dev_env
@@ -26,6 +28,9 @@ db_sql:
 
 db_shell_dev:
 	sqlite3 db/development.db
+
+db_delete_dev:
+	rm db/development.db
 
 app_create:
 	python manage.py startapp $(APP)
