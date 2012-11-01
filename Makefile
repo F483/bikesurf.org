@@ -24,6 +24,9 @@ db_validate:
 db_sql:
 	python manage.py sql $(APP)
 
+db_shell_dev:
+	sqlite3 db/development.db
+
 app_create:
 	python manage.py startapp $(APP)
 
@@ -31,5 +34,5 @@ shell:
 	python manage.py shell
 
 ubuntu_dev_env:
-	apt-get install python-pip
+	apt-get install python-pip sqlite3
 	pip install Django
