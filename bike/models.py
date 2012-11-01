@@ -6,6 +6,7 @@ from address.models import Address
 KINDS = [
     'normal', # comfort, hybrid, trekking, citybike
     'bmx', 
+    'cargobike',
     'cruiser',
     'electric', 
     'fixie', 
