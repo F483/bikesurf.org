@@ -3,8 +3,25 @@ from django.contrib.auth.models import User
 from address.models import Address
 
 
-KINDS = ['roadbike', 'mountainbike', 'bmx', 'fixie'] # TODO more ...
+KINDS = [
+    'normal', # comfort, hybrid, trekking, citybike
+    'bmx', 
+    'cruiser',
+    'electric', 
+    'fixie', 
+    'folding', 
+    'kids',
+    'mountainbike', 
+    'recumbent',
+    'roadbike', 
+    'tandem',
+    'unicycle'
+]
 KIND_CHOICES = [(kind, kind) for kind in KINDS]
+
+
+GENDER = ['neutral', 'female', 'male']
+GENDER_CHOICES = [(gender, gender) for gender in GENDER]
 
 
 class Bike(models.Model):
@@ -12,11 +29,12 @@ class Bike(models.Model):
     owner       = models.ForeignKey(User)
     name        = models.CharField(max_length=1024)
     description = models.TextField()
-    available   = models.BooleanField()
-    # FIXME address     = models.ForeignKey(Address) # must belong to owner
+    available   = models.BooleanField(default=True)
+    location    = models.ForeignKey(Address) # must belong to owner or executive member
     
     # Usefull properties to filter by.
-    kind        = models.CharField(max_length=256, choices=KIND_CHOICES)
+    kind        = models.CharField(max_length=256, choices=KIND_CHOICES, default='normal')
+    gender      = models.CharField(max_length=256, choices=GENDER_CHOICES, default='neutral')
     lights      = models.BooleanField(default=False) # to cycle when dark
     fenders     = models.BooleanField(default=False) # to cycle when wet
     rack        = models.BooleanField(default=False) # to carry stuff

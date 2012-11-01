@@ -3,7 +3,13 @@ from django.contrib.auth.models import User
 from address.models import Address
 
 
-ROLES = ['owner', 'manager', 'mechanic'] # TODO define roles and group workflow
+ROLES = [
+    'owner',      # can change group name, description and delete it
+    'manager',    # can add remove users/roles
+    'executive',  # can lend group bikes to/from there addresses
+    'mechanic',   # can bring group bikes to there addresses for fixing
+    'journalist', # can post to the group blog
+]
 ROLE_CHOICES = [(role, role) for role in ROLES]
 
 
@@ -32,11 +38,28 @@ class CyclistMember(models.Model):
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
+    updated_on  = models.DateTimeField(auto_now=True)
 
     # TODO validation
 
     def __unicode__(self):
         args = (self.id, self.member.id, self.group, self.role)
         return u"id: %s; memeber_id: %s; group_id: %s; role: %s" % args
+
+
+class CyclistPicture(models.Model):
+
+    cyclist     = models.ForeignKey(Cyclist)
+    image       = models.ImageField(upload_to='db/cyclist_images')
+    
+    # meta
+    created_on  = models.DateTimeField(auto_now_add=True)
+    updated_on  = models.DateTimeField(auto_now=True)
+
+    # TODO validation
+
+    def __unicode__(self):
+        args = (self.id, self.cyclist.id)
+        return u"id: %s; cyclist_id: %s" % args
 
 

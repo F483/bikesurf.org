@@ -3,7 +3,15 @@ from django.contrib.auth.models import User
 from bike.models import Bike
 
 
-STATES = ['request', 'accepted', 'comfirmed', 'cancled', 'damaged', 'missing']
+STATES = [
+    'request', 
+    'accepted', 
+    'comfirmed', 
+    'cancled', 
+    'damaged', 
+    'missing',
+    'returned'
+]
 STATE_CHOICES = [(state, state) for state in STATES]
 
 
