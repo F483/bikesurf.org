@@ -3,20 +3,24 @@ from django.contrib.auth.models import User
 
 
 ROLES = [
-    'owner',      # can change team name, description and delete it
-    'manager',    # can add remove users/roles
-    'executive',  # can lend team bikes to/from there addresses
-    'mechanic',   # can bring team bikes to there addresses for fixing
-    'journalist', # can post to the team blog
+    'owner',      # can update team data and add remove users/roles
+    'manager',    # can lend team bikes to/from team stations
 ]
 ROLE_CHOICES = [(role, role) for role in ROLES]
 
 
 class Cyclist(models.Model):
 
-    user        = models.ForeignKey(User)
-    description = models.TextField()
-    is_team     = models.BooleanField(default=False)
+    user         = models.ForeignKey(User)
+    is_team      = models.BooleanField(default=False)
+    description  = models.TextField()
+    couchsurfing = models.URLField()
+    facebook     = models.URLField()
+    twitter      = models.URLField()
+    googleplus   = models.URLField()
+    blog         = models.URLField()
+    mobile       = models.CharField(max_length=1024)
+    skype        = models.CharField(max_length=1024)
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

@@ -32,6 +32,7 @@ class Bike(models.Model):
     description = models.TextField()
     available   = models.BooleanField(default=True)
     location    = models.ForeignKey(Station) # must belong to owner
+    lockcode    = models.CharField(max_length=1024)
     
     # Usefull properties to filter by.
     kind        = models.CharField(max_length=256, choices=KIND_CHOICES, default='normal')

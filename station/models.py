@@ -9,6 +9,7 @@ class Station(models.Model):
     city        = models.CharField(max_length=1024)
     postalcode  = models.CharField(max_length=1024)
     country     = models.CharField(max_length=1024)
+    # TODO link on google maps 
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

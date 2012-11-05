@@ -6,7 +6,7 @@ from borrow.models import Borrow
 
 class Message(models.Model):
 
-    sender      = models.ForeignKey(User, related_name='messages_sent')
+    sender      = models.ForeignKey(User, related_name='messages_sent') # None => system
     recipient   = models.ForeignKey(User, related_name='messages_received')
     content     = models.TextField()
    

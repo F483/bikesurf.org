@@ -6,7 +6,7 @@ from bike.models import Bike
 STATES = [
     'request', 
     'accepted', 
-    'comfirmed', 
+#    'comfirmed', # might be needed
     'cancled', 
     'damaged', 
     'missing',
@@ -39,6 +39,7 @@ class BorrowLog(models.Model):
     borrow      = models.ForeignKey(Borrow)
     initiator   = models.ForeignKey(User) # borrower or bike owner. None => system
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
+    note        = models.TextField()
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
