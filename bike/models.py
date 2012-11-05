@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from address.models import Address
+from station.models import Station
 
 
 KINDS = [
@@ -31,7 +31,7 @@ class Bike(models.Model):
     name        = models.CharField(max_length=1024)
     description = models.TextField()
     available   = models.BooleanField(default=True)
-    location    = models.ForeignKey(Address) # must belong to owner or executive member
+    location    = models.ForeignKey(Station) # must belong to owner
     
     # Usefull properties to filter by.
     kind        = models.CharField(max_length=256, choices=KIND_CHOICES, default='normal')
@@ -55,7 +55,7 @@ class Bike(models.Model):
 class BikePicture(models.Model):
 
     bike        = models.ForeignKey(Bike)
-    image       = models.ImageField(upload_to='db/bike_images')
+    image       = models.ImageField(upload_to='db/bike_images') # FIXME use hash as name to avoid collisisons
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

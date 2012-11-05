@@ -124,7 +124,7 @@ INSTALLED_APPS = (
     'bike',
     'borrow',
     'message',
-    'address',
+    'station',
     'cyclist',
 )
 

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from address.models import Address
 
 
 ROLES = [
@@ -50,7 +49,7 @@ class CyclistMember(models.Model):
 class CyclistPicture(models.Model):
 
     cyclist     = models.ForeignKey(Cyclist)
-    image       = models.ImageField(upload_to='db/cyclist_images')
+    image       = models.ImageField(upload_to='db/cyclist_images') # FIXME use hash as name to avoid collisisons
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

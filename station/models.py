@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Address(models.Model):
+class Station(models.Model):
 
     user        = models.ForeignKey(User)
     street      = models.CharField(max_length=1024)
@@ -17,5 +17,5 @@ class Address(models.Model):
     # TODO validation
 
     def __unicode__(self):
-        args = (self.id, self.user.id, self.street, self.city, self.postalcode, self.country)
-        return u"id: %s; user_id: %s; street: %s; city: %s; postalcode: %s; country: %s" % args
+        args = (self.id, self.user.id, self.street, self.postalcode, self.city, self.country)
+        return u"id: %s; user_id: %s; %s, %s, %s, %s" % args
