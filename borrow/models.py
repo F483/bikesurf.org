@@ -4,13 +4,13 @@ from bike.models import Bike
 
 
 STATES = [
-    'request', 
-    'accepted', 
-#    'comfirmed', # might be needed
-    'cancled', 
-    'damaged', 
-    'missing',
-    'returned'
+    'REQUEST', 
+    'ACCEPTED', 
+#    'COMFIRMED', # might be needed
+    'CANCLED', 
+    'DAMAGED', 
+    'MISSING',
+    'RETURNED',
 ]
 STATE_CHOICES = [(state, state) for state in STATES]
 

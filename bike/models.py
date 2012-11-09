@@ -4,19 +4,20 @@ from station.models import Station
 
 
 KINDS = [
-    'normal', # comfort, hybrid, trekking, citybike
-    'bmx', 
-    'cargobike',
-    'cruiser',
-    'electric', 
-    'fixie', 
-    'folding', 
-    'kids',
-    'mountainbike', 
-    'recumbent',
-    'roadbike', 
-    'tandem',
-    'unicycle'
+    'NORMAL', # comfort, hybrid, trekking, citybike
+    'BMX', 
+    'CARGOBIKE',
+    'CRUISER',
+    'ELECTRIC', 
+    'FIXIE', 
+    'FOLDING', 
+    'KIDS',
+    'MOUNTAINBIKE', 
+    'RECUMBENT',
+    'ROADBIKE', 
+    'TANDEM',
+    'TRICYCLE',
+    'UNICYCLE',
 ]
 KIND_CHOICES = [(kind, kind) for kind in KINDS]
 

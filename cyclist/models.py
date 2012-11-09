@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 ROLES = [
-    'owner',      # can update team data and add remove users/roles
-    'manager',    # can lend team bikes to/from team stations
+    'OWNER',      # can update team data and add remove users/roles
+    'MANAGER',    # can lend team bikes to/from team stations
 ]
 ROLE_CHOICES = [(role, role) for role in ROLES]
 
