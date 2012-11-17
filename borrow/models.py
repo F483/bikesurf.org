@@ -4,6 +4,7 @@
 
 
 from django.db import models
+from django.utils.translation import ugettext as _
 
 
 STATES = [
@@ -15,7 +16,7 @@ STATES = [
     'MISSING',
     'RETURNED',
 ]
-STATE_CHOICES = [(state, state) for state in STATES]
+STATE_CHOICES = [(state, _(state)) for state in STATES]
 
 
 class Borrow(models.Model):

@@ -4,6 +4,7 @@
 
 
 from django.db import models
+from django_countries import CountryField
 
 
 class Station(models.Model):
@@ -13,7 +14,7 @@ class Station(models.Model):
     street      = models.CharField(max_length=1024)
     city        = models.CharField(max_length=1024)
     postalcode  = models.CharField(max_length=1024)
-    country     = models.CharField(max_length=1024) # TODO make enum choices
+    country     = CountryField()
     # TODO link on google maps 
     
     # meta

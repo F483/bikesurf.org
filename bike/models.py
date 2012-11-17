@@ -4,6 +4,7 @@
 
 
 from django.db import models
+from django.utils.translation import ugettext as _
 
 
 KINDS = [
@@ -22,7 +23,7 @@ KINDS = [
     'TRICYCLE',
     'UNICYCLE',
 ]
-KIND_CHOICES = [(kind, kind) for kind in KINDS]
+KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
 
 
 GENDER = [
@@ -30,7 +31,7 @@ GENDER = [
     'FEMALE', 
     'MALE'
 ]
-GENDER_CHOICES = [(gender, gender) for gender in GENDER]
+GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
 
 
 SIZE = [      # Body Hight
@@ -38,7 +39,7 @@ SIZE = [      # Body Hight
     'MEDIUM', # 145cm - 175cm
     'LARGE'   # 175cm + 
 ]
-SIZE_CHOICES = [(size, size) for size in SIZE]
+SIZE_CHOICES = [(size, _(size)) for size in SIZE]
 
 
 class Bike(models.Model):
