@@ -292,7 +292,7 @@ COUNTRIES_CHOICES = [ # ISO 3166-2
 class Cyclist(models.Model):
 
     # main data
-    user         = models.ForeignKey('auth.User')
+    user         = models.ForeignKey('auth.User', unique=True)
     is_team      = models.BooleanField(default=False)
     description  = models.TextField()
     country      = models.CharField(max_length=256, choices=COUNTRIES_CHOICES) # TODO get default according to request lang
@@ -326,6 +326,10 @@ class Profile(models.Model):
         args = (self.id, self.cyclist.id, self.site, self.confirmed)
         return u"id: %s; cyclist_id: %s; site: %s; confirmed: %s" % args
 
+    class Meta:                                                                                                 
+                                                                                                                
+        unique_together = (('cyclist', 'site'),) 
+
 
 class Member(models.Model):
 
@@ -342,6 +346,10 @@ class Member(models.Model):
     def __unicode__(self):
         args = (self.id, self.member.id, self.team, self.role)
         return u"id: %s; memeber_id: %s; team_id: %s; role: %s" % args
+
+    class Meta:                                                                                                 
+                                                                                                                
+        unique_together = (('member', 'team', 'role'),) 
 
 
 class Picture(models.Model):

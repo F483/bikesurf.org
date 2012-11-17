@@ -73,4 +73,7 @@ class Rating(models.Model): # only borrower rates ...
         args = (self.id, self.borrow.id, self.rating)
         return u"id: %s; borrow_id: %s; rating: %s" % args
 
+    class Meta:                                                                                                 
+                                                                                                                
+        unique_together = (('borrow', 'user'),) 
 

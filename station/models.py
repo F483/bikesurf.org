@@ -25,3 +25,7 @@ class Station(models.Model):
     def __unicode__(self):
         args = (self.id, self.owner.id, self.street, self.postalcode, self.city, self.country)
         return u"id: %s; owner_id: %s; %s, %s, %s, %s" % args
+
+    class Meta:                                                                                                 
+                                                                                                                
+        unique_together = (('owner', 'street', 'city', 'postalcode', 'country'),) 
