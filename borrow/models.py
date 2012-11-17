@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
+# License: MIT (see LICENSE.TXT file) 
+
+
 from django.db import models
-from django.contrib.auth.models import User
-from bike.models import Bike
 
 
 STATES = [
     'REQUEST', 
+    'UNSURE', # requires meetup
     'ACCEPTED', 
-#    'COMFIRMED', # might be needed
     'CANCLED', 
     'DAMAGED', 
     'MISSING',
@@ -17,12 +20,16 @@ STATE_CHOICES = [(state, state) for state in STATES]
 
 class Borrow(models.Model):
 
-    bike        = models.ForeignKey(Bike)
-    borrower    = models.ForeignKey(User)
+    bike        = models.ForeignKey('bike.Bike')
+    borrower    = models.ForeignKey('auth.User')
     start       = models.DateField()
     finish      = models.DateField() # inclusive
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
     
+    # location
+    src         = models.ForeignKey('station.Station', related_name='borrows_outgoing')
+    dest        = models.ForeignKey('station.Station', related_name='borrows_incoming')
+
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
     updated_on  = models.DateTimeField(auto_now=True)
@@ -34,13 +41,13 @@ class Borrow(models.Model):
         return u"id: %s; bike_id: %s; state: %s; start: %s; finish %s" % args
 
 
-class BorrowLog(models.Model):
+class Log(models.Model):
 
-    borrow      = models.ForeignKey(Borrow)
-    initiator   = models.ForeignKey(User) # borrower or bike owner. None => system
+    borrow      = models.ForeignKey('borrow.Borrow')
+    initiator   = models.ForeignKey('auth.User') # None => system
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
-    note        = models.TextField()
-    
+    note        = models.TextField() # by initiator
+
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
 
@@ -51,10 +58,11 @@ class BorrowLog(models.Model):
         return u"id: %s; borrow_id: %s; state %s; created_on: %s" % args
 
 
-class BorrowRating(models.Model): # only borrower rates ...
+class Rating(models.Model): # only borrower rates ...
 
-    borrow      = models.ForeignKey(Borrow)
+    borrow      = models.ForeignKey('borrow.Borrow')
     rating      = models.IntegerField() # 0 - 5 'Stars' TODO validate range
+    user        = models.ForeignKey('auth.User') # borrower or lender
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

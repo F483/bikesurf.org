@@ -1,18 +1,21 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
+# License: MIT (see LICENSE.TXT file) 
+
+
 from django.db import models
-from django.contrib.auth.models import User
-from bike.models import Bike
-from borrow.models import Borrow
 
 
 class Message(models.Model):
 
-    sender      = models.ForeignKey(User, related_name='messages_sent') # None => system
-    recipient   = models.ForeignKey(User, related_name='messages_received')
+    sender      = models.ForeignKey('auth.User', related_name='messages_sent') # None => system
+    recipient   = models.ForeignKey('auth.User', related_name='messages_received')
     content     = models.TextField()
    
     # related
-    bike        = models.ForeignKey(Bike)
-    borrow      = models.ForeignKey(Borrow)
+    message     = models.ForeignKey('self', related_name='replies')
+    bike        = models.ForeignKey('bike.Bike')
+    borrow      = models.ForeignKey('borrow.Borrow')
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

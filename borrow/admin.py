@@ -1,8 +1,16 @@
-from borrow.models import Borrow
-from borrow.models import BorrowLog
-from borrow.models import BorrowRating
+# -*- coding: utf-8 -*-
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
+# License: MIT (see LICENSE.TXT file) 
+
+
 from django.contrib import admin
+from borrow.models import Borrow
+from borrow.models import Log
+from borrow.models import Rating
+
 
 admin.site.register(Borrow)
-admin.site.register(BorrowLog)
-admin.site.register(BorrowRating)
+admin.site.register(Log)
+admin.site.register(Rating)
+
+
