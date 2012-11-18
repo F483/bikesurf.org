@@ -7,12 +7,10 @@ from django.contrib import admin
 from cyclist.models import Cyclist
 from cyclist.models import Profile
 from cyclist.models import Member
-from cyclist.models import Picture
 
 
 admin.site.register(Cyclist)
 admin.site.register(Profile)
 admin.site.register(Member)
-admin.site.register(Picture)
 
 

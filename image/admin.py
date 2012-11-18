@@ -3,12 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from image.models import Image
 from django.contrib import admin
-from bike.models import Bike
-from bike.models import Issue
 
-
-admin.site.register(Bike)
-admin.site.register(Issue)
-
-
+admin.site.register(Image)

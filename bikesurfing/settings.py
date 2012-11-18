@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     # third party apps
-    'django_countries',
+    'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
 
     # biksurfing apps
     'bike',
@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'message',
     'station',
     'cyclist',
+    'image',
 )
 
 # A sample logging configuration. The only tangible logging

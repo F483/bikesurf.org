@@ -13,9 +13,9 @@ class Message(models.Model):
     content     = models.TextField()
    
     # related
-    message     = models.ForeignKey('self', related_name='replies')
-    bike        = models.ForeignKey('bike.Bike')
-    borrow      = models.ForeignKey('borrow.Borrow')
+    message     = models.ForeignKey('self', related_name='replies', blank=True)
+    bike        = models.ForeignKey('bike.Bike', blank=True)
+    borrow      = models.ForeignKey('borrow.Borrow', blank=True)
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

@@ -100,20 +100,3 @@ class Member(models.Model):
         unique_together = (('member', 'team', 'role'),) 
 
 
-class Picture(models.Model):
-
-    cyclist     = models.ForeignKey('cyclist.Cyclist')
-    image       = models.ImageField(upload_to='db/cyclist_images') # FIXME use hash as name to avoid collisisons
-    preview     = models.BooleanField(default=False)
-    
-    # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        args = (self.id, self.cyclist.id)
-        return u"id: %s; cyclist_id: %s" % args
-
-

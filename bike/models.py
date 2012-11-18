@@ -73,23 +73,6 @@ class Bike(models.Model):
         return u"id: %s; owner_id: %s; name: %s" % args
 
 
-class Picture(models.Model):
-
-    bike        = models.ForeignKey('bike.Bike')
-    image       = models.ImageField(upload_to='db/bike_images') # FIXME use hash as name to avoid collisisons
-    preview     = models.BooleanField(default=False)
-    
-    # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        args = (self.id, self.bike.id)
-        return u"id: %s; bike_id: %s" % args
-
-
 class Issue(models.Model):
 
     bike        = models.ForeignKey('bike.Bike')
