@@ -127,6 +127,7 @@ INSTALLED_APPS = (
 
     # third party apps
     'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
+    'social_auth',      # http://www.djangopackages.com/packages/p/django-social-auth/
 
     # biksurfing apps
     'bike',
