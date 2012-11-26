@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get install mercurial python-pip sqlite3
+apt-get install mercurial python-pip sqlite3 ipython
 # TODO dont ask options
 
 pip install Django

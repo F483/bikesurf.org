@@ -12,9 +12,9 @@ class Image(models.Model):
     preview     = models.BooleanField(default=False)
     
     # relations 
-    user        = models.ForeignKey('auth.User', blank=True)
-    bike        = models.ForeignKey('bike.Bike', blank=True)
-    station     = models.ForeignKey('station.Station', blank=True)
+    user        = models.ForeignKey('auth.User', null=True, blank=True)
+    bike        = models.ForeignKey('bike.Bike', null=True, blank=True)
+    station     = models.ForeignKey('station.Station', null=True, blank=True)
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
