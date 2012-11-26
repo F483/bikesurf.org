@@ -12,7 +12,6 @@ help:
 	@echo "  db_sql             APP           "
 	@echo "  app_create         APP           "
 	@echo "  shell                            "
-	@echo "  ubuntu_dev_env                   "
 
 server_start:
 	python manage.py runserver
@@ -39,11 +38,6 @@ app_create:
 shell:
 	python manage.py shell
 
-ubuntu_dev_env:
-	apt-get install python-pip sqlite3
-	pip install Django
-	pip install django-countries
-	pip install django-social-auth
 
 
 
