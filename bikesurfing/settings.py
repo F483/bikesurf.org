@@ -130,12 +130,12 @@ INSTALLED_APPS = (
     'social_auth',      # http://www.djangopackages.com/packages/p/django-social-auth/
 
     # biksurfing apps
-    'bike',
-    'borrow',
-    'message',
-    'station',
-    'cyclist',
-    'image',
+    'apps.bike',
+    'apps.borrow',
+    'apps.message',
+    'apps.station',
+    'apps.cyclist',
+    'apps.image',
 )
 
 # A sample logging configuration. The only tangible logging

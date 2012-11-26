@@ -3,7 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from image.models import Image
+from apps.image.models import Image
 from django.contrib import admin
 
 admin.site.register(Image)

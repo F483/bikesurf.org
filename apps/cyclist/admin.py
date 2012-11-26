@@ -4,9 +4,9 @@
 
 
 from django.contrib import admin
-from cyclist.models import Cyclist
-from cyclist.models import Profile
-from cyclist.models import Member
+from apps.cyclist.models import Cyclist
+from apps.cyclist.models import Profile
+from apps.cyclist.models import Member
 
 
 admin.site.register(Cyclist)

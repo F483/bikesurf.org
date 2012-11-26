@@ -3,7 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from message.models import Message
+from apps.station.models import Station
 from django.contrib import admin
 
-admin.site.register(Message)
+admin.site.register(Station)

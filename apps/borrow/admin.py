@@ -4,9 +4,9 @@
 
 
 from django.contrib import admin
-from borrow.models import Borrow
-from borrow.models import Log
-from borrow.models import Rating
+from apps.borrow.models import Borrow
+from apps.borrow.models import Log
+from apps.borrow.models import Rating
 
 
 admin.site.register(Borrow)
