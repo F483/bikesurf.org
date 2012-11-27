@@ -1,13 +1,13 @@
 #!/bin/bash
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
+# License: MIT (see LICENSE.TXT file) 
 
-apt-get install mercurial python-pip sqlite3 ipython
-# TODO dont ask options
+apt-get -qy install mercurial python-pip sqlite3
 
 pip install Django
 pip install django-countries
 pip install django-social-auth
 
-hg clone https://fabe@bitbucket.org/fabe/bikesurfing.org
-
-# TODO set correct permissions for bikesurfing.org folder
+hg clone https://bitbucket.org/fabe/bikesurfing.org
+chown ${USER}:${USER} -R bikesurfing.org/
 

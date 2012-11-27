@@ -7,6 +7,8 @@ from django.shortcuts import render_to_response
 
 
 def root(request):
-    #return render_to_response('site/dashboard.html', {})
-    return render_to_response('site/index.html', {})
+    if request.user.is_authenticated():
+        return render_to_response('site/dashboard.html', {})
+    else:
+        return render_to_response('site/index.html', {})
 
