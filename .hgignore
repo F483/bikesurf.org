@@ -7,4 +7,5 @@ syntax: glob
 *.rej
 *.log
 *.bak
+*.lock
 db/*
