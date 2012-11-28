@@ -75,3 +75,20 @@ class Site(models.Model):
         unique_together = (('account', 'site'),) 
 
 
+class Vacation(models.Model):
+
+    user        = models.ForeignKey('auth.User')
+    start       = models.DateField()
+    finish      = models.DateField() # inclusive
+
+    # meta
+    created_on  = models.DateTimeField(auto_now_add=True)
+    updated_on  = models.DateTimeField(auto_now=True)
+
+    # TODO validation
+
+    def __unicode__(self):
+        args = (self.id, self.user.id, self.start, self.finish)
+        return u"id: %s; user_id: %s; start: %s; finish: %s" % args
+    
+

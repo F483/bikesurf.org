@@ -47,7 +47,7 @@ class Bike(models.Model):
     owner       = models.ForeignKey('auth.User')
     name        = models.CharField(max_length=1024)
     description = models.TextField()
-    available   = models.BooleanField(default=True)
+    active      = models.BooleanField(default=True)
     reserve     = models.BooleanField(default=False) # not requestable
     station     = models.ForeignKey('station.Station') # must belong to owner or team member
     lockcode    = models.CharField(max_length=1024)

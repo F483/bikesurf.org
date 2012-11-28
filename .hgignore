@@ -8,4 +8,4 @@ syntax: glob
 *.log
 *.bak
 *.lock
-db/*
+data/*

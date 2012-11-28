@@ -8,7 +8,7 @@ from django.db import models
 
 class Image(models.Model):
 
-    image       = models.ImageField(upload_to='db/images')
+    image       = models.ImageField(upload_to='data/images')
     preview     = models.BooleanField(default=False)
     
     # relations 

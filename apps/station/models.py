@@ -11,6 +11,7 @@ class Station(models.Model):
 
     owner       = models.ForeignKey('auth.User')
     capacity    = models.IntegerField(default=1)
+    active      = models.BooleanField(default=True)
     street      = models.CharField(max_length=1024)
     city        = models.CharField(max_length=1024)
     postalcode  = models.CharField(max_length=1024)
@@ -30,3 +31,5 @@ class Station(models.Model):
     class Meta:                                                                                                 
                                                                                                                 
         unique_together = (('owner', 'street', 'city', 'postalcode', 'country'),) 
+
+
