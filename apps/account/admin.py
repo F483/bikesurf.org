@@ -5,12 +5,10 @@
 
 from django.contrib import admin
 from apps.account.models import Account
-from apps.account.models import Profile
-from apps.account.models import Member
+from apps.account.models import Site
 
 
 admin.site.register(Account)
-admin.site.register(Profile)
-admin.site.register(Member)
+admin.site.register(Site)
 
 
