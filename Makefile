@@ -20,7 +20,7 @@ db_shell:
 	sqlite3 data/development.db
 
 db_sync:
-	#rm data/development.db
+	rm data/development.db
 	python manage.py syncdb
 
 py_shell:
