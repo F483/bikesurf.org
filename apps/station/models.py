@@ -9,7 +9,7 @@ from django_countries import CountryField
 
 class Station(models.Model):
 
-    owner       = models.ForeignKey('auth.User')
+    owner       = models.ForeignKey('account.Account')
     capacity    = models.IntegerField(default=1)
     active      = models.BooleanField(default=True)
     street      = models.CharField(max_length=1024)

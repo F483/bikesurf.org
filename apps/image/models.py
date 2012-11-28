@@ -12,7 +12,7 @@ class Image(models.Model):
     preview     = models.BooleanField(default=False)
     
     # relations 
-    user        = models.ForeignKey('auth.User', null=True, blank=True)
+    account     = models.ForeignKey('account.Account', null=True, blank=True)
     bike        = models.ForeignKey('bike.Bike', null=True, blank=True)
     station     = models.ForeignKey('station.Station', null=True, blank=True)
 

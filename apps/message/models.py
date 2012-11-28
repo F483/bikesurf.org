@@ -8,17 +8,18 @@ from django.db import models
 
 class Message(models.Model):
 
-    sender      = models.ForeignKey('auth.User', related_name='messages_sent') # None => system
-    recipient   = models.ForeignKey('auth.User', related_name='messages_received')
-    content     = models.TextField()
+    sender       = models.ForeignKey('account.Account', related_name='messages_sent') # None => system
+    recipient    = models.ForeignKey('account.Account', related_name='messages_received')
+    content      = models.TextField()
    
     # related
-    message     = models.ForeignKey('self', related_name='replies', null=True, blank=True)
-    bike        = models.ForeignKey('bike.Bike', null=True, blank=True)
-    borrow      = models.ForeignKey('borrow.Borrow', null=True, blank=True)
+    message      = models.ForeignKey('self', related_name='replies', null=True, blank=True)
+    bike         = models.ForeignKey('bike.Bike', null=True, blank=True)
+    borrow       = models.ForeignKey('borrow.Borrow', null=True, blank=True)
+    join_request = models.ForeignKey('account.JoinRequest', null=True, blank=True)
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
+    created_on   = models.DateTimeField(auto_now_add=True)
 
     # TODO validation
 

@@ -8,29 +8,17 @@ from django.utils.translation import ugettext as _
 from django_countries import CountryField
 
 
-SOURCES = [
-    'OTHER',
-    'COUCHSURFING',
-    'FACEBOOK',
-    'FRIENDS',
-    'GOOGLE',
-    'TWITTER',
-]
-SOURCES_CHOICES = [(source, _(source)) for source in SOURCES]
-
-
-SITES = [ # TODO add url validation functions per site
-    'COUCHSURFING',
-    'FACEBOOK',
-    'TWITTER',
-    'GOOGLEPLUS',
-    'BLOG',
-    'SKYPE',
-]
-SITE_CHOICES = [(site, _(site)) for site in SITES]
-
-
 class Account(models.Model):
+
+    SOURCES = [
+        'OTHER',
+        'COUCHSURFING',
+        'FACEBOOK',
+        'FRIENDS',
+        'GOOGLE',
+        'TWITTER',
+    ]
+    SOURCES_CHOICES = [(source, _(source)) for source in SOURCES]
 
     # main data
     user         = models.ForeignKey('auth.User', unique=True)
@@ -57,6 +45,17 @@ class Account(models.Model):
 
 class Site(models.Model):
 
+    SITES = [ # TODO add url validation functions per site
+        'COUCHSURFING',
+        'FACEBOOK',
+        'TWITTER',
+        'GOOGLEPLUS',
+        'BLOG',
+        'SKYPE',
+    ]
+    SITE_CHOICES = [(site, _(site)) for site in SITES]
+
+    # main data
     account     = models.ForeignKey('account.Account')
     site        = models.CharField(max_length=256, choices=SITE_CHOICES)
     link        = models.URLField()
@@ -77,7 +76,7 @@ class Site(models.Model):
 
 class Vacation(models.Model):
 
-    user        = models.ForeignKey('auth.User')
+    account     = models.ForeignKey('account.Account')
     start       = models.DateField()
     finish      = models.DateField() # inclusive
 
@@ -91,4 +90,32 @@ class Vacation(models.Model):
         args = (self.id, self.user.id, self.start, self.finish)
         return u"id: %s; user_id: %s; start: %s; finish: %s" % args
     
+
+class JoinRequest(models.Model):
+
+    STATUSES = [
+        'PENDING',
+        'ACCEPTED',
+        'DECLINED',
+    ]
+    STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
+
+    # main data
+    team        = models.ForeignKey('account.Account', related_name='join_requests') # team user wants to join
+    requester   = models.ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
+    processor   = models.ForeignKey('account.Account', related_name='join_requests_processed') # user who answerd the request
+    status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
+    application = models.TextField() # reason given by user to join
+    response    = models.TextField() # reason given by processor
+
+    # meta
+    created_on  = models.DateTimeField(auto_now_add=True)
+    updated_on  = models.DateTimeField(auto_now=True)
+
+    # TODO validation
+
+    def __unicode__(self):
+        args = (self.id, self.team.id, self.requester.id)
+        return u"id: %s; team_id: %s; requester_id: %s" % args
+
 

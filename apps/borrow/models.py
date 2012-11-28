@@ -22,7 +22,7 @@ STATE_CHOICES = [(state, _(state)) for state in STATES]
 class Borrow(models.Model):
 
     bike        = models.ForeignKey('bike.Bike')
-    borrower    = models.ForeignKey('auth.User')
+    borrower    = models.ForeignKey('account.Account')
     start       = models.DateField()
     finish      = models.DateField() # inclusive
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
@@ -45,7 +45,7 @@ class Borrow(models.Model):
 class Log(models.Model):
 
     borrow      = models.ForeignKey('borrow.Borrow')
-    initiator   = models.ForeignKey('auth.User') # None => system
+    initiator   = models.ForeignKey('account.Account') # None => system
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
     note        = models.TextField() # by initiator
 
@@ -63,7 +63,7 @@ class Rating(models.Model): # only borrower rates ...
 
     borrow      = models.ForeignKey('borrow.Borrow')
     rating      = models.IntegerField() # 0 - 5 'Stars' TODO validate range
-    user        = models.ForeignKey('auth.User') # borrower or lender
+    account     = models.ForeignKey('account.Account') # borrower or lender
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
@@ -76,5 +76,5 @@ class Rating(models.Model): # only borrower rates ...
 
     class Meta:                                                                                                 
                                                                                                                 
-        unique_together = (('borrow', 'user'),) 
+        unique_together = (('borrow', 'account'),) 
 

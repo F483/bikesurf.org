@@ -7,44 +7,42 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 
-KINDS = [
-    'NORMAL', # comfort, hybrid, trekking, citybike
-    'BMX', 
-    'CARGOBIKE',
-    'CRUISER',
-    'ELECTRIC', 
-    'FIXIE', 
-    'FOLDING', 
-    'KIDS',
-    'MOUNTAINBIKE', 
-    'RECUMBENT',
-    'ROADBIKE', 
-    'TANDEM',
-    'TRICYCLE',
-    'UNICYCLE',
-]
-KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
-
-
-GENDER = [
-    'NEUTRAL', 
-    'FEMALE', 
-    'MALE'
-]
-GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
-
-
-SIZE = [      # Body Hight
-    'SMALL',  # 0cm - 145cm
-    'MEDIUM', # 145cm - 175cm
-    'LARGE'   # 175cm + 
-]
-SIZE_CHOICES = [(size, _(size)) for size in SIZE]
-
-
 class Bike(models.Model):
 
-    owner       = models.ForeignKey('auth.User')
+    KINDS = [
+        'NORMAL', # comfort, hybrid, trekking, citybike
+        'BMX', 
+        'CARGOBIKE',
+        'CRUISER',
+        'ELECTRIC', 
+        'FIXIE', 
+        'FOLDING', 
+        'KIDS',
+        'MOUNTAINBIKE', 
+        'RECUMBENT',
+        'ROADBIKE', 
+        'TANDEM',
+        'TRICYCLE',
+        'UNICYCLE',
+    ]
+    KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
+
+    GENDER = [
+        'NEUTRAL', 
+        'FEMALE', 
+        'MALE'
+    ]
+    GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
+
+    SIZE = [      # Body Hight
+        'SMALL',  # 0cm - 145cm
+        'MEDIUM', # 145cm - 175cm
+        'LARGE'   # 175cm + 
+    ]
+    SIZE_CHOICES = [(size, _(size)) for size in SIZE]
+
+    # main data
+    owner       = models.ForeignKey('account.Account')
     name        = models.CharField(max_length=1024)
     description = models.TextField()
     active      = models.BooleanField(default=True)
@@ -79,8 +77,8 @@ class Issue(models.Model):
     problem     = models.TextField() # by notifier
     solution    = models.TextField() # by reslver
     resolved    = models.BooleanField(default=False)
-    notifier    = models.ForeignKey('auth.User', related_name='issues_notified')
-    resolver    = models.ForeignKey('auth.User', related_name='issues_resolved')
+    notifier    = models.ForeignKey('account.Account', related_name='issues_notified')
+    resolver    = models.ForeignKey('account.Account', related_name='issues_resolved')
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
