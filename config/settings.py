@@ -142,7 +142,7 @@ INSTALLED_APPS = (
     'apps.borrow',
     'apps.message',
     'apps.station',
-    'apps.cyclist',
+    'apps.account',
     'apps.image',
 )
 

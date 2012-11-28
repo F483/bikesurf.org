@@ -4,12 +4,12 @@
 
 
 from django.contrib import admin
-from apps.cyclist.models import Cyclist
-from apps.cyclist.models import Profile
-from apps.cyclist.models import Member
+from apps.account.models import Account
+from apps.account.models import Profile
+from apps.account.models import Member
 
 
-admin.site.register(Cyclist)
+admin.site.register(Account)
 admin.site.register(Profile)
 admin.site.register(Member)
 
