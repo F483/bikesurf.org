@@ -192,3 +192,10 @@ Set Active
 
 TODO
 
+
+
+TODO Team Homepage 
+    static content pages!
+    team blog
+    google juice buttons
+    How to deal with user/team imbedded js

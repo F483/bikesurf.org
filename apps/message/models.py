@@ -16,7 +16,8 @@ class Message(models.Model):
     message      = models.ForeignKey('self', related_name='replies', null=True, blank=True)
     bike         = models.ForeignKey('bike.Bike', null=True, blank=True)
     borrow       = models.ForeignKey('borrow.Borrow', null=True, blank=True)
-    join_request = models.ForeignKey('account.JoinRequest', null=True, blank=True)
+    join_request = models.ForeignKey('team.JoinRequest', null=True, blank=True)
+    join_request = models.ForeignKey('team.RemoveRequest', null=True, blank=True)
 
     # meta
     created_on   = models.DateTimeField(auto_now_add=True)
@@ -26,3 +27,5 @@ class Message(models.Model):
     def __unicode__(self):
         args = (self.id, self.sender.id, self.recipient.id)
         return u"id: %s; sender_id: %s; recipient_id: %s" % args
+
+

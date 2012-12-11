@@ -30,11 +30,14 @@ class Account(models.Model):
 
     # bike sharing teams
     is_team      = models.BooleanField(default=False)
+    header       = models.TextField() # TODO make wiki or markdown
     members      = models.ManyToManyField('self')
 
     # meta
-    created_on   = models.DateTimeField(auto_now_add=True)
-    updated_on   = models.DateTimeField(auto_now=True)
+    created_by  = models.ForeignKey('account.Account', related_name='team_created')
+    created_on  = models.DateTimeField(auto_now_add=True)
+    updated_by  = models.ForeignKey('account.Account', related_name='team_updated')
+    updated_on  = models.DateTimeField(auto_now=True)
 
     # TODO validation
 
@@ -52,6 +55,11 @@ class Site(models.Model):
         'GOOGLEPLUS',
         'BLOG',
         'SKYPE',
+        'LINKED_IN',
+        'BE_WELCOME',
+        'WARM_SHOWERS',
+        'PINTEREST',
+        'YOUTUBE',
     ]
     SITE_CHOICES = [(site, _(site)) for site in SITES]
 
@@ -90,55 +98,4 @@ class Vacation(models.Model):
         args = (self.id, self.user.id, self.start, self.finish)
         return u"id: %s; user_id: %s; start: %s; finish: %s" % args
     
-
-STATUSES = [
-    'PENDING',
-    'ACCEPTED',
-    'DECLINED',
-]
-STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
-
-
-class JoinRequest(models.Model):
-
-    # main data
-    team        = models.ForeignKey('account.Account', related_name='join_requests') # team user wants to join
-    requester   = models.ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
-    processor   = models.ForeignKey('account.Account', related_name='join_requests_processed') # user who answerd the request
-    status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
-    application = models.TextField() # reason given by user to join
-    response    = models.TextField() # reason given by processor
-
-    # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        args = (self.id, self.team.id, self.requester.id)
-        return u"id: %s; team_id: %s; requester_id: %s" % args
-
-
-class RemoveRequest(models.Model):
-
-    # main data
-    team        = models.ForeignKey('account.Account', related_name='remove_requests') # team to remove user from
-    concerned   = models.ForeignKey('account.Account', related_name='remove_requests_concerned') # user to be removed
-    requester   = models.ForeignKey('account.Account', related_name='remove_requests_made') # user who is requesting the removel
-    processor   = models.ForeignKey('account.Account', related_name='remove_requests_processed') # user who processed the request
-    status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
-    reason      = models.TextField() # reason given by by the requester
-    response    = models.TextField() # reason given by processor
-
-    # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        args = (self.id, self.team.id, self.concerned.id)
-        return u"id: %s; team_id: %s; concerned_id: %s" % args
-
 

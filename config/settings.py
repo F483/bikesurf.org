@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'apps.station',
     'apps.account',
     'apps.image',
+    'apps.team',
 )
 
 # A sample logging configuration. The only tangible logging
