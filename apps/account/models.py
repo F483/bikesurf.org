@@ -25,25 +25,31 @@ class Account(models.Model):
     description  = models.TextField()
     country      = CountryField()
     source       = models.CharField(max_length=256, choices=SOURCES_CHOICES, default='OTHER')
-    feedback     = models.TextField()
+    feedback     = models.TextField(null=True, blank=True)
     mobile       = models.CharField(max_length=1024)
 
     # bike sharing teams
     is_team      = models.BooleanField(default=False)
-    header       = models.TextField() # TODO make wiki or markdown
-    members      = models.ManyToManyField('self')
+    header       = models.TextField(null=True, blank=True) # TODO make wiki or markdown
+    members      = models.ManyToManyField('self', null=True, blank=True) 
 
     # meta
-    created_by  = models.ForeignKey('account.Account', related_name='team_created')
+    created_by  = models.ForeignKey('auth.User', related_name='team_created')
     created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey('account.Account', related_name='team_updated')
+    updated_by  = models.ForeignKey('auth.User', related_name='team_updated')
     updated_on  = models.DateTimeField(auto_now=True)
 
     # TODO validation
 
+    def get_url(self):
+        return '/team/%s' % self.user.username
+
     def __unicode__(self):
-        args = (self.id, self.user.id, self.is_team)
-        return u"id: %s; user_id: %s; is_team: %s" % args
+        return self.user.username
+
+    class Meta:
+
+        ordering = ['user__username']
 
 
 class Site(models.Model):

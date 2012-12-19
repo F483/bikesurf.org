@@ -3,12 +3,29 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from common.shortcuts import render_response
+from apps.site.forms import TeamSelectForm
 
 
 def root(request):
     if request.user.is_authenticated():
-        return render_to_response('site/dashboard.html', {})
+        return __dashboard(request)
     else:
-        return render_to_response('site/index.html', {})
+        return __index(request)
+
+
+def __index(request):
+    if request.method == 'POST':
+        form = TeamSelectForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(form.cleaned_data['team'].get_url())
+    else:
+        form = TeamSelectForm()
+    return render_response(request, 'site/index.html', { 'form' : form })
+
+
+def __dashboard(request):
+    return render_response(request, 'site/dashboard.html', {})
+
 

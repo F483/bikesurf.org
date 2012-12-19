@@ -1,14 +1,21 @@
-index page
+{% extends "base.html" %}
+{% load i18n %}
 
+{% block body %}
 
+    BIKESURF
 
-// Main page
+    <form name="TeamSelectForm" action="/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="{% trans SELECT %}" />
+    </form>
 
-LOGO
+    <a href="/team/create">{% trans CREATE_TEAM %}</a>
 
-Dropdown City Team 
-Start Team
+{% endblock %}
 
+<!--
 
 
 
@@ -25,4 +32,4 @@ Bikes // Link to BIKES page
 Content // Link to static page
 Members 
 
-
+-->
