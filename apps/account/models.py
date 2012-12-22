@@ -4,7 +4,7 @@
 
 
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 
 
@@ -23,26 +23,18 @@ class Account(models.Model):
     # main data
     user         = models.ForeignKey('auth.User', unique=True)
     description  = models.TextField()
-    country      = CountryField()
     source       = models.CharField(max_length=256, choices=SOURCES_CHOICES, default='OTHER')
     feedback     = models.TextField(null=True, blank=True)
     mobile       = models.CharField(max_length=1024)
 
-    # bike sharing teams
-    is_team      = models.BooleanField(default=False)
-    header       = models.TextField(null=True, blank=True) # TODO make wiki or markdown
-    members      = models.ManyToManyField('self', null=True, blank=True) 
-
     # meta
-    created_by  = models.ForeignKey('auth.User', related_name='team_created')
     created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey('auth.User', related_name='team_updated')
     updated_on  = models.DateTimeField(auto_now=True)
 
     # TODO validation
 
-    def get_url(self):
-        return '/team/%s' % self.user.username
+    def get_name():
+        return self.user.username
 
     def __unicode__(self):
         return self.user.username

@@ -10,22 +10,23 @@ from apps.site.forms import TeamSelectForm
 
 def root(request):
     if request.user.is_authenticated():
-        return __dashboard(request)
+        return _dashboard(request)
     else:
-        return __index(request)
+        return _index(request)
 
 
-def __index(request):
+def _index(request):
     if request.method == 'POST':
         form = TeamSelectForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect(form.cleaned_data['team'].get_url())
+            team_name = form.cleaned_data['team'].name
+            return HttpResponseRedirect("/team/%s/blog" % team_name)
     else:
         form = TeamSelectForm()
     return render_response(request, 'site/index.html', { 'form' : form })
 
 
-def __dashboard(request):
+def _dashboard(request):
     return render_response(request, 'site/dashboard.html', {})
 
 

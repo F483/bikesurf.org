@@ -1,35 +1,19 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+    Bikesurf | Wellcome
+{% endblock %}
+
 {% block body %}
 
-    BIKESURF
+    BIKESURF LOGO
 
     <form name="TeamSelectForm" action="/" method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="{% trans SELECT %}" />
+        <input type="submit" value="{% trans "SELECT" %}" />
     </form>
-
-    <a href="/team/create">{% trans CREATE_TEAM %}</a>
 
 {% endblock %}
 
-<!--
-
-
-
-// Team layout
-
-LOGO    | Borrow a bike | Donate to our cause |
-     
-Blog // Link to BLOG page
-About // Link to static page
-Help us // Link to static page
-Community // Link to static page
-Borrow // Link to BORROW page
-Bikes // Link to BIKES page
-Content // Link to static page
-Members 
-
--->

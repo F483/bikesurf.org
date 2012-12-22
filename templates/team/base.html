@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block body %}
+
+    <!-- TODO Team page layout -->
+    <div>BIKESURF LOGO</div>
+    <div>TODO TEAM HEADER</div>
+
+    <!-- TEAM MENU -->
+    <div> 
+        <ul>
+            {% for entry_url, entry_name, entry_selected in team_menu %}
+                <li>
+                    {% if entry_selected %}
+                        <a href="{{ entry_url }}"><b>{{ entry_name }}</b></a>
+                    {% else %}
+                        <a href="{{ entry_url }}">{{ entry_name }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        {% block team_body %}
+            Team Content
+        {% endblock %}
+    </div>
+
+{% endblock %}
+

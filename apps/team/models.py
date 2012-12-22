@@ -4,7 +4,9 @@
 
 
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+from django_countries import CountryField
+from common.shortcuts import MODEL_NAME
 
 
 STATUSES = [
@@ -15,10 +17,29 @@ STATUSES = [
 STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 
+class Team(models.Model):
+
+    name        = MODEL_NAME
+    header      = models.TextField(null=True, blank=True) # TODO make wiki or markdown
+    members     = models.ManyToManyField('account.Account', null=True, blank=True) 
+    country     = CountryField()
+
+    # meta
+    created_by  = models.ForeignKey('account.Account', related_name='team_created')
+    created_on  = models.DateTimeField(auto_now_add=True)
+    updated_by  = models.ForeignKey('account.Account', related_name='team_updated')
+    updated_on  = models.DateTimeField(auto_now=True)
+
+    # TODO validation
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+
 class JoinRequest(models.Model):
 
     # main data
-    team        = models.ForeignKey('account.Account', related_name='join_requests') # team user wants to join
+    team        = models.ForeignKey('team.Team', related_name='join_requests') # team user wants to join
     requester   = models.ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
     processor   = models.ForeignKey('account.Account', related_name='join_requests_processed') # user who answerd the request
     status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
@@ -39,7 +60,7 @@ class JoinRequest(models.Model):
 class RemoveRequest(models.Model):
 
     # main data
-    team        = models.ForeignKey('account.Account', related_name='remove_requests') # team to remove user from
+    team        = models.ForeignKey('team.Team', related_name='remove_requests') # team to remove user from
     concerned   = models.ForeignKey('account.Account', related_name='remove_requests_concerned') # user to be removed
     requester   = models.ForeignKey('account.Account', related_name='remove_requests_made') # user who is requesting the removel
     processor   = models.ForeignKey('account.Account', related_name='remove_requests_processed') # user who processed the request
@@ -60,12 +81,9 @@ class RemoveRequest(models.Model):
 
 class Page(models.Model): # TODO i18n
 
-    team        = models.ForeignKey('account.Account', related_name='pages')
-    url         = models.CharField(max_length=1024) # relative "/team/page/<url>"
-    title       = models.CharField(max_length=1024)
+    team        = models.ForeignKey('team.Team', related_name='pages')
+    name        = MODEL_NAME
     content     = models.TextField() # TODO make wiki or markdown
-    #language    = models.CharField(max_length=1024) # TODO language choices
-
     is_blog     = models.BooleanField(default=True) # shown in blog entries
     order       = models.IntegerField() # TODO allow None
 
@@ -78,12 +96,13 @@ class Page(models.Model): # TODO i18n
     # TODO validation
 
     def __unicode__(self):
-        args = (self.id, self.team.id, self.is_blog, self.title)
-        return u"id: %s; team_id: %s; is_blog: %s; title: %s" % args
+        args = (self.team.name, self.is_blog and _('BLOG') or _('PAGE'), self.name)
+        return u"%s (%s): %s" % args
 
     class Meta:                                                                                                 
                                                                                                                 
-        #unique_together = (('team', 'language', 'title'), ('team','language',  'url')) 
-        unique_together = (('team', 'title'), ('team', 'url')) 
+        #unique_together = (('team', 'language', 'name')) 
+        unique_together = (('team', 'name')) 
+        ordering = ['order', 'created_on']
 
 

@@ -4,12 +4,9 @@
 
 
 from django import forms
-from apps.account.models import Account
+from apps.team.models import Team
 
 
 class TeamSelectForm(forms.Form):
 
-    team = forms.ModelChoiceField(
-                label='',
-                queryset=Account.objects.filter(is_team=True)
-            ) 
+    team = forms.ModelChoiceField(label='', queryset=Team.objects.all()) 

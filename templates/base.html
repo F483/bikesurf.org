@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <html>
 
     <head>
@@ -19,6 +21,21 @@
     </head>
 
     <body>
+
+        {% block accountbar %}
+            <!-- TODO fix urls, css and add return url for login/out -->
+            <div id="accountbar">
+                {% if current_user.is_authenticated %}
+                    <a href="/message/list">{% trans "MESSAGES" %} ({{ message_count }})</a>
+                    <a href="/borrow/list">{% trans "BORROWS" %} ({{ borrow_count }})</a>
+                    <a href="/admin/logout/">{% trans "LOGOUT" %}</a> <!-- TODO add return url -->
+                    <a href="/account/view">{{ current_user.username }}</a>
+                {% else %}
+                    <a href="/admin/">{% trans "LOGIN" %}</a> <!-- TODO add return url -->
+                    <a href="/account/regester">{% trans "REGISTER" %}</a>
+                {% endif %}
+            </div>
+        {% endblock %}
 
         {% block body %}
             BODY
