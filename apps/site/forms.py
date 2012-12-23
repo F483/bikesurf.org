@@ -4,9 +4,10 @@
 
 
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 from apps.team.models import Team
 
 
 class TeamSelectForm(forms.Form):
 
-    team = forms.ModelChoiceField(label='', queryset=Team.objects.all()) 
+    team = forms.ModelChoiceField(label='', empty_label=_("WHERE?"), queryset=Team.objects.all()) 
