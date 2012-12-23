@@ -8,6 +8,7 @@ from common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
 urlpatterns = patterns('',
+    url(r'^t/create$', 'apps.team.views.create'),
     url(r'^(?P<team_link>%s)$' % HLF, 'apps.team.views.blog'),
     url(r'^(?P<team_link>%s)/blog$' % HLF, 'apps.team.views.blog'),
     url(r'^(?P<team_link>%s)/bikes$' % HLF, 'apps.team.views.bikes'),

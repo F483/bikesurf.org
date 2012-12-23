@@ -2,10 +2,13 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf | TEAMNAME - PAGENAME
+    Bikesurf {{ current_team.name }} - {{ page.name }}
 {% endblock %}
 
-{% block team_body %}
-    team page
+{% block area_center %}
+    <div id="team_page">
+        <h2>{{ page.name }}</h2>
+        {{ page.content }}
+    </div>
 {% endblock %}
 

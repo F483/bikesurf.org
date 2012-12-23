@@ -2,9 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf | TEAMNAME - Blog
+    Bikesurf {{ current_team.name }} - {% trans "BLOG" %}
 {% endblock %}
 
-{% block team_body %}
-    team blog
+{% block area_center %}
+    {% for blog in blogs %}
+        <div id="blog_entrie">
+            <h2>{{ blog.name }}</h2>
+            {{ blog.content }}
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf | TEAMNAME - Members
+    Bikesurf {{ current_team.name }} - {% trans "MEMBERS" %}
 {% endblock %}
 
-{% block team_body %}
+{% block area_center %}
     team members
 {% endblock %}

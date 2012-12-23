@@ -41,12 +41,22 @@
 
         {% block logo %}
             <div id="logo">
-                <img src="/static/index_logo.png" alt="BikeSurf">
+                <a href="/"><img src="/static/logo.png" alt="BikeSurf"></a>
             </div>
         {% endblock %}
 
         {% block body %}
-            BODY
+            <div id="area_left">
+                {% block area_left %}
+                    BODY
+                {% endblock %}
+            </div>
+
+            <div id="area_center">
+                {% block area_center %}
+                    BODY
+                {% endblock %}
+            </div>
         {% endblock %}
 
     </body>

@@ -7,18 +7,23 @@
 
 {% block body %}
 
-
     <div id="index_body">
 
-        <p> <!-- TODO i18n -->
-            Borrow a bike without extortionate rental fees!</br> Two legs good. Free wheels better. 
-        </p>
+        {% if not current_user.is_authenticated %}
+            <p> <!-- TODO i18n -->
+                Borrow a bike without extortionate rental fees!</br> Two legs good. Free wheels better. 
+            </p>
+        {% endif %}
 
         <form name="TeamSelectForm" action="/" method="post">
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="{% trans "SELECT" %}" />
         </form>
+
+        {% if current_user.is_authenticated %}
+            <a href="/t/create">{% trans "CREATE_TEAM" %}</a>
+        {% endif %}
 
     </div>
 

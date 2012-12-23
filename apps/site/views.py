@@ -8,14 +8,8 @@ from common.shortcuts import render_response
 from apps.site.forms import TeamSelectForm
 
 
+    #if request.user.is_authenticated():
 def root(request):
-    if request.user.is_authenticated():
-        return _dashboard(request)
-    else:
-        return _index(request)
-
-
-def _index(request):
     if request.method == 'POST':
         form = TeamSelectForm(request.POST)
         if form.is_valid():
@@ -24,9 +18,3 @@ def _index(request):
     else:
         form = TeamSelectForm()
     return render_response(request, 'site/index.html', { 'form' : form })
-
-
-def _dashboard(request):
-    return render_response(request, 'site/dashboard.html', {})
-
-

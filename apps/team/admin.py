@@ -6,12 +6,14 @@
 from django.contrib import admin
 from apps.team.models import Team
 from apps.team.models import Page
+from apps.team.models import Blog
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 
 
 admin.site.register(Team)
 admin.site.register(Page)
+admin.site.register(Blog)
 admin.site.register(JoinRequest)
 admin.site.register(RemoveRequest)
 

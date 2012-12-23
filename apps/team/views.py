@@ -8,34 +8,41 @@ from django.utils.translation import ugettext_lazy as _
 from common.shortcuts import render_response
 from apps.team.models import Team
 from apps.team.models import Page
+from apps.team.models import Blog
 
 
-def get_team_menue(team, current):
+def _get_team_menue(team, current):
     fixed = ['blog', 'bikes', 'members']
-    pages = team.pages.filter(is_blog=False)
+    pages = team.pages.all()
     make_url = lambda pl: '/%s/%s' % (team.link, pl)
     menu  = map(lambda pl: (make_url(pl), _(pl.upper()), pl == current), fixed)
     menu += map(lambda p: (make_url(p.link), p.name, p.link == current), pages)
     return menu
 
 
+def create(request):
+    # TODO
+    return render_response(request, 'team/create.html', {})
+
+
 def blog(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = get_team_menue(team, 'blog')
-    args = { 'current_team' : team, 'team_menu' : menu }
+    menu = _get_team_menue(team, 'blog')
+    blogs = Blog.objects.all()
+    args = { 'current_team' : team, 'team_menu' : menu, 'blogs' : blogs }
     return render_response(request, 'team/blog.html', args)
 
 
 def bikes(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = get_team_menue(team, 'bikes')
+    menu = _get_team_menue(team, 'bikes')
     args = { 'current_team' : team, 'team_menu' : menu }
     return render_response(request, 'team/bikes.html', args)
 
 
 def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = get_team_menue(team, 'members')
+    menu = _get_team_menue(team, 'members')
     args = { 'current_team' : team, 'team_menu' : menu }
     return render_response(request, 'team/members.html', args)
 
@@ -43,7 +50,7 @@ def members(request, team_link):
 def page(request, team_link, page_link):
     team = get_object_or_404(Team, link=team_link)
     page = get_object_or_404(Page, link=page_link, team=team)
-    menu = get_team_menue(team, page.link)
+    menu = _get_team_menue(team, page.link)
     args = { 'current_team' : team, 'team_menu' : menu, 'page' : page }
     return render_response(request, 'team/page.html', args)
 
