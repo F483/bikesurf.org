@@ -6,5 +6,10 @@
 {% endblock %}
 
 {% block area_center %}
-    team bikes
+    {% for bike in bikes %}
+        <div class="team_content">
+            <h2>{{ bike.name }}</h2>
+            {{ bike.description }}
+        </div>
+    {% endfor %}
 {% endblock %}

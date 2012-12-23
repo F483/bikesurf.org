@@ -5,7 +5,7 @@
 {% block area_left %}
 
     <div id="team_menu"> 
-        <a href="/{{ current_team.link }}"><h2>{{ current_team.name }}</h2></a>
+        <a href="/{{ current_team.link }}"><h2>{{ current_team.name }} ({{ current_team.country.name }})</h2></a>
         <ul>
             {% for entry_url, entry_name, entry_selected in team_menu %}
                 <li>

@@ -7,6 +7,20 @@
  */
 
 
+/**********/
+/* COMMON */
+/**********/
+
+.team_content {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: #02281B;
+    padding: 10px;
+    border: 1px;
+    border-color: #000000;
+}
+
+
 /*************/
 /* base.html */
 /*************/
@@ -103,30 +117,3 @@ body h2 {
     color: #E8B828;
 }
 
-
-/******************/
-/* team/page.html */
-/******************/
-
-#team_page {
-    margin-right: 10px;
-    background: #02281B;
-    padding: 10px;
-    border: 1px;
-    border-color: #000000;
-    height: 100%;
-}
-
-
-/******************/
-/* team/blog.html */
-/******************/
-
-#blog_entrie {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    background: #02281B;
-    padding: 10px;
-    border: 1px;
-    border-color: #000000;
-}

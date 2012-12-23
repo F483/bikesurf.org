@@ -6,5 +6,10 @@
 {% endblock %}
 
 {% block area_center %}
-    team members
+    {% for member in members %}
+        <div class="team_content">
+            <h2>{{ member.user.username }}</h2>
+            {{ member.description }}
+        </div>
+    {% endfor %}
 {% endblock %}

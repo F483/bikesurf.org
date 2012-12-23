@@ -42,7 +42,7 @@ class Bike(models.Model):
     SIZE_CHOICES = [(size, _(size)) for size in SIZE]
 
     # main data
-    owner       = models.ForeignKey('account.Account')
+    owner       = models.ForeignKey('account.Account', related_name='bikes')
     name        = models.CharField(max_length=1024)
     description = models.TextField()
     active      = models.BooleanField(default=True)

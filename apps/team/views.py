@@ -9,6 +9,7 @@ from common.shortcuts import render_response
 from apps.team.models import Team
 from apps.team.models import Page
 from apps.team.models import Blog
+from apps.bike.models import Bike
 
 
 def _get_team_menue(team, current):
@@ -36,14 +37,22 @@ def blog(request, team_link):
 def bikes(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     menu = _get_team_menue(team, 'bikes')
-    args = { 'current_team' : team, 'team_menu' : menu }
+
+    # TODO search and ordering filters
+    bikes = []
+    map(lambda m: bikes.extend(m.bikes.all()), team.members.all())
+
+
+
+    args = { 'current_team' : team, 'team_menu' : menu, 'bikes' : bikes }
     return render_response(request, 'team/bikes.html', args)
 
 
 def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     menu = _get_team_menue(team, 'members')
-    args = { 'current_team' : team, 'team_menu' : menu }
+    members = team.members.all()
+    args = { 'current_team' : team, 'team_menu' : menu, 'members' : members }
     return render_response(request, 'team/members.html', args)
 
 
