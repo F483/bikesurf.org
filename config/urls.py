@@ -12,12 +12,14 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    url(r'^', include('apps.site.urls')),
-    url(r'^team/', include('apps.team.urls')),
-
     # admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # bikesurf urls
+    url(r'^', include('apps.site.urls')),
+    url(r'^', include('apps.team.urls')),
+
 )
 
 

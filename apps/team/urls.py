@@ -4,15 +4,15 @@
 
 
 from django.conf.urls import patterns, include, url
-from common.shortcuts import URL_NAME
+from common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<team_name>%s)$' % URL_NAME, 'apps.team.views.blog'),
-    url(r'^(?P<team_name>%s)/blog$' % URL_NAME, 'apps.team.views.blog'),
-    url(r'^(?P<team_name>%s)/bikes$' % URL_NAME, 'apps.team.views.bikes'),
-    url(r'^(?P<team_name>%s)/members$' % URL_NAME, 'apps.team.views.members'),
-    url(r'^(?P<team_name>%s)/(?P<page_name>%s)$' % (URL_NAME, URL_NAME), 'apps.team.views.page'),
+    url(r'^(?P<team_link>%s)$' % HLF, 'apps.team.views.blog'),
+    url(r'^(?P<team_link>%s)/blog$' % HLF, 'apps.team.views.blog'),
+    url(r'^(?P<team_link>%s)/bikes$' % HLF, 'apps.team.views.bikes'),
+    url(r'^(?P<team_link>%s)/members$' % HLF, 'apps.team.views.members'),
+    url(r'^(?P<team_link>%s)/(?P<page_link>%s)$' % (HLF, HLF), 'apps.team.views.page'),
 )
 
 

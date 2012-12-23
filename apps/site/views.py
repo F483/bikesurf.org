@@ -19,8 +19,8 @@ def _index(request):
     if request.method == 'POST':
         form = TeamSelectForm(request.POST)
         if form.is_valid():
-            team_name = form.cleaned_data['team'].name
-            return HttpResponseRedirect("/team/%s/blog" % team_name)
+            team_link = form.cleaned_data['team'].link
+            return HttpResponseRedirect("/%s" % team_link)
     else:
         form = TeamSelectForm()
     return render_response(request, 'site/index.html', { 'form' : form })

@@ -6,7 +6,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
-from common.shortcuts import MODEL_NAME
+from django.core.validators import RegexValidator
+from common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
 STATUSES = [
@@ -19,8 +20,8 @@ STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 class Team(models.Model):
 
-    name        = MODEL_NAME
-    header      = models.TextField(null=True, blank=True) # TODO make wiki or markdown
+    link        = models.CharField(max_length=128, unique=True, validators=[RegexValidator('^%s$' % HLF)])
+    name        = models.CharField(max_length=1024, unique=True)
     members     = models.ManyToManyField('account.Account', null=True, blank=True) 
     country     = CountryField()
 
@@ -34,6 +35,10 @@ class Team(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+    class Meta:                                                                                                 
+                                                                                                                
+        ordering = ['name']
 
 
 class JoinRequest(models.Model):
@@ -79,10 +84,11 @@ class RemoveRequest(models.Model):
         return u"id: %s; team_id: %s; concerned_id: %s" % args
 
 
-class Page(models.Model): # TODO i18n
+class Page(models.Model):
 
     team        = models.ForeignKey('team.Team', related_name='pages')
-    name        = MODEL_NAME
+    link        = models.CharField(max_length=128, validators=[RegexValidator('^%s$' % HLF)])
+    name        = models.CharField(max_length=1024)
     content     = models.TextField() # TODO make wiki or markdown
     is_blog     = models.BooleanField(default=True) # shown in blog entries
     order       = models.IntegerField() # TODO allow None
@@ -101,8 +107,7 @@ class Page(models.Model): # TODO i18n
 
     class Meta:                                                                                                 
                                                                                                                 
-        #unique_together = (('team', 'language', 'name')) 
-        unique_together = (('team', 'name')) 
+        unique_together = (('team', 'name'), ('team', 'link')) 
         ordering = ['order', 'created_on']
 
 
