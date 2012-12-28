@@ -46,10 +46,10 @@ class JoinRequest(models.Model):
     # main data
     team        = models.ForeignKey('team.Team', related_name='join_requests') # team user wants to join
     requester   = models.ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
-    processor   = models.ForeignKey('account.Account', related_name='join_requests_processed') # user who answerd the request
+    processor   = models.ForeignKey('account.Account', related_name='join_requests_processed', null=True, blank=True) # user who answerd the request
     status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
     application = models.TextField() # reason given by user to join
-    response    = models.TextField() # reason given by processor
+    response    = models.TextField(blank=True) # reason given by processor
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
@@ -58,8 +58,11 @@ class JoinRequest(models.Model):
     # TODO validation
 
     def __unicode__(self):
-        args = (self.id, self.team.id, self.requester.id)
-        return u"id: %s; team_id: %s; requester_id: %s" % args
+        return u"%s > %s (%s)" % (self.requester, self.team, self.status)
+
+    class Meta:                                                                                                 
+                                                                                                                
+        ordering = ['-status', 'updated_on']
 
 
 class RemoveRequest(models.Model):

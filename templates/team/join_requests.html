@@ -1,0 +1,22 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load common_tags %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "JOIN_REQUESTS" %}
+{% endblock %}
+
+{% block content_center %}
+    {% for jr in join_requests %}
+        <div class="content_block">
+            <h2> {{ jr.requester }}</h2>
+            {% trans "PROCESSOR" %}: {% if jr.processor %} {{ jr.processor }} {% else %} {% trans "NONE" %} {% endif %} <br />
+            {% trans "STATUS" %}: {{ jr.status }} <br />
+            <p> {% trans "APPLICATION" %}: {{ jr.application }} </p>
+            <p> {% trans "RESPONSE" %}: {{ jr.response }} </p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+

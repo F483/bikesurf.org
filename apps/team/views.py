@@ -12,6 +12,7 @@ from apps.team.models import Team
 from apps.team.models import Page
 from apps.team.models import Blog
 from apps.team.models import Station
+from apps.team.models import JoinRequest
 
 
 def _is_member(user, team):
@@ -20,11 +21,12 @@ def _is_member(user, team):
 
 def _get_team_menue(team, current):
     make_url = lambda pl: '/%s/%s' % (team.link, pl)
-    menu = [
-        (make_url('blog'), _('BLOG'), current == 'blog', False), 
-        (make_url('bikes'), _('BIKES'), current == 'bikes', False), 
-        (make_url('members'), _('MEMBERS'), current == 'members', False), 
-        (make_url('stations'), _('STATIONS'), current == 'stations', True),
+    menu = [ # URL                  LABEL               SELECTED                    MEMBERS_ONLY
+        (make_url('blog'),          _('BLOG'),          current == 'blog',          False), 
+        (make_url('bikes'),         _('BIKES'),         current == 'bikes',         False), 
+        (make_url('members'),       _('MEMBERS'),       current == 'members',       False), 
+        (make_url('stations'),      _('STATIONS'),      current == 'stations',      True),
+        (make_url('join_requests'), _('JOIN_REQUESTS'), current == 'join_requests', True),
     ]
     pages = team.pages.all()
     menu += map(lambda p: (make_url(p.link), p.name, p.link == current, False), pages)
@@ -42,6 +44,16 @@ def blog(request, team_link):
     blogs = Blog.objects.all()
     args = { 'current_team' : team, 'team_menu' : menu, 'blogs' : blogs }
     return render_response(request, 'team/blog.html', args)
+
+
+def join_requests(request, team_link):
+    team = get_object_or_404(Team, link=team_link)
+    if not _is_member(request.user, team):
+        raise PermissionDenied
+    menu = _get_team_menue(team, 'join_requests')
+    join_requests = JoinRequest.objects.filter(team=team)
+    args = { 'current_team' : team, 'team_menu' : menu, 'join_requests' : join_requests }
+    return render_response(request, 'team/join_requests.html', args)
 
 
 def _get_bike_filters(request, form):
