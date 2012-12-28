@@ -22,9 +22,9 @@ class Account(models.Model):
 
     # main data
     user         = models.ForeignKey('auth.User', unique=True)
-    description  = models.TextField()
+    description  = models.TextField(blank=True)
     source       = models.CharField(max_length=256, choices=SOURCES_CHOICES, default='OTHER')
-    feedback     = models.TextField(null=True, blank=True)
+    feedback     = models.TextField(blank=True)
     mobile       = models.CharField(max_length=1024)
 
     # meta

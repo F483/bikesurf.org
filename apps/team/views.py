@@ -4,19 +4,30 @@
 
 
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from apps.common.shortcuts import render_response
+from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import Page
 from apps.team.models import Blog
+from apps.team.models import Station
+
+
+def _is_member(user, team):
+    return len(Account.objects.filter(user=user, team=team)) == 1
 
 
 def _get_team_menue(team, current):
-    fixed = ['blog', 'bikes', 'members']
-    pages = team.pages.all()
     make_url = lambda pl: '/%s/%s' % (team.link, pl)
-    menu  = map(lambda pl: (make_url(pl), _(pl.upper()), pl == current), fixed)
-    menu += map(lambda p: (make_url(p.link), p.name, p.link == current), pages)
+    menu = [
+        (make_url('blog'), _('BLOG'), current == 'blog', False), 
+        (make_url('bikes'), _('BIKES'), current == 'bikes', False), 
+        (make_url('members'), _('MEMBERS'), current == 'members', False), 
+        (make_url('stations'), _('STATIONS'), current == 'stations', True),
+    ]
+    pages = team.pages.all()
+    menu += map(lambda p: (make_url(p.link), p.name, p.link == current, False), pages)
     return menu
 
 
@@ -55,6 +66,16 @@ def bikes(request, team_link):
     bikes = team.bikes.filter(**filters)
     args = { 'current_team' : team, 'team_menu' : menu, 'bikes' : bikes }
     return render_response(request, 'team/bikes.html', args)
+
+
+def stations(request, team_link):
+    team = get_object_or_404(Team, link=team_link)
+    if not _is_member(request.user, team):
+        raise PermissionDenied
+    menu = _get_team_menue(team, 'stations')
+    stations = Station.objects.filter(owner__team=team)
+    args = { 'current_team' : team, 'team_menu' : menu, 'stations' : stations }
+    return render_response(request, 'team/stations.html', args)
 
 
 def members(request, team_link):

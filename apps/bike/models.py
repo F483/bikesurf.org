@@ -49,7 +49,7 @@ class Bike(models.Model):
     preview     = models.ForeignKey('image.Image', related_name='bike_previews')
     active      = models.BooleanField(default=True)
     reserve     = models.BooleanField(default=False) # not requestable
-    station     = models.ForeignKey('station.Station') # must belong to owner or team member
+    station     = models.ForeignKey('team.Station') # must belong to owner or team member
     lockcode    = models.CharField(max_length=1024)
     keycode     = models.CharField(max_length=1024)
     

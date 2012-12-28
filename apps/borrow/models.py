@@ -28,8 +28,8 @@ class Borrow(models.Model):
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
     
     # location
-    src         = models.ForeignKey('station.Station', related_name='borrows_outgoing')
-    dest        = models.ForeignKey('station.Station', related_name='borrows_incoming')
+    src         = models.ForeignKey('team.Station', related_name='borrows_outgoing')
+    dest        = models.ForeignKey('team.Station', related_name='borrows_incoming')
 
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)

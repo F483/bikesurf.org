@@ -29,9 +29,11 @@
                     </td>
                     <td id="td_bike_info">
                         {% trans "OWNER" %}: {{ bike.owner.user.username }}<br /><!-- TODO link bike.owner -->
-                        {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
                         {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                         {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
+                        {% if current_account|is_member:current_team %}
+                            {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
+                        {% endif %}
                     </td>
                 </tr>
             </table>

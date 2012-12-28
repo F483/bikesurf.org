@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load common_tags %}
 
 
 {% block content_left %}
@@ -7,14 +8,16 @@
     <div id="team_menu"> 
         <a href="/{{ current_team.link }}"><h2>{{ current_team.name }} - {{ current_team.country.name }}</h2></a>
         <ul>
-            {% for entry_url, entry_name, entry_selected in team_menu %}
-                <li>
-                    {% if entry_selected %}
-                        <a id="selected" href="{{ entry_url }}">{{ entry_name }}</a>
-                    {% else %}
-                        <a href="{{ entry_url }}">{{ entry_name }}</a>
-                    {% endif %}
-                </li>
+            {% for entry_url, entry_name, entry_selected, only_members in team_menu %}
+                {% if not only_members or current_account|is_member:current_team %}
+                    <li>
+                        {% if entry_selected %}
+                            <a id="selected" href="{{ entry_url }}">{{ entry_name }}</a>
+                        {% else %}
+                            <a href="{{ entry_url }}">{{ entry_name }}</a>
+                        {% endif %}
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

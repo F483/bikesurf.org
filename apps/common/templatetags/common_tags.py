@@ -16,3 +16,8 @@ def draw_bool(value):
     return '<img src="/static/icons/reject.png">'
 
 
+@register.filter
+def is_member(account, team):
+    return account in team.members.all()
+
+

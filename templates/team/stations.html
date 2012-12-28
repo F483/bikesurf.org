@@ -1,0 +1,22 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load common_tags %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "STATIONS" %}
+{% endblock %}
+
+{% block content_center %}
+    {% for station in stations %}
+        <div class="content_block">
+
+            <h2>{{ station.country.name }} - {{ station.postalcode }} {{ station.city }} - {{ station.street }}</h2>
+
+            {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
+            {% trans "CAPACITY" %}: {{ station.capacity }} <br />
+            {% trans "OWNER" %}: {{ station.owner.user.username }}
+        </div>
+    {% endfor %}
+{% endblock %}
+

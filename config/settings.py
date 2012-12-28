@@ -144,7 +144,6 @@ INSTALLED_APPS = (
     'apps.bike',
     'apps.borrow',
     'apps.message',
-    'apps.station',
     'apps.account',
     'apps.image',
     'apps.team',

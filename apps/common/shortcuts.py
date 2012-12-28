@@ -13,9 +13,10 @@ HUMAN_LINK_FORMAT = "[a-z0-9-_]{3,128}"
 
 
 def render_response(request, template, args):
-    # accountbar data
+    user = request.user
     args.update({
-        'current_user' : request.user,
+        'current_user' : user,
+        'current_account' : user.is_authenticated() and user.account_set.all()[0] or None,
         'message_count' : 0, # TODO get count
         'borrow_count' : 0, # TODO get count
     })

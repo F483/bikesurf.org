@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^(?P<team_link>%s)$' % HLF, 'apps.team.views.blog'),
     url(r'^(?P<team_link>%s)/blog$' % HLF, 'apps.team.views.blog'),
     url(r'^(?P<team_link>%s)/bikes$' % HLF, 'apps.team.views.bikes'),
+    url(r'^(?P<team_link>%s)/stations$' % HLF, 'apps.team.views.stations'),
     url(r'^(?P<team_link>%s)/members$' % HLF, 'apps.team.views.members'),
     url(r'^(?P<team_link>%s)/(?P<page_link>%s)$' % (HLF, HLF), 'apps.team.views.page'),
 )
