@@ -5,11 +5,10 @@
 
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
-from common.shortcuts import render_response
+from apps.common.shortcuts import render_response
 from apps.team.models import Team
 from apps.team.models import Page
 from apps.team.models import Blog
-from apps.bike.models import Bike
 
 
 def _get_team_menue(team, current):
@@ -34,16 +33,26 @@ def blog(request, team_link):
     return render_response(request, 'team/blog.html', args)
 
 
+def _get_bike_filters(request, form):
+    # filters 
+    #  date from and to
+    #  active (only members)
+    #  reserve (only members)
+    #  kind (default all)
+    #  gender (default all)
+    #  size (default all)
+    #  lights (default all)
+    #  fenders (default all)
+    #  rack (default all)
+    #  basket (default all)
+    return {}
+
+
 def bikes(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     menu = _get_team_menue(team, 'bikes')
-
-    # TODO search and ordering filters
-    bikes = []
-    map(lambda m: bikes.extend(m.bikes.all()), team.members.all())
-
-
-
+    filters = _get_bike_filters(request, None)
+    bikes = team.bikes.filter(**filters)
     args = { 'current_team' : team, 'team_menu' : menu, 'bikes' : bikes }
     return render_response(request, 'team/bikes.html', args)
 

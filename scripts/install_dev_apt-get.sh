@@ -17,6 +17,8 @@ apt-get -qy install python-docutils
 pip install Django
 pip install django-countries
 pip install django-social-auth
+pip install easy-thumbnails
+pip install South
 
 hg clone https://bitbucket.org/fabe/bikesurfing.org
 chown ${USER}:${USER} -R bikesurfing.org/

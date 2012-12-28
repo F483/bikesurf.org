@@ -17,10 +17,10 @@ db_sql:
 	python manage.py sql $(APP)
 
 db_shell:
-	sqlite3 data/development.db
+	sqlite3 uploads/development.db
 
 db_sync:
-	rm data/development.db
+	rm uploads/development.db
 	python manage.py syncdb
 
 py_shell:

@@ -2,10 +2,10 @@
 {% load i18n %}
 
 
-{% block area_left %}
+{% block content_left %}
 
     <div id="team_menu"> 
-        <a href="/{{ current_team.link }}"><h2>{{ current_team.name }} ({{ current_team.country.name }})</h2></a>
+        <a href="/{{ current_team.link }}"><h2>{{ current_team.name }} - {{ current_team.country.name }}</h2></a>
         <ul>
             {% for entry_url, entry_name, entry_selected in team_menu %}
                 <li>
@@ -21,7 +21,17 @@
 
 {% endblock %}
 
-{% block area_center %}
+{% block content_center %}
     Team Content
 {% endblock %}
 
+{% block content_right %}
+
+    <div id="team_info" class="content_block"> 
+        <h2>TODO team info</h2> 
+        {% trans "TWITTER" %}: TODO <br />
+        {% trans "FACEBOOK" %}: TODO <br />
+        {% trans "COUCHSURFING" %}: TODO <br />
+    </div>
+
+{% endblock %}

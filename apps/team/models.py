@@ -7,7 +7,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 from django.core.validators import RegexValidator
-from common.shortcuts import HUMAN_LINK_FORMAT as HLF
+from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
 STATUSES = [

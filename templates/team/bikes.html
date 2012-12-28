@@ -1,15 +1,42 @@
 {% extends "team/base.html" %}
 {% load i18n %}
+{% load thumbnail %}
+{% load common_tags %}
 
 {% block title %}
     Bikesurf {{ current_team.name }} - {% trans "BIKES" %}
 {% endblock %}
 
-{% block area_center %}
+{% block content_center %}
     {% for bike in bikes %}
-        <div class="team_content">
+        <div class="content_block">
+
             <h2>{{ bike.name }}</h2>
+
+            <table>
+                <tr>
+                    <td id="td_bike_image">
+                        <img src="{% thumbnail bike.preview.photo 200x150 crop %}" alt="PreviewImage"><br /> <!-- TODO link galerie -->
+                    </td>
+                    <td id="td_bike_props">
+                        {% trans "TYPE" %}: {% trans bike.kind %}<br />
+                        {% trans "GENDER" %}: {% trans bike.gender %}<br />
+                        {% trans "SIZE" %}: {% trans bike.size %}<br />
+                        {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
+                        {% trans "FENDERS" %}: {% draw_bool bike.fenders %} <br />
+                        {% trans "RACK" %}: {% draw_bool bike.rack %} <br />
+                        {% trans "BASKET" %}: {% draw_bool bike.basket %} <br />
+                    </td>
+                    <td id="td_bike_info">
+                        {% trans "OWNER" %}: {{ bike.owner.user.username }}<br /><!-- TODO link bike.owner -->
+                        {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
+                        {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
+                        {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
+                    </td>
+                </tr>
+            </table>
             {{ bike.description }}
         </div>
     {% endfor %}
 {% endblock %}
+

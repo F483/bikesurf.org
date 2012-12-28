@@ -43,8 +43,10 @@ class Bike(models.Model):
 
     # main data
     owner       = models.ForeignKey('account.Account', related_name='bikes')
+    team        = models.ForeignKey('team.Team', related_name='bikes') # owner must be member
     name        = models.CharField(max_length=1024)
     description = models.TextField()
+    preview     = models.ForeignKey('image.Image', related_name='bike_previews')
     active      = models.BooleanField(default=True)
     reserve     = models.BooleanField(default=False) # not requestable
     station     = models.ForeignKey('station.Station') # must belong to owner or team member

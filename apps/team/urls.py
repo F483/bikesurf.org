@@ -4,7 +4,7 @@
 
 
 from django.conf.urls import patterns, include, url
-from common.shortcuts import HUMAN_LINK_FORMAT as HLF
+from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
 urlpatterns = patterns('',

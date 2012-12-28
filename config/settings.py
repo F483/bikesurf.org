@@ -23,7 +23,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'data/development.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'uploads/development.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -56,12 +56,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '' # TODO data?
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '' # TODO data?
+MEDIA_URL = '/uploads/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -137,8 +137,10 @@ INSTALLED_APPS = (
     # third party apps
     'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
     'social_auth',      # http://www.djangopackages.com/packages/p/django-social-auth/
+    'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
 
     # biksurfing apps
+    'apps.common',
     'apps.bike',
     'apps.borrow',
     'apps.message',
@@ -176,3 +178,4 @@ LOGGING = {
         },
     }
 }
+

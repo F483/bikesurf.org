@@ -11,13 +11,12 @@
 /* COMMON */
 /**********/
 
-.team_content {
-    margin-right: 10px;
-    margin-bottom: 10px;
+.content_block {
     background: #02281B;
     padding: 10px;
-    border: 1px;
+    border: 1px solid;
     border-color: #000000;
+    margin-bottom: 5px;
 }
 
 
@@ -28,11 +27,23 @@
 body {
     background: url("/static/background.jpg") repeat-y scroll center top #000000;
     color: #FFFFFF;
-    font: 13px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
+    font: 12px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
     min-height: 100%;
     position: relative;
     margin: 0;
     padding: 0;
+}
+
+body table {
+    width: 100%;
+    border-spacing: 0;
+    /*border: 1px dotted;*/
+}
+
+body table td {
+    vertical-align:top;
+    padding: 0;
+    /*border: 1px dotted;*/
 }
 
 body h2 {
@@ -44,7 +55,6 @@ body h2 {
 
 #statusbar {
     background: none repeat scroll 0 0 #231508;
-    font-size: 12px;
     padding: 2px;
     text-align: right;
 }
@@ -59,16 +69,19 @@ body h2 {
     text-align: center;
 }
 
-#area_left {
-    float:left;
-    width: 20%;
+#content {
 }
 
-#area_center {
-    float:right;
-    width: 80%;
+#content_left {
+    width: 200px;
 }
 
+#content_center {
+}
+
+#content_right {
+    width: 300px;
+}
 
 /*******************/
 /* site/index.html */
@@ -90,17 +103,17 @@ body h2 {
 
 #team_menu {
     background: #231508;
-    margin-left: 10px;
-    margin-right: 10px;
     padding: 10px;
     border: 1px;
     border-color: #000000;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #team_menu a {
     color: #FFFFFF;
     text-decoration: none; 
-    font: bold 16px/16px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
+    font-weight: bold;
 }
 
 #team_menu a:hover {
@@ -116,4 +129,29 @@ body h2 {
 #team_menu #selected {
     color: #E8B828;
 }
+
+#team_info {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/*******************/
+/* team/bikes.html */
+/*******************/
+
+#td_bike_image {
+    width: 200px;
+}
+
+#td_bike_props {
+    padding-left: 10px;
+    width: 175px;
+}
+
+#td_bike_info {
+
+}
+
+
 

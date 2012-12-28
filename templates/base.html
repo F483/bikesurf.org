@@ -45,18 +45,27 @@
             </div>
         {% endblock %}
 
-        {% block body %}
-            <div id="area_left">
-                {% block area_left %}
-                    BODY
-                {% endblock %}
-            </div>
+        {% block content %}
 
-            <div id="area_center">
-                {% block area_center %}
-                    BODY
-                {% endblock %}
-            </div>
+            <table id="content">
+                <tr> 
+                    <td id="content_left"> 
+                        {% block content_left %}
+                            CONTENT LEFT
+                        {% endblock %}
+                    </td> 
+                    <td id="content_center"> 
+                        {% block content_center %}
+                            CONTENT CENTER
+                        {% endblock %}
+                    </td> 
+                    <td id="content_right"> 
+                        {% block content_right %}
+                            CONTENT RIGHT
+                        {% endblock %}
+                    </td> 
+                </tr>
+            <table>
         {% endblock %}
 
     </body>

@@ -5,9 +5,9 @@
     Bikesurf {{ current_team.name }} - {% trans "BLOG" %}
 {% endblock %}
 
-{% block area_center %}
+{% block content_center %}
     {% for blog in blogs %}
-        <div class="team_content">
+        <div class="content_block">
             <h2>{{ blog.name }}</h2>
             {{ blog.content }}
         </div>

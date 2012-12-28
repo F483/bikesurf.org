@@ -5,9 +5,9 @@
     Bikesurf {{ current_team.name }} - {% trans "MEMBERS" %}
 {% endblock %}
 
-{% block area_center %}
+{% block content_center %}
     {% for member in members %}
-        <div class="team_content">
+        <div class="content_block">
             <h2>{{ member.user.username }}</h2>
             {{ member.description }}
         </div>

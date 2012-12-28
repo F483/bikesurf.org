@@ -4,7 +4,7 @@
 
 
 from django.http import HttpResponseRedirect
-from common.shortcuts import render_response
+from apps.common.shortcuts import render_response
 from apps.site.forms import TeamSelectForm
 
 
