@@ -11,11 +11,12 @@
     {% for station in stations %}
         <div class="content_block">
 
-            <h2>{{ station.country.name }} - {{ station.postalcode }} {{ station.city }} - {{ station.street }}</h2>
+            <h2>{{ station }}</h2>
 
+            <!-- TODO draw preview image -->
             {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
             {% trans "CAPACITY" %}: {{ station.capacity }} <br />
-            {% trans "OWNER" %}: {{ station.owner.user.username }}
+            {% trans "OWNER" %}: {{ station.owner }}
         </div>
     {% endfor %}
 {% endblock %}

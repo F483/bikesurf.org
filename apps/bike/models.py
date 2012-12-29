@@ -69,8 +69,7 @@ class Bike(models.Model):
     # TODO validation
 
     def __unicode__(self):
-        args = (self.id, self.owner.id, self.name)
-        return u"id: %s; owner_id: %s; name: %s" % args
+        return self.name
 
 
 class Issue(models.Model):

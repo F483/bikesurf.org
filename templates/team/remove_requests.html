@@ -1,0 +1,21 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+{% load common_tags %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "REMOVE_REQUESTS" %}
+{% endblock %}
+
+{% block content_center %}
+    {% for rr in remove_requests %}
+        <div class="content_block">
+            <h2> {{ rr.concerned }}</h2>
+            {% trans "REQUESTER" %}: {{ rr.requester }} <br />
+            {% trans "PROCESSOR" %}: {% if rr.processor %} {{ rr.processor }} {% else %} {% trans "NONE" %} {% endif %} <br />
+            {% trans "STATUS" %}: {{ rr.status }} <br />
+            <p> {% trans "REASON" %}: {{ rr.reason }} </p>
+            <p> {% trans "RESPONSE" %}: {{ rr.response }} </p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
