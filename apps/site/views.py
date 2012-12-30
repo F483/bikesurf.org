@@ -4,11 +4,12 @@
 
 
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_http_methods
 from apps.common.shortcuts import render_response
 from apps.site.forms import TeamSelectForm
 
 
-    #if request.user.is_authenticated():
+@require_http_methods(['GET', 'POST'])
 def root(request):
     if request.method == 'POST':
         form = TeamSelectForm(request.POST)
