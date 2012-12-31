@@ -68,11 +68,14 @@ def create(request):
                 form.errors['name'] = [_("NAME_USED")]
                 data_ok = False
 
+            # TODO make sure user can create only one team per week/month?
+
             # create team
             if data_ok:
                 team = Team()
                 team.link = link
                 team.name = name
+                team.country = country
                 account = get_object_or_404(Account, user=request.user)
                 team.created_by = account
                 team.updated_by = account
