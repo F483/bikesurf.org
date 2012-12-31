@@ -80,6 +80,7 @@ def create(request):
                 team.created_by = account
                 team.updated_by = account
                 team.save()
+                team.members.add(account)
                 return HttpResponseRedirect("/%s" % link)
     else:
         form = CreateTeamForm()
