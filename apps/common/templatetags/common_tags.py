@@ -4,6 +4,7 @@
 
 
 from django import template
+from apps.team.models import JoinRequest
 
 
 register = template.Library()
@@ -20,5 +21,13 @@ def draw_bool(value):
 @register.filter
 def is_member(account, team):
     return account in team.members.all()
+
+
+# TODO move to team app
+@register.filter
+def can_join(account, team):
+    member = is_member(account, team)
+    requests = len(JoinRequest.objects.filter(team=team, requester=account)) > 0
+    return not member and not requests
 
 

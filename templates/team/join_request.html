@@ -1,0 +1,20 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "JOIN_REQUEST" %}
+{% endblock %}
+
+{% block content_center %}
+    <div class="content_block">
+        <h2>{% trans "JOIN_REQUEST" %}</h2>
+        <form name="CreateJoinRequestForm" action="/{{ current_team.link }}/join_request" method="post">
+            {% csrf_token %}
+            <table class="input_form">
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="{% trans "SUBMIT" %}" />
+        </form>
+    </div>
+{% endblock %}
+

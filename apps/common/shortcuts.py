@@ -9,7 +9,8 @@ from django.shortcuts import render_to_response
 
 
 # A human readable link id for urls
-HUMAN_LINK_FORMAT = "[a-z0-9-_]{3,128}"
+HUMAN_LINK_LEN = 128
+HUMAN_LINK_FORMAT = "[a-z0-9-_]{3,%i}" % HUMAN_LINK_LEN
 
 
 def render_response(request, template, args):

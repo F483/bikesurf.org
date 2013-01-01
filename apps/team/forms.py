@@ -6,11 +6,17 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django_countries.countries import COUNTRIES
+from apps.common.shortcuts import HUMAN_LINK_LEN as HLL
 
 
 class CreateTeamForm(forms.Form):
 
-    link = forms.CharField(label='bikesurf.org/')
+    link = forms.CharField(label='bikesurf.org/', min_length=3, max_length=HLL)
     name = forms.CharField(label=_('NAME'))
     country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY')) # TODO empty_label
+
+
+class CreateJoinRequestForm(forms.Form):
+
+    application = forms.CharField(label=_('REASON'), widget=forms.Textarea)
 

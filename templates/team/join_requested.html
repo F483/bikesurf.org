@@ -1,0 +1,14 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "JOIN_REQUESTED" %}
+{% endblock %}
+
+{% block content_center %}
+    <div class="content_block">
+        <h2>{% trans "JOIN_REQUESTED" %}</h2>
+        {% trans "JOIN_REQUEST_MADE" %}
+    </div>
+{% endblock %}
+

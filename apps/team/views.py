@@ -21,6 +21,7 @@ from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
+from apps.team.forms import CreateJoinRequestForm
 
 
 def _is_member(user, team):
@@ -68,8 +69,6 @@ def create(request):
                 form.errors['name'] = [_("NAME_USED")]
                 data_ok = False
 
-            # TODO make sure user can create only one team per week/month?
-
             # create team
             if data_ok:
                 team = Team()
@@ -85,6 +84,41 @@ def create(request):
     else:
         form = CreateTeamForm()
     return render_response(request, 'team/create.html', { 'form' : form })
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def join_request(request, team_link):
+    team = get_object_or_404(Team, link=team_link)
+    menu = _get_team_menue(team, None)
+    account = get_object_or_404(Account, user=request.user)
+    if account in team.members.all():
+        raise PermissionDenied # already a member
+    if len(JoinRequest.objects.filter(team=team, requester=account, status="PENDING")) > 0:
+        raise PermissionDenied # already requested
+    if request.method == 'POST':
+        form = CreateJoinRequestForm(request.POST)
+        if form.is_valid():
+            jr = JoinRequest()
+            jr.team = team
+            jr.requester = account
+            jr.application = form.cleaned_data['application']
+            jr.save()
+            # TODO send messages
+            return HttpResponseRedirect("/%s/join_requested" % team_link)
+    else:
+        form = CreateJoinRequestForm()
+    args = { 'current_team' : team, 'team_menu' : menu, 'form' : form }
+    return render_response(request, 'team/join_request.html', args)
+
+
+@login_required
+@require_http_methods(['GET'])
+def join_requested(request, team_link):
+    team = get_object_or_404(Team, link=team_link)
+    menu = _get_team_menue(team, None)
+    args = { 'current_team' : team, 'team_menu' : menu }
+    return render_response(request, 'team/join_requested.html', args)
 
 
 @require_http_methods(['GET'])
