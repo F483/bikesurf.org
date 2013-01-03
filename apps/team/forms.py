@@ -25,5 +25,11 @@ class CreateJoinRequestForm(forms.Form):
 class ProcessJoinRequestForm(forms.Form):
 
     response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
-    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS')) # TODO empty_label
+    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
+
+
+class CreateBlogForm(forms.Form):
+
+    name = forms.CharField(label=_('NAME'))
+    content = forms.CharField(label=_('CONTENT'), widget=forms.Textarea)
 

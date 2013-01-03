@@ -21,6 +21,7 @@ from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
+from apps.team.forms import CreateBlogForm
 from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
 
@@ -184,8 +185,6 @@ def join_request_process(request, team_link, join_request_id):
     return _rtr(team, "join_requests", request, template, args)
 
 
-
-
 @login_required
 @require_http_methods(["GET"])
 def join_requested(request, team_link):
@@ -193,11 +192,51 @@ def join_requested(request, team_link):
     return _rtr(team, None, request, "team/join_requested.html", {})
 
 
+########
+# BLOG #
+########
+
+
 @require_http_methods(["GET"])
 def blog(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     blogs = Blog.objects.filter(team=team)
     return _rtr(team, "blog", request, "team/blog.html", { "blogs" : blogs })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def blog_create(request, team_link):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+
+    if request.method == "POST":
+        form = CreateBlogForm(request.POST)
+        if form.is_valid():
+
+            # save blog
+            blog = Blog()
+            blog.team = team
+            blog.name = form.cleaned_data["name"]
+            blog.content = form.cleaned_data["content"]
+            blog.created_by = account
+            blog.updated_by = account
+            blog.save()
+
+            # TODO send messages
+
+            return HttpResponseRedirect("/%s/blog" % team_link)
+    else:
+        form = CreateBlogForm()
+    return _rtr(team, "blog", request, "team/blog_create.html", { "form" : form })
+
+
+##########
+# OTHERS #
+##########
 
 
 @login_required

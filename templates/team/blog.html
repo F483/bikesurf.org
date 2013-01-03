@@ -1,11 +1,19 @@
 {% extends "team/base.html" %}
 {% load i18n %}
+{% load common_tags %}
 
 {% block title %}
     Bikesurf {{ current_team.name }} - {% trans "BLOG" %}
 {% endblock %}
 
 {% block content_center %}
+
+    {% if current_account|is_member:current_team %}
+        <a href="/{{ current_team.link }}/blog_create">
+            {% trans "NEW_BLOG" %}
+        </a>
+    {% endif %}
+
     {% for blog in blogs %}
         <div class="content_block">
             <h2>{{ blog.name }}</h2>
