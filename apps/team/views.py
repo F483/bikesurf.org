@@ -14,13 +14,11 @@ from apps.common.shortcuts import render_response
 from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
 from apps.account.models import Account
 from apps.team.models import Team
-from apps.team.models import Page
 from apps.team.models import Station
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
-from apps.team.forms import CreatePageForm
 from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
 from apps.team.utils import render_team_response as rtr
@@ -162,50 +160,6 @@ def join_requested(request, team_link):
     return rtr(team, None, request, "team/join_requested.html", {})
 
 
-
-
-########
-# Page #
-########
-
-
-@require_http_methods(["GET"])
-def page(request, team_link, page_link):
-    team = get_object_or_404(Team, link=team_link)
-    page = get_object_or_404(Page, link=page_link, team=team)
-    return rtr(team, page.link, request, "team/page.html", { "page" : page })
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def page_create(request, team_link):
-
-    # get data
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-
-    if request.method == "POST":
-        form = CreatePageForm(request.POST)
-        if form.is_valid():
-
-            # save page
-            page = Page()
-            page.team = team
-            page.link = form.cleaned_data["link"]
-            page.name = form.cleaned_data["name"]
-            page.content = form.cleaned_data["content"]
-            page.order = form.cleaned_data["order"]
-            page.created_by = account
-            page.updated_by = account
-            page.save()
-
-            # TODO send messages
-
-            return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
-    else:
-        form = CreatePageForm()
-    return rtr(team, None, request, "team/page_create.html", { "form" : form })
 
 
 ##########

@@ -16,7 +16,6 @@ urlpatterns = patterns('apps.team.views',
 
     url(r'^t/create$',                              'create'),
 
-
     url(r'^%s/bikes$' % T,                          'bikes'),
     url(r'^%s/borrows$' % T,                        'borrows'),
     url(r'^%s/stations$' % T,                       'stations'),
@@ -28,10 +27,6 @@ urlpatterns = patterns('apps.team.views',
     url(r'^%s/join_request_process/%s$' % (T, JR),  'join_request_process'),
 
     url(r'^%s/remove_requests$' % T,                'remove_requests'),
-
-
-    url(r'^%s/page_create$' % T,                    'page_create'),
-    url(r'^%s/%s$' % (T, P),                        'page'),
 )
 
 
