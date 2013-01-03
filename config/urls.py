@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 
     # bikesurf urls
     url(r'^', include('apps.site.urls')),
+    url(r'^', include('apps.blog.urls')),
     url(r'^', include('apps.team.urls')),
 
 )

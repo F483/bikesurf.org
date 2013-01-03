@@ -86,8 +86,8 @@ class RemoveRequest(models.Model):
     def __unicode__(self):
         return u"%s < %s (%s)" % (self.concerned, self.team, self.status)
 
-    class Meta:                                                                                                 
-                                                                                                                
+    class Meta:
+
         ordering = ['-status', 'updated_on']
 
 
@@ -114,29 +114,6 @@ class Page(models.Model):
                                                                                                                 
         unique_together = (('team', 'name'), ('team', 'link')) 
         ordering = ['order', 'created_on']
-
-
-class Blog(models.Model):
-
-    team        = models.ForeignKey('team.Team', related_name='blogs')
-    name        = models.CharField(max_length=1024)
-    content     = models.TextField() # TODO make wiki or markdown
-
-    # meta
-    created_by  = models.ForeignKey('account.Account', related_name='blogs_created')
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey('account.Account', related_name='blogs_updated')
-    updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        return u"%s: %s" % (self.team.name, self.name)
-
-    class Meta:                                                                                                 
-                                                                                                                
-        unique_together = (('team', 'name')) 
-        ordering = ['created_on']
 
 
 class Station(models.Model):

@@ -9,53 +9,22 @@ from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
 from apps.common.shortcuts import render_response
 from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
-from django.contrib.auth.decorators import login_required
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import Page
-from apps.team.models import Blog
 from apps.team.models import Station
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
-from apps.team.forms import CreateBlogForm
 from apps.team.forms import CreatePageForm
 from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
-
-
-def _rtr(team, current, request, template, args):
-    """ Render Team Response """
-    args.update({
-        "team_menu" : _get_team_menue(team, current),
-        "current_team" : team,
-    })
-    return render_response(request, template, args)
-
-
-def _assert_member(account, team):
-    if account not in team.members.all():
-        raise PermissionDenied
-
-
-def _get_team_menue(team, current):
-    """ return [(url, label, selected, members_only), ...] """
-    url = lambda pl: "/%s/%s" % (team.link, pl)
-    entrie = lambda n, m: (url(n), _(n.upper()), current==n, m)
-    menu = [ 
-        entrie("blog", False),
-        entrie("bikes", False),
-        entrie("members", False),
-        entrie("borrows", True),
-        entrie("stations", True),
-        entrie("join_requests", True),
-        entrie("remove_requests", True),
-    ]
-    page_entrie = lambda p: (url(p.link), p.name, p.link == current, False)
-    return menu + map(page_entrie, team.pages.all())
+from apps.team.utils import render_team_response as rtr
+from apps.team.utils import assert_member
 
 
 @login_required
@@ -109,10 +78,10 @@ def create(request):
 def join_requests(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
+    assert_member(account, team)
     template = "team/join_requests.html"
     args = { "join_requests" : JoinRequest.objects.filter(team=team) }
-    return _rtr(team, "join_requests", request, template, args)
+    return rtr(team, "join_requests", request, template, args)
 
 
 @login_required
@@ -147,7 +116,7 @@ def join_request(request, team_link):
     else:
         form = CreateJoinRequestForm()
     template = "team/join_request.html"
-    return _rtr(team, None, request, template, { "form" : form })
+    return rtr(team, None, request, template, { "form" : form })
 
 
 @login_required
@@ -160,7 +129,7 @@ def join_request_process(request, team_link, join_request_id):
     jr = get_object_or_404(JoinRequest, id=join_request_id)
     
     # check permission to process join request
-    _assert_member(account, team)
+    assert_member(account, team)
     if jr.status != "PENDING":
         raise PermissionDenied # already processed
 
@@ -183,56 +152,16 @@ def join_request_process(request, team_link, join_request_id):
         form = ProcessJoinRequestForm()
     template = "team/join_request_process.html"
     args = { "join_request" : jr, "form" : form }
-    return _rtr(team, "join_requests", request, template, args)
+    return rtr(team, "join_requests", request, template, args)
 
 
 @login_required
 @require_http_methods(["GET"])
 def join_requested(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    return _rtr(team, None, request, "team/join_requested.html", {})
+    return rtr(team, None, request, "team/join_requested.html", {})
 
 
-########
-# BLOG #
-########
-
-
-@require_http_methods(["GET"])
-def blog(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
-    blogs = Blog.objects.filter(team=team)
-    return _rtr(team, "blog", request, "team/blog.html", { "blogs" : blogs })
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def blog_create(request, team_link):
-
-    # get data
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
-
-    if request.method == "POST":
-        form = CreateBlogForm(request.POST)
-        if form.is_valid():
-
-            # save blog
-            blog = Blog()
-            blog.team = team
-            blog.name = form.cleaned_data["name"]
-            blog.content = form.cleaned_data["content"]
-            blog.created_by = account
-            blog.updated_by = account
-            blog.save()
-
-            # TODO send messages
-
-            return HttpResponseRedirect("/%s/blog" % team.link)
-    else:
-        form = CreateBlogForm()
-    return _rtr(team, "blog", request, "team/blog_create.html", { "form" : form })
 
 
 ########
@@ -244,7 +173,7 @@ def blog_create(request, team_link):
 def page(request, team_link, page_link):
     team = get_object_or_404(Team, link=team_link)
     page = get_object_or_404(Page, link=page_link, team=team)
-    return _rtr(team, page.link, request, "team/page.html", { "page" : page })
+    return rtr(team, page.link, request, "team/page.html", { "page" : page })
 
 
 @login_required
@@ -254,13 +183,13 @@ def page_create(request, team_link):
     # get data
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
+    assert_member(account, team)
 
     if request.method == "POST":
         form = CreatePageForm(request.POST)
         if form.is_valid():
 
-            # save blog
+            # save page
             page = Page()
             page.team = team
             page.link = form.cleaned_data["link"]
@@ -276,7 +205,7 @@ def page_create(request, team_link):
             return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
     else:
         form = CreatePageForm()
-    return _rtr(team, None, request, "team/page_create.html", { "form" : form })
+    return rtr(team, None, request, "team/page_create.html", { "form" : form })
 
 
 ##########
@@ -289,10 +218,10 @@ def page_create(request, team_link):
 def remove_requests(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
+    assert_member(account, team)
     template = "team/remove_requests.html"
     args = { "remove_requests" : RemoveRequest.objects.filter(team=team) }
-    return _rtr(team, "remove_requests", request, template, args)
+    return rtr(team, "remove_requests", request, template, args)
 
 
 def _get_bike_filters(request, form):
@@ -315,7 +244,7 @@ def bikes(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     filters = _get_bike_filters(request, None)
     args = { "bikes" :  team.bikes.filter(**filters) }
-    return _rtr(team, "bikes", request, "team/bikes.html", args)
+    return rtr(team, "bikes", request, "team/bikes.html", args)
 
 
 @login_required
@@ -323,9 +252,9 @@ def bikes(request, team_link):
 def borrows(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
+    assert_member(account, team)
     args = { "borrows" : Borrow.objects.filter(bike__team=team) }
-    return _rtr(team, "borrows", request, "team/borrows.html", args)
+    return rtr(team, "borrows", request, "team/borrows.html", args)
 
 
 @login_required
@@ -333,15 +262,15 @@ def borrows(request, team_link):
 def stations(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    _assert_member(account, team)
+    assert_member(account, team)
     args = { "stations" : Station.objects.filter(owner__team=team) }
-    return _rtr(team, "stations", request, "team/stations.html", args)
+    return rtr(team, "stations", request, "team/stations.html", args)
 
 
 @require_http_methods(["GET"])
 def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     args = { "members" : team.members.all() }
-    return _rtr(team, "members", request, "team/members.html", args)
+    return rtr(team, "members", request, "team/members.html", args)
 
 

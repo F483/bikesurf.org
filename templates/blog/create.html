@@ -9,7 +9,7 @@
     <div class="content_block">
         <h2>{% trans "ADD_BLOG" %}</h2>
         <form   name="CreateBlogForm"
-                action="/{{ current_team.link }}/blog_create"
+                action="/{{ current_team.link }}/blog/create"
                 method="post">
 
             {% csrf_token %}

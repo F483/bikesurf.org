@@ -16,10 +16,6 @@ urlpatterns = patterns('apps.team.views',
 
     url(r'^t/create$',                              'create'),
 
-    url(r'^%s$' % T,                                'blog'),
-    url(r'^%s/$' % T,                               'blog'),
-    url(r'^%s/blog$' % T,                           'blog'),
-    url(r'^%s/blog_create$' % T,                    'blog_create'),
 
     url(r'^%s/bikes$' % T,                          'bikes'),
     url(r'^%s/borrows$' % T,                        'borrows'),

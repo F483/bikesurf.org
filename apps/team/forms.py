@@ -28,12 +28,6 @@ class ProcessJoinRequestForm(forms.Form):
     status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
 
 
-class CreateBlogForm(forms.Form):
-
-    name = forms.CharField(label=_('NAME'))
-    content = forms.CharField(label=_('CONTENT'), widget=forms.Textarea)
-
-
 class CreatePageForm(forms.Form):
 
     link = forms.CharField(label='bikesurf.org/<team>/', min_length=3, max_length=HLL)

@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'apps.account',
     'apps.image',
     'apps.team',
+    'apps.blog',
 )
 
 # A sample logging configuration. The only tangible logging
