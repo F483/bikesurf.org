@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "ADD_BLOG" %}
+    Bikesurf {{ current_team.name }} - {% trans "ADD_PAGE" %}
 {% endblock %}
 
 {% block content_center %}
     <div class="content_block">
-        <h2>{% trans "ADD_BLOG" %}</h2>
+        <h2>{% trans "ADD_PAGE" %}</h2>
         <form   name="CreateBlogForm"
-                action="/{{ current_team.link }}/blog_create"
+                action="/{{ current_team.link }}/page_create"
                 method="post">
 
             {% csrf_token %}
@@ -21,4 +21,5 @@
         </form>
     </div>
 {% endblock %}
+
 

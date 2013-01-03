@@ -143,6 +143,11 @@ body h2 {
     margin-right: 10px;
 }
 
+#team_actions {
+    background: #231508;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 /*******************/
 /* team/bikes.html */

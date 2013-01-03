@@ -30,6 +30,30 @@
 
 {% block content_right %}
 
+    {% if current_account|is_member:current_team %}
+        <div id="team_actions" class="content_block"> 
+
+            <h2>{% trans "TEAM_ACTIONS" %}</h2>
+
+            <a href="/{{ current_team.link }}/blog_create">
+                {% trans "ADD_BLOG" %}
+            </a><br />
+
+            <a href="/{{ current_team.link }}/page_create">
+                {% trans "ADD_PAGE" %}
+            </a><br />
+
+            <a href="/{{ current_team.link }}/bike_create">
+                {% trans "TODO_ADD_BIKE" %}
+            </a><br />
+
+            <a href="/{{ current_team.link }}/station_create">
+                {% trans "TODO_ADD_STATION" %}
+            </a><br />
+        </div>
+    {% endif %}
+
+
     <div id="team_info" class="content_block"> 
         <h2>{% trans "TEAM_INFO" %}</h2> 
         {% trans "COUNTRY" %}: {{ current_team.country.name }}<br />

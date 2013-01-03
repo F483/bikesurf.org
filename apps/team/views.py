@@ -22,6 +22,7 @@ from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
 from apps.team.forms import CreateBlogForm
+from apps.team.forms import CreatePageForm
 from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
 
@@ -228,10 +229,54 @@ def blog_create(request, team_link):
 
             # TODO send messages
 
-            return HttpResponseRedirect("/%s/blog" % team_link)
+            return HttpResponseRedirect("/%s/blog" % team.link)
     else:
         form = CreateBlogForm()
     return _rtr(team, "blog", request, "team/blog_create.html", { "form" : form })
+
+
+########
+# Page #
+########
+
+
+@require_http_methods(["GET"])
+def page(request, team_link, page_link):
+    team = get_object_or_404(Team, link=team_link)
+    page = get_object_or_404(Page, link=page_link, team=team)
+    return _rtr(team, page.link, request, "team/page.html", { "page" : page })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def page_create(request, team_link):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+
+    if request.method == "POST":
+        form = CreatePageForm(request.POST)
+        if form.is_valid():
+
+            # save blog
+            page = Page()
+            page.team = team
+            page.link = form.cleaned_data["link"]
+            page.name = form.cleaned_data["name"]
+            page.content = form.cleaned_data["content"]
+            page.order = form.cleaned_data["order"]
+            page.created_by = account
+            page.updated_by = account
+            page.save()
+
+            # TODO send messages
+
+            return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
+    else:
+        form = CreatePageForm()
+    return _rtr(team, None, request, "team/page_create.html", { "form" : form })
 
 
 ##########
@@ -298,12 +343,5 @@ def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     args = { "members" : team.members.all() }
     return _rtr(team, "members", request, "team/members.html", args)
-
-
-@require_http_methods(["GET"])
-def page(request, team_link, page_link):
-    team = get_object_or_404(Team, link=team_link)
-    page = get_object_or_404(Page, link=page_link, team=team)
-    return _rtr(team, page.link, request, "team/page.html", { "page" : page })
 
 

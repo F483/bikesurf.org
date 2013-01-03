@@ -32,6 +32,9 @@ urlpatterns = patterns('apps.team.views',
     url(r'^%s/join_request_process/%s$' % (T, JR),  'join_request_process'),
 
     url(r'^%s/remove_requests$' % T,                'remove_requests'),
+
+
+    url(r'^%s/page_create$' % T,                    'page_create'),
     url(r'^%s/%s$' % (T, P),                        'page'),
 )
 

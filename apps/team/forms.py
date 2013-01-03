@@ -33,3 +33,12 @@ class CreateBlogForm(forms.Form):
     name = forms.CharField(label=_('NAME'))
     content = forms.CharField(label=_('CONTENT'), widget=forms.Textarea)
 
+
+class CreatePageForm(forms.Form):
+
+    link = forms.CharField(label='bikesurf.org/<team>/', min_length=3, max_length=HLL)
+    name = forms.CharField(label=_('NAME'))
+    content = forms.CharField(label=_('CONTENT'), widget=forms.Textarea)
+    order = forms.IntegerField(label=_('ORDER'))
+
+
