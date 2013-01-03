@@ -7,6 +7,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django_countries.countries import COUNTRIES
 from apps.common.shortcuts import HUMAN_LINK_LEN as HLL
+from apps.team.models import STATUS_CHOICES
 
 
 class CreateTeamForm(forms.Form):
@@ -19,4 +20,10 @@ class CreateTeamForm(forms.Form):
 class CreateJoinRequestForm(forms.Form):
 
     application = forms.CharField(label=_('REASON'), widget=forms.Textarea)
+
+
+class ProcessJoinRequestForm(forms.Form):
+
+    response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
+    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS')) # TODO empty_label
 

@@ -22,51 +22,62 @@ from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
 from apps.team.forms import CreateJoinRequestForm
+from apps.team.forms import ProcessJoinRequestForm
 
 
-def _is_member(user, team):
-    return len(Account.objects.filter(user=user, team=team)) == 1
+def _rtr(team, current, request, template, args):
+    """ Render Team Response """
+    args.update({
+        "team_menu" : _get_team_menue(team, current),
+        "current_team" : team,
+    })
+    return render_response(request, template, args)
+
+
+def _assert_member(account, team):
+    if account not in team.members.all():
+        raise PermissionDenied
 
 
 def _get_team_menue(team, current):
-    make_url = lambda pl: '/%s/%s' % (team.link, pl)
+    """ return [(url, label, selected, members_only), ...] """
+    url = lambda pl: "/%s/%s" % (team.link, pl)
+    entrie = lambda n, m: (url(n), _(n.upper()), current==n, m)
     menu = [ 
-        # URL                           LABEL                   SELECTED                        MEMBERS_ONLY
-        (make_url('blog'),              _('BLOG'),              current == 'blog',              False), 
-        (make_url('bikes'),             _('BIKES'),             current == 'bikes',             False), 
-        (make_url('members'),           _('MEMBERS'),           current == 'members',           False), 
-        (make_url('borrows'),           _('BORROWS'),           current == 'borrows',           True),
-        (make_url('stations'),          _('STATIONS'),          current == 'stations',          True),
-        (make_url('join_requests'),     _('JOIN_REQUESTS'),     current == 'join_requests',     True),
-        (make_url('remove_requests'),   _('REMOVE_REQUESTS'),   current == 'remove_requests',   True),
+        entrie("blog", False),
+        entrie("bikes", False),
+        entrie("members", False),
+        entrie("borrows", True),
+        entrie("stations", True),
+        entrie("join_requests", True),
+        entrie("remove_requests", True),
     ]
-    pages = team.pages.all()
-    menu += map(lambda p: (make_url(p.link), p.name, p.link == current, False), pages)
-    return menu
+    page_entrie = lambda p: (url(p.link), p.name, p.link == current, False)
+    return menu + map(page_entrie, team.pages.all())
 
 
 @login_required
-@require_http_methods(['GET', 'POST'])
+@require_http_methods(["GET", "POST"])
 def create(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CreateTeamForm(request.POST)
         if form.is_valid():
 
             # get data
-            link = form.cleaned_data['link'].strip()
-            name = form.cleaned_data['name'].strip()
-            country = form.cleaned_data['country']
+            link = form.cleaned_data["link"].strip()
+            name = form.cleaned_data["name"].strip()
+            country = form.cleaned_data["country"]
 
             # check data
             data_ok = True
             if bool(len(Team.objects.filter(link=link))):
-                form.errors['link'] = [_("LINK_USED")]
+                form.errors["link"] = [_("LINK_USED")]
                 data_ok = False
             if not re.match("^%s$" % HLF, link):
-                form.errors['link'] = [_("LINK_BAD_FORMAT")]
+                form.errors["link"] = [_("LINK_BAD_FORMAT")]
                 data_ok = False
             if bool(len(Team.objects.filter(name=name))):
-                form.errors['name'] = [_("NAME_USED")]
+                form.errors["name"] = [_("NAME_USED")]
                 data_ok = False
 
             # create team
@@ -83,75 +94,121 @@ def create(request):
                 return HttpResponseRedirect("/%s" % link)
     else:
         form = CreateTeamForm()
-    return render_response(request, 'team/create.html', { 'form' : form })
+    return render_response(request, "team/create.html", { "form" : form })
+
+
+#################
+# JOIN REQUESTS #
+#################
 
 
 @login_required
-@require_http_methods(['GET', 'POST'])
-def join_request(request, team_link):
+@require_http_methods(["GET"])
+def join_requests(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = _get_team_menue(team, None)
     account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+    template = "team/join_requests.html"
+    args = { "join_requests" : JoinRequest.objects.filter(team=team) }
+    return _rtr(team, "join_requests", request, template, args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def join_request(request, team_link):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+
+    # check permission to create join request
     if account in team.members.all():
         raise PermissionDenied # already a member
-    if len(JoinRequest.objects.filter(team=team, requester=account, status="PENDING")) > 0:
+    filters = {"team" : team, "requester" : account, "status" : "PENDING"}
+    if len(JoinRequest.objects.filter(**filters)) > 0:
         raise PermissionDenied # already requested
-    if request.method == 'POST':
+
+    if request.method == "POST":
         form = CreateJoinRequestForm(request.POST)
         if form.is_valid():
+
+            # create join request
             jr = JoinRequest()
             jr.team = team
             jr.requester = account
-            jr.application = form.cleaned_data['application']
+            jr.application = form.cleaned_data["application"]
             jr.save()
+
             # TODO send messages
+
             return HttpResponseRedirect("/%s/join_requested" % team_link)
     else:
         form = CreateJoinRequestForm()
-    args = { 'current_team' : team, 'team_menu' : menu, 'form' : form }
-    return render_response(request, 'team/join_request.html', args)
+    template = "team/join_request.html"
+    return _rtr(team, None, request, template, { "form" : form })
 
 
 @login_required
-@require_http_methods(['GET'])
+@require_http_methods(["GET", "POST"])
+def join_request_process(request, team_link, join_request_id):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    jr = get_object_or_404(JoinRequest, id=join_request_id)
+    
+    # check permission to process join request
+    _assert_member(account, team)
+    if jr.status != "PENDING":
+        raise PermissionDenied # already processed
+
+    if request.method == "POST":
+        form = ProcessJoinRequestForm(request.POST)
+        if form.is_valid():
+
+            # process join request
+            jr.processor = account
+            jr.response = form.cleaned_data["response"]
+            jr.status = form.cleaned_data["status"]
+            jr.save()
+            if jr.status == 'ACCEPTED':
+                jr.team.members.add(jr.requester)
+
+            # TODO send messages
+
+            return HttpResponseRedirect("/%s/join_requests" % team_link)
+    else:
+        form = ProcessJoinRequestForm()
+    template = "team/join_request_process.html"
+    args = { "join_request" : jr, "form" : form }
+    return _rtr(team, "join_requests", request, template, args)
+
+
+
+
+@login_required
+@require_http_methods(["GET"])
 def join_requested(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = _get_team_menue(team, None)
-    args = { 'current_team' : team, 'team_menu' : menu }
-    return render_response(request, 'team/join_requested.html', args)
+    return _rtr(team, None, request, "team/join_requested.html", {})
 
 
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def blog(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = _get_team_menue(team, 'blog')
     blogs = Blog.objects.filter(team=team)
-    args = { 'current_team' : team, 'team_menu' : menu, 'blogs' : blogs }
-    return render_response(request, 'team/blog.html', args)
+    return _rtr(team, "blog", request, "team/blog.html", { "blogs" : blogs })
 
 
 @login_required
-@require_http_methods(['GET'])
-def join_requests(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
-    if not _is_member(request.user, team):
-        raise PermissionDenied
-    menu = _get_team_menue(team, 'join_requests')
-    join_requests = JoinRequest.objects.filter(team=team)
-    args = { 'current_team' : team, 'team_menu' : menu, 'join_requests' : join_requests }
-    return render_response(request, 'team/join_requests.html', args)
-
-
-@login_required
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def remove_requests(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    if not _is_member(request.user, team):
-        raise PermissionDenied
-    menu = _get_team_menue(team, 'remove_requests')
-    remove_requests = RemoveRequest.objects.filter(team=team)
-    args = { 'current_team' : team, 'team_menu' : menu, 'remove_requests' : remove_requests }
-    return render_response(request, 'team/remove_requests.html', args)
+    account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+    template = "team/remove_requests.html"
+    args = { "remove_requests" : RemoveRequest.objects.filter(team=team) }
+    return _rtr(team, "remove_requests", request, template, args)
 
 
 def _get_bike_filters(request, form):
@@ -169,55 +226,45 @@ def _get_bike_filters(request, form):
     return {}
 
 
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def bikes(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = _get_team_menue(team, 'bikes')
     filters = _get_bike_filters(request, None)
-    bikes = team.bikes.filter(**filters)
-    args = { 'current_team' : team, 'team_menu' : menu, 'bikes' : bikes }
-    return render_response(request, 'team/bikes.html', args)
+    args = { "bikes" :  team.bikes.filter(**filters) }
+    return _rtr(team, "bikes", request, "team/bikes.html", args)
 
 
 @login_required
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def borrows(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    if not _is_member(request.user, team):
-        raise PermissionDenied
-    menu = _get_team_menue(team, 'borrows')
-    borrows = Borrow.objects.filter(bike__team=team)
-    args = { 'current_team' : team, 'team_menu' : menu, 'borrows' : borrows }
-    return render_response(request, 'team/borrows.html', args)
+    account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+    args = { "borrows" : Borrow.objects.filter(bike__team=team) }
+    return _rtr(team, "borrows", request, "team/borrows.html", args)
 
 
 @login_required
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def stations(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    if not _is_member(request.user, team):
-        raise PermissionDenied
-    menu = _get_team_menue(team, 'stations')
-    stations = Station.objects.filter(owner__team=team)
-    args = { 'current_team' : team, 'team_menu' : menu, 'stations' : stations }
-    return render_response(request, 'team/stations.html', args)
+    account = get_object_or_404(Account, user=request.user)
+    _assert_member(account, team)
+    args = { "stations" : Station.objects.filter(owner__team=team) }
+    return _rtr(team, "stations", request, "team/stations.html", args)
 
 
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    menu = _get_team_menue(team, 'members')
-    members = team.members.all()
-    args = { 'current_team' : team, 'team_menu' : menu, 'members' : members }
-    return render_response(request, 'team/members.html', args)
+    args = { "members" : team.members.all() }
+    return _rtr(team, "members", request, "team/members.html", args)
 
 
-@require_http_methods(['GET'])
+@require_http_methods(["GET"])
 def page(request, team_link, page_link):
     team = get_object_or_404(Team, link=team_link)
     page = get_object_or_404(Page, link=page_link, team=team)
-    menu = _get_team_menue(team, page.link)
-    args = { 'current_team' : team, 'team_menu' : menu, 'page' : page }
-    return render_response(request, 'team/page.html', args)
+    return _rtr(team, page.link, request, "team/page.html", { "page" : page })
 
 

@@ -10,10 +10,24 @@
     {% for jr in join_requests %}
         <div class="content_block">
             <h2> {{ jr.requester }}</h2>
-            {% trans "PROCESSOR" %}: {% if jr.processor %} {{ jr.processor }} {% else %} {% trans "NONE" %} {% endif %} <br />
+
+            {% trans "PROCESSOR" %}: 
+            {% if jr.processor %} 
+                {{ jr.processor }} 
+            {% else %} 
+                {% trans "NONE" %} 
+            {% endif %} <br />
+
             {% trans "STATUS" %}: {{ jr.status }} <br />
             <p> {% trans "APPLICATION" %}: {{ jr.application }} </p>
             <p> {% trans "RESPONSE" %}: {{ jr.response }} </p>
+
+            {% if jr.status == "PENDING" %}
+                <a href="/{{ current_team.link }}/join_request_process/{{ jr.id }}">
+                    {% trans "PROCESS" %}
+                </a>
+            {% endif %}
+
         </div>
     {% endfor %}
 {% endblock %}
