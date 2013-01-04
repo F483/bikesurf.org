@@ -6,11 +6,13 @@
 from django.db import models
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
+from django.template.defaultfilters import slugify
+from unidecode import unidecode
 
 
-# A human readable link id for urls
-HUMAN_LINK_LEN = 128
-HUMAN_LINK_FORMAT = "[a-z0-9-_]{3,%i}" % HUMAN_LINK_LEN
+def uslugify(ustr):
+    """ because slugify is shit with unicode """
+    return slugify(unidecode(ustr))
 
 
 def render_response(request, template, args):
@@ -22,5 +24,6 @@ def render_response(request, template, args):
         'borrow_count' : 0, # TODO get count
     })
     args.update(csrf(request))
+    # TODO check if mobile and use mobile template if exists
     return render_to_response(template, args)
 

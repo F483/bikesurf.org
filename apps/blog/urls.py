@@ -4,10 +4,12 @@
 
 
 from django.conf.urls import patterns, include, url
-from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
 
 
-T = "(?P<team_link>%s)" % HLF # Team Link
+SLUG = r"[a-z0-9\-]+"
+
+
+T = "(?P<team_link>%s)" % SLUG # Team Link
 
 
 urlpatterns = patterns("apps.blog.views",

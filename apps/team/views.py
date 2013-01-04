@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from apps.common.shortcuts import render_response
-from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
+from apps.common.shortcuts import uslugify
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import Station
@@ -33,17 +33,14 @@ def create(request):
         if form.is_valid():
 
             # get data
-            link = form.cleaned_data["link"].strip()
             name = form.cleaned_data["name"].strip()
             country = form.cleaned_data["country"]
+            link = uslugify(name)
 
             # check data
             data_ok = True
             if bool(len(Team.objects.filter(link=link))):
-                form.errors["link"] = [_("LINK_USED")]
-                data_ok = False
-            if not re.match("^%s$" % HLF, link):
-                form.errors["link"] = [_("LINK_BAD_FORMAT")]
+                form.errors["name"] = [_("NAME_USED")]
                 data_ok = False
             if bool(len(Team.objects.filter(name=name))):
                 form.errors["name"] = [_("NAME_USED")]

@@ -7,8 +7,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 from django.core.validators import RegexValidator
-from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
-from apps.common.shortcuts import HUMAN_LINK_LEN as HLL
 
 
 STATUSES = [
@@ -21,7 +19,7 @@ STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 class Team(models.Model):
 
-    link        = models.CharField(max_length=HLL, unique=True, validators=[RegexValidator('^%s$' % HLF)]) # TODO slug?
+    link        = models.SlugField(unique=True)
     name        = models.CharField(max_length=1024, unique=True)
     members     = models.ManyToManyField('account.Account', null=True, blank=True) 
     country     = CountryField()

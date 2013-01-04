@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from apps.common.shortcuts import uslugify
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.page.models import Page
@@ -36,21 +37,37 @@ def create(request, team_link):
         form = CreatePageForm(request.POST)
         if form.is_valid():
 
-            # save page
-            page = Page()
-            page.team = team
-            page.link = form.cleaned_data["link"]
-            page.name = form.cleaned_data["name"]
-            page.content = form.cleaned_data["content"]
-            page.order = form.cleaned_data["order"]
-            page.created_by = account
-            page.updated_by = account
-            page.save()
+            # get data
+            name = form.cleaned_data["name"].strip()
+            content = form.cleaned_data["content"]
+            order = form.cleaned_data["order"]
+            link = uslugify(name)
 
-            # TODO check for forbidden page names
-            # TODO send messages
+            # check data
+            data_ok = True
+            if bool(len(Page.objects.filter(name=name, team=team))):
+                form.errors["name"] = [_("NAME_USED")]
+                data_ok = False
+            if bool(len(Page.objects.filter(link=link, team=team))):
+                form.errors["name"] = [_("NAME_USED")]
+                data_ok = False
 
-            return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
+            # create page
+            if data_ok:
+                page = Page()
+                page.team = team
+                page.name = name
+                page.link = link
+                page.content = content
+                page.order = order
+                page.created_by = account
+                page.updated_by = account
+                page.save()
+
+                # TODO check for forbidden page names
+                # TODO send messages
+
+                return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
     else:
         form = CreatePageForm()
     return rtr(team, None, request, "page/create.html", { "form" : form })

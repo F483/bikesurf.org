@@ -6,14 +6,12 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
-from apps.common.shortcuts import HUMAN_LINK_FORMAT as HLF
-from apps.common.shortcuts import HUMAN_LINK_LEN as HLL
 
 
 class Page(models.Model):
 
     team        = models.ForeignKey("team.Team", related_name="pages")
-    link        = models.CharField(max_length=128, validators=[RegexValidator("^%s$" % HLF)])
+    link        = models.SlugField(unique=True)
     name        = models.CharField(max_length=1024)
     content     = models.TextField() # TODO make wiki or markdown
     order       = models.IntegerField() # TODO allow None
