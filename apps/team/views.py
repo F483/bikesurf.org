@@ -28,36 +28,20 @@ from apps.team.utils import assert_member
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request):
+    account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
         form = CreateTeamForm(request.POST)
         if form.is_valid():
-
-            # get data
             name = form.cleaned_data["name"].strip()
-            country = form.cleaned_data["country"]
-            link = uslugify(name)
-
-            # check data
-            data_ok = True
-            if bool(len(Team.objects.filter(link=link))):
-                form.errors["name"] = [_("NAME_USED")]
-                data_ok = False
-            if bool(len(Team.objects.filter(name=name))):
-                form.errors["name"] = [_("NAME_USED")]
-                data_ok = False
-
-            # create team
-            if data_ok:
-                team = Team()
-                team.link = link
-                team.name = name
-                team.country = country
-                account = get_object_or_404(Account, user=request.user)
-                team.created_by = account
-                team.updated_by = account
-                team.save()
-                team.members.add(account)
-                return HttpResponseRedirect("/%s" % link)
+            team = Team()
+            team.name = name
+            team.link = uslugify(name)
+            team.country = form.cleaned_data["country"]
+            team.created_by = account
+            team.updated_by = account
+            team.save()
+            team.members.add(account)
+            return HttpResponseRedirect("/%s" % link)
     else:
         form = CreateTeamForm()
     return render_response(request, "team/create.html", { "form" : form })
