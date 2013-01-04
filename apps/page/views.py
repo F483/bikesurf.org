@@ -17,6 +17,21 @@ from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 
 
+RESERVED_NAMES = [
+    u"blog",
+    u"bikes",
+    u"borrows",
+    u"stations",
+    u"members",
+    u"join_request",
+    u"join_requested",
+    u"join_requests",
+    u"join_request_process",
+    u"remove_requests",
+    u"page",
+]
+
+
 @require_http_methods(["GET"])
 def view(request, team_link, page_link):
     team = get_object_or_404(Team, link=team_link)
@@ -45,6 +60,12 @@ def create(request, team_link):
 
             # check data
             data_ok = True
+            if link in RESERVED_NAMES:
+                form.errors["name"] = [_("NAME_RESERVED")]
+                data_ok = False
+            if len(link) < 3:
+                form.errors["name"] = [_("NAME_TO_SHORT")]
+                data_ok = False
             if bool(len(Page.objects.filter(name=name, team=team))):
                 form.errors["name"] = [_("NAME_USED")]
                 data_ok = False
