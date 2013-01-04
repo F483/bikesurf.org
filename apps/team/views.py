@@ -10,11 +10,11 @@ from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+
 from apps.common.shortcuts import render_response
 from apps.common.shortcuts import uslugify
 from apps.account.models import Account
 from apps.team.models import Team
-from apps.team.models import Station
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
 from apps.borrow.models import Borrow
@@ -190,16 +190,6 @@ def borrows(request, team_link):
     assert_member(account, team)
     args = { "borrows" : Borrow.objects.filter(bike__team=team) }
     return rtr(team, "borrows", request, "team/borrows.html", args)
-
-
-@login_required
-@require_http_methods(["GET"])
-def stations(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-    args = { "stations" : Station.objects.filter(owner__team=team) }
-    return rtr(team, "stations", request, "team/stations.html", args)
 
 
 @require_http_methods(["GET"])

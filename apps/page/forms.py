@@ -14,14 +14,12 @@ _RESERVED_NAMES = [
     u"blog",
     u"bikes",
     u"borrows",
-    u"stations",
     u"members",
     u"join_request",
     u"join_requested",
     u"join_requests",
     u"join_request_process",
     u"remove_requests",
-    u"page",
 ]
 
 

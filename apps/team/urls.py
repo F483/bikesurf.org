@@ -14,11 +14,10 @@ JR = "(?P<join_request_id>[0-9]+)" # Join Request Link
 
 urlpatterns = patterns("apps.team.views",
 
-    url(r"^t/create$",                              "create"),
+    url(r"^team/create$",                           "create"),
 
     url(r"^%s/bikes$" % T,                          "bikes"),
     url(r"^%s/borrows$" % T,                        "borrows"),
-    url(r"^%s/stations$" % T,                       "stations"),
     url(r"^%s/members$" % T,                        "members"),
 
     url(r"^%s/join_request$" % T,                   "join_request"),

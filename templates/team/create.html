@@ -3,7 +3,7 @@
 
 {% block content %}
     <div id="index_body">
-            <form name="CreateTeamForm" action="/t/create" method="post">
+            <form name="CreateTeamForm" action="/team/create" method="post">
                 {% csrf_token %}
                 <table class="input_form">
                     {{ form.as_table }}
