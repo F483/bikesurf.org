@@ -41,7 +41,7 @@ def create(request):
             team.updated_by = account
             team.save()
             team.members.add(account)
-            return HttpResponseRedirect("/%s" % link)
+            return HttpResponseRedirect("/%s" % team.link)
     else:
         form = CreateTeamForm()
     return render_response(request, "team/create.html", { "form" : form })
