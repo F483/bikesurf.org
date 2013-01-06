@@ -32,10 +32,12 @@
                         {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                         {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
                         {% if current_account|is_member:bike.team %}
+
+                        {% trans "STATION" %}: 
                             {% if bike.station %}
-                                {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
+                                {{ bike.station.street }}<br />
                             {% else %}
-                                {% trans "STATION" %}: {% trans "UNKNOWN" %}<br />
+                                {% trans "UNKNOWN" %}<br />
                             {% endif %}
                         {% endif %}
                     </td>

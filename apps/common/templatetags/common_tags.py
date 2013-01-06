@@ -13,8 +13,8 @@ register = template.Library()
 @register.simple_tag
 def draw_bool(value):
     if bool(value):
-        return '<img src="/static/icons/accept.png">'
-    return '<img src="/static/icons/reject.png">'
+        return '<img src="/static/famfamfam/tick.png">'
+    return '<img src="/static/famfamfam/cross.png">'
 
 
 # TODO move to team app
