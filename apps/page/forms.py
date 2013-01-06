@@ -14,6 +14,7 @@ _RESERVED_NAMES = [
     u"blog",
     u"bikes",
     u"borrows",
+    u"stations",
     u"members",
     u"join_request",
     u"join_requested",

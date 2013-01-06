@@ -8,6 +8,10 @@ from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.template.defaultfilters import slugify
 from unidecode import unidecode
+from django_countries import countries
+
+
+COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
 
 
 def uslugify(ustr):
@@ -17,9 +21,10 @@ def uslugify(ustr):
 
 def render_response(request, template, args):
     user = request.user
+    account = user.is_authenticated() and user.account_set.all()[0] or None
     args.update({
         'current_user' : user,
-        'current_account' : user.is_authenticated() and user.account_set.all()[0] or None,
+        'current_account' : account,
         'message_count' : 0, # TODO get count
         'borrow_count' : 0, # TODO get count
     })

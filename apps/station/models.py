@@ -10,8 +10,9 @@ from django_countries import CountryField
 
 class Station(models.Model):
 
-    owner       = models.ForeignKey("account.Account")
-    preview     = models.ForeignKey("image.Image", related_name="station_previews", blank=True, null=True)
+    team        = models.ForeignKey("team.Team")
+    responsable = models.ForeignKey("account.Account")
+
     capacity    = models.IntegerField(default=1)
     active      = models.BooleanField(default=True)
     street      = models.CharField(max_length=1024)
@@ -19,6 +20,7 @@ class Station(models.Model):
     postalcode  = models.CharField(max_length=1024)
     country     = CountryField()
     # TODO link on google maps 
+    # TODO image galerie
     
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
@@ -27,11 +29,14 @@ class Station(models.Model):
     # TODO validation
 
     def __unicode__(self):
-        args = (self.country.name, self.postalcode, self.city, self.street)
-        return u"%s - %s %s - %s" % args
+        args = (
+            self.country.name, 
+            self.postalcode, 
+            self.city, 
+            self.street, 
+            self.responsable
+        )
+        return u"%s - %s %s - %s (%s)" % args
 
-    class Meta:                                                                                                 
-                                                                                                                
-        unique_together = (("owner", "street", "city", "postalcode", "country"),) 
 
 

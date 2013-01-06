@@ -5,11 +5,11 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django_countries.countries import COUNTRIES
 from django.core.exceptions import ValidationError
 from apps.common.shortcuts import uslugify
 from apps.team.models import STATUS_CHOICES
 from apps.team.models import Team
+from apps.common.shortcuts import COUNTRIES
 
 
 _RESERVED_NAMES = [
@@ -32,7 +32,7 @@ def _validate_name(value):
 class CreateTeamForm(forms.Form):
 
     name = forms.CharField(label=_('NAME'), validators=[_validate_name])
-    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY')) # TODO empty_label
+    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
 
 
 class CreateJoinRequestForm(forms.Form):

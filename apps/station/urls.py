@@ -12,7 +12,8 @@ T = "(?P<team_link>%s)" % SLUG # Team Link
 
 
 urlpatterns = patterns("apps.station.views",
-    url(r"^%s/stations$" % T, "list"),
+    url(r"^%s/stations$" % T,       "list"),
+    url(r"^%s/station/create$" % T, "create"),
 )
 
 
