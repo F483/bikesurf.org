@@ -159,29 +159,6 @@ def remove_requests(request, team_link):
     return rtr(team, "remove_requests", request, template, args)
 
 
-def _get_bike_filters(request, form):
-    # filters 
-    #  date from and to
-    #  active (only members)
-    #  reserve (only members)
-    #  kind (default all)
-    #  gender (default all)
-    #  size (default all)
-    #  lights (default all)
-    #  fenders (default all)
-    #  rack (default all)
-    #  basket (default all)
-    return {}
-
-
-@require_http_methods(["GET"])
-def bikes(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
-    filters = _get_bike_filters(request, None)
-    args = { "bikes" :  team.bikes.filter(**filters) }
-    return rtr(team, "bikes", request, "team/bikes.html", args)
-
-
 @login_required
 @require_http_methods(["GET"])
 def borrows(request, team_link):

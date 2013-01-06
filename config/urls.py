@@ -23,6 +23,7 @@ urlpatterns = patterns("",
     url(r"^", include("apps.team.urls")),
     url(r"^", include("apps.blog.urls")),
     url(r"^", include("apps.station.urls")),
+    url(r"^", include("apps.bike.urls")),
     url(r"^", include("apps.page.urls")),
 )
 

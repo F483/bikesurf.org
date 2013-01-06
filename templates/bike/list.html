@@ -16,7 +16,7 @@
             <table>
                 <tr>
                     <td id="td_bike_image">
-                        <img src="{% thumbnail bike.preview.photo 200x150 crop %}" alt="PreviewImage"><br /> <!-- TODO link galerie -->
+                        TODO bike image
                     </td>
                     <td id="td_bike_props">
                         {% trans "TYPE" %}: {% trans bike.kind %}<br />
@@ -32,7 +32,11 @@
                         {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                         {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
                         {% if current_account|is_member:bike.team %}
-                            {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
+                            {% if bike.station %}
+                                {% trans "STATION" %}: {{ bike.station.street }}<br /><!-- TODO link bike.station -->
+                            {% else %}
+                                {% trans "STATION" %}: {% trans "UNKNOWN" %}<br />
+                            {% endif %}
                         {% endif %}
                     </td>
                 </tr>

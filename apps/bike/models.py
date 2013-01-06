@@ -7,51 +7,53 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
+KINDS = [
+    'NORMAL', # comfort, hybrid, trekking, citybike
+    'BMX', 
+    'CARGOBIKE',
+    'CRUISER',
+    'ELECTRIC', 
+    'FIXIE', 
+    'FOLDING', 
+    'KIDS',
+    'MOUNTAINBIKE', 
+    'RECUMBENT',
+    'ROADBIKE', 
+    'TANDEM',
+    'TRICYCLE',
+    'UNICYCLE',
+]
+KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
+
+
+GENDER = [
+    'NEUTRAL', 
+    'FEMALE', 
+    'MALE'
+]
+GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
+
+
+SIZE = [      # Body Hight
+    'SMALL',  # 0cm - 145cm
+    'MEDIUM', # 145cm - 175cm
+    'LARGE'   # 175cm + 
+]
+SIZE_CHOICES = [(size, _(size)) for size in SIZE]
+
+
 class Bike(models.Model):
-
-    KINDS = [
-        'NORMAL', # comfort, hybrid, trekking, citybike
-        'BMX', 
-        'CARGOBIKE',
-        'CRUISER',
-        'ELECTRIC', 
-        'FIXIE', 
-        'FOLDING', 
-        'KIDS',
-        'MOUNTAINBIKE', 
-        'RECUMBENT',
-        'ROADBIKE', 
-        'TANDEM',
-        'TRICYCLE',
-        'UNICYCLE',
-    ]
-    KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
-
-    GENDER = [
-        'NEUTRAL', 
-        'FEMALE', 
-        'MALE'
-    ]
-    GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
-
-    SIZE = [      # Body Hight
-        'SMALL',  # 0cm - 145cm
-        'MEDIUM', # 145cm - 175cm
-        'LARGE'   # 175cm + 
-    ]
-    SIZE_CHOICES = [(size, _(size)) for size in SIZE]
 
     # main data
     owner       = models.ForeignKey('account.Account', related_name='bikes')
-    team        = models.ForeignKey('team.Team', related_name='bikes') # owner must be member
+    team        = models.ForeignKey('team.Team', related_name='bikes')
     name        = models.CharField(max_length=1024)
     description = models.TextField()
-    preview     = models.ForeignKey('image.Image', related_name='bike_previews')
     active      = models.BooleanField(default=True)
     reserve     = models.BooleanField(default=False) # not requestable
-    station     = models.ForeignKey('station.Station') # must belong to owner or team member
+    station     = models.ForeignKey('station.Station', blank=True, null=True)
     lockcode    = models.CharField(max_length=1024)
-    keycode     = models.CharField(max_length=1024)
+    keycode     = models.CharField(max_length=1024, blank=True)
     
     # Usefull properties to filter by.
     kind        = models.CharField(max_length=256, choices=KIND_CHOICES, default='NORMAL')
@@ -67,6 +69,7 @@ class Bike(models.Model):
     updated_on  = models.DateTimeField(auto_now=True)
 
     # TODO validation
+    # TODO galerie
 
     def __unicode__(self):
         return self.name

@@ -10,9 +10,8 @@ from django_countries import CountryField
 
 class Station(models.Model):
 
-    team        = models.ForeignKey("team.Team")
+    team        = models.ForeignKey("team.Team", related_name="stations")
     responsable = models.ForeignKey("account.Account")
-
     capacity    = models.IntegerField(default=1)
     active      = models.BooleanField(default=True)
     street      = models.CharField(max_length=1024)

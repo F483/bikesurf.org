@@ -18,7 +18,7 @@ class CreateStationForm(forms.Form):
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
     capacity = forms.IntegerField(label=_("CAPACITY"), initial=1, min_value=0)
-    active = forms.BooleanField(label=_("ACTIVE"), initial=True)
+    active = forms.BooleanField(label=_("ACTIVE"), initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
         team = kwargs.pop("team")
