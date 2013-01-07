@@ -8,13 +8,15 @@ from django.utils.translation import ugettext_lazy as _
 
 
 STATES = [
-    'REQUEST', 
-    'UNSURE', # requires meetup
-    'ACCEPTED', 
-    'CANCLED', 
-    'DAMAGED', 
-    'MISSING',
-    'RETURNED',
+    "REQUEST",   # (B)                       borrow.active: False -> False
+    "UNSURE",    # (L)   Require Meetup      borrow.active: False -> True
+    "ACCEPTED",  # (L)                       borrow.active: False -> True
+    "CANCLED",   # (B|L) Only Before Start   borrow.active: True  -> False
+    "UNLOCATED", # (L)   Not at Station      borrow.active: True  -> False
+    "DAMAGED",   # (L)   Doesnt work ...     borrow.active: True  -> False  bike.active: True -> False
+    "MISSING",   # (B|L) Stolen ...          borrow.active: True  -> False  bike.active: True -> False
+    "RETURNED",  # (B)   Borrower Rated      borrow.active: True  -> True
+    "FINISHED",  # (L)   Lender Rated        borrow.active: True  -> False
 ]
 STATE_CHOICES = [(state, _(state)) for state in STATES]
 
@@ -25,6 +27,7 @@ class Borrow(models.Model):
     borrower    = models.ForeignKey('account.Account')
     start       = models.DateField()
     finish      = models.DateField() # inclusive
+    active      = models.BooleanField()
     state       = models.CharField(max_length=256, choices=STATE_CHOICES)
     
     # location

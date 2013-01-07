@@ -48,7 +48,9 @@
             {{ bike.description }}
 
             <div>
-                {% draw_borrow "/" bike.team.link "/borrow/create/" bike.id %}
+                {% if bike.active and not bike.reserve and bike.station %}
+                    {% draw_borrow "/" bike.team.link "/borrow/create/" bike.id %}
+                {% endif %}
                 {% if current_account|is_member:bike.team %}
                     {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
                     {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}

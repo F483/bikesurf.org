@@ -31,7 +31,7 @@ def create(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
-        form = CreatePageForm(request.POST)
+        form = CreatePageForm(request.POST, team=team)
         if form.is_valid():
             name = form.cleaned_data["name"].strip()
             page = Page()
@@ -46,7 +46,7 @@ def create(request, team_link):
             # TODO send messages
             return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
     else:
-        form = CreatePageForm()
+        form = CreatePageForm(team=team)
     return rtr(team, None, request, "page/create.html", { "form" : form })
 
 

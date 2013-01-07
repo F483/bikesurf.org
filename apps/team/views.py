@@ -17,7 +17,6 @@ from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
-from apps.borrow.models import Borrow
 from apps.team.forms import CreateTeamForm
 from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
@@ -141,13 +140,6 @@ def join_requested(request, team_link):
     return rtr(team, None, request, "team/join_requested.html", {})
 
 
-
-
-##########
-# OTHERS #
-##########
-
-
 @login_required
 @require_http_methods(["GET"])
 def remove_requests(request, team_link):
@@ -157,16 +149,6 @@ def remove_requests(request, team_link):
     template = "team/remove_requests.html"
     args = { "remove_requests" : RemoveRequest.objects.filter(team=team) }
     return rtr(team, "remove_requests", request, template, args)
-
-
-@login_required
-@require_http_methods(["GET"])
-def borrows(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-    args = { "borrows" : Borrow.objects.filter(bike__team=team) }
-    return rtr(team, "borrows", request, "team/borrows.html", args)
 
 
 @require_http_methods(["GET"])

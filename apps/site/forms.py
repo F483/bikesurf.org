@@ -3,11 +3,18 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django import forms
+from django.forms import Form
+from django.forms import ModelChoiceField
 from apps.team.models import Team
 
 
-class TeamSelectForm(forms.Form):
+class TeamSelectForm(Form):
 
-    team = forms.ModelChoiceField(label='', empty_label=_("WHERE?"), queryset=Team.objects.all()) 
+    team = ModelChoiceField(
+            label='', empty_label=_("WHERE?"), 
+            queryset=Team.objects.all()
+    ) 
+
+

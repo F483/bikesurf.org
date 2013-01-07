@@ -23,7 +23,7 @@ class CreateStationForm(forms.Form):
     def __init__(self, *args, **kwargs):
         team = kwargs.pop("team")
         account = kwargs.pop("account")
-        super(forms.Form, self).__init__(*args, **kwargs)
+        super(CreateStationForm, self).__init__(*args, **kwargs)
         self.fields["responsable"].queryset = team.members.all()
         self.fields["responsable"].initial = account
         self.fields["country"].initial = team.country.code
