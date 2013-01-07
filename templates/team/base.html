@@ -35,21 +35,10 @@
 
             <h2>{% trans "TEAM_ACTIONS" %}</h2>
 
-            <a href="/{{ current_team.link }}/blog/create">
-                {% trans "ADD_BLOG" %}
-            </a><br />
-
-            <a href="/{{ current_team.link }}/page/create">
-                {% trans "ADD_PAGE" %}
-            </a><br />
-
-            <a href="/{{ current_team.link }}/bike/create">
-                {% trans "TODO_ADD_BIKE" %}
-            </a><br />
-
-            <a href="/{{ current_team.link }}/station/create">
-                {% trans "TODO_ADD_STATION" %}
-            </a><br />
+            {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}<br />
+            {% draw_create "ADD_PAGE" "/" current_team.link "/page/create" %}<br />
+            {% draw_create "ADD_BIKE" "/" current_team.link "/bike/create" %}<br />
+            {% draw_create "ADD_STATION" "/" current_team.link "/station/create" %}<br />
         </div>
     {% endif %}
 

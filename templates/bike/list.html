@@ -11,7 +11,9 @@
     {% for bike in bikes %}
         <div class="content_block">
 
-            <h2>{{ bike.name }}</h2>
+            <h2>
+                {{ bike.name }}
+            </h2>
 
             <table>
                 <tr>
@@ -32,8 +34,7 @@
                         {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                         {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
                         {% if current_account|is_member:bike.team %}
-
-                        {% trans "STATION" %}: 
+                            {% trans "STATION" %}: 
                             {% if bike.station %}
                                 {{ bike.station.street }}<br />
                             {% else %}
@@ -43,7 +44,17 @@
                     </td>
                 </tr>
             </table>
+
             {{ bike.description }}
+
+            <div>
+                {% draw_borrow "/" bike.team.link "/borrow/create/" bike.id %}
+                {% if current_account|is_member:bike.team %}
+                    {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
+                    {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}
+                {% endif %}
+            </div>
+
         </div>
     {% endfor %}
 {% endblock %}
