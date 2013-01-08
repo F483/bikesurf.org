@@ -30,3 +30,19 @@ def draw_respond(account, borrow):
     return ""
 
 
+@register.simple_tag
+def draw_status(borrow):
+    images = {
+        "REQUEST" : "/static/famfamfam/arrow_rotate_clockwise.png",
+        "MEETUP" : "/static/famfamfam/cup.png",
+        "ACCEPTED" : "/static/famfamfam/tick.png",
+        "REJECTED" : "/static/famfamfam/cross.png",
+        "CANCLED" : "/static/famfamfam/cancle.png",
+        "UNLOCATED" : "/static/famfamfam/flag_yellow.png",
+        "DAMAGED" : "/static/famfamfam/flag_orange.png",
+        "MISSING" : "/static/famfamfam/flag_red.png",
+        "RETURNED" : "/static/famfamfam/medal_silver_1.png",
+        "FINISHED" : "/static/famfamfam/medal_gold_1.png",
+    }
+    return '<img src="%s" alt="%s">' % (images[borrow.state], borrow.state)
+

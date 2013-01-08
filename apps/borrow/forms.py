@@ -19,7 +19,7 @@ from apps.borrow.models import Borrow
 
 RESPONSES = [
     "ACCEPTED",
-    "UNSURE",
+    "MEETUP",
     "REJECTED",
 ]
 RESPONSE_CHOICES = [(response, _(response)) for response in RESPONSES]
