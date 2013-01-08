@@ -14,7 +14,8 @@ from django.forms import ChoiceField
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
 
-from apps.borrow.models import Borrow
+from apps.borrow import models
+from apps.borrow import control
 
 
 RESPONSES = [
@@ -25,7 +26,7 @@ RESPONSES = [
 RESPONSE_CHOICES = [(response, _(response)) for response in RESPONSES]
 
 
-class RespondForm(Form):
+class Respond(Form):
     
     response = ChoiceField(choices=RESPONSE_CHOICES, label=_('RESPONES'))
     note = CharField(label=_("NOTE"), widget=Textarea)
@@ -33,10 +34,10 @@ class RespondForm(Form):
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
         self.account = kwargs.pop("account")
-        super(RespondForm, self).__init__(*args, **kwargs)
+        super(Respond, self).__init__(*args, **kwargs)
 
     def clean(self):
-        cleaned_data = super(RespondForm, self).clean()
+        cleaned_data = super(Respond, self).clean()
 
         # sanity check
         if self.account not in self.borrow.bike.team.members.all():
@@ -57,7 +58,7 @@ class RespondForm(Form):
         return cleaned_data
 
 
-class CreateForm(Form):
+class Create(Form):
 
     start = DateField(label=_("START"), widget=SelectDateWidget())
     finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
@@ -65,12 +66,12 @@ class CreateForm(Form):
 
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
-        super(CreateForm, self).__init__(*args, **kwargs)
+        super(Create, self).__init__(*args, **kwargs)
         self.fields["start"].initial = datetime.datetime.now()
         self.fields["finish"].initial = datetime.datetime.now()
 
     def clean(self):
-        cleaned_data = super(CreateForm, self).clean()
+        cleaned_data = super(Create, self).clean()
         today = datetime.datetime.now().date()
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
@@ -90,15 +91,33 @@ class CreateForm(Form):
             raise ValidationError(_("FINISH_BEFORE_START"))
         
         # other borrows starting in timeframe
-        if len(Borrow.objects.filter(bike=self.bike, active=True,
-                                     start__gte=start, start__lte=finish)):
+        if len(models.Borrow.objects.filter(
+                bike=self.bike, active=True, 
+                start__gte=start, start__lte=finish)):
             raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
 
         # other borrows finishing in timeframe
-        if len(Borrow.objects.filter(bike=self.bike, active=True,
-                                     finish__gte=start, finish__lte=finish)):
+        if len(models.Borrow.objects.filter(
+                bike=self.bike, active=True,
+                finish__gte=start, finish__lte=finish)):
             raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
 
+        return cleaned_data
+
+
+class Cancel(Form):
+
+    note = CharField(label=_("NOTE"), widget=Textarea)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        self.account = kwargs.pop("account")
+        super(Cancel, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(Cancel, self).clean()
+        if not control.can_cancel(self.account, self.borrow): # TODO test it
+            raise PermissionDenied
         return cleaned_data
 
 

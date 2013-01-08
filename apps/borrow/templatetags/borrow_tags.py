@@ -7,6 +7,7 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.common.templatetags.common_tags import draw_action
+from apps.borrow.control import can_cancel
 
 
 register = template.Library()
@@ -31,13 +32,25 @@ def draw_respond(account, borrow):
 
 
 @register.simple_tag
+def draw_cancel(account, borrow, team):
+    if can_cancel(account, borrow):
+        image = "/static/famfamfam/cancel.png"
+        if team:
+            url = "/%s/borrow/cancel/%i" % (team.link, borrow.id)
+        else:
+            url = "/borrow/cancel/%i" % borrow.id
+        return draw_action(image, "CANCEL", url)
+    return ""
+
+
+@register.simple_tag
 def draw_status(borrow):
     images = {
         "REQUEST" : "/static/famfamfam/arrow_rotate_clockwise.png",
         "MEETUP" : "/static/famfamfam/cup.png",
         "ACCEPTED" : "/static/famfamfam/tick.png",
         "REJECTED" : "/static/famfamfam/cross.png",
-        "CANCLED" : "/static/famfamfam/cancle.png",
+        "CANCELED" : "/static/famfamfam/cancel.png",
         "UNLOCATED" : "/static/famfamfam/flag_yellow.png",
         "DAMAGED" : "/static/famfamfam/flag_orange.png",
         "MISSING" : "/static/famfamfam/flag_red.png",
@@ -45,4 +58,5 @@ def draw_status(borrow):
         "FINISHED" : "/static/famfamfam/medal_gold_1.png",
     }
     return '<img src="%s" alt="%s">' % (images[borrow.state], borrow.state)
+
 

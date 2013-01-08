@@ -15,9 +15,8 @@ from apps.bike.models import Bike
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.borrow.models import Borrow
-from apps.borrow.models import Log
-from apps.borrow.forms import CreateForm
-from apps.borrow.forms import RespondForm
+from apps.borrow import forms
+from apps.borrow import control
 
 
 @login_required
@@ -37,28 +36,16 @@ def create(request, team_link, bike_id):
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":
-        form = CreateForm(request.POST, bike=bike)
+        form = forms.Create(request.POST, bike=bike)
         if form.is_valid():
-            borrow = Borrow()
-            borrow.bike = bike
-            borrow.borrower = account
-            borrow.start = form.cleaned_data["start"]
-            borrow.finish = form.cleaned_data["finish"]
-            borrow.active = False
-            borrow.state = "REQUEST"
-            borrow.src = bike.station
-            borrow.dest = bike.station
-            borrow.save()
-            log = Log()
-            log.borrow = borrow
-            log.initiator = account
-            log.state = borrow.state
-            log.note = form.cleaned_data["note"].strip()
-            log.save()
+            borrow, log = control.create(bike, account, 
+                                         form.cleaned_data["start"],
+                                         form.cleaned_data["finish"],
+                                         form.cleaned_data["note"].strip())
             # TODO return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
             return HttpResponseRedirect("/%s/borrows" % team.link)
     else:
-        form = CreateForm(bike=bike)
+        form = forms.Create(bike=bike)
     args = { "form" : form, "bike" : bike }
     return rtr(team, "borrows", request, "borrow/create.html", args)
 
@@ -71,24 +58,45 @@ def respond(request, team_link, borrow_id):
     assert_member(account, team)
     borrow = get_object_or_404(Borrow, id=borrow_id)
     if request.method == "POST":
-        form = RespondForm(request.POST, borrow=borrow, account=account)
+        form = forms.Respond(request.POST, borrow=borrow, account=account)
         if form.is_valid():
-            borrow.state = form.cleaned_data["response"]
-            borrow.active = borrow.state != "REJECTED"
-            borrow.save()
-            log = Log()
-            log.borrow = borrow
-            log.initiator = account
-            log.state = borrow.state
-            log.note = form.cleaned_data["note"].strip()
-            log.save()
-            url = "/%s/borrow/view/%s" % (team.id, borrow.id)
-            # TODO return HttpResponseRedirect(url)
+            control.respond(account, borrow, form.cleaned_data["response"], 
+                            form.cleaned_data["note"].strip())
+            # TODO redirect here when view is done
+            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            # return HttpResponseRedirect(url)
             return HttpResponseRedirect("/%s/borrows" % team.link)
     else:
-        form = RespondForm(borrow=borrow, account=account)
+        form = forms.Respond(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
     return rtr(team, "borrows", request, "borrow/respond.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def cancel_team(request, team_link, borrow_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    if request.method == "POST":
+        form = forms.Cancel(request.POST, borrow=borrow, account=account)
+        if form.is_valid():
+            control.cancel(account, borrow, form.cleaned_data["note"].strip())
+            # TODO redirect here when view is done
+            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            # return HttpResponseRedirect(url)
+            return HttpResponseRedirect("/%s/borrows" % team.link)
+    else:
+        form = forms.Cancel(borrow=borrow, account=account)
+    args = { "form" : form, "borrow" : borrow }
+    return rtr(team, "borrows", request, "borrow/cancel_team.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def cancel_my(request, borrow_id):
+    pass # TODO
 
 
 @login_required

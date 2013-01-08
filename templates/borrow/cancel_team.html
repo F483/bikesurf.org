@@ -1,0 +1,25 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "CANCEL" %} : {{ borrow }}
+{% endblock %}
+
+{% block content_center %}
+    <div class="content_block">
+        <h2>{% trans "CANCEL" %}</h2>
+        <form   name="CancelBorrowForm"
+                action="/{{ current_team.link }}/borrow/cancel/{{ borrow.id }}"
+                method="post">
+
+            {% csrf_token %}
+            <table class="input_form">
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="{% trans "SUBMIT" %}" />
+
+        </form>
+    </div>
+{% endblock %}
+
+
