@@ -3,7 +3,12 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.db import models
+from django.db.models import Model
+from django.db.models import ForeignKey
+from django.db.models import BooleanField
+from django.db.models import CharField
+from django.db.models import TextField
+from django.db.models import DateTimeField
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -42,31 +47,31 @@ SIZE = [      # Body Hight
 SIZE_CHOICES = [(size, _(size)) for size in SIZE]
 
 
-class Bike(models.Model):
+class Bike(Model):
 
     # main data
-    owner       = models.ForeignKey('account.Account', related_name='bikes')
-    team        = models.ForeignKey('team.Team', related_name='bikes')
-    name        = models.CharField(max_length=1024)
-    description = models.TextField()
-    active      = models.BooleanField(default=True)
-    reserve     = models.BooleanField(default=False) # not requestable
-    station     = models.ForeignKey('station.Station', blank=True, null=True)
-    lockcode    = models.CharField(max_length=1024)
-    keycode     = models.CharField(max_length=1024, blank=True)
+    owner = ForeignKey('account.Account', related_name='bikes')
+    team = ForeignKey('team.Team', related_name='bikes')
+    name = CharField(max_length=1024)
+    description = TextField()
+    active = BooleanField(default=True)
+    reserve = BooleanField(default=False) # not requestable
+    station = ForeignKey('station.Station', blank=True, null=True)
+    lockcode = CharField(max_length=1024)
+    keycode = CharField(max_length=1024, blank=True)
     
     # Usefull properties to filter by.
-    kind        = models.CharField(max_length=256, choices=KIND_CHOICES, default='NORMAL')
-    gender      = models.CharField(max_length=256, choices=GENDER_CHOICES, default='NEUTRAL')
-    size        = models.CharField(max_length=256, choices=SIZE_CHOICES, default='MEDIUM')
-    lights      = models.BooleanField(default=False) # to cycle when dark
-    fenders     = models.BooleanField(default=False) # to cycle when wet
-    rack        = models.BooleanField(default=False) # to carry stuff
-    basket      = models.BooleanField(default=False) # to put stuff in
+    kind = CharField(max_length=64, choices=KIND_CHOICES, default='NORMAL')
+    gender = CharField(max_length=64, choices=GENDER_CHOICES, default='NEUTRAL')
+    size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM')
+    lights = BooleanField(default=False) # to cycle when dark
+    fenders = BooleanField(default=False) # to cycle when wet
+    rack = BooleanField(default=False) # to carry stuff
+    basket = BooleanField(default=False) # to put stuff in
     
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_on = DateTimeField(auto_now_add=True)
+    updated_on = DateTimeField(auto_now=True)
 
     # TODO validation
     # TODO galerie
@@ -75,18 +80,18 @@ class Bike(models.Model):
         return self.name
 
 
-class Issue(models.Model):
+class Issue(Model):
 
-    bike        = models.ForeignKey('bike.Bike')
-    problem     = models.TextField() # by notifier
-    solution    = models.TextField() # by reslver
-    resolved    = models.BooleanField(default=False)
-    notifier    = models.ForeignKey('account.Account', related_name='issues_notified')
-    resolver    = models.ForeignKey('account.Account', related_name='issues_resolved')
+    bike = ForeignKey('bike.Bike')
+    problem = TextField() # by notifier
+    solution = TextField() # by reslver
+    resolved = BooleanField(default=False)
+    notifier = ForeignKey('account.Account', related_name='issues_notified')
+    resolver = ForeignKey('account.Account', related_name='issues_resolved')
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_on = DateTimeField(auto_now_add=True)
+    updated_on = DateTimeField(auto_now=True)
 
     # TODO validation
 

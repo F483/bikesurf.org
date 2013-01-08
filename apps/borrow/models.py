@@ -3,41 +3,43 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Model
+from django.db.models import ForeignKey
+from django.db.models import BooleanField
+from django.db.models import CharField
+from django.db.models import TextField
+from django.db.models import DateField
+from django.db.models import DateTimeField
+from django.db.models import IntegerField
 
 
 STATES = [
-    "REQUEST",   # (B)                       borrow.active: False -> False
-    "MEETUP",    # (L)   Require Meetup      borrow.active: False -> True
-    "ACCEPTED",  # (L)   Can Borrow          borrow.active: False -> True
-    "REJECTED",  # (L)   Cannot Borrow       borrow.active: False -> False
-    "CANCELED",  # (B|L) Only Before Start   borrow.active: True  -> False
-    "UNLOCATED", # (L)   Not at Station      borrow.active: True  -> False
-    "DAMAGED",   # (L)   Doesnt work ...     borrow.active: True  -> False  bike.active: True -> False
-    "MISSING",   # (B|L) Stolen ...          borrow.active: True  -> False  bike.active: True -> False
-    "RETURNED",  # (B)   Borrower Rated      borrow.active: True  -> True
-    "FINISHED",  # (L)   Lender Rated        borrow.active: True  -> False
+    "REQUEST",   # (B)    active: False                      
+    "MEETUP",    # (L)    active: True   
+    "ACCEPTED",  # (L)    active: True   
+    "REJECTED",  # (L)    active: False  
+    "CANCELED",  # (B|L)  active: False  Only Before Start   
+    "RETURNED",  # (B)    active: True   orrower Rated # TODO rename 
+    "FINISHED",  # (L)    active: True   ender Rated        
 ]
 STATE_CHOICES = [(state, _(state)) for state in STATES]
 
 
-class Borrow(models.Model):
+class Borrow(Model):
 
-    bike        = models.ForeignKey('bike.Bike')
-    borrower    = models.ForeignKey('account.Account')
-    start       = models.DateField()
-    finish      = models.DateField() # inclusive
-    active      = models.BooleanField()
-    state       = models.CharField(max_length=256, choices=STATE_CHOICES)
-    
-    # location
-    src         = models.ForeignKey('station.Station', related_name='borrows_outgoing')
-    dest        = models.ForeignKey('station.Station', related_name='borrows_incoming')
+    bike = ForeignKey('bike.Bike')
+    borrower = ForeignKey('account.Account')
+    start = DateField()
+    finish = DateField() # inclusive
+    active = BooleanField() # if the borrow blocks a timeslot
+    state = CharField(max_length=256, choices=STATE_CHOICES)
+    src = ForeignKey('station.Station', related_name='borrows_outgoing')
+    dest = ForeignKey('station.Station', related_name='borrows_incoming')
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_on  = DateTimeField(auto_now=True)
 
     # TODO validation
 
@@ -46,15 +48,15 @@ class Borrow(models.Model):
         return u"id: %s; bike_id: %s; state: %s; start: %s; finish %s" % args
 
 
-class Log(models.Model):
+class Log(Model):
 
-    borrow      = models.ForeignKey('borrow.Borrow')
-    initiator   = models.ForeignKey('account.Account') # None => system
-    state       = models.CharField(max_length=256, choices=STATE_CHOICES)
-    note        = models.TextField() # by initiator
+    borrow      = ForeignKey('borrow.Borrow')
+    initiator   = ForeignKey('account.Account') # None => system
+    state       = CharField(max_length=256, choices=STATE_CHOICES)
+    note        = TextField() # by initiator
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
+    created_on  = DateTimeField(auto_now_add=True)
 
     # TODO validation
 
@@ -63,14 +65,14 @@ class Log(models.Model):
         return u"id: %s; borrow_id: %s; state %s; created_on: %s" % args
 
 
-class Rating(models.Model): # only borrower rates ...
+class Rating(Model): # only borrower rates ...
 
-    borrow      = models.ForeignKey('borrow.Borrow')
-    rating      = models.IntegerField() # 0 - 5 'Stars' TODO validate range
-    account     = models.ForeignKey('account.Account') # borrower or lender
+    borrow      = ForeignKey('borrow.Borrow')
+    rating      = IntegerField() # 0 - 5 'Stars' TODO validate range
+    account     = ForeignKey('account.Account') # borrower or lender
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
+    created_on  = DateTimeField(auto_now_add=True)
 
     # TODO validation
 

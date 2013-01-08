@@ -14,7 +14,7 @@ from django.forms import ChoiceField
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
 
-from apps.borrow import models
+from apps.borrow.models import Borrow
 from apps.borrow import control
 
 
@@ -91,15 +91,13 @@ class Create(Form):
             raise ValidationError(_("FINISH_BEFORE_START"))
         
         # other borrows starting in timeframe
-        if len(models.Borrow.objects.filter(
-                bike=self.bike, active=True, 
-                start__gte=start, start__lte=finish)):
+        if len(Borrow.objects.filter(bike=self.bike, active=True, 
+                                     start__gte=start, start__lte=finish)):
             raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
 
         # other borrows finishing in timeframe
-        if len(models.Borrow.objects.filter(
-                bike=self.bike, active=True,
-                finish__gte=start, finish__lte=finish)):
+        if len(Borrow.objects.filter(bike=self.bike, active=True,
+                                     finish__gte=start, finish__lte=finish)):
             raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
 
         return cleaned_data

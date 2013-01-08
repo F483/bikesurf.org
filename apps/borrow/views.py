@@ -19,6 +19,14 @@ from apps.borrow import forms
 from apps.borrow import control
 
 
+def _get_team_models(request, team_link, borrow_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    return team, account, borrow
+
+
 @login_required
 @require_http_methods(["GET"])
 def list_team(request, team_link):
@@ -53,10 +61,7 @@ def create(request, team_link, bike_id):
 @login_required
 @require_http_methods(["GET", "POST"])
 def respond(request, team_link, borrow_id):
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-    borrow = get_object_or_404(Borrow, id=borrow_id)
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
         form = forms.Respond(request.POST, borrow=borrow, account=account)
         if form.is_valid():
@@ -75,10 +80,7 @@ def respond(request, team_link, borrow_id):
 @login_required
 @require_http_methods(["GET", "POST"])
 def cancel_team(request, team_link, borrow_id):
-    team = get_object_or_404(Team, link=team_link)
-    account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-    borrow = get_object_or_404(Borrow, id=borrow_id)
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
         form = forms.Cancel(request.POST, borrow=borrow, account=account)
         if form.is_valid():

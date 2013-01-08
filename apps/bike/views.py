@@ -14,7 +14,7 @@ from apps.team.models import Team
 from apps.bike.models import Bike
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
-from apps.bike.forms import CreateBikeForm
+from apps.bike import forms
 
 
 def _get_bike_filters(request, form):
@@ -47,7 +47,7 @@ def create(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
-        form = CreateBikeForm(request.POST, team=team, account=account)
+        form = forms.Create(request.POST, team=team, account=account)
         if form.is_valid():
             bike = Bike()
             bike.team = team
@@ -68,7 +68,7 @@ def create(request, team_link):
             bike.save()
             return HttpResponseRedirect("/%s/bikes" % team.link)
     else:
-        form = CreateBikeForm(team=team, account=account)
+        form = forms.Create(team=team, account=account)
     args = { "form" : form }
     return rtr(team, "bikes", request, "bike/create.html", args)
 

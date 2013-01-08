@@ -3,21 +3,25 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Model
+from django.db.models import ForeignKey
+from django.db.models import CharField
+from django.db.models import TextField
+from django.db.models import DateTimeField
 
 
-class Blog(models.Model):
+class Blog(Model):
 
-    team        = models.ForeignKey("team.Team", related_name="blogs")
-    name        = models.CharField(max_length=1024)
-    content     = models.TextField() # TODO make wiki or markdown
+    team = ForeignKey("team.Team", related_name="blogs")
+    name = CharField(max_length=1024)
+    content = TextField() # TODO make wiki or markdown
 
     # meta
-    created_by  = models.ForeignKey("account.Account", related_name="blogs_created")
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey("account.Account", related_name="blogs_updated")
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_by = ForeignKey("account.Account", related_name="blogs_created")
+    created_on = DateTimeField(auto_now_add=True)
+    updated_by = ForeignKey("account.Account", related_name="blogs_updated")
+    updated_on = DateTimeField(auto_now=True)
 
     # TODO validation
 

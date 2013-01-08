@@ -51,9 +51,6 @@ def draw_status(borrow):
         "ACCEPTED" : "/static/famfamfam/tick.png",
         "REJECTED" : "/static/famfamfam/cross.png",
         "CANCELED" : "/static/famfamfam/cancel.png",
-        "UNLOCATED" : "/static/famfamfam/flag_yellow.png",
-        "DAMAGED" : "/static/famfamfam/flag_orange.png",
-        "MISSING" : "/static/famfamfam/flag_red.png",
         "RETURNED" : "/static/famfamfam/medal_silver_1.png",
         "FINISHED" : "/static/famfamfam/medal_gold_1.png",
     }

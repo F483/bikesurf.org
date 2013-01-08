@@ -16,7 +16,7 @@ from apps.bike.models import GENDER_CHOICES
 from apps.bike.models import SIZE_CHOICES
 
 
-class CreateBikeForm(Form):
+class Create(Form):
 
     owner = ModelChoiceField(label=_("OWNER"), queryset=None)
     name = CharField(label=_("NAME"))
@@ -37,10 +37,9 @@ class CreateBikeForm(Form):
     def __init__(self, *args, **kwargs):
         team = kwargs.pop("team")
         account = kwargs.pop("account")
-        super(CreateBikeForm, self).__init__(*args, **kwargs)
+        super(Create, self).__init__(*args, **kwargs)
         self.fields["owner"].queryset = team.members.all()
         self.fields["owner"].initial = account
         self.fields["station"].queryset = team.stations.all()
-
 
 
