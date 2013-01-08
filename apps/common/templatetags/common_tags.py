@@ -6,8 +6,6 @@
 from django import template
 from django.utils.translation import ugettext as _
 
-from apps.team.models import JoinRequest
-
 
 register = template.Library()
 
@@ -29,13 +27,6 @@ def draw_action(image, label, *args):
     """ % { "label" : _(label), "image" : image, "url" : url }
 
 
-# TODO move to borrow app
-@register.simple_tag
-def draw_borrow(*args):
-    image = "/static/famfamfam/arrow_rotate_clockwise.png"
-    return draw_action(image, "BORROW", *args)
-
-
 @register.simple_tag
 def draw_delete(*args):
     return draw_action("/static/famfamfam/delete.png", "DELETE", *args)
@@ -49,19 +40,4 @@ def draw_edit(*args):
 @register.simple_tag
 def draw_create(label, *args):
     return draw_action("/static/famfamfam/add.png", label, *args)
-
-
-# TODO move to team app
-@register.filter
-def is_member(account, team):
-    return account in team.members.all()
-
-
-# TODO move to team app
-@register.filter
-def can_join(account, team):
-    member = is_member(account, team)
-    requests = len(JoinRequest.objects.filter(team=team, requester=account)) > 0
-    return not member and not requests
-
 

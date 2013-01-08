@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load common_tags %}
+{% load borrow_tags %}
 
 {% block title %}
     Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
@@ -10,9 +11,20 @@
 {% block content_center %}
     {% for borrow in borrows %}
         <div class="content_block">
-            <h2>{{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} ({% trans borrow.state %})</h2>
-            {% trans "DATE FROM" %} {{ borrow.start }} {% trans "TO" %} {{ borrow.finish }}<br />
-            {% trans "STATION FROM" %} {{ borrow.src.street }} {% trans "TO" %} {{ borrow.dest.street }}<br />
+            <h2>
+                {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
+                ({% trans borrow.state %})
+            </h2>
+
+            {% trans "DATE FROM" %} {{ borrow.start }} 
+            {% trans "TO" %} {{ borrow.finish }}<br />
+
+            {% trans "STATION FROM" %} {{ borrow.src.street }} 
+            {% trans "TO" %} {{ borrow.dest.street }}<br />
+
+            <div>
+                {% draw_respond current_account borrow %}
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

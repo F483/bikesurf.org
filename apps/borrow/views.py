@@ -16,7 +16,8 @@ from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.borrow.models import Borrow
 from apps.borrow.models import Log
-from apps.borrow.forms import CreateBorrowForm
+from apps.borrow.forms import CreateForm
+from apps.borrow.forms import RespondForm
 
 
 @login_required
@@ -36,9 +37,8 @@ def create(request, team_link, bike_id):
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":
-        form = CreateBorrowForm(request.POST, bike=bike)
+        form = CreateForm(request.POST, bike=bike)
         if form.is_valid():
-
             borrow = Borrow()
             borrow.bike = bike
             borrow.borrower = account
@@ -49,20 +49,46 @@ def create(request, team_link, bike_id):
             borrow.src = bike.station
             borrow.dest = bike.station
             borrow.save()
-
             log = Log()
             log.borrow = borrow
             log.initiator = account
             log.state = borrow.state
-            log.note = form.cleaned_data["application"].strip()
+            log.note = form.cleaned_data["note"].strip()
             log.save()
-
             # TODO return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
             return HttpResponseRedirect("/%s/borrows" % team.link)
     else:
-        form = CreateBorrowForm(bike=bike)
+        form = CreateForm(bike=bike)
     args = { "form" : form, "bike" : bike }
     return rtr(team, "borrows", request, "borrow/create.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def respond(request, team_link, borrow_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    if request.method == "POST":
+        form = RespondForm(request.POST, borrow=borrow, account=account)
+        if form.is_valid():
+            borrow.state = form.cleaned_data["response"]
+            borrow.active = borrow.state != "REJECTED"
+            borrow.save()
+            log = Log()
+            log.borrow = borrow
+            log.initiator = account
+            log.state = borrow.state
+            log.note = form.cleaned_data["note"].strip()
+            log.save()
+            url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            # TODO return HttpResponseRedirect(url)
+            return HttpResponseRedirect("/%s/borrows" % team.link)
+    else:
+        form = RespondForm(borrow=borrow, account=account)
+    args = { "form" : form, "borrow" : borrow }
+    return rtr(team, "borrows", request, "borrow/respond.html", args)
 
 
 @login_required

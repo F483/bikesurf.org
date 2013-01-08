@@ -11,6 +11,7 @@ STATES = [
     "REQUEST",   # (B)                       borrow.active: False -> False
     "UNSURE",    # (L)   Require Meetup      borrow.active: False -> True
     "ACCEPTED",  # (L)                       borrow.active: False -> True
+    "REJECTED",  # (L)                       borrow.active: False -> False
     "CANCLED",   # (B|L) Only Before Start   borrow.active: True  -> False
     "UNLOCATED", # (L)   Not at Station      borrow.active: True  -> False
     "DAMAGED",   # (L)   Doesnt work ...     borrow.active: True  -> False  bike.active: True -> False
