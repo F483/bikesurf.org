@@ -96,6 +96,32 @@ def cancel_team(request, team_link, borrow_id):
 
 
 @login_required
+@require_http_methods(["GET", "POST"])
+def rate_team(request, team_link, borrow_id):
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
+    if request.method == "POST":
+        form = forms.RateTeam(request.POST, borrow=borrow, account=account)
+        if form.is_valid():
+            rating = form.cleaned_data["rating"]
+            note = form.cleaned_data["note"].strip()
+            control.rate_team(account, borrow, rating, note)
+            # TODO redirect here when view is done
+            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            # return HttpResponseRedirect(url)
+            return HttpResponseRedirect("/%s/borrows" % team.link)
+    else:
+        form = forms.RateTeam(borrow=borrow, account=account)
+    args = { "form" : form, "borrow" : borrow }
+    return rtr(team, "borrows", request, "borrow/rate_team.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def rate_my(request, borrow_id):
+    pass # TODO
+
+
+@login_required
 @require_http_methods(["GET"])
 def cancel_my(request, borrow_id):
     pass # TODO

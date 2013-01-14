@@ -11,6 +11,8 @@ from django.forms import ValidationError
 from django.forms import CharField
 from django.forms import Textarea
 from django.forms import ChoiceField
+from django.forms import TypedChoiceField
+from django.forms import RadioSelect
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
 
@@ -115,6 +117,33 @@ class Cancel(Form):
     def clean(self):
         cleaned_data = super(Cancel, self).clean()
         if not control.can_cancel(self.account, self.borrow): # TODO test it
+            raise PermissionDenied
+        return cleaned_data
+
+
+
+RATING_CHOICES = [
+    (0, _("0")),
+    (1, _("1")),
+    (2, _("2")),
+    (3, _("3")),
+    (4, _("4")),
+    (5, _("5")),
+]
+
+class RateTeam(Form):
+
+    note = CharField(label=_("NOTE"), widget=Textarea)
+    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect, coerce=int)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        self.account = kwargs.pop("account")
+        super(RateTeam, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(RateTeam, self).clean()
+        if not control.can_rate_team(self.account, self.borrow): # TODO test it
             raise PermissionDenied
         return cleaned_data
 

@@ -15,13 +15,12 @@ from django.db.models import IntegerField
 
 
 STATES = [
-    "REQUEST",   # (B)    active: False                      
-    "MEETUP",    # (L)    active: True   
-    "ACCEPTED",  # (L)    active: True   
-    "REJECTED",  # (L)    active: False  
-    "CANCELED",  # (B|L)  active: False  Only Before Start   
-    "RETURNED",  # (B)    active: True   orrower Rated # TODO rename 
-    "FINISHED",  # (L)    active: True   ender Rated        
+    "REQUEST",   # (B)                        
+    "MEETUP",    # (L)    
+    "ACCEPTED",  # (L)    
+    "REJECTED",  # (L)    
+    "CANCELED",  # (B|L)  Only Before Start   
+    "FINISHED",  # (B|L)  Both Rated
 ]
 STATE_CHOICES = [(state, _(state)) for state in STATES]
 
@@ -50,10 +49,19 @@ class Borrow(Model):
 
 class Log(Model):
 
-    borrow      = ForeignKey('borrow.Borrow')
-    initiator   = ForeignKey('account.Account') # None => system
-    state       = CharField(max_length=256, choices=STATE_CHOICES)
-    note        = TextField() # by initiator
+    ACTIONS = [
+        "RATE_TEAM",
+        "RATE_MY",
+        "CREATE",
+        "RESPOND",
+        "CANCEL",
+    ]
+    ACTION_CHOICES = [(action, _(action)) for action in ACTIONS]
+
+    borrow = ForeignKey('borrow.Borrow')
+    initiator = ForeignKey('account.Account') # None => system
+    action = CharField(max_length=64, choices=ACTION_CHOICES)
+    note = TextField() # by initiator
 
     # meta
     created_on  = DateTimeField(auto_now_add=True)
@@ -67,9 +75,16 @@ class Log(Model):
 
 class Rating(Model): # only borrower rates ...
 
-    borrow      = ForeignKey('borrow.Borrow')
-    rating      = IntegerField() # 0 - 5 'Stars' TODO validate range
-    account     = ForeignKey('account.Account') # borrower or lender
+    ORIGINATOR = [
+        "BORROWER",
+        "LENDER",
+    ]
+    ORIGINATOR_CHOICES = [(o, _(o)) for o in ORIGINATOR]
+
+    borrow = ForeignKey('borrow.Borrow')
+    rating = IntegerField() # 0 - 5 'Stars' TODO validate range
+    account = ForeignKey('account.Account') # borrower or lender
+    originator = CharField(max_length=64, choices=ORIGINATOR_CHOICES)
 
     # meta
     created_on  = DateTimeField(auto_now_add=True)

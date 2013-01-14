@@ -7,7 +7,7 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.common.templatetags.common_tags import draw_action
-from apps.borrow.control import can_cancel
+from apps.borrow import control
 
 
 register = template.Library()
@@ -33,13 +33,31 @@ def draw_respond(account, borrow):
 
 @register.simple_tag
 def draw_cancel(account, borrow, team):
-    if can_cancel(account, borrow):
+    if control.can_cancel(account, borrow):
         image = "/static/famfamfam/cancel.png"
         if team:
             url = "/%s/borrow/cancel/%i" % (team.link, borrow.id)
         else:
             url = "/borrow/cancel/%i" % borrow.id
         return draw_action(image, "CANCEL", url)
+    return ""
+
+
+@register.simple_tag
+def draw_rate_team(account, borrow):
+    if control.can_rate_team(account, borrow):
+        image = "/static/famfamfam/star.png"
+        url = "/%s/borrow/rate/%i" % (borrow.bike.team.link, borrow.id)
+        return draw_action(image, "RATE", url)
+    return ""
+
+
+@register.simple_tag
+def draw_rate_my(account, borrow):
+    if control.can_rate_my(account, borrow):
+        image = "/static/famfamfam/star.png"
+        url = "/borrow/rate/%i" % borrow.id
+        return draw_action(image, "RATE", url)
     return ""
 
 
@@ -51,8 +69,7 @@ def draw_status(borrow):
         "ACCEPTED" : "/static/famfamfam/tick.png",
         "REJECTED" : "/static/famfamfam/cross.png",
         "CANCELED" : "/static/famfamfam/cancel.png",
-        "RETURNED" : "/static/famfamfam/medal_silver_1.png",
-        "FINISHED" : "/static/famfamfam/medal_gold_1.png",
+        "FINISHED" : "/static/famfamfam/star.png",
     }
     return '<img src="%s" alt="%s">' % (images[borrow.state], borrow.state)
 
