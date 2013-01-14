@@ -9,6 +9,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
+from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.bike.models import Bike
@@ -34,7 +35,15 @@ def list_team(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     args = { "borrows" : Borrow.objects.filter(bike__team=team) }
-    return rtr(team, "borrows", request, "borrow/list.html", args)
+    return rtr(team, "borrows", request, "borrow/list_team.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def list_my(request):
+    account = get_object_or_404(Account, user=request.user)
+    args = { "borrows" : Borrow.objects.filter(borrower=account) }
+    return render_response(request, "borrow/list_my.html", args)
 
 
 @login_required
@@ -124,12 +133,6 @@ def rate_my(request, borrow_id):
 @login_required
 @require_http_methods(["GET"])
 def cancel_my(request, borrow_id):
-    pass # TODO
-
-
-@login_required
-@require_http_methods(["GET"])
-def list_my(request):
     pass # TODO
 
 

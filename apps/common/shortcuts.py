@@ -10,6 +10,8 @@ from django.template.defaultfilters import slugify
 from unidecode import unidecode
 from django_countries import countries
 
+from apps.borrow.models import Borrow
+
 
 COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
 
@@ -20,15 +22,15 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
-    user = request.user
-    account = user.is_authenticated() and user.account_set.all()[0] or None
-    args.update({
-        'current_user' : user,
-        'current_account' : account,
-        'message_count' : 0, # TODO get count
-        'borrow_count' : 0, # TODO get count
-    })
+    args.update({ "current_user" : request.user })
+    if request.user.is_authenticated():
+        account = request.user.accounts.all()[0]
+        args.update({ 
+            "current_account" : account,
+            "borrow_count" : len(Borrow.objects.filter(borrower=account)),
+            "message_count" : 0 # TODO get count
+        })
     args.update(csrf(request))
-    # TODO check if mobile and use mobile template if exists
+    # TODO check for mobile browser and use mobile template if it exists
     return render_to_response(template, args)
 

@@ -28,7 +28,7 @@ class Account(Model):
     SOURCES_CHOICES = [(source, _(source)) for source in SOURCES]
 
     # main data
-    user = ForeignKey('auth.User', unique=True)
+    user = ForeignKey('auth.User', unique=True, related_name="accounts")
     description = TextField(blank=True)
     source = CharField(max_length=64, choices=SOURCES_CHOICES, default='OTHER')
     feedback = TextField(blank=True)
