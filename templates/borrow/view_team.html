@@ -28,7 +28,20 @@
         </div>
     </div>
 
-    <!-- TODO show borrow logs -->
+    {% for log in logs %}
+        <!-- TODO include log instead of duplicate -->
+        <div class="content_block">
+            <h2> 
+                {% if log.initiator %}
+                    {{ log.initiator }}: 
+                {% else %}
+                    {% trans "SYSTEM" %}:
+                {% endif %}
+                {% trans log.action %}
+            </h2>
+            {{ log.note }}
+        </div>
+    {% endfor %}
 
 {% endblock %}
 

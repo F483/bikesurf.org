@@ -73,6 +73,10 @@ class Log(Model):
         args = (self.id, self.borrow.id, self.state, self.created_on)
         return u"id: %s; borrow_id: %s; state %s; created_on: %s" % args
 
+    class Meta:
+              
+        ordering = ["-created_on"]
+
 
 class Rating(Model): # only borrower rates ...
 
