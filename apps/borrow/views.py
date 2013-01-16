@@ -59,8 +59,7 @@ def create(request, team_link, bike_id):
                                     form.cleaned_data["start"],
                                     form.cleaned_data["finish"],
                                     form.cleaned_data["note"].strip())
-            # TODO return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
-            return HttpResponseRedirect("/%s/borrows" % team.link)
+            return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Create(bike=bike)
     args = { "form" : form, "bike" : bike }
@@ -76,7 +75,7 @@ def respond(request, team_link, borrow_id):
         if form.is_valid():
             control.respond(account, borrow, form.cleaned_data["response"], 
                             form.cleaned_data["note"].strip())
-            url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.Respond(borrow=borrow, account=account)
@@ -92,10 +91,8 @@ def cancel_team(request, team_link, borrow_id):
         form = forms.Cancel(request.POST, borrow=borrow, account=account)
         if form.is_valid():
             control.cancel(account, borrow, form.cleaned_data["note"].strip())
-            # TODO redirect here when view is done
-            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
-            # return HttpResponseRedirect(url)
-            return HttpResponseRedirect("/%s/borrows" % team.link)
+            url = "/%s/borrow/view/%s" % (team.link, borrow.id)
+            return HttpResponseRedirect(url)
     else:
         form = forms.Cancel(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
@@ -112,10 +109,8 @@ def rate_team(request, team_link, borrow_id):
             rating = form.cleaned_data["rating"]
             note = form.cleaned_data["note"].strip()
             control.rate_team(account, borrow, rating, note)
-            # TODO redirect here when view is done
-            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
-            # return HttpResponseRedirect(url)
-            return HttpResponseRedirect("/%s/borrows" % team.link)
+            url = "/%s/borrow/view/%s" % (team.view, borrow.id)
+            return HttpResponseRedirect(url)
     else:
         form = forms.RateTeam(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
@@ -133,9 +128,7 @@ def rate_my(request, borrow_id):
             rating = form.cleaned_data["rating"]
             note = form.cleaned_data["note"].strip()
             control.rate_my(account, borrow, rating, note)
-            # TODO redirect here when view is done
-            # return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
-            return HttpResponseRedirect("/borrows")
+            return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.RateMy(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }

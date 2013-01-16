@@ -12,8 +12,10 @@
     {% for borrow in borrows %}
         <div class="content_block">
             <h2>
-                {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
-                ({% trans borrow.state %} {% draw_status borrow %})
+                <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
+                    ({% trans borrow.state %} {% draw_status borrow %})
+                </a>
             </h2>
 
             {% trans "DATE FROM" %} {{ borrow.start }} 
