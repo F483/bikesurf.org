@@ -33,6 +33,16 @@ def can_cancel(account, borrow):
     return False
 
 
+def _finish(borrow):
+    is_running = borrow.state == "MEETUP" or borrow.state == "ACCEPTED"
+    if not is_running or len(Rating.objects.filter(borrow=borrow)) != 2:
+        return
+    borrow.state = "FINISHED"
+    borrow.save()
+    _log(None, borrow, "", "FINISHED") # TODO test it !!!!!!
+    return borrow
+
+
 def can_rate_team(account, borrow):
     today = datetime.datetime.now().date()
     if not today > borrow.start:
@@ -67,7 +77,7 @@ def rate_team(account, borrow, rating_value, note):
     rating.originator = "LENDER"
     rating.save()
     log = _log(account, borrow, note, "RATE_TEAM")
-    return rating, log
+    return _finish(borrow)
 
 
 def rate_my(account, borrow, rating_value, note):
@@ -78,6 +88,7 @@ def rate_my(account, borrow, rating_value, note):
     rating.originator = "BORROWER"
     rating.save()
     log = _log(account, borrow, note, "RATE_MY")
+    return _finish(borrow)
 
 
 def create(bike, account, start, finish, note):
@@ -92,7 +103,7 @@ def create(bike, account, start, finish, note):
     borrow.dest = bike.station
     borrow.save()
     log = _log(account, borrow, note, "CREATE")
-    return borrow, log
+    return borrow
 
 
 def respond(account, borrow, state, note):
@@ -100,7 +111,7 @@ def respond(account, borrow, state, note):
     borrow.active = state != "REJECTED"
     borrow.save()
     log = _log(account, borrow, note, "RESPOND")
-    return borrow, log
+    return borrow
 
 
 def cancel(account, borrow, note):
@@ -108,6 +119,6 @@ def cancel(account, borrow, note):
     borrow.active = False
     borrow.save()
     log = _log(account, borrow, note, "CANCLE")
-    return borrow, log
+    return borrow
 
 

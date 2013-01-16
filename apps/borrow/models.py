@@ -55,13 +55,14 @@ class Log(Model):
         "CREATE",
         "RESPOND",
         "CANCEL",
+        "FINISHED",
     ]
     ACTION_CHOICES = [(action, _(action)) for action in ACTIONS]
 
     borrow = ForeignKey('borrow.Borrow')
-    initiator = ForeignKey('account.Account') # None => system
+    initiator = ForeignKey('account.Account', blank=True, null=True) # None => system
     action = CharField(max_length=64, choices=ACTION_CHOICES)
-    note = TextField() # by initiator
+    note = TextField(blank=True) # by initiator
 
     # meta
     created_on  = DateTimeField(auto_now_add=True)
@@ -97,5 +98,5 @@ class Rating(Model): # only borrower rates ...
 
     class Meta:                                                                                                 
                                                                                                                 
-        unique_together = (('borrow', 'account'),) 
+        unique_together = (("borrow", "account", "originator"),) 
 

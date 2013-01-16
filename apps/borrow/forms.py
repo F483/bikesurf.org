@@ -48,6 +48,7 @@ class Respond(Form):
             raise PermissionDenied
         if self.borrow.active:
             raise Exception("This should NEVER be possable!")
+        # TODO check for accepted borrows in overlaping timeframes
 
         # check request is still valid
         if cleaned_data.get("response") != "REJECTED":
@@ -91,6 +92,7 @@ class Create(Form):
             raise ValidationError(_("START_NOT_IN_FUTURE"))
         if finish < start:
             raise ValidationError(_("FINISH_BEFORE_START"))
+        # TODO check for borrows from the same person in overlaping timeframes
         
         # other borrows starting in timeframe
         if len(Borrow.objects.filter(bike=self.bike, active=True, 

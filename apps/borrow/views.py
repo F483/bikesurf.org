@@ -55,10 +55,10 @@ def create(request, team_link, bike_id):
     if request.method == "POST":
         form = forms.Create(request.POST, bike=bike)
         if form.is_valid():
-            borrow, log = control.create(bike, account, 
-                                         form.cleaned_data["start"],
-                                         form.cleaned_data["finish"],
-                                         form.cleaned_data["note"].strip())
+            borrow = control.create(bike, account, 
+                                    form.cleaned_data["start"],
+                                    form.cleaned_data["finish"],
+                                    form.cleaned_data["note"].strip())
             # TODO return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
             return HttpResponseRedirect("/%s/borrows" % team.link)
     else:
