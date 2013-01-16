@@ -1,0 +1,24 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    Bikesurf - {% trans "RATE" %} : {{ borrow }}
+{% endblock %}
+
+{% block content %}
+    <div class="content_block">
+        <h2>{% trans "RATE" %}</h2>
+        <form   action="/borrow/rate/{{ borrow.id }}"
+                method="post">
+
+            {% csrf_token %}
+            <table class="input_form">
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="{% trans "SUBMIT" %}" />
+
+        </form>
+    </div>
+{% endblock %}
+
+

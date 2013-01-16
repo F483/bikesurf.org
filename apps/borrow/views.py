@@ -127,7 +127,21 @@ def rate_team(request, team_link, borrow_id):
 @login_required
 @require_http_methods(["GET", "POST"])
 def rate_my(request, borrow_id):
-    pass # TODO
+    account = get_object_or_404(Account, user=request.user)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    if request.method == "POST":
+        form = forms.RateMy(request.POST, borrow=borrow, account=account)
+        if form.is_valid():
+            rating = form.cleaned_data["rating"]
+            note = form.cleaned_data["note"].strip()
+            control.rate_my(account, borrow, rating, note)
+            # TODO redirect here when view is done
+            # return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
+            return HttpResponseRedirect("/borrows")
+    else:
+        form = forms.RateMy(borrow=borrow, account=account)
+    args = { "form" : form, "borrow" : borrow }
+    return render_response(request, "borrow/rate_my.html", args)
 
 
 @login_required

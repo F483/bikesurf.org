@@ -42,7 +42,7 @@ def can_rate_team(account, borrow):
     if not account in borrow.bike.team.members.all():
         return False # only members
     if len(Rating.objects.filter(borrow=borrow, originator='LENDER')):
-        return False # already rated but not finished
+        return False # already rated but not by borrower
     return True
 
 
@@ -55,7 +55,7 @@ def can_rate_my(account, borrow):
     if account != borrow.borrower:
         return False # only borrower
     if len(Rating.objects.filter(borrow=borrow, originator='BORROWER')):
-        return False # already rated but not finished
+        return False # already rated but not by team
     return True
 
 
@@ -70,9 +70,14 @@ def rate_team(account, borrow, rating_value, note):
     return rating, log
 
 
-def rate_my(account, borrow, rating, note):
-    # TODO
-    pass
+def rate_my(account, borrow, rating_value, note):
+    rating = Rating()   
+    rating.borrow = borrow
+    rating.rating = rating_value
+    rating.account = account
+    rating.originator = "BORROWER"
+    rating.save()
+    log = _log(account, borrow, note, "RATE_MY")
 
 
 def create(bike, account, start, finish, note):

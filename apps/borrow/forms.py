@@ -148,3 +148,20 @@ class RateTeam(Form):
         return cleaned_data
 
 
+class RateMy(Form):
+
+    note = CharField(label=_("NOTE"), widget=Textarea)
+    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect, coerce=int)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        self.account = kwargs.pop("account")
+        super(RateMy, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(RateMy, self).clean()
+        if not control.can_rate_my(self.account, self.borrow): # TODO test it
+            raise PermissionDenied
+        return cleaned_data
+
+
