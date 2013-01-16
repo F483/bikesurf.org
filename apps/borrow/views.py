@@ -151,7 +151,10 @@ def cancel_my(request, borrow_id):
 @login_required
 @require_http_methods(["GET"])
 def view_my(request, borrow_id):
-    pass # TODO
+    account = get_object_or_404(Account, user=request.user)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    args = { "borrow" : borrow, "logs" : borrow.logs.all() }
+    return render_response(request, "borrow/view_my.html", args)
 
 
 @login_required
