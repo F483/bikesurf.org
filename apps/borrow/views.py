@@ -76,10 +76,8 @@ def respond(request, team_link, borrow_id):
         if form.is_valid():
             control.respond(account, borrow, form.cleaned_data["response"], 
                             form.cleaned_data["note"].strip())
-            # TODO redirect here when view is done
-            # url = "/%s/borrow/view/%s" % (team.id, borrow.id)
-            # return HttpResponseRedirect(url)
-            return HttpResponseRedirect("/%s/borrows" % team.link)
+            url = "/%s/borrow/view/%s" % (team.id, borrow.id)
+            return HttpResponseRedirect(url)
     else:
         form = forms.Respond(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
@@ -159,6 +157,8 @@ def view_my(request, borrow_id):
 @login_required
 @require_http_methods(["GET"])
 def view_team(request, team_link, borrow_id):
-    pass # TODO
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
+    args = { "borrow" : borrow, "logs" : borrow.logs.all() }
+    return rtr(team, "borrows", request, "borrow/view_team.html", args)
 
 

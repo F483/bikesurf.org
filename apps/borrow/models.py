@@ -59,7 +59,7 @@ class Log(Model):
     ]
     ACTION_CHOICES = [(action, _(action)) for action in ACTIONS]
 
-    borrow = ForeignKey('borrow.Borrow')
+    borrow = ForeignKey('borrow.Borrow', related_name="logs")
     initiator = ForeignKey('account.Account', blank=True, null=True) # None => system
     action = CharField(max_length=64, choices=ACTION_CHOICES)
     note = TextField(blank=True) # by initiator

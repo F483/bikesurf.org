@@ -1,0 +1,35 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load common_tags %}
+{% load borrow_tags %}
+
+{% block title %}
+    Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
+{% endblock %}
+
+{% block content_center %}
+    <div class="content_block">
+        <h2>
+            {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
+            ({% trans borrow.state %} {% draw_status borrow %})
+        </h2>
+
+        {% trans "DATE FROM" %} {{ borrow.start }} 
+        {% trans "TO" %} {{ borrow.finish }}<br />
+
+        {% trans "STATION FROM" %} {{ borrow.src.street }} 
+        {% trans "TO" %} {{ borrow.dest.street }}<br />
+
+        <div>
+            {% draw_respond current_account borrow %}
+            {% draw_cancel current_account borrow current_team %}
+            {% draw_rate_team current_account borrow %}
+        </div>
+    </div>
+
+    <!-- TODO show borrow logs -->
+
+{% endblock %}
+
+
