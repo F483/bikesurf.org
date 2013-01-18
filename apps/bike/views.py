@@ -33,6 +33,21 @@ def _get_bike_filters(request, form):
     return {}
 
 
+@login_required
+@require_http_methods(["GET"])
+def view_my(request, bike_id):
+    account = get_object_or_404(Account, user=request.user)
+    bike = get_object_or_404(Bike, id=bike_id, owner=account)
+    return render_response(request, "bike/view_my.html", { "bike" : bike })
+
+
+@require_http_methods(["GET"])
+def view_team(request, team_link, bike_id):
+    team = get_object_or_404(Team, link=team_link)
+    bike = get_object_or_404(Bike, id=bike_id, team=team)
+    return rtr(team, "bikes", request, "bike/view_team.html", { "bike" : bike })
+
+
 @require_http_methods(["GET"])
 def list_team(request, team_link):
     team = get_object_or_404(Team, link=team_link)

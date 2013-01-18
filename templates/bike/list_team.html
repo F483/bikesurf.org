@@ -14,7 +14,9 @@
         <div class="content_block">
 
             <h2>
-                {{ bike.name }}
+                <a href="/{{ current_team.link }}/bike/view/{{ bike.id }}">
+                    {{ bike.name }}
+                </a>
             </h2>
 
             <table>
