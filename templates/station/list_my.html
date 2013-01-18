@@ -1,0 +1,22 @@
+{% extends "team/base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load common_tags %}
+
+{% block title %}
+    Bikesurf - {% trans "STATIONS" %}
+{% endblock %}
+
+{% block content %}
+    {% for station in stations %}
+        <div class="content_block">
+
+            <h2>{{ station }}</h2>
+
+            <!-- TODO draw preview image -->
+            {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
+            {% trans "CAPACITY" %}: {{ station.capacity }}
+        </div>
+    {% endfor %}
+{% endblock %}
+

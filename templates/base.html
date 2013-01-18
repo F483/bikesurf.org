@@ -29,24 +29,23 @@
             <div id="statusbar">
                 {% if current_user.is_authenticated %}
 
-                    <a href="/borrows">{% trans "MY_BORROWS" %} 
-                        {% if borrow_count %}
-                            ({{ borrow_count }})
-                        {% endif %}
-                    </a>
+                    {% if borrow_count %}
+                        <a href="/borrows">{% trans "MY_BORROWS" %} 
+                                ({{ borrow_count }})
+                        </a>
+                    {% endif %}
 
-                    <a href="/bikes">{% trans "MY_BIKES" %}
-                        {% if bike_count %}
-                            ({{ bike_count }})
-                        {% endif %}
-                    </a>
+                    {% if bike_count %}
+                        <a href="/bikes">{% trans "MY_BIKES" %}
+                                ({{ bike_count }})
+                        </a>
+                    {% endif %}
 
-                    <a href="/stations">{% trans "MY_STATIONS" %}
-                        {% if station_count %}
-                            ({{ station_count }})
-                        {% endif %}
-                    </a>
-
+                    {% if station_count %}
+                        <a href="/stations">{% trans "MY_STATIONS" %}
+                                ({{ station_count }})
+                        </a>
+                    {% endif %}
 
                     <a href="/admin/logout/">{% trans "LOGOUT" %}</a> <!-- TODO add return url -->
                     <a href="/account/view">{{ current_user.username }}</a>
