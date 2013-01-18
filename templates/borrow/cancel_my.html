@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf - {% trans "RATE" %} : {{ borrow }}
+    Bikesurf - {% trans "CANCEL" %} : {{ borrow }}
 {% endblock %}
 
 {% block content %}
     <div class="content_block">
-        <h2>{% trans "RATE" %}</h2>
-        <form   action="/borrow/rate/{{ borrow.id }}"
+        <h2>{% trans "CANCEL" %}</h2>
+        <form   action="/borrow/cancel/{{ borrow.id }}"
                 method="post">
 
             {% csrf_token %}

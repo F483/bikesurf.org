@@ -25,8 +25,8 @@ def render_response(request, template, args):
     args.update({ "current_user" : request.user })
     if request.user.is_authenticated():
         account = request.user.accounts.all()[0]
-        borrow_count = len(Borrow.objects.filter(borrower=account))
-        # TODO ignore cancled and finished borrows
+        borrow_count = len(Borrow.objects.filter(borrower=account).exclude(state="CANCELED").exclude(state="FINISHED"))
+
         args.update({ 
             "current_account" : account,
             "borrow_count" : borrow_count,

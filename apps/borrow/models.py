@@ -32,7 +32,7 @@ class Borrow(Model):
     start = DateField()
     finish = DateField() # inclusive
     active = BooleanField() # if the borrow blocks a timeslot
-    state = CharField(max_length=256, choices=STATE_CHOICES)
+    state = CharField(max_length=64, choices=STATE_CHOICES)
     src = ForeignKey('station.Station', related_name='borrows_outgoing')
     dest = ForeignKey('station.Station', related_name='borrows_incoming')
 

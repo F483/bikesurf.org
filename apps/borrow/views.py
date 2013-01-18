@@ -137,17 +137,27 @@ def rate_my(request, borrow_id):
 
 @login_required
 @require_http_methods(["GET"])
-def cancel_my(request, borrow_id):
-    pass # TODO
-
-
-@login_required
-@require_http_methods(["GET"])
 def view_my(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
     return render_response(request, "borrow/view_my.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def cancel_my(request, borrow_id):
+    account = get_object_or_404(Account, user=request.user)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    if request.method == "POST":
+        form = forms.Cancel(request.POST, borrow=borrow, account=account)
+        if form.is_valid():
+            control.cancel(account, borrow, form.cleaned_data["note"].strip())
+            return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
+    else:
+        form = forms.Cancel(borrow=borrow, account=account)
+    args = { "form" : form, "borrow" : borrow }
+    return render_response(request, "borrow/cancel_my.html", args)
 
 
 @login_required
