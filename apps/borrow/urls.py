@@ -21,13 +21,13 @@ urlpatterns = patterns("apps.borrow.views",
     url(r"^borrows$",                                "list_my"),
     url(r"^borrow/view/%(borrow)s$" % p,             "view_my"),
     url(r"^borrow/cancel/%(borrow)s$" % p,           "cancel_my"),
-    url(r"^borrow/rate/%(borrow)s$" % p,             "rate_my"),  # TODO
+    url(r"^borrow/rate/%(borrow)s$" % p,             "rate_my"),
     url(r"^%(team)s/borrows$" % p,                   "list_team"),
     url(r"^%(team)s/borrow/view/%(borrow)s$" % p,    "view_team"),
     url(r"^%(team)s/borrow/respond/%(borrow)s$" % p, "respond"),
     url(r"^%(team)s/borrow/create/%(bike)s$" % p,    "create"),
     url(r"^%(team)s/borrow/cancel/%(borrow)s$" % p,  "cancel_team"),
-    url(r"^%(team)s/borrow/rate/%(borrow)s$" % p,    "rate_team"), # TODO
+    url(r"^%(team)s/borrow/rate/%(borrow)s$" % p,    "rate_team"),
 )
 
 

@@ -28,15 +28,29 @@
             <!-- TODO fix urls and add return url for login/out -->
             <div id="statusbar">
                 {% if current_user.is_authenticated %}
-                    <a href="/messages">{% trans "MESSAGES" %} ({{ message_count }})</a>
-                    <a href="/borrows">{% trans "MY_BORROWS" %} ({{ borrow_count }})</a>
+
+                    <a href="/messages">{% trans "MESSAGES" %} 
+                        {% if message_count %}
+                            ({{ message_count }})
+                        {% endif %}
+                    </a>
+
+                    <a href="/borrows">{% trans "MY_BORROWS" %} 
+                        {% if borrow_count %}
+                            ({{ borrow_count }})
+                        {% endif %}
+                    </a>
+
                     <a href="/bikes">{% trans "MY_BIKES" %}</a>
                     <a href="/stations">{% trans "MY_STATIONS" %}</a>
                     <a href="/admin/logout/">{% trans "LOGOUT" %}</a> <!-- TODO add return url -->
                     <a href="/account/view">{{ current_user.username }}</a>
+
                 {% else %}
+
                     <a href="/admin/">{% trans "LOGIN" %}</a> <!-- TODO add return url -->
                     <a href="/account/regester">{% trans "REGISTER" %}</a>
+
                 {% endif %}
             </div>
         {% endblock %}

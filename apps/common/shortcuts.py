@@ -25,11 +25,11 @@ def render_response(request, template, args):
     args.update({ "current_user" : request.user })
     if request.user.is_authenticated():
         account = request.user.accounts.all()[0]
-        borrow_count = len(Borrow.objects.filter(borrower=account).exclude(state="CANCELED").exclude(state="FINISHED"))
-
+        borrows = Borrow.objects.filter(borrower=account)
+        borrows = borrows.exclude(state="CANCELED").exclude(state="FINISHED")
         args.update({ 
             "current_account" : account,
-            "borrow_count" : borrow_count,
+            "borrow_count" : len(borrows),
             "message_count" : 0 # TODO get count
         })
     args.update(csrf(request))

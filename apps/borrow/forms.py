@@ -118,7 +118,7 @@ class Cancel(Form):
 
     def clean(self):
         cleaned_data = super(Cancel, self).clean()
-        if not control.can_cancel(self.account, self.borrow): # TODO test it
+        if not control.can_cancel(self.account, self.borrow):
             raise PermissionDenied
         return cleaned_data
 
@@ -136,7 +136,7 @@ RATING_CHOICES = [
 class RateTeam(Form):
 
     note = CharField(label=_("NOTE"), widget=Textarea)
-    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect, coerce=int)
+    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
 
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
@@ -153,7 +153,7 @@ class RateTeam(Form):
 class RateMy(Form):
 
     note = CharField(label=_("NOTE"), widget=Textarea)
-    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect, coerce=int)
+    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
 
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")

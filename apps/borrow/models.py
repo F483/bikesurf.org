@@ -70,11 +70,10 @@ class Log(Model):
     # TODO validation
 
     def __unicode__(self):
-        args = (self.id, self.borrow.id, self.state, self.created_on)
-        return u"id: %s; borrow_id: %s; state %s; created_on: %s" % args
+        return u"%s %s %s" % (self.initiator, self.action, self.borrow.id)
 
     class Meta:
-              
+        
         ordering = ["-created_on"]
 
 
@@ -87,7 +86,7 @@ class Rating(Model): # only borrower rates ...
     ORIGINATOR_CHOICES = [(o, _(o)) for o in ORIGINATOR]
 
     borrow = ForeignKey('borrow.Borrow')
-    rating = IntegerField() # 0 - 5 'Stars' TODO validate range
+    rating = IntegerField() # 0 - 5 'Stars'
     account = ForeignKey('account.Account') # borrower or lender
     originator = CharField(max_length=64, choices=ORIGINATOR_CHOICES)
 

@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 
 from apps.common.shortcuts import render_response
@@ -109,7 +110,7 @@ def rate_team(request, team_link, borrow_id):
             rating = form.cleaned_data["rating"]
             note = form.cleaned_data["note"].strip()
             control.rate_team(account, borrow, rating, note)
-            url = "/%s/borrow/view/%s" % (team.view, borrow.id)
+            url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.RateTeam(borrow=borrow, account=account)
@@ -122,6 +123,8 @@ def rate_team(request, team_link, borrow_id):
 def rate_my(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
+    if account != borrow.borrower:
+        raise PermissionDenied
     if request.method == "POST":
         form = forms.RateMy(request.POST, borrow=borrow, account=account)
         if form.is_valid():
@@ -140,6 +143,8 @@ def rate_my(request, borrow_id):
 def view_my(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
+    if account != borrow.borrower:
+        raise PermissionDenied
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
     return render_response(request, "borrow/view_my.html", args)
 
@@ -149,6 +154,8 @@ def view_my(request, borrow_id):
 def cancel_my(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
+    if account != borrow.borrower:
+        raise PermissionDenied
     if request.method == "POST":
         form = forms.Cancel(request.POST, borrow=borrow, account=account)
         if form.is_valid():

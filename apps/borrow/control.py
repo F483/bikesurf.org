@@ -24,11 +24,12 @@ def can_cancel(account, borrow):
     today = datetime.datetime.now().date()
     if borrow.start <= today:
         return False
-    if (borrow.state in ["REQUEST", "MEETUP", "ACCEPTED"] 
-            and account == borrow.borrower):
+    borrower_states = ["REQUEST", "MEETUP", "ACCEPTED"] 
+    member_states = ["MEETUP", "ACCEPTED"]
+    members = borrow.bike.team.members.all()
+    if (borrow.state in member_states and account in members):
         return True
-    if (borrow.state in ["MEETUP", "ACCEPTED"] 
-            and account in borrow.bike.team.members.all()):
+    if (borrow.state in borrower_states and account == borrow.borrower):
         return True
     return False
 
@@ -39,13 +40,13 @@ def _finish(borrow):
         return
     borrow.state = "FINISHED"
     borrow.save()
-    _log(None, borrow, "", "FINISHED") # TODO test it !!!!!!
+    _log(None, borrow, "", "FINISHED")
     return borrow
 
 
 def can_rate_team(account, borrow):
     today = datetime.datetime.now().date()
-    if not today > borrow.start:
+    if not today >= borrow.start:
         return False # to soon
     if not borrow.state == 'MEETUP' and not borrow.state == 'ACCEPTED':
         return False # wrong state
@@ -58,7 +59,7 @@ def can_rate_team(account, borrow):
 
 def can_rate_my(account, borrow):
     today = datetime.datetime.now().date()
-    if not today > borrow.start:
+    if not today >= borrow.start:
         return False # to soon
     if not borrow.state == 'MEETUP' and not borrow.state == 'ACCEPTED':
         return False # wrong state

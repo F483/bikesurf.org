@@ -10,9 +10,7 @@
     <div id="index_body">
 
         {% if not current_user.is_authenticated %}
-            <p> <!-- TODO i18n -->
-                Borrow a bike without extortionate rental fees!</br> Two legs good. Free wheels better. 
-            </p>
+            <p>{% trans "INDEX_SUBTITLE" %}</p>
         {% endif %}
 
         <form name="TeamSelectForm" action="/" method="post">
