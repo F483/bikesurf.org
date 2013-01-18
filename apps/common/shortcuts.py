@@ -11,6 +11,8 @@ from unidecode import unidecode
 from django_countries import countries
 
 from apps.borrow.models import Borrow
+from apps.bike.models import Bike
+from apps.station.models import Station
 
 
 COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
@@ -30,7 +32,8 @@ def render_response(request, template, args):
         args.update({ 
             "current_account" : account,
             "borrow_count" : len(borrows),
-            "message_count" : 0 # TODO get count
+            "bike_count" : len(Bike.objects.filter(owner=account)),
+            "station_count" : len(Station.objects.filter(responsable=account))
         })
     args.update(csrf(request))
     # TODO check for mobile browser and use mobile template if it exists

@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 
+from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.bike.models import Bike
@@ -33,11 +34,19 @@ def _get_bike_filters(request, form):
 
 
 @require_http_methods(["GET"])
-def list(request, team_link):
+def list_team(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     filters = _get_bike_filters(request, None)
     args = { "bikes" :  team.bikes.filter(**filters) }
-    return rtr(team, "bikes", request, "bike/list.html", args)
+    return rtr(team, "bikes", request, "bike/list_team.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def list_my(request):
+    account = get_object_or_404(Account, user=request.user)
+    args = { "bikes" :  Bike.objects.filter(owner=account) }
+    return render_response(request, "bike/list_my.html", args)
 
 
 @login_required
