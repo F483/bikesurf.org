@@ -20,6 +20,25 @@ from apps.station.forms import CreateStationForm
 
 @login_required
 @require_http_methods(["GET"])
+def view_my(request, station_id):
+    account = get_object_or_404(Account, user=request.user)
+    station = get_object_or_404(Station, id=station_id, responsable=account)
+    args = { "station" : station }
+    return render_response(request, "station/view_my.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def view_team(request, team_link, station_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    args = { "station" : get_object_or_404(Station, id=station_id, team=team) }
+    return rtr(team, "stations", request, "station/view_team.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
 def list_team(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
