@@ -18,7 +18,13 @@ from apps.team.utils import assert_member
 from apps.bike import forms
 
 
-def _get_bike_filters(request, form):
+def _get_bike_filters(request, form, team):
+    filters = {}
+    logged_in = request.user.is_authenticated()
+    account = logged_in and get_object_or_404(Account, user=request.user)
+    if not logged_in or account not in team.members.all():
+        filters.update({ "reserve" : False, "active" : True, })
+
     # filters 
     #  date from and to
     #  active (only members)
@@ -30,7 +36,7 @@ def _get_bike_filters(request, form):
     #  fenders (default all)
     #  rack (default all)
     #  basket (default all)
-    return {}
+    return filters
 
 
 @login_required
@@ -51,7 +57,7 @@ def view_team(request, team_link, bike_id):
 @require_http_methods(["GET"])
 def list_team(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    filters = _get_bike_filters(request, None)
+    filters = _get_bike_filters(request, None, team)
     args = { "bikes" :  team.bikes.filter(**filters) }
     return rtr(team, "bikes", request, "bike/list_team.html", args)
 
@@ -90,7 +96,8 @@ def create(request, team_link):
             bike.fenders = form.cleaned_data["fenders"]
             bike.basket = form.cleaned_data["rack"]
             bike.save()
-            return HttpResponseRedirect("/%s/bikes" % team.link)
+            url = "/%s/bike/view/%s" % (team.link, bike.id)
+            return HttpResponseRedirect(url)
     else:
         form = forms.Create(team=team, account=account)
     args = { "form" : form }
