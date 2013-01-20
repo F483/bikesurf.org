@@ -44,17 +44,12 @@ def draw_cancel(account, borrow, team):
 
 
 @register.simple_tag
-def draw_rate_team(account, borrow):
-    if control.can_rate_team(account, borrow):
+def draw_rate(account, borrow, team):
+    if team and control.can_rate_team(account, borrow):
         image = "/static/famfamfam/star.png"
         url = "/%s/borrow/rate/%i" % (borrow.bike.team.link, borrow.id)
         return draw_action(image, "RATE", url)
-    return ""
-
-
-@register.simple_tag
-def draw_rate_my(account, borrow):
-    if control.can_rate_my(account, borrow):
+    elif control.can_rate_my(account, borrow):
         image = "/static/famfamfam/star.png"
         url = "/borrow/rate/%i" % borrow.id
         return draw_action(image, "RATE", url)

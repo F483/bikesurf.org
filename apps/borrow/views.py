@@ -114,8 +114,9 @@ def rate_team(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.RateTeam(borrow=borrow, account=account)
-    args = { "form" : form, "borrow" : borrow }
-    return rtr(team, "borrows", request, "borrow/rate_team.html", args)
+    form_title = u"%s %s" % (_("RATE"), borrow)
+    args = { "form" : form, "form_title" : form_title }
+    return rtr(team, "borrows", request, "form.html", args)
 
 
 @login_required
@@ -134,8 +135,9 @@ def rate_my(request, borrow_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.RateMy(borrow=borrow, account=account)
-    args = { "form" : form, "borrow" : borrow }
-    return render_response(request, "borrow/rate_my.html", args)
+    form_title = u"%s %s" % (_("RATE"), borrow)
+    args = { "form" : form, "form_title" : form_title }
+    return render_response(request, "form.html", args)
 
 
 @login_required

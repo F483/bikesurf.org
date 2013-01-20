@@ -30,6 +30,7 @@ def render_response(request, template, args):
         borrows = Borrow.objects.filter(borrower=account)
         borrows = borrows.exclude(state="CANCELED").exclude(state="FINISHED")
         args.update({ 
+            "current_path" : request.path,
             "current_account" : account,
             "borrow_count" : len(borrows),
             "bike_count" : len(Bike.objects.filter(owner=account)),
