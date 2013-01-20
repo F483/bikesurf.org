@@ -100,7 +100,7 @@ def create(request, team_link):
             return HttpResponseRedirect(url)
     else:
         form = forms.Create(team=team, account=account)
-    args = { "form" : form }
-    return rtr(team, "bikes", request, "bike/create.html", args)
+    args = { "form" : form, "form_title" : _("BIKE_CREATE") }
+    return rtr(team, "bikes", request, "form.html", args)
 
 
