@@ -148,7 +148,7 @@ def view_my(request, borrow_id):
     if account != borrow.borrower:
         raise PermissionDenied
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
-    return render_response(request, "borrow/view_my.html", args)
+    return render_response(request, "borrow/view.html", args)
 
 
 @login_required
@@ -174,6 +174,6 @@ def cancel_my(request, borrow_id):
 def view_team(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
-    return rtr(team, "borrows", request, "borrow/view_team.html", args)
+    return rtr(team, "borrows", request, "borrow/view.html", args)
 
 

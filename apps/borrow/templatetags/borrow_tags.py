@@ -49,7 +49,7 @@ def draw_rate(account, borrow, team):
         image = "/static/famfamfam/star.png"
         url = "/%s/borrow/rate/%i" % (borrow.bike.team.link, borrow.id)
         return draw_action(image, "RATE", url)
-    elif control.can_rate_my(account, borrow):
+    elif not team and control.can_rate_my(account, borrow):
         image = "/static/famfamfam/star.png"
         url = "/borrow/rate/%i" % borrow.id
         return draw_action(image, "RATE", url)

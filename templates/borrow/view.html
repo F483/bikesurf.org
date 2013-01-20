@@ -5,7 +5,11 @@
 {% load borrow_tags %}
 
 {% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
+    {% if current_team %}
+        Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
+    {% else %}
+        Bikesurf - {% trans "BORROWS" %}
+    {% endif %}
 {% endblock %}
 
 {% block content_center %}
@@ -24,7 +28,7 @@
         <div>
             {% draw_respond current_account borrow %}
             {% draw_cancel current_account borrow current_team %}
-            {% draw_rate_team current_account borrow %}
+            {% draw_rate current_account borrow current_team %}
         </div>
     </div>
 
