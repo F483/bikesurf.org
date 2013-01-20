@@ -6,7 +6,11 @@
 {% load team_tags %}
 
 {% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "BIKES" %}
+    {% if current_team %}
+        Bikesurf {{ current_team.name }} - {% trans "BIKES" %}
+    {% else %}
+        Bikesurf - {% trans "BIKES" %}
+    {% endif %}
 {% endblock %}
 
 {% block content_center %}
@@ -14,9 +18,15 @@
         <div class="content_block">
 
             <h2>
-                <a href="/{{ current_team.link }}/bike/view/{{ bike.id }}">
-                    {{ bike.name }}
-                </a>
+                {% if current_team %}
+                    <a href="/{{ current_team.link }}/bike/view/{{ bike.id }}">
+                        {{ bike.name }}
+                    </a>
+                {% else %}
+                    <a href="/bike/view/{{ bike.id }}">
+                        {{ bike.name }}
+                    </a>
+                {% endif %}
             </h2>
 
             <table>

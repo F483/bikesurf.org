@@ -59,7 +59,7 @@ def list_team(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     filters = _get_bike_filters(request, None, team)
     args = { "bikes" :  team.bikes.filter(**filters) }
-    return rtr(team, "bikes", request, "bike/list_team.html", args)
+    return rtr(team, "bikes", request, "bike/list.html", args)
 
 
 @login_required
@@ -67,7 +67,7 @@ def list_team(request, team_link):
 def list_my(request):
     account = get_object_or_404(Account, user=request.user)
     args = { "bikes" :  Bike.objects.filter(owner=account) }
-    return render_response(request, "bike/list_my.html", args)
+    return render_response(request, "bike/list.html", args)
 
 
 @login_required
