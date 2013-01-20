@@ -7,9 +7,37 @@
  */
 
 
-/**********/
-/* COMMON */
-/**********/
+/***********/
+/* GENERIC */
+/***********/
+
+.menu {
+    background: #231508;
+    padding: 10px;
+    border: 1px;
+    border-color: #000000;
+    margin-bottom: 5px;
+}
+
+.menu a {
+    color: #FFFFFF;
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #E8B828;
+}
+
+.menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu #selected {
+    color: #E8B828;
+}
 
 .content_block {
     background: #02281B;
@@ -82,13 +110,20 @@ body h2 {
 
 #content_left {
     width: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 #content_center {
+    padding-bottom: 10px;
 }
 
 #content_right {
     width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 /*******************/
@@ -104,50 +139,6 @@ body h2 {
     font: bold 16px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
 }
 
-
-/******************/
-/* team/base.html */
-/******************/
-
-#team_menu {
-    background: #231508;
-    padding: 10px;
-    border: 1px;
-    border-color: #000000;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-#team_menu a {
-    color: #FFFFFF;
-    text-decoration: none; 
-    font-weight: bold;
-}
-
-#team_menu a:hover {
-    color: #E8B828;
-}
-
-#team_menu ul {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-}
-
-#team_menu #selected {
-    color: #E8B828;
-}
-
-#team_info {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-#team_actions {
-    background: #231508;
-    margin-left: 10px;
-    margin-right: 10px;
-}
 
 /*******************/
 /* team/bikes.html */

@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load common_tags %}
+{% load team_tags %}
+
+<div class="menu"> 
+    <a href="/{{ current_team.link }}">
+        <h2>{{ current_team.name }}</h2>
+    </a>
+    <ul>
+        {% for link, label, selected, intern in team_menu %}
+            {% if not intern or current_account|is_member:current_team %}
+                <li>
+                    {% if selected %}
+                        <a id="selected" href="{{ link }}">
+                            {{ label }}
+                        </a>
+                    {% else %}
+                        <a href="{{ link }}">{{ label }}</a>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

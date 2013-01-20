@@ -21,9 +21,9 @@ from apps.bike import forms
 def _get_bike_filters(request, form, team):
     filters = {}
     logged_in = request.user.is_authenticated()
-    account = logged_in and get_object_or_404(Account, user=request.user)
+    account = logged_in and get_object_or_404(Account, user=request.user) or 0
     if not logged_in or account not in team.members.all():
-        filters.update({ "reserve" : False, "active" : True, })
+        filters.update({ "reserve" : False, "active" : True })
 
     # filters 
     #  date from and to

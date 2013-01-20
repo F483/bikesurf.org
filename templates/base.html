@@ -3,14 +3,13 @@
 <html>
 
     <head>
+
         <title> {% block title %} Bikesurf {% endblock %} </title>
         <link type="image/x-icon" rel="icon" href="/static/favicon.ico">
-
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <meta name="Copyright" content="Fabian Barkhau 2012" />
         <meta name="keywords" content="Bike, Surfing, Borrowing, Lending" />
-        <meta name="description" content="Bikesurf is a non profit site, to enable people the free lending of bikes." />
-
+        <meta name="description" content="{% trans "META_DESCRIPTION" %}" />
 
         {% block styles %}
             <link rel="stylesheet" href="/static/style.css" type="text/css" charset="utf-8">
@@ -25,8 +24,8 @@
     <body>
 
         {% block statusbar %}
-            <!-- TODO fix urls and add return url for login/out -->
             <div id="statusbar">
+                <!-- TODO fix urls and add return url for login/out -->
                 {% if current_user.is_authenticated %}
 
                     {% if borrow_count %}
@@ -66,22 +65,26 @@
         {% endblock %}
 
         {% block content %}
-
             <table id="content">
                 <tr> 
                     <td id="content_left"> 
+                        {% if current_team %}
+                            {% include "team/base_left.html" %}
+                        {% endif %}
                         {% block content_left %}
-                            CONTENT LEFT
                         {% endblock %}
                     </td> 
                     <td id="content_center"> 
+                        {% if current_team %}
+                        {% endif %}
                         {% block content_center %}
-                            CONTENT CENTER
                         {% endblock %}
                     </td> 
                     <td id="content_right"> 
+                        {% if current_team %}
+                            {% include "team/base_right.html" %}
+                        {% endif %}
                         {% block content_right %}
-                            CONTENT RIGHT
                         {% endblock %}
                     </td> 
                 </tr>
@@ -89,5 +92,4 @@
         {% endblock %}
 
     </body>
-
 </html>
