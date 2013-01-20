@@ -96,8 +96,8 @@ def cancel_team(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.Cancel(borrow=borrow, account=account)
-    args = { "form" : form, "borrow" : borrow }
-    return rtr(team, "borrows", request, "borrow/cancel.html", args)
+    args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
+    return rtr(team, "borrows", request, "form.html", args)
 
 
 @login_required
@@ -165,8 +165,8 @@ def cancel_my(request, borrow_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Cancel(borrow=borrow, account=account)
-    args = { "form" : form, "borrow" : borrow }
-    return render_response(request, "borrow/cancel.html", args)
+    args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
+    return render_response(request, "form.html", args)
 
 
 @login_required
