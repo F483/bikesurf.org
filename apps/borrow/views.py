@@ -36,7 +36,7 @@ def list_team(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     args = { "borrows" : Borrow.objects.filter(bike__team=team) }
-    return rtr(team, "borrows", request, "borrow/list_team.html", args)
+    return rtr(team, "borrows", request, "borrow/list.html", args)
 
 
 @login_required
@@ -44,7 +44,7 @@ def list_team(request, team_link):
 def list_my(request):
     account = get_object_or_404(Account, user=request.user)
     args = { "borrows" : Borrow.objects.filter(borrower=account) }
-    return render_response(request, "borrow/list_my.html", args)
+    return render_response(request, "borrow/list.html", args)
 
 
 @login_required

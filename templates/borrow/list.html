@@ -5,14 +5,22 @@
 {% load borrow_tags %}
 
 {% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
+    {% if current_team %}
+        Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
+    {% else %}
+        Bikesurf - {% trans "BORROWS" %}
+    {% endif %}
 {% endblock %}
 
 {% block content_center %}
     {% for borrow in borrows %}
         <div class="content_block">
             <h2>
-                <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                {% if current_team %}
+                    <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                {% else %}
+                    <a href="/borrow/view/{{ borrow.id }}">
+                {% endif %}
                     {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
                     ({% trans borrow.state %} {% draw_status borrow %})
                 </a>
