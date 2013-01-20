@@ -33,38 +33,7 @@
     <body>
 
         {% block statusbar %}
-            <div id="statusbar">
-                <!-- TODO fix urls and add return url for login/out -->
-                {% if current_user.is_authenticated %}
-
-                    {% if borrow_count %}
-                        <a href="/borrows">{% trans "MY_BORROWS" %} 
-                                ({{ borrow_count }})
-                        </a>
-                    {% endif %}
-
-                    {% if bike_count %}
-                        <a href="/bikes">{% trans "MY_BIKES" %}
-                                ({{ bike_count }})
-                        </a>
-                    {% endif %}
-
-                    {% if station_count %}
-                        <a href="/stations">{% trans "MY_STATIONS" %}
-                                ({{ station_count }})
-                        </a>
-                    {% endif %}
-
-                    <a href="/admin/logout/">{% trans "LOGOUT" %}</a> <!-- TODO add return url -->
-                    <a href="/account/view">{{ current_user.username }}</a>
-
-                {% else %}
-
-                    <a href="/admin/">{% trans "LOGIN" %}</a> <!-- TODO add return url -->
-                    <a href="/account/regester">{% trans "REGISTER" %}</a>
-
-                {% endif %}
-            </div>
+            {% include "statusbar.html" %}
         {% endblock %}
 
         {% block logo %}
