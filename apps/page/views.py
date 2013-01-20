@@ -47,6 +47,7 @@ def create(request, team_link):
             return HttpResponseRedirect("/%s/%s" % (team.link, page.link))
     else:
         form = CreatePageForm(team=team)
-    return rtr(team, None, request, "page/create.html", { "form" : form })
+    args = { "form" : form, "form_title" : _("ADD_PAGE") }
+    return rtr(team, None, request, "form.html", args)
 
 

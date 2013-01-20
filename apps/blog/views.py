@@ -51,6 +51,7 @@ def create(request, team_link):
             return HttpResponseRedirect("/%s/blog" % team.link)
     else:
         form = CreateBlogForm()
-    return rtr(team, "blog", request, "blog/create.html", { "form" : form })
+    args = { "form" : form, "form_title" : _("ADD_BLOG") }
+    return rtr(team, "blog", request, "form.html", args)
 
 

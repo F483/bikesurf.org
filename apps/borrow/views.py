@@ -63,8 +63,8 @@ def create(request, team_link, bike_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Create(bike=bike)
-    args = { "form" : form, "bike" : bike }
-    return rtr(team, "borrows", request, "borrow/create.html", args)
+    args = { "form" : form, "form_title" : _("BORROW_CREATE") }
+    return rtr(team, "borrows", request, "form.html", args)
 
 
 @login_required
@@ -80,8 +80,8 @@ def respond(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.Respond(borrow=borrow, account=account)
-    args = { "form" : form, "borrow" : borrow }
-    return rtr(team, "borrows", request, "borrow/respond.html", args)
+    args = { "form" : form, "form_title" : _("BORROW_RESPOND") }
+    return rtr(team, "borrows", request, "form.html", args)
 
 
 @login_required

@@ -43,7 +43,8 @@ def create(request):
             return HttpResponseRedirect("/%s" % team.link)
     else:
         form = CreateTeamForm()
-    return render_response(request, "team/create.html", { "form" : form })
+    args = { "form" : form, "form_title" : _("CREATE_TEAM") }
+    return render_response(request, "form.html", args)
 
 
 #################
@@ -93,8 +94,8 @@ def join_request(request, team_link):
             return HttpResponseRedirect("/%s/join_requested" % team_link)
     else:
         form = CreateJoinRequestForm()
-    template = "team/join_request.html"
-    return rtr(team, None, request, template, { "form" : form })
+    args = { "form" : form, "form_title" : _("JOIN_REQUEST") }
+    return rtr(team, None, request, "form.html", args)
 
 
 @login_required
@@ -128,9 +129,8 @@ def join_request_process(request, team_link, join_request_id):
             return HttpResponseRedirect("/%s/join_requests" % team_link)
     else:
         form = ProcessJoinRequestForm()
-    template = "team/join_request_process.html"
-    args = { "join_request" : jr, "form" : form }
-    return rtr(team, "join_requests", request, template, args)
+    args = { "form" : form, "form_title" : "PROCESS_JOIN_REQUEST" }
+    return rtr(team, "join_requests", request, "form.html", args)
 
 
 @login_required

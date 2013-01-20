@@ -77,6 +77,6 @@ def create(request, team_link):
             return HttpResponseRedirect("/%s/stations" % team.link)
     else:
         form = CreateStationForm(team=team, account=account)
-    args = { "form" : form }
-    return rtr(team, "stations", request, "station/create.html", args)
+    args = { "form" : form, "form_title" : _("ADD_STATION") }
+    return rtr(team, "stations", request, "form.html", args)
 
