@@ -24,7 +24,7 @@ def view_my(request, station_id):
     account = get_object_or_404(Account, user=request.user)
     station = get_object_or_404(Station, id=station_id, responsable=account)
     args = { "station" : station }
-    return render_response(request, "station/view_my.html", args)
+    return render_response(request, "station/view.html", args)
 
 
 @login_required
@@ -34,7 +34,7 @@ def view_team(request, team_link, station_id):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     args = { "station" : get_object_or_404(Station, id=station_id, team=team) }
-    return rtr(team, "stations", request, "station/view_team.html", args)
+    return rtr(team, "stations", request, "station/view.html", args)
 
 
 @login_required
