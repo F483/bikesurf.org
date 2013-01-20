@@ -3,14 +3,6 @@
 {% load thumbnail %}
 {% load common_tags %}
 
-{% block title %}
-    {% if current_team %}
-        Bikesurf {{ current_team.name }} - {% trans "STATIONS" %}
-    {% else %}
-        Bikesurf - {% trans "STATIONS" %}
-    {% endif %}
-{% endblock %}
-
 {% block content_center %}
     {% for station in stations %}
         <div class="content_block">

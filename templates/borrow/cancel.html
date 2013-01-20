@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% if current_team %}
-        Bikesurf {{ current_team.name }} - {% trans "CANCEL" %} : {{ borrow }}
-    {% else %}
-        Bikesurf - {% trans "CANCEL" %} : {{ borrow }}
-    {% endif %}
-{% endblock %}
-
 {% block content_center %}
     <div class="content_block">
         <h2>{% trans "CANCEL" %}</h2>

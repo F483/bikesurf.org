@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "MEMBERS" %}
-{% endblock %}
-
 {% block content_center %}
     {% for member in members %}
         <div class="content_block">

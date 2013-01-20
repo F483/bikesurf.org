@@ -2,10 +2,6 @@
 {% load i18n %}
 {% load common_tags %}
 
-{% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "REMOVE_REQUESTS" %}
-{% endblock %}
-
 {% block content_center %}
     {% for rr in remove_requests %}
         <div class="content_block">

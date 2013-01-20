@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% if current_team %}
-        Bikesurf {{ current_team.name }} - {{ form_title }}
-    {% else %}
-        Bikesurf - {{ form_title }}
-    {% endif %}
-{% endblock %}
-
 {% block content_center %}
     <div class="content_block">
         <h2>{{ form_title }}</h2>

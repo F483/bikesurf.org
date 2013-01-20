@@ -4,7 +4,16 @@
 
     <head>
 
-        <title> {% block title %} Bikesurf {% endblock %} </title>
+        <title> 
+            Bikesurf 
+            {% if current_team %}
+                {{ current_team }}
+            {% endif %}
+            {% if page_title %}
+               - {{ page_title }}
+            {% endif %}
+        </title>
+
         <link type="image/x-icon" rel="icon" href="/static/favicon.ico">
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <meta name="Copyright" content="Fabian Barkhau 2012" />

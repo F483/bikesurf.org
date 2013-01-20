@@ -2,10 +2,6 @@
 {% load i18n %}
 {% load common_tags %}
 
-{% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "BLOG" %}
-{% endblock %}
-
 {% block content_center %}
     {% for blog in blogs %}
         <div class="content_block">

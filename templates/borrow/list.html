@@ -4,14 +4,6 @@
 {% load common_tags %}
 {% load borrow_tags %}
 
-{% block title %}
-    {% if current_team %}
-        Bikesurf {{ current_team.name }} - {% trans "BORROWS" %}
-    {% else %}
-        Bikesurf - {% trans "BORROWS" %}
-    {% endif %}
-{% endblock %}
-
 {% block content_center %}
     {% for borrow in borrows %}
         <div class="content_block">
