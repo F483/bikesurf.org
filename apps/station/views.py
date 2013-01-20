@@ -44,7 +44,7 @@ def list_team(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     args = { "stations" : Station.objects.filter(team=team) }
-    return rtr(team, "stations", request, "station/list_team.html", args)
+    return rtr(team, "stations", request, "station/list.html", args)
 
 
 @login_required
@@ -52,7 +52,7 @@ def list_team(request, team_link):
 def list_my(request):
     account = get_object_or_404(Account, user=request.user)
     args = { "stations" : Station.objects.filter(responsable=account) }
-    return render_response(request, "station/list_my.html", args)
+    return render_response(request, "station/list.html", args)
 
 
 @login_required
