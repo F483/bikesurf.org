@@ -97,7 +97,7 @@ def cancel_team(request, team_link, borrow_id):
     else:
         form = forms.Cancel(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
-    return rtr(team, "borrows", request, "borrow/cancel_team.html", args)
+    return rtr(team, "borrows", request, "borrow/cancel.html", args)
 
 
 @login_required
@@ -164,7 +164,7 @@ def cancel_my(request, borrow_id):
     else:
         form = forms.Cancel(borrow=borrow, account=account)
     args = { "form" : form, "borrow" : borrow }
-    return render_response(request, "borrow/cancel_my.html", args)
+    return render_response(request, "borrow/cancel.html", args)
 
 
 @login_required

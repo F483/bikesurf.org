@@ -2,14 +2,22 @@
 {% load i18n %}
 
 {% block title %}
-    Bikesurf {{ current_team.name }} - {% trans "CANCEL" %} : {{ borrow }}
+    {% if current_team %}
+        Bikesurf {{ current_team.name }} - {% trans "CANCEL" %} : {{ borrow }}
+    {% else %}
+        Bikesurf - {% trans "CANCEL" %} : {{ borrow }}
+    {% endif %}
 {% endblock %}
 
 {% block content_center %}
     <div class="content_block">
         <h2>{% trans "CANCEL" %}</h2>
-        <form   name="CancelBorrowForm"
+        <form  
+            {% if current_team %}
                 action="/{{ current_team.link }}/borrow/cancel/{{ borrow.id }}"
+            {% else %}
+                action="/borrow/cancel/{{ borrow.id }}"
+            {% endif %}
                 method="post">
 
             {% csrf_token %}
