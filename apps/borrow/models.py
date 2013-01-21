@@ -27,7 +27,7 @@ STATE_CHOICES = [(state, _(state)) for state in STATES]
 
 class Borrow(Model):
 
-    bike = ForeignKey('bike.Bike')
+    bike = ForeignKey('bike.Bike', related_name="borrows")
     borrower = ForeignKey('account.Account')
     start = DateField()
     finish = DateField() # inclusive

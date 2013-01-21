@@ -17,6 +17,30 @@ from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.bike import forms
 
+_VIEW = {
+    "OVERVIEW" : {
+        "template" : "bike/view.html",
+        "description_title" : "",
+        "description_content" : "",
+    },
+    "BORROWS" :    {
+        "template" : "borrow/list.html",
+        "description_title" : _("BIKE_BORROWS_DESCRIPTION_TITLE"),
+        "description_content" : _("BIKE_BORROWS_DESCRIPTION_CONTENT"),
+    },
+}
+
+def _tabs(bike, team, selected):
+    if team:
+        base_link = "/%s/bike/view/%d" % (team.link, bike.id)
+    else:
+        base_link = "/bike/view/%d" % bike.id
+    menu = [
+        (base_link,              _("OVERVIEW"), selected == "OVERVIEW"),
+        (base_link + "/borrows", _("BORROWS"),  selected == "BORROWS"),
+    ]
+    return menu
+
 
 def _get_bike_filters(request, form, team):
     filters = {}
@@ -41,17 +65,29 @@ def _get_bike_filters(request, form, team):
 
 @login_required
 @require_http_methods(["GET"])
-def view_my(request, bike_id):
-    account = get_object_or_404(Account, user=request.user)
-    bike = get_object_or_404(Bike, id=bike_id, owner=account)
-    return render_response(request, "bike/view.html", { "bike" : bike })
-
-
-@require_http_methods(["GET"])
-def view_team(request, team_link, bike_id):
-    team = get_object_or_404(Team, link=team_link)
-    bike = get_object_or_404(Bike, id=bike_id, team=team)
-    return rtr(team, "bikes", request, "bike/view.html", { "bike" : bike })
+def view(request, **kwargs):
+    tab = kwargs["tab"]
+    bike_id = kwargs["bike_id"]
+    team_link = kwargs.get("team_link")
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    if team:
+        bike = get_object_or_404(Bike, id=bike_id, team=team)
+    elif user.is_authenticated():
+        account = get_object_or_404(Account, user=request.user)
+        bike = get_object_or_404(Bike, id=bike_id, owner=account)
+    else:
+        raise Exception("TODO login redirect")
+    template = _VIEW[tab]["template"]
+    args = { 
+        "bike" : bike, 
+        "borrows" : bike.borrows.all(),
+        "description_title" : _VIEW[tab]["description_title"],
+        "description_content" : _VIEW[tab]["description_content"],
+        "tabs" : _tabs(bike, team, tab), 
+    }
+    if team:
+        return rtr(team, "bikes", request, template, args)
+    return render_response(request, template, args)
 
 
 @require_http_methods(["GET"])
