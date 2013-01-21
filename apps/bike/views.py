@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
@@ -30,16 +31,16 @@ _VIEW = {
     },
 }
 
-def _tabs(bike, team, selected):
+def _tabs(bike, team, selected, authorized):
     if team:
         base_link = "/%s/bike/view/%d" % (team.link, bike.id)
     else:
         base_link = "/bike/view/%d" % bike.id
-    menu = [
-        (base_link,              _("OVERVIEW"), selected == "OVERVIEW"),
-        (base_link + "/borrows", _("BORROWS"),  selected == "BORROWS"),
-    ]
-    return menu
+    overview = (base_link,              _("OVERVIEW"), selected == "OVERVIEW")
+    borrows =  (base_link + "/borrows", _("BORROWS"),  selected == "BORROWS")
+    if authorized:
+        return [overview, borrows]
+    return [overview]
 
 
 def _get_bike_filters(request, form, team):
@@ -63,27 +64,38 @@ def _get_bike_filters(request, form, team):
     return filters
 
 
-@login_required
 @require_http_methods(["GET"])
 def view(request, **kwargs):
     tab = kwargs["tab"]
     bike_id = kwargs["bike_id"]
     team_link = kwargs.get("team_link")
     team = team_link and get_object_or_404(Team, link=team_link) or None
+
+    requires_login = not team or tab != "OVERVIEW"
+    requires_membership = team and tab != "OVERVIEW"
+    logged_in = request.user.is_authenticated()
+
+    if not logged_in and requires_login:
+        raise Exception("TODO login redirect")
+    account = logged_in and get_object_or_404(Account, user=request.user)
+    if requires_membership and account not in team.members.all():
+        raise PermissionDenied
+
     if team:
         bike = get_object_or_404(Bike, id=bike_id, team=team)
-    elif user.is_authenticated():
-        account = get_object_or_404(Account, user=request.user)
-        bike = get_object_or_404(Bike, id=bike_id, owner=account)
     else:
-        raise Exception("TODO login redirect")
+        bike = get_object_or_404(Bike, id=bike_id, owner=account)
+
+    authorized = (account and account == bike.owner or 
+                  account and account in bike.members.all())
+
     template = _VIEW[tab]["template"]
     args = { 
         "bike" : bike, 
         "borrows" : bike.borrows.all(),
         "description_title" : _VIEW[tab]["description_title"],
         "description_content" : _VIEW[tab]["description_content"],
-        "tabs" : _tabs(bike, team, tab), 
+        "tabs" : _tabs(bike, team, tab, authorized), 
     }
     if team:
         return rtr(team, "bikes", request, template, args)
