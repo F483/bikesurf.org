@@ -14,12 +14,12 @@ S = "(?P<station_id>%s)" % ID
 
 
 urlpatterns = patterns("apps.station.views",
-    url(r"^stations$",                              "list_my"),
+    url(r"^stations$",                              "list"),
     url(r"^station/view/%s$" % S,                   "view", { "tab" : "OVERVIEW" }),
     url(r"^station/view/%s/bikes$" % S,             "view", { "tab" : "BIKES" }),
     url(r"^station/view/%s/outgoing$" % S,          "view", { "tab" : "OUTGOING" }),
     url(r"^station/view/%s/incoming$" % S,          "view", { "tab" : "INCOMING" }),
-    url(r"^%s/stations$" % T,                       "list_team"),
+    url(r"^%s/stations$" % T,                       "list"),
     url(r"^%s/station/create$" % T,                 "create"),
     url(r"^%s/station/view/%s$" % (T, S),           "view", { "tab" : "OVERVIEW" }),
     url(r"^%s/station/view/%s/bikes$" % (T, S),     "view", { "tab" : "BIKES" }),

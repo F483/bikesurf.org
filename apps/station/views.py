@@ -87,20 +87,17 @@ def view(request, **kwargs):
 
 @login_required
 @require_http_methods(["GET"])
-def list_team(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+def list(request, **kwargs):
+    team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
-    args = { "stations" : Station.objects.filter(team=team) }
-    return rtr(team, "stations", request, "station/list.html", args)
-
-
-@login_required
-@require_http_methods(["GET"])
-def list_my(request):
-    account = get_object_or_404(Account, user=request.user)
-    args = { "stations" : Station.objects.filter(responsable=account) }
-    return render_response(request, "station/list.html", args)
+    if team_link:
+        team = get_object_or_404(Team, link=team_link)
+        assert_member(account, team)
+        args = { "stations" : Station.objects.filter(team=team) }
+        return rtr(team, "stations", request, "station/list.html", args)
+    else:
+        args = { "stations" : Station.objects.filter(responsable=account) }
+        return render_response(request, "station/list.html", args)
 
 
 @login_required
