@@ -14,7 +14,7 @@ register = template.Library()
 
 @register.filter
 def is_member(account, team):
-    return account in team.members.all()
+    return team and account in team.members.all()
 
 
 @register.filter

@@ -57,10 +57,18 @@
                         {% endblock %}
                     </td> 
                     <td id="content_center"> 
-                        {% if current_team %}
+
+                        {% if tabs %}
+                            {% include "tabs.html" %}
                         {% endif %}
+
+                        {% if description_title and description_content %}
+                            {% include "description.html" %}
+                        {% endif %}
+
                         {% block content_center %}
                         {% endblock %}
+
                     </td> 
                     <td id="content_right"> 
                         {% if current_team %}

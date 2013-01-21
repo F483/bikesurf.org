@@ -7,8 +7,8 @@
         <h2>{{ current_team.name }}</h2>
     </a>
     <ul>
-        {% for link, label, selected, intern in team_menu %}
-            {% if not intern or current_account|is_member:current_team %}
+        {% for link, label, selected, members_only in team_menu %}
+            {% if not members_only or current_account|is_member:current_team %}
                 <li>
                     {% if selected %}
                         <a id="selected" href="{{ link }}">

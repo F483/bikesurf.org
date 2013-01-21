@@ -56,7 +56,7 @@ class Bike(Model):
     description = TextField()
     active = BooleanField(default=True)
     reserve = BooleanField(default=False) # not requestable
-    station = ForeignKey('station.Station', blank=True, null=True)
+    station = ForeignKey('station.Station', blank=True, null=True, related_name="bikes")
     lockcode = CharField(max_length=1024)
     keycode = CharField(max_length=1024, blank=True)
     

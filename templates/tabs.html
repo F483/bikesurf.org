@@ -1,0 +1,17 @@
+{% load team_tags %}
+
+<table class="tabs">
+    <tr>
+        {% for link, label, selected in tabs %}
+            <td>
+                {% if selected %}
+                    <a id="selected" href="{{ link }}">{{ label }}</a>
+                {% else %}
+                    <a href="{{ link }}">{{ label }}</a>
+                {% endif %}
+            </td>
+        {% endfor %}
+    </tr>
+</table>
+
+
