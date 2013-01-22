@@ -6,7 +6,7 @@
 from django.conf.urls import patterns, include, url
 
 
-urlpatterns = patterns('',
-    url(r'^$', 'apps.site.views.root'), # index and dashboard
+urlpatterns = patterns('apps.site.views',
+    url(r'^$', 'root'), # index or under construction
 )
 

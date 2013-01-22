@@ -13,6 +13,7 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+UNDER_CONSTRUCTION = os.path.exists(os.path.join(PROJECT_DIR, "under_construction"))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

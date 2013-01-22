@@ -8,4 +8,5 @@ syntax: glob
 *.log
 *.bak
 *.lock
+under_construction
 uploads/*
