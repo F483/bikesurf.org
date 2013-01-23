@@ -12,7 +12,6 @@ from config.settings import UNDER_CONSTRUCTION
 
 @require_http_methods(['GET', 'POST'])
 def root(request):
-    raise Exception("fuck")
     # under construction
     if not request.user.is_authenticated() and UNDER_CONSTRUCTION:
         return render_response(request, 'site/construction.html', {})
