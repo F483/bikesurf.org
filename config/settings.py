@@ -12,7 +12,7 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 # Django settings for bikesurfing project.
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = True
 UNDER_CONSTRUCTION = os.path.exists(os.path.join(PROJECT_DIR, "under_construction"))
 
 ADMINS = (
@@ -181,4 +181,10 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from config.live_settings import *
+except ImportError:
+    pass
+
 
