@@ -25,7 +25,7 @@ _RESERVED_NAMES = [
 
 class CreatePageForm(forms.Form):
 
-    name = forms.CharField(label=_("NAME"))
+    name = forms.CharField(label=_("PAGE_NAME"))
     content = forms.CharField(label=_("CONTENT"), widget=forms.Textarea)
     order = forms.IntegerField(label=_("ORDER"))
 

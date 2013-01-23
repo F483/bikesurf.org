@@ -12,6 +12,7 @@
     WSGIScriptAlias / /home/bikesurf/www/config/wsgi.py
  
     # static media aliases # TODO admin media
+    Alias /static/admin/ /usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/admin/
     Alias /static/ /home/bikesurf/www/static/
     Alias /media/ /home/bikesurf/www/media/
     #Alias / /home/bikesurf/www/templates/site/maintenance.html

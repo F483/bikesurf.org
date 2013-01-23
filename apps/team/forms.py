@@ -31,7 +31,7 @@ def _validate_name(value):
 
 class CreateTeamForm(forms.Form):
 
-    name = forms.CharField(label=_('NAME'), validators=[_validate_name])
+    name = forms.CharField(label=_('TEAM_NAME'), validators=[_validate_name])
     country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
 
 

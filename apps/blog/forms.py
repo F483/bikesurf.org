@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class CreateBlogForm(forms.Form):
 
-    name = forms.CharField(label=_("NAME"))
+    name = forms.CharField(label=_("TITLE"))
     content = forms.CharField(label=_("CONTENT"), widget=forms.Textarea)
 
 
