@@ -13,8 +13,8 @@
  
     # static media aliases # TODO admin media
     Alias /static/ /home/bikesurf/www/static/
-    Alias /media/ /home/bikesurf/www/media/
-    Alias / /home/bikesurf/www/templates/site/construction.html
+    #Alias /media/ /home/bikesurf/www/media/
+    Alias / /home/bikesurf/www/templates/site/maintenance.html
  
     # static permissions
     <Directory /home/bikesurf/www/static>

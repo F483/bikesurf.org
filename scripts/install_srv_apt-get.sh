@@ -24,8 +24,7 @@ chown bikesurf:bikesurf -R bikesurfing.org/
 
 # setup apache
 cp www/config/apache_live.vh /etc/apache2/sites-available/bikesurf.org_live
-cp www/config/apache_construction.vh /etc/apache2/sites-available/bikesurf.org_construction
 cp www/config/apache_maintenance.vh /etc/apache2/sites-available/bikesurf.org_maintenance
-ln -s /etc/apache2/sites-available/bikesurf.org_live /etc/apache2/sites-enabled/bikesurf.org
+ln -s /etc/apache2/sites-available/bikesurf.org_maintenance /etc/apache2/sites-enabled/bikesurf.org
 /etc/init.d/apache2 restart
 
