@@ -21,6 +21,6 @@ pip install easy-thumbnails
 pip install South
 pip install unidecode
 
-hg clone https://bitbucket.org/fabe/bikesurfing.org
+hg clone https://bitbucket.org/fabe/bikesurf.org
 chown ${USER}:${USER} -R bikesurfing.org/
 

@@ -13,7 +13,7 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = True
-UNDER_CONSTRUCTION = os.path.exists(os.path.join(PROJECT_DIR, "under_construction"))
+UNDER_CONSTRUCTION = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -107,7 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware', # TODO check this out
 )
 
 ROOT_URLCONF = 'config.urls'
