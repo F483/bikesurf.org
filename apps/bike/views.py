@@ -14,6 +14,7 @@ from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.bike.models import Bike
+from apps.bike import control
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.bike import forms
@@ -128,28 +129,53 @@ def create(request, team_link):
     if request.method == "POST":
         form = forms.Create(request.POST, team=team, account=account)
         if form.is_valid():
-            bike = Bike()
-            bike.team = team
-            bike.owner = form.cleaned_data["owner"]
-            bike.name = form.cleaned_data["name"].strip()
-            bike.description = form.cleaned_data["description"].strip()
-            bike.active = form.cleaned_data["active"]
-            bike.reserve = form.cleaned_data["reserve"]
-            bike.station = form.cleaned_data["station"]
-            bike.lockcode = form.cleaned_data["lockcode"]
-            bike.keycode = form.cleaned_data["keycode"]
-            bike.kind = form.cleaned_data["kind"]
-            bike.gender = form.cleaned_data["gender"]
-            bike.size = form.cleaned_data["size"]
-            bike.lights = form.cleaned_data["lights"]
-            bike.fenders = form.cleaned_data["fenders"]
-            bike.basket = form.cleaned_data["rack"]
-            bike.save()
+            bike = control.create(
+                team, form.cleaned_data["owner"],
+                form.cleaned_data["name"].strip(),
+                form.cleaned_data["description"].strip(),
+                form.cleaned_data["active"], form.cleaned_data["reserve"],
+                form.cleaned_data["station"], form.cleaned_data["lockcode"],
+                form.cleaned_data["keycode"], form.cleaned_data["kind"],
+                form.cleaned_data["gender"], form.cleaned_data["size"],
+                form.cleaned_data["lights"], form.cleaned_data["fenders"],
+                form.cleaned_data["rack"], form.cleaned_data["basket"]
+            )
             url = "/%s/bike/view/%s" % (team.link, bike.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.Create(team=team, account=account)
     args = { "form" : form, "form_title" : _("BIKE_CREATE") }
     return rtr(team, "bikes", request, "form.html", args)
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def edit(request, team_link, bike_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    bike = get_object_or_404(Bike, id=bike_id, team=team)
+    if request.method == "POST":
+        form = forms.Edit(request.POST, bike=bike, account=account)
+        if form.is_valid():
+            control.edit(
+                bike, form.cleaned_data["owner"],
+                form.cleaned_data["name"].strip(),
+                form.cleaned_data["description"].strip(),
+                form.cleaned_data["active"], form.cleaned_data["reserve"],
+                form.cleaned_data["station"], form.cleaned_data["lockcode"],
+                form.cleaned_data["keycode"], form.cleaned_data["kind"],
+                form.cleaned_data["gender"], form.cleaned_data["size"],
+                form.cleaned_data["lights"], form.cleaned_data["fenders"],
+                form.cleaned_data["rack"], form.cleaned_data["basket"]
+            )
+            url = "/%s/bike/view/%s" % (team.link, bike.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.Edit(bike=bike, account=account)
+    args = { "form" : form, "form_title" : _("BIKE_EDIT") }
+    return rtr(team, "bikes", request, "form.html", args)
+
+
+
 
 
