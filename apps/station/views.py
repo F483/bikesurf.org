@@ -70,9 +70,17 @@ def view(request, **kwargs):
     else:
         team = None
         station = get_object_or_404(Station, id=station_id, responsable=account)
-    bikes = tab == "BIKES" and list(station.bikes.all()) or []
-    borrows = tab == "OUTGOING" and list(station.borrows_outgoing.all()) or []
-    borrows += tab == "INCOMING" and list(station.borrows_incoming.all()) or []
+
+    # load tab data
+    bikes = []
+    borrows = []
+    if tab == "BIKES":
+        bikes = station.bikes.all()
+    elif tab == "OUTGOING":
+        borrows = station.borrows_outgoing.all()
+    elif tab == "INCOMING":
+        borrows = station.borrows_incoming.all()
+
     template_args = { 
         "station" : station, "bikes" : bikes, "borrows" : borrows,
         "description_title" : _VIEW[tab]["description_title"],
@@ -124,4 +132,5 @@ def create(request, team_link):
         form = CreateStationForm(team=team, account=account)
     args = { "form" : form, "form_title" : _("ADD_STATION") }
     return rtr(team, "stations", request, "form.html", args)
+
 
