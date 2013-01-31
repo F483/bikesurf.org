@@ -17,6 +17,7 @@ urlpatterns = patterns("",
     # admin
     url(r"^admin/doc/", include("django.contrib.admindocs.urls")),
     url(r"^admin/", include(admin.site.urls)),
+    url(r'^rosetta/', include('rosetta.urls')),
 
     # bikesurf urls
     url(r"^", include("apps.site.urls")),

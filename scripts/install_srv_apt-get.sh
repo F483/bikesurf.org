@@ -8,7 +8,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # required apt packages
-apt-get -qy install mercurial python-pip 
+apt-get -qy install mercurial python-pip gettext
 apt-get -qy install apache2 postgresql libapache2-mod-wsgi python-imaging python-psycopg2
 
 # python packages
@@ -18,9 +18,12 @@ pip install django-social-auth
 pip install easy-thumbnails
 pip install South
 pip install unidecode
+pip install django-rosetta
 
 hg clone https://bitbucket.org/fabe/bikesurf.org www
 chown bikesurf:bikesurf -R bikesurfing.org/
+
+# TODO setup database
 
 # setup apache
 cp www/config/apache_live.vh /etc/apache2/sites-available/bikesurf.org_live

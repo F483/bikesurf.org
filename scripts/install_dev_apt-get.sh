@@ -8,7 +8,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # required apt packages
-apt-get -qy install mercurial python-pip sqlite3
+apt-get -qy install mercurial python-pip gettext sqlite3
 
 # optional apt packages
 apt-get -qy install python-docutils
@@ -20,6 +20,7 @@ pip install django-social-auth
 pip install easy-thumbnails
 pip install South
 pip install unidecode
+pip install django-rosetta
 
 hg clone https://bitbucket.org/fabe/bikesurf.org
 chown ${USER}:${USER} -R bikesurfing.org/

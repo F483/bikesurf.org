@@ -8,7 +8,6 @@ import os
 
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-
 # Django settings for bikesurfing project.
 
 DEBUG = True
@@ -40,6 +39,16 @@ TIME_ZONE = 'America/Chicago'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+
+_ = lambda s : s
+LANGUAGES = (
+    ('de', _("German")),
+    ('en', _("English")),
+    ('fr', _("French")),
+    ('es', _("Spanish")),
+    ('zh_TW', _("Traditional Chinese")),
+    #('zh_CN', _("Simplified Chinese")),
+)
 
 SITE_ID = 1
 
@@ -105,6 +114,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware', # TODO check this out
 )
@@ -138,6 +148,7 @@ INSTALLED_APPS = (
     'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
     'social_auth',      # http://www.djangopackages.com/packages/p/django-social-auth/
     'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
+    'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
 
     # biksurfing apps
     'apps.common',
@@ -151,6 +162,30 @@ INSTALLED_APPS = (
     'apps.page',
     'apps.station',
 )
+
+
+ROSETTA_MESSAGES_PER_PAGE = 50
+ROSETTA_EXCLUDED_APPLICATIONS = (
+
+    # third party apps
+    'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
+    'social_auth',      # http://www.djangopackages.com/packages/p/django-social-auth/
+    'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
+    'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
+
+    # biksurfing apps
+    #'apps.common',
+    #'apps.bike',
+    #'apps.borrow',
+    #'apps.message',
+    #'apps.account',
+    #'apps.image',
+    #'apps.team',
+    #'apps.blog',
+    #'apps.page',
+    #'apps.station',
+)
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
