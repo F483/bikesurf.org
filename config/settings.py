@@ -47,8 +47,8 @@ LANGUAGES = (
     ('fr', _("French")),
     ('es', _("Spanish")),
     ('it', _("Italian")),
-    ('zh_TW', _("Traditional Chinese")),
-    #('zh_CN', _("Simplified Chinese")),
+    ('zh-tw', _("Traditional Chinese")),
+    #('zh-cn', _("Simplified Chinese")),
 )
 
 SITE_ID = 1
