@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     'apps.team',
     'apps.blog',
     'apps.page',
+    'apps.site',
     'apps.station',
 )
 
