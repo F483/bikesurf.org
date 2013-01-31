@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:20-0600\n"
+"POT-Creation-Date: 2013-01-31 10:44-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,4 +92,25 @@ msgstr ""
 
 #: views.py:117 views.py:138
 msgid "RATE"
+msgstr ""
+
+#: templates/borrow/list.html:16 templates/borrow/view.html:10
+msgid "BORROWING"
+msgstr ""
+
+#: templates/borrow/list.html:21 templates/borrow/view.html:14
+msgid "DATE FROM"
+msgstr ""
+
+#: templates/borrow/list.html:22 templates/borrow/list.html.py:25
+#: templates/borrow/view.html:15 templates/borrow/view.html.py:18
+msgid "TO"
+msgstr ""
+
+#: templates/borrow/list.html:24 templates/borrow/view.html:17
+msgid "STATION FROM"
+msgstr ""
+
+#: templates/borrow/view.html:34
+msgid "SYSTEM"
 msgstr ""

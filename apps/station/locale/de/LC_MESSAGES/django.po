@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:20-0600\n"
+"POT-Creation-Date: 2013-01-31 10:44-0600\n"
 "PO-Revision-Date: 2013-01-30 18:46\n"
 "Last-Translator:   <fabe@fabe.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,11 +39,11 @@ msgstr "Stadt"
 msgid "STREET"
 msgstr "Straße"
 
-#: forms.py:20
+#: forms.py:20 templates/station/list.html:20 templates/station/view.html:11
 msgid "CAPACITY"
 msgstr ""
 
-#: forms.py:21
+#: forms.py:21 templates/station/list.html:19 templates/station/view.html:10
 msgid "ACTIVE"
 msgstr "Aktiv"
 

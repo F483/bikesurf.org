@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:20-0600\n"
+"POT-Creation-Date: 2013-01-31 10:44-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,19 +34,21 @@ msgstr ""
 msgid "TEAM_NAME"
 msgstr ""
 
-#: forms.py:35
+#: forms.py:35 templates/team/base_right.html:27
 msgid "COUNTRY"
 msgstr ""
 
-#: forms.py:40
+#: forms.py:40 templates/team/remove_requests.html:12
 msgid "REASON"
 msgstr ""
 
-#: forms.py:45
+#: forms.py:45 templates/team/join_requests.html:19
+#: templates/team/remove_requests.html:13
 msgid "RESPONSE"
 msgstr ""
 
-#: forms.py:46
+#: forms.py:46 templates/team/join_requests.html:17
+#: templates/team/remove_requests.html:11
 msgid "STATUS"
 msgstr ""
 
@@ -54,6 +56,54 @@ msgstr ""
 msgid "CREATE_TEAM"
 msgstr ""
 
-#: views.py:97
+#: views.py:97 templates/team/base_right.html:33
 msgid "JOIN_REQUEST"
+msgstr ""
+
+#: templates/team/base_right.html:7
+msgid "TEAM_ACTIONS"
+msgstr ""
+
+#: templates/team/base_right.html:26
+msgid "TEAM_INFO"
+msgstr ""
+
+#: templates/team/base_right.html:28
+msgid "TODO TWITTER"
+msgstr ""
+
+#: templates/team/base_right.html:29
+msgid "TODO FACEBOOK"
+msgstr ""
+
+#: templates/team/base_right.html:30
+msgid "TODO COUCHSURFING"
+msgstr ""
+
+#: templates/team/join_requested.html:6
+msgid "JOIN_REQUESTED"
+msgstr ""
+
+#: templates/team/join_requested.html:7
+msgid "JOIN_REQUEST_MADE"
+msgstr ""
+
+#: templates/team/join_requests.html:10 templates/team/remove_requests.html:10
+msgid "PROCESSOR"
+msgstr ""
+
+#: templates/team/join_requests.html:14 templates/team/remove_requests.html:10
+msgid "NONE"
+msgstr ""
+
+#: templates/team/join_requests.html:18
+msgid "APPLICATION"
+msgstr ""
+
+#: templates/team/join_requests.html:23
+msgid "PROCESS"
+msgstr ""
+
+#: templates/team/remove_requests.html:9
+msgid "REQUESTER"
 msgstr ""

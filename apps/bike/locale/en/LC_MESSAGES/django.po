@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:19-0600\n"
+"POT-Creation-Date: 2013-01-31 10:44-0600\n"
 "PO-Revision-Date: 2013-01-30 18:40\n"
 "Last-Translator:   <fabe@fabe.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Translated-Using: django-rosetta 0.6.8\n"
 
-#: forms.py:21 forms.py:48
+#: forms.py:21 forms.py:48 templates/bike/list.html:39
+#: templates/bike/view.html:28
 msgid "OWNER"
 msgstr "Owner"
 
@@ -26,15 +27,18 @@ msgstr "Owner"
 msgid "NAME"
 msgstr "Name"
 
-#: forms.py:23 forms.py:50
+#: forms.py:23 forms.py:50 templates/bike/list.html:40
+#: templates/bike/view.html:29
 msgid "ACTIVE"
 msgstr "Active"
 
-#: forms.py:24 forms.py:51
+#: forms.py:24 forms.py:51 templates/bike/list.html:41
+#: templates/bike/view.html:30
 msgid "RESERVE"
 msgstr "Reserve"
 
-#: forms.py:25 forms.py:52
+#: forms.py:25 forms.py:52 templates/bike/list.html:43
+#: templates/bike/view.html:32
 msgid "STATION"
 msgstr "Station"
 
@@ -46,31 +50,38 @@ msgstr "Lockcode"
 msgid "KEYCODE"
 msgstr "Keycode"
 
-#: forms.py:28 forms.py:55
+#: forms.py:28 forms.py:55 templates/bike/list.html:30
+#: templates/bike/view.html:19
 msgid "TYPE"
 msgstr "Type"
 
-#: forms.py:29 forms.py:56
+#: forms.py:29 forms.py:56 templates/bike/list.html:31
+#: templates/bike/view.html:20
 msgid "GENDER"
 msgstr "Gender"
 
-#: forms.py:30 forms.py:57
+#: forms.py:30 forms.py:57 templates/bike/list.html:32
+#: templates/bike/view.html:21
 msgid "SIZE"
 msgstr "Size"
 
-#: forms.py:31 forms.py:58
+#: forms.py:31 forms.py:58 templates/bike/list.html:33
+#: templates/bike/view.html:22
 msgid "LIGHTS"
 msgstr ""
 
-#: forms.py:32 forms.py:59
+#: forms.py:32 forms.py:59 templates/bike/list.html:34
+#: templates/bike/view.html:23
 msgid "FENDERS"
 msgstr ""
 
-#: forms.py:33 forms.py:60
+#: forms.py:33 forms.py:60 templates/bike/list.html:35
+#: templates/bike/view.html:24
 msgid "RACK"
 msgstr ""
 
-#: forms.py:34 forms.py:61
+#: forms.py:34 forms.py:61 templates/bike/list.html:36
+#: templates/bike/view.html:25
 msgid "BASKET"
 msgstr ""
 
@@ -100,4 +111,8 @@ msgstr ""
 
 #: views.py:175
 msgid "BIKE_EDIT"
+msgstr ""
+
+#: templates/bike/list.html:47 templates/bike/view.html:36
+msgid "UNKNOWN"
 msgstr ""

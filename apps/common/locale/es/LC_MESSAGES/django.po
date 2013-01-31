@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:20-0600\n"
+"POT-Creation-Date: 2013-01-31 10:44-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/base.html:21
+msgid "META_DESCRIPTION"
+msgstr ""
+
+#: templates/form.html:12
+msgid "SUBMIT"
+msgstr ""
+
+#: templates/statusbar.html:8
+msgid "MY_BORROWS"
+msgstr ""
+
+#: templates/statusbar.html:14
+msgid "MY_BIKES"
+msgstr ""
+
+#: templates/statusbar.html:20
+msgid "MY_STATIONS"
+msgstr ""
+
+#: templates/statusbar.html:25
+msgid "LOGOUT"
+msgstr ""
+
+#: templates/statusbar.html:30
+msgid "LOGIN"
+msgstr ""
+
+#: templates/statusbar.html:31
+msgid "REGISTER"
+msgstr ""
 
 #: templatetags/common_tags.py:16
 msgid "TRUE"
