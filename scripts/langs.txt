@@ -2,4 +2,5 @@ en
 de
 fr
 es
+it
 zh_TW

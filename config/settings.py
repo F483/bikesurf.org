@@ -46,6 +46,7 @@ LANGUAGES = (
     ('en', _("English")),
     ('fr', _("French")),
     ('es', _("Spanish")),
+    ('it', _("Italian")),
     ('zh_TW', _("Traditional Chinese")),
     #('zh_CN', _("Simplified Chinese")),
 )
