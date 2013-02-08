@@ -11,7 +11,7 @@
     WSGIProcessGroup bikesurf
     WSGIScriptAlias / /home/bikesurf/www/config/wsgi.py
  
-    # static media aliases # TODO admin media
+    # static media aliases
     Alias /static/ /home/bikesurf/www/static/
     Alias / /home/bikesurf/www/apps/site/templates/maintenance.html
  
