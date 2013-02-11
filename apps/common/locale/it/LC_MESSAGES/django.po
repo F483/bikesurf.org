@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 07:22-0600\n"
+"POT-Creation-Date: 2013-02-11 09:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "META_DESCRIPTION"
 msgstr ""
 
-#: templates/base.html:93
+#: templates/base.html:100
 msgid "ADMIN"
 msgstr ""
 
-#: templates/base.html:96
+#: templates/base.html:103
 msgid "INTERNATIONALISATION"
 msgstr ""
 
-#: templates/base.html:99
+#: templates/base.html:106
 msgid "REPOSITORY"
 msgstr ""
 

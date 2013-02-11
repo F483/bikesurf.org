@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 07:22-0600\n"
+"POT-Creation-Date: 2013-02-11 09:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,58 @@ msgstr ""
 
 #: forms.py:133
 msgid "5"
+msgstr ""
+
+#: models.py:18
+msgid "REQUEST"
+msgstr ""
+
+#: models.py:19
+msgid "MEETUP"
+msgstr ""
+
+#: models.py:20
+msgid "ACCEPTED"
+msgstr ""
+
+#: models.py:21
+msgid "REJECTED"
+msgstr ""
+
+#: models.py:22
+msgid "CANCELED"
+msgstr ""
+
+#: models.py:23 models.py:57
+msgid "FINISHED"
+msgstr ""
+
+#: models.py:52
+msgid "RATE_TEAM"
+msgstr ""
+
+#: models.py:53
+msgid "RATE_MY"
+msgstr ""
+
+#: models.py:54
+msgid "CREATE"
+msgstr ""
+
+#: models.py:55
+msgid "RESPOND"
+msgstr ""
+
+#: models.py:56
+msgid "CANCEL"
+msgstr ""
+
+#: models.py:81
+msgid "BORROWER"
+msgstr ""
+
+#: models.py:82
+msgid "LENDER"
 msgstr ""
 
 #: views.py:66

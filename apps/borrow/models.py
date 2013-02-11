@@ -14,15 +14,14 @@ from django.db.models import DateTimeField
 from django.db.models import IntegerField
 
 
-STATES = [
-    "REQUEST",   # (B)                        
-    "MEETUP",    # (L)    
-    "ACCEPTED",  # (L)    
-    "REJECTED",  # (L)    
-    "CANCELED",  # (B|L)  Only Before Start   
-    "FINISHED",  # (B|L)  Both Rated
+STATE_CHOICES = [
+    ("REQUEST",_("REQUEST")),   # (B)                        
+    ("MEETUP",_("MEETUP")),    # (L)    
+    ("ACCEPTED",_("ACCEPTED")),  # (L)    
+    ("REJECTED",_("REJECTED")),  # (L)    
+    ("CANCELED",_("CANCELED")),  # (B|L)  Only Before Start   
+    ("FINISHED",_("FINISHED")),  # (B|L)  Both Rated
 ]
-STATE_CHOICES = [(state, _(state)) for state in STATES]
 
 
 class Borrow(Model):
@@ -49,15 +48,14 @@ class Borrow(Model):
 
 class Log(Model):
 
-    ACTIONS = [
-        "RATE_TEAM",
-        "RATE_MY",
-        "CREATE",
-        "RESPOND",
-        "CANCEL",
-        "FINISHED",
+    ACTION_CHOICES = [
+        ("RATE_TEAM",_("RATE_TEAM")),
+        ("RATE_MY",_("RATE_MY")),
+        ("CREATE",_("CREATE")),
+        ("RESPOND",_("RESPOND")),
+        ("CANCEL",_("CANCEL")),
+        ("FINISHED",_("FINISHED")),
     ]
-    ACTION_CHOICES = [(action, _(action)) for action in ACTIONS]
 
     borrow = ForeignKey('borrow.Borrow', related_name="logs")
     initiator = ForeignKey('account.Account', blank=True, null=True) # None => system
@@ -79,11 +77,10 @@ class Log(Model):
 
 class Rating(Model): # only borrower rates ...
 
-    ORIGINATOR = [
-        "BORROWER",
-        "LENDER",
+    ORIGINATOR_CHOICES = [
+        ("BORROWER",_("BORROWER")),
+        ("LENDER",_("LENDER")),
     ]
-    ORIGINATOR_CHOICES = [(o, _(o)) for o in ORIGINATOR]
 
     borrow = ForeignKey('borrow.Borrow')
     rating = IntegerField() # 0 - 5 'Stars'

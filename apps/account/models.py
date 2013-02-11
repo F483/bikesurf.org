@@ -17,15 +17,14 @@ from django_countries import CountryField
 
 class Account(Model):
 
-    SOURCES = [
-        'OTHER',
-        'COUCHSURFING',
-        'FACEBOOK',
-        'FRIENDS',
-        'GOOGLE',
-        'TWITTER',
+    SOURCES_CHOICES = [
+        ('OTHER', _('OTHER')),
+        ('COUCHSURFING', _('COUCHSURFING')),
+        ('FACEBOOK', _('FACEBOOK')),
+        ('FRIENDS', _('FRIENDS')),
+        ('GOOGLE', _('GOOGLE')),
+        ('TWITTER', _('TWITTER')),
     ]
-    SOURCES_CHOICES = [(source, _(source)) for source in SOURCES]
 
     # main data
     user = ForeignKey('auth.User', unique=True, related_name="accounts")
@@ -53,20 +52,19 @@ class Account(Model):
 
 class Site(Model):
 
-    SITES = [ # TODO add url validation functions per site
-        'COUCHSURFING',
-        'FACEBOOK',
-        'TWITTER',
-        'GOOGLEPLUS',
-        'BLOG',
-        'SKYPE',
-        'LINKED_IN',
-        'BE_WELCOME',
-        'WARM_SHOWERS',
-        'PINTEREST',
-        'YOUTUBE',
+    SITE_CHOICES = [ # TODO add url validation functions per site
+        ('COUCHSURFING', _('COUCHSURFING')),
+        ('FACEBOOK', _('FACEBOOK')),
+        ('TWITTER', _('TWITTER')),
+        ('GOOGLEPLUS', _('GOOGLEPLUS')),
+        ('BLOG', _('BLOG')),
+        ('SKYPE', _('SKYPE')),
+        ('LINKED_IN', _('LINKED_IN')),
+        ('BE_WELCOME', _('BE_WELCOME')),
+        ('WARM_SHOWERS', _('WARM_SHOWERS')),
+        ('PINTEREST', _('PINTEREST')),
+        ('YOUTUBE', _('YOUTUBE')),
     ]
-    SITE_CHOICES = [(site, _(site)) for site in SITES]
 
     # main data
     account = ForeignKey('account.Account')
