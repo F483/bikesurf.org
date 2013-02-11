@@ -8,6 +8,17 @@ from django.utils.translation import ugettext_lazy as _
 from apps.common.shortcuts import render_response
 
 
+ENTRIE_NAMES = {
+    "blog" : _("BLOG"),
+    "bikes" : _("BIKES"),
+    "members" : _("MEMBERS"),
+    "borrows" : _("BORROWS"),
+    "stations" : _("STATIONS"),
+    "join_requests" : _("JOIN_REQUESTS"),
+    "remove_requests" : _("REMOVE_REQUESTS"),
+}
+
+
 def assert_member(account, team):
     if account not in team.members.all():
         raise PermissionDenied
@@ -16,7 +27,7 @@ def assert_member(account, team):
 def _get_team_menue(team, current):
     """ return [(url, label, selected, members_only), ...] """
     url = lambda pl: "/%s/%s" % (team.link, pl)
-    entrie = lambda n, m: (url(n), _(n.upper()), current==n, m)
+    entrie = lambda n, m: (url(n), ENTRIE_NAMES[n], current==n, m)
     menu = [ 
         entrie("blog", False),
         entrie("bikes", False),

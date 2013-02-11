@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 11:41-0600\n"
+"POT-Creation-Date: 2013-02-11 07:22-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,34 @@ msgstr ""
 msgid "STATUS"
 msgstr ""
 
+#: utils.py:12
+msgid "BLOG"
+msgstr ""
+
+#: utils.py:13
+msgid "BIKES"
+msgstr ""
+
+#: utils.py:14
+msgid "MEMBERS"
+msgstr ""
+
+#: utils.py:15
+msgid "BORROWS"
+msgstr ""
+
+#: utils.py:16
+msgid "STATIONS"
+msgstr ""
+
+#: utils.py:17
+msgid "JOIN_REQUESTS"
+msgstr ""
+
+#: utils.py:18
+msgid "REMOVE_REQUESTS"
+msgstr ""
+
 #: views.py:46
 msgid "CREATE_TEAM"
 msgstr ""
@@ -66,18 +94,6 @@ msgstr ""
 
 #: templates/team/base_right.html:26
 msgid "TEAM_INFO"
-msgstr ""
-
-#: templates/team/base_right.html:28
-msgid "TODO TWITTER"
-msgstr ""
-
-#: templates/team/base_right.html:29
-msgid "TODO FACEBOOK"
-msgstr ""
-
-#: templates/team/base_right.html:30
-msgid "TODO COUCHSURFING"
 msgstr ""
 
 #: templates/team/join_requested.html:6

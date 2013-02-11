@@ -12,39 +12,36 @@ from django.db.models import DateTimeField
 from django.utils.translation import ugettext_lazy as _
 
 
-KINDS = [
-    'NORMAL', # comfort, hybrid, trekking, citybike
-    'BMX', 
-    'CARGOBIKE',
-    'CRUISER',
-    'ELECTRIC', 
-    'FIXIE', 
-    'FOLDING', 
-    'KIDS',
-    'MOUNTAINBIKE', 
-    'RECUMBENT',
-    'ROADBIKE', 
-    'TANDEM',
-    'TRICYCLE',
-    'UNICYCLE',
+KIND_CHOICES = [
+    ('NORMAL', _('NORMAL')), # comfort, hybrid, trekking, citybike
+    ('BMX', _('BMX')), 
+    ('CARGOBIKE', _('CARGOBIKE')),
+    ('CRUISER', _('CRUISER')),
+    ('ELECTRIC', _('ELECTRIC')), 
+    ('FIXIE', _('FIXIE')), 
+    ('FOLDING', _('FOLDING')), 
+    ('KIDS', _('KIDS')),
+    ('MOUNTAINBIKE', _('MOUNTAINBIKE')), 
+    ('RECUMBENT', _('RECUMBENT')),
+    ('ROADBIKE', _('ROADBIKE')), 
+    ('TANDEM', _('TANDEM')),
+    ('TRICYCLE', _('TRICYCLE')),
+    ('UNICYCLE', _('UNICYCLE')),
 ]
-KIND_CHOICES = [(kind, _(kind)) for kind in KINDS]
 
 
-GENDER = [
-    'NEUTRAL', 
-    'FEMALE', 
-    'MALE'
+GENDER_CHOICES = [
+    ('NEUTRAL', _('NEUTRAL')), 
+    ('FEMALE', _('FEMALE')), 
+    ('MALE', _('MALE'))
 ]
-GENDER_CHOICES = [(gender, _(gender)) for gender in GENDER]
 
 
-SIZE = [      # Body Hight
-    'SMALL',  # 0cm - 145cm
-    'MEDIUM', # 145cm - 175cm
-    'LARGE'   # 175cm + 
+SIZE_CHOICES = [      # Body Hight
+    ('SMALL', _('SMALL')),  # 0cm - 145cm
+    ('MEDIUM', _('MEDIUM')), # 145cm - 175cm
+    ('LARGE', _('LARGE'))   # 175cm + 
 ]
-SIZE_CHOICES = [(size, _(size)) for size in SIZE]
 
 
 class Bike(Model):

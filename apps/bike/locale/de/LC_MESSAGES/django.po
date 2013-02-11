@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:44-0600\n"
+"POT-Creation-Date: 2013-02-11 07:22-0600\n"
 "PO-Revision-Date: 2013-01-30 18:44\n"
 "Last-Translator:   <fabe@fabe.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,86 @@ msgstr "Korb"
 #: forms.py:35 forms.py:62
 msgid "description"
 msgstr "Beschreibung"
+
+#: models.py:16
+msgid "NORMAL"
+msgstr ""
+
+#: models.py:17
+msgid "BMX"
+msgstr ""
+
+#: models.py:18
+msgid "CARGOBIKE"
+msgstr ""
+
+#: models.py:19
+msgid "CRUISER"
+msgstr ""
+
+#: models.py:20
+msgid "ELECTRIC"
+msgstr ""
+
+#: models.py:21
+msgid "FIXIE"
+msgstr ""
+
+#: models.py:22
+msgid "FOLDING"
+msgstr ""
+
+#: models.py:23
+msgid "KIDS"
+msgstr ""
+
+#: models.py:24
+msgid "MOUNTAINBIKE"
+msgstr ""
+
+#: models.py:25
+msgid "RECUMBENT"
+msgstr ""
+
+#: models.py:26
+msgid "ROADBIKE"
+msgstr ""
+
+#: models.py:27
+msgid "TANDEM"
+msgstr ""
+
+#: models.py:28
+msgid "TRICYCLE"
+msgstr ""
+
+#: models.py:29
+msgid "UNICYCLE"
+msgstr ""
+
+#: models.py:34
+msgid "NEUTRAL"
+msgstr ""
+
+#: models.py:35
+msgid "FEMALE"
+msgstr ""
+
+#: models.py:36
+msgid "MALE"
+msgstr ""
+
+#: models.py:41
+msgid "SMALL"
+msgstr ""
+
+#: models.py:42
+msgid "MEDIUM"
+msgstr ""
+
+#: models.py:43
+msgid "LARGE"
+msgstr ""
 
 #: views.py:30
 msgid "BIKE_BORROWS_DESCRIPTION_TITLE"

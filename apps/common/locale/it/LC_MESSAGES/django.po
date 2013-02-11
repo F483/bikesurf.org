@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 11:41-0600\n"
+"POT-Creation-Date: 2013-02-11 07:22-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,18 @@ msgstr ""
 
 #: templates/base.html:21
 msgid "META_DESCRIPTION"
+msgstr ""
+
+#: templates/base.html:93
+msgid "ADMIN"
+msgstr ""
+
+#: templates/base.html:96
+msgid "INTERNATIONALISATION"
+msgstr ""
+
+#: templates/base.html:99
+msgid "REPOSITORY"
 msgstr ""
 
 #: templates/form.html:12
@@ -50,10 +62,50 @@ msgstr ""
 msgid "REGISTER"
 msgstr ""
 
+#: templatetags/common_tags.py:11
+msgid "BORROW"
+msgstr ""
+
+#: templatetags/common_tags.py:12
+msgid "RESPOND"
+msgstr ""
+
+#: templatetags/common_tags.py:13
+msgid "CANCEL"
+msgstr ""
+
+#: templatetags/common_tags.py:14
+msgid "RATE"
+msgstr ""
+
+#: templatetags/common_tags.py:15
+msgid "DELETE"
+msgstr ""
+
 #: templatetags/common_tags.py:16
-msgid "TRUE"
+msgid "EDIT"
 msgstr ""
 
 #: templatetags/common_tags.py:17
+msgid "ADD_BLOG"
+msgstr ""
+
+#: templatetags/common_tags.py:18
+msgid "ADD_PAGE"
+msgstr ""
+
+#: templatetags/common_tags.py:19
+msgid "BIKE_CREATE"
+msgstr ""
+
+#: templatetags/common_tags.py:20
+msgid "ADD_STATION"
+msgstr ""
+
+#: templatetags/common_tags.py:30
+msgid "TRUE"
+msgstr ""
+
+#: templatetags/common_tags.py:31
 msgid "FALSE"
 msgstr ""

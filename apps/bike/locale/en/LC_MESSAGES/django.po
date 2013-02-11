@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:44-0600\n"
-"PO-Revision-Date: 2013-01-31 14:05\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2013-02-11 07:21-0600\n"
+"PO-Revision-Date: 2013-02-11 05:58\n"
+"Last-Translator:   <fabe@fabe.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:21 forms.py:48 templates/bike/list.html:39
@@ -89,13 +89,93 @@ msgstr "Basket"
 msgid "description"
 msgstr "Description"
 
+#: models.py:16
+msgid "NORMAL"
+msgstr "Normal"
+
+#: models.py:17
+msgid "BMX"
+msgstr "BMX"
+
+#: models.py:18
+msgid "CARGOBIKE"
+msgstr "Cargobike"
+
+#: models.py:19
+msgid "CRUISER"
+msgstr "Cruiser"
+
+#: models.py:20
+msgid "ELECTRIC"
+msgstr "Electric"
+
+#: models.py:21
+msgid "FIXIE"
+msgstr "Fixie"
+
+#: models.py:22
+msgid "FOLDING"
+msgstr "Folding"
+
+#: models.py:23
+msgid "KIDS"
+msgstr "Kids"
+
+#: models.py:24
+msgid "MOUNTAINBIKE"
+msgstr "Mountainbike"
+
+#: models.py:25
+msgid "RECUMBENT"
+msgstr "Recumbent"
+
+#: models.py:26
+msgid "ROADBIKE"
+msgstr "Roadbike"
+
+#: models.py:27
+msgid "TANDEM"
+msgstr "Tandem"
+
+#: models.py:28
+msgid "TRICYCLE"
+msgstr "Tricycle"
+
+#: models.py:29
+msgid "UNICYCLE"
+msgstr "Unicycle"
+
+#: models.py:34
+msgid "NEUTRAL"
+msgstr "Neutral"
+
+#: models.py:35
+msgid "FEMALE"
+msgstr "Female"
+
+#: models.py:36
+msgid "MALE"
+msgstr "Male"
+
+#: models.py:41
+msgid "SMALL"
+msgstr "Small"
+
+#: models.py:42
+msgid "MEDIUM"
+msgstr "Medium"
+
+#: models.py:43
+msgid "LARGE"
+msgstr "Large"
+
 #: views.py:30
 msgid "BIKE_BORROWS_DESCRIPTION_TITLE"
-msgstr ""
+msgstr "The most recent borrows of this bike."
 
 #: views.py:31
 msgid "BIKE_BORROWS_DESCRIPTION_CONTENT"
-msgstr ""
+msgstr "You can filter and browse the entire borrow history of the bike here."
 
 #: views.py:40
 msgid "OVERVIEW"

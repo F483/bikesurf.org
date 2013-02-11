@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:44-0600\n"
-"PO-Revision-Date: 2013-01-31 14:07\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2013-02-11 07:21-0600\n"
+"PO-Revision-Date: 2013-02-11 07:11\n"
+"Last-Translator:   <fabe@fabe.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:15
@@ -48,27 +48,33 @@ msgstr "Active"
 
 #: views.py:29
 msgid "STATION_BIKES_DESCRIPTION_TITLE"
-msgstr ""
+msgstr "Bikes at the station."
 
 #: views.py:30
 msgid "STATION_BIKES_DESCRIPTION_CONTENT"
 msgstr ""
+"All bikes currently at this station. This includes bikes that are currently "
+"being borrowed."
 
 #: views.py:34
 msgid "STATION_OUTGOING_DESCRIPTION_TITLE"
-msgstr ""
+msgstr "Bikes departing from this station"
 
 #: views.py:35
 msgid "STATION_OUTGOING_DESCRIPTION_CONTENT"
 msgstr ""
+"All bikes that departing form this station can be viewed here. This includes "
+"bikes currently at a different station."
 
 #: views.py:39
 msgid "STATION_INCOMING_DESCRIPTION_TITLE"
-msgstr ""
+msgstr "Bikes arriving at this station"
 
 #: views.py:40
 msgid "STATION_INCOMING_DESCRIPTION_CONTENT"
 msgstr ""
+"All bikes that arrived at this station can be viewed here. This includes "
+"bikes currently at a different station."
 
 #: views.py:51
 msgid "OVERVIEW"
@@ -80,11 +86,11 @@ msgstr "Bikes"
 
 #: views.py:53
 msgid "OUTGOING"
-msgstr "Outgoing"
+msgstr "Departures"
 
 #: views.py:54
 msgid "INCOMING"
-msgstr "Incoming"
+msgstr "Arrivals"
 
 #: views.py:133
 msgid "ADD_STATION"

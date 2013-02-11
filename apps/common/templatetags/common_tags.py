@@ -7,6 +7,20 @@ from django import template
 from django.utils.translation import ugettext as _
 
 
+ACTION_LABELS = { # TODO find a better way of doing this
+        "BORROW" : _("BORROW"),
+        "RESPOND" : _("RESPOND"),
+        "CANCEL" : _("CANCEL"),
+        "RATE" : _("RATE"),
+        "DELETE" : _("DELETE"),
+        "EDIT" : _("EDIT"),
+        "ADD_BLOG" : _("ADD_BLOG"),
+        "ADD_PAGE" : _("ADD_PAGE"),
+        "BIKE_CREATE" : _("BIKE_CREATE"),
+        "ADD_STATION" : _("ADD_STATION"),
+}
+
+
 register = template.Library()
 
 
@@ -24,7 +38,7 @@ def draw_action(image, label, *args):
         <a href="%(url)s"> 
             %(label)s <img src="%(image)s" alt="%(label)s"> 
         </a>
-    """ % { "label" : _(label), "image" : image, "url" : url }
+    """ % { "label" : ACTION_LABELS[label], "image" : image, "url" : url }
 
 
 @register.simple_tag

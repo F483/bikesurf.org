@@ -2,25 +2,37 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 10:44-0600\n"
+"POT-Creation-Date: 2013-02-11 07:22-0600\n"
 "PO-Revision-Date: 2013-01-31 11:11\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: templates/base.html:21
 msgid "META_DESCRIPTION"
+msgstr ""
+
+#: templates/base.html:93
+msgid "ADMIN"
+msgstr ""
+
+#: templates/base.html:96
+msgid "INTERNATIONALISATION"
+msgstr ""
+
+#: templates/base.html:99
+msgid "REPOSITORY"
 msgstr ""
 
 #: templates/form.html:12
@@ -51,10 +63,51 @@ msgstr "Einloggen"
 msgid "REGISTER"
 msgstr "Registrieren"
 
+#: templatetags/common_tags.py:11
+msgid "BORROW"
+msgstr ""
+
+#: templatetags/common_tags.py:12
+msgid "RESPOND"
+msgstr ""
+
+#: templatetags/common_tags.py:13
+msgid "CANCEL"
+msgstr ""
+
+#: templatetags/common_tags.py:14
+msgid "RATE"
+msgstr ""
+
+#: templatetags/common_tags.py:15
+msgid "DELETE"
+msgstr ""
+
 #: templatetags/common_tags.py:16
+msgid "EDIT"
+msgstr ""
+
+#: templatetags/common_tags.py:17
+msgid "ADD_BLOG"
+msgstr ""
+
+#: templatetags/common_tags.py:18
+msgid "ADD_PAGE"
+msgstr ""
+
+#: templatetags/common_tags.py:19
+msgid "BIKE_CREATE"
+msgstr ""
+
+#: templatetags/common_tags.py:20
+#, fuzzy
+msgid "ADD_STATION"
+msgstr "Meine Stationen"
+
+#: templatetags/common_tags.py:30
 msgid "TRUE"
 msgstr "Ja"
 
-#: templatetags/common_tags.py:17
+#: templatetags/common_tags.py:31
 msgid "FALSE"
 msgstr "Nein"
