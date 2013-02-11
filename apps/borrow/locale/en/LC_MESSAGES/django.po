@@ -2,56 +2,57 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-31 10:44-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-01-31 14:01\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:33
 msgid "RESPONES"
-msgstr ""
+msgstr "Responses"
 
 #: forms.py:34 forms.py:68 forms.py:112 forms.py:138 forms.py:155
 msgid "NOTE"
-msgstr ""
+msgstr "Note"
 
 #: forms.py:57
 msgid "START_TIME_PASSED"
-msgstr ""
+msgstr "Start time has passed!"
 
 #: forms.py:59
 msgid "BIKE_NOT_ACTIVE"
-msgstr ""
+msgstr "Bike not active!"
 
 #: forms.py:66
 msgid "START"
-msgstr ""
+msgstr "Start date"
 
 #: forms.py:67
 msgid "FINISH"
-msgstr ""
+msgstr "Finish date"
 
 #: forms.py:92
 msgid "START_NOT_IN_FUTURE"
-msgstr ""
+msgstr "Start date cannot be set to a date in the past!"
 
 #: forms.py:94
 msgid "FINISH_BEFORE_START"
-msgstr ""
+msgstr "Finish date cannot be before start!"
 
 #: forms.py:100 forms.py:105
 msgid "OTHER_BORROW_IN_TIMEFRAME"
-msgstr ""
+msgstr "Another borrow in given timeframe!"
 
 #: forms.py:128
 msgid "0"
@@ -79,7 +80,7 @@ msgstr ""
 
 #: views.py:66
 msgid "BORROW_CREATE"
-msgstr ""
+msgstr "Borrow"
 
 #: views.py:83
 msgid "BORROW_RESPOND"
@@ -87,29 +88,29 @@ msgstr ""
 
 #: views.py:99 views.py:168
 msgid "BORROW_CANCEL"
-msgstr ""
+msgstr "Cancel borrow"
 
 #: views.py:117 views.py:138
 msgid "RATE"
-msgstr ""
+msgstr "Rate"
 
 #: templates/borrow/list.html:16 templates/borrow/view.html:10
 msgid "BORROWING"
-msgstr ""
+msgstr "Borrowing"
 
 #: templates/borrow/list.html:21 templates/borrow/view.html:14
 msgid "DATE FROM"
-msgstr ""
+msgstr "Date from"
 
 #: templates/borrow/list.html:22 templates/borrow/list.html.py:25
 #: templates/borrow/view.html:15 templates/borrow/view.html.py:18
 msgid "TO"
-msgstr ""
+msgstr "to"
 
 #: templates/borrow/list.html:24 templates/borrow/view.html:17
 msgid "STATION FROM"
-msgstr ""
+msgstr "Station from"
 
 #: templates/borrow/view.html:34
 msgid "SYSTEM"
-msgstr ""
+msgstr "System"
