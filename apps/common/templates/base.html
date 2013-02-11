@@ -36,68 +36,76 @@
 
     <body>
 
-        {% block statusbar %}
-            {% include "statusbar.html" %}
-        {% endblock %}
+        <div id="container">
 
-        {% block logo %}
-            <div id="logo">
-                <a href="/"><img src="/static/logo.png" alt="BikeSurf"></a>
+            {% block statusbar %}
+                {% include "statusbar.html" %}
+            {% endblock %}
+
+            <div id="body">
+
+                {% block logo %}
+                    <div id="logo">
+                        <a href="/"><img src="/static/logo.png" alt="BikeSurf"></a>
+                    </div>
+                {% endblock %}
+
+                <div id="index_body"> 
+                    <p> 
+                        Bikesurf.org is currently under development. This means it is 
+                        incomplete and we <b><i>WILL</i></b> delete data any time 
+                        without notice. 
+                    </p> 
+                </div>
+
+                {% block content %}
+                    <table id="content">
+                        <tr> 
+                            <td id="content_left"> 
+                                {% if current_team %}
+                                    {% include "team/base_left.html" %}
+                                {% endif %}
+                                {% block content_left %}
+                                {% endblock %}
+                            </td> 
+                            <td id="content_center"> 
+
+                                {% if tabs %}
+                                    {% include "tabs.html" %}
+                                {% endif %}
+
+                                {% if description_title and description_content %}
+                                    {% include "description.html" %}
+                                {% endif %}
+
+                                {% block content_center %}
+                                {% endblock %}
+
+                            </td> 
+                            <td id="content_right"> 
+                                {% if current_team %}
+                                    {% include "team/base_right.html" %}
+                                {% endif %}
+                                {% block content_right %}
+                                {% endblock %}
+                            </td> 
+                        </tr>
+                    <table>
+                {% endblock %}
+
             </div>
-        {% endblock %}
-        <div id="index_body"> 
-            <p> 
-                Bikesurf.org is currently under development. This means it is 
-                incomplete and we <b><i>WILL</i></b> delete data any time 
-                without notice. 
-            </p> 
-        </div>
 
-        {% block content %}
-            <table id="content">
-                <tr> 
-                    <td id="content_left"> 
-                        {% if current_team %}
-                            {% include "team/base_left.html" %}
-                        {% endif %}
-                        {% block content_left %}
-                        {% endblock %}
-                    </td> 
-                    <td id="content_center"> 
-
-                        {% if tabs %}
-                            {% include "tabs.html" %}
-                        {% endif %}
-
-                        {% if description_title and description_content %}
-                            {% include "description.html" %}
-                        {% endif %}
-
-                        {% block content_center %}
-                        {% endblock %}
-
-                    </td> 
-                    <td id="content_right"> 
-                        {% if current_team %}
-                            {% include "team/base_right.html" %}
-                        {% endif %}
-                        {% block content_right %}
-                        {% endblock %}
-                    </td> 
-                </tr>
-            <table>
-        {% endblock %}
-
-        <div id="footer">
-            <a href="/admin/">
-                {% trans "ADMIN" %}
-            </a>
-            <a href="/rosetta/pick/?filter=third-party">
-                {% trans "INTERNATIONALISATION" %}
-            </a>
-            <a href="https://bitbucket.org/fabe/bikesurf.org">
-                {% trans "REPOSITORY" %}
-            </a>
+            <div id="footer">
+                <a href="/admin/">
+                    {% trans "ADMIN" %}
+                </a>
+                <a href="/rosetta/pick/?filter=third-party">
+                    {% trans "INTERNATIONALISATION" %}
+                </a>
+                <a href="https://bitbucket.org/fabe/bikesurf.org">
+                    {% trans "REPOSITORY" %}
+                </a>
+            </div>
         </div>
     </body>
 </html>
