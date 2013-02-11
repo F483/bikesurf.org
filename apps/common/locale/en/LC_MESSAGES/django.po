@@ -2,20 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-31 10:44-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-01-31 14:18\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: templates/base.html:21
 msgid "META_DESCRIPTION"
@@ -23,36 +24,36 @@ msgstr ""
 
 #: templates/form.html:12
 msgid "SUBMIT"
-msgstr ""
+msgstr "Submit"
 
 #: templates/statusbar.html:8
 msgid "MY_BORROWS"
-msgstr ""
+msgstr "My borrows"
 
 #: templates/statusbar.html:14
 msgid "MY_BIKES"
-msgstr ""
+msgstr "My Bikes"
 
 #: templates/statusbar.html:20
 msgid "MY_STATIONS"
-msgstr ""
+msgstr "My stations"
 
 #: templates/statusbar.html:25
 msgid "LOGOUT"
-msgstr ""
+msgstr "Logout"
 
 #: templates/statusbar.html:30
 msgid "LOGIN"
-msgstr ""
+msgstr "Login"
 
 #: templates/statusbar.html:31
 msgid "REGISTER"
-msgstr ""
+msgstr "Register"
 
 #: templatetags/common_tags.py:16
 msgid "TRUE"
-msgstr ""
+msgstr "Yes"
 
 #: templatetags/common_tags.py:17
 msgid "FALSE"
-msgstr ""
+msgstr "No"

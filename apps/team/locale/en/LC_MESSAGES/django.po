@@ -2,70 +2,71 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-31 10:44-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-01-31 14:25\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:23
 msgid "NAME_TO_SHORT"
-msgstr ""
+msgstr "Name is to short!"
 
 #: forms.py:25
 msgid "NAME_RESERVED"
-msgstr ""
+msgstr "Name is reserved!"
 
 #: forms.py:27 forms.py:29
 msgid "NAME_USED"
-msgstr ""
+msgstr "Name is used!"
 
 #: forms.py:34
 msgid "TEAM_NAME"
-msgstr ""
+msgstr "Team name"
 
 #: forms.py:35 templates/team/base_right.html:27
 msgid "COUNTRY"
-msgstr ""
+msgstr "Country"
 
 #: forms.py:40 templates/team/remove_requests.html:12
 msgid "REASON"
-msgstr ""
+msgstr "Reason"
 
 #: forms.py:45 templates/team/join_requests.html:19
 #: templates/team/remove_requests.html:13
 msgid "RESPONSE"
-msgstr ""
+msgstr "Response"
 
 #: forms.py:46 templates/team/join_requests.html:17
 #: templates/team/remove_requests.html:11
 msgid "STATUS"
-msgstr ""
+msgstr "Status"
 
 #: views.py:46
 msgid "CREATE_TEAM"
-msgstr ""
+msgstr "Create a bikesurf team."
 
 #: views.py:97 templates/team/base_right.html:33
 msgid "JOIN_REQUEST"
-msgstr ""
+msgstr "Join team"
 
 #: templates/team/base_right.html:7
 msgid "TEAM_ACTIONS"
-msgstr ""
+msgstr "Team actions"
 
 #: templates/team/base_right.html:26
 msgid "TEAM_INFO"
-msgstr ""
+msgstr "Team info"
 
 #: templates/team/base_right.html:28
 msgid "TODO TWITTER"
