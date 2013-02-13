@@ -1,6 +1,7 @@
 <VirtualHost *:80>
     ServerAdmin fabian.barkhau@gmail.com
     ServerName  bikesurf.org
+    ServerAlias www.bikesurf.org
     
     DocumentRoot /home/bikesurf/www
  
