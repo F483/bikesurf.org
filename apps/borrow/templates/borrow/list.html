@@ -5,32 +5,88 @@
 {% load borrow_tags %}
 
 {% block content_center %}
-    {% for borrow in borrows %}
-        <div class="content_block">
-            <h2>
-                {% if current_team %}
-                    <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
-                {% else %}
-                    <a href="/borrow/view/{{ borrow.id }}">
-                {% endif %}
-                    {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
-                    ({% trans borrow.state %} {% draw_status borrow %})
-                </a>
-            </h2>
+    <table class="list_block">
+        <tr> 
+            <th> {% trans "BORROWER" %} </th>
+            <th> {% trans "BIKE" %} </th>
+            <th> {% trans "DATE FROM" %} </th>
+            <th> {% trans "DATE TO" %} </th>
+            <th> {% trans "STATION FROM" %} </th>
+            <th> {% trans "STATION TO" %} </th>
+            <th> {% trans "BORROW STATE" %} </th>
+        
+        </tr>
 
-            {% trans "DATE FROM" %} {{ borrow.start }} 
-            {% trans "TO" %} {{ borrow.finish }}<br />
+        {% for borrow in borrows %}
+            <tr> 
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.borrower }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.bike.name }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.start }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.finish }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.src.street }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {{ borrow.dest.street }}
+                    </a>
+                </td>
+                <td>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/borrow/view/{{ borrow.id }}">
+                    {% else %}
+                        <a href="/borrow/view/{{ borrow.id }}">
+                    {% endif %}
+                    {% trans borrow.state %} {% draw_status borrow %}
+                    </a>
+                </td>
+                </tr>
+        {% endfor %}
 
-            {% trans "STATION FROM" %} {{ borrow.src.street }} 
-            {% trans "TO" %} {{ borrow.dest.street }}<br />
+    </table>
 
-            <div>
-                {% draw_respond current_account borrow %}
-                {% draw_cancel current_account borrow current_team %}
-                {% draw_rate current_account borrow current_team %}
-            </div>
-        </div>
-    {% endfor %}
 {% endblock %}
 
 

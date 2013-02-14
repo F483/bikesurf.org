@@ -55,16 +55,16 @@ class Bike(Model):
     reserve = BooleanField(default=False) # not requestable
     station = ForeignKey('station.Station', blank=True, null=True, related_name="bikes")
     lockcode = CharField(max_length=1024)
-    keycode = CharField(max_length=1024, blank=True)
+    keycode = CharField(max_length=1024, blank=True) # TODO remove
     
     # Usefull properties to filter by.
-    kind = CharField(max_length=64, choices=KIND_CHOICES, default='NORMAL')
-    gender = CharField(max_length=64, choices=GENDER_CHOICES, default='NEUTRAL')
-    size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM')
+    kind = CharField(max_length=64, choices=KIND_CHOICES, default='NORMAL') # TODO remove
+    gender = CharField(max_length=64, choices=GENDER_CHOICES, default='NEUTRAL') # TODO remove
+    size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM') # TODO add height in cm
     lights = BooleanField(default=False) # to cycle when dark
-    fenders = BooleanField(default=False) # to cycle when wet
-    rack = BooleanField(default=False) # to carry stuff
-    basket = BooleanField(default=False) # to put stuff in
+    fenders = BooleanField(default=False) # TODO remove
+    rack = BooleanField(default=False) # TODO remove
+    basket = BooleanField(default=False) # TODO remove
     
     # meta
     created_on = DateTimeField(auto_now_add=True)

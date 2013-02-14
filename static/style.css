@@ -81,6 +81,19 @@
     margin-bottom: 5px;
 }
 
+.list_block {
+    background: #02281B;
+    //padding: 10px;
+    //border: 1px solid;
+    //border-color: #000000;
+    margin-bottom: 5px;
+}
+
+.list_block td {
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+}
+
 
 /*************/
 /* base.html */
@@ -120,6 +133,12 @@ body h2 {
     border-bottom: 1px solid #000000;
 }
 
+body a {
+    color: #E8B828;
+    text-decoration: none; 
+    font-weight: bold;
+}
+
 #statusbar {
     background: none repeat scroll 0 0 #231508;
     padding: 2px;
@@ -156,11 +175,15 @@ body h2 {
     text-align: center;
 }
 
+#logo_small {
+    padding-bottom: 10px;
+}
+
 #content {
 }
 
 #content_left {
-    width: 200px;
+    width: 150px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;

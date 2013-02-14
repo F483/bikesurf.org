@@ -15,8 +15,8 @@ from django.db.models import IntegerField
 
 
 STATE_CHOICES = [
-    ("REQUEST",_("REQUEST")),   # (B)                        
-    ("MEETUP",_("MEETUP")),    # (L)    
+    ("REQUEST",_("REQUEST")),    # (B)                        
+    ("MEETUP",_("MEETUP")),      # (L)    
     ("ACCEPTED",_("ACCEPTED")),  # (L)    
     ("REJECTED",_("REJECTED")),  # (L)    
     ("CANCELED",_("CANCELED")),  # (B|L)  Only Before Start   
