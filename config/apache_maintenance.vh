@@ -14,7 +14,7 @@
  
     # static media aliases
     Alias /static/ /home/bikesurf/www/static/
-    Alias / /home/bikesurf/www/apps/site/templates/maintenance.html
+    Alias / /home/bikesurf/www/apps/site/templates/site/maintenance.html
  
     # static permissions
     <Directory /home/bikesurf/www/static>
