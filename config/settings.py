@@ -118,6 +118,19 @@ INSTALLED_APPS = (
     'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
     'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
 
+    # biksurfing apps
+    'apps.common',
+    'apps.bike',
+    'apps.borrow',
+    'apps.message',
+    'apps.account',
+    'apps.image',
+    'apps.team',
+    'apps.blog',
+    'apps.page',
+    'apps.site',
+    'apps.station',
+
     # auth
     'allauth',
     'allauth.account',
@@ -132,18 +145,6 @@ INSTALLED_APPS = (
 #    'allauth.socialaccount.providers.stackexchange',
 #    'allauth.socialaccount.providers.twitter',
 
-    # biksurfing apps
-    'apps.common',
-    'apps.bike',
-    'apps.borrow',
-    'apps.message',
-    'apps.account',
-    'apps.image',
-    'apps.team',
-    'apps.blog',
-    'apps.page',
-    'apps.site',
-    'apps.station',
 )
 
 ########
@@ -277,6 +278,16 @@ SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_AUTO_SIGNUP = True
 # TODO avatars? SOCIALACCOUNT_AVATAR_SUPPORT (= 'avatar' in settings.INSTALLED_APPS)
 # TODO provider specific settings SOCIALACCOUNT_PROVIDERS (= dict)
+
+
+#SOCIALACCOUNT_PROVIDERS = { 
+#    'google': { 
+#        'SCOPE': ['https://www.googleapis.com/auth/userinfo.profile'],
+#        'AUTH_PARAMS': { 'access_type': 'online' } 
+#    },
+#}
+
+
 
 
 ###################
