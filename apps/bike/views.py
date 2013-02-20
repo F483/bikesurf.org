@@ -145,7 +145,7 @@ def create(request, team_link):
     else:
         form = forms.Create(team=team, account=account)
     args = { "form" : form, "form_title" : _("BIKE_CREATE") }
-    return rtr(team, "bikes", request, "form.html", args)
+    return rtr(team, "bikes", request, "common/form.html", args)
 
 @login_required
 @require_http_methods(["GET", "POST"])
@@ -173,7 +173,7 @@ def edit(request, team_link, bike_id):
     else:
         form = forms.Edit(bike=bike, account=account)
     args = { "form" : form, "form_title" : _("BIKE_EDIT") }
-    return rtr(team, "bikes", request, "form.html", args)
+    return rtr(team, "bikes", request, "common/form.html", args)
 
 
 

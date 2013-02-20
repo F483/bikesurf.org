@@ -52,6 +52,6 @@ def create(request, team_link):
     else:
         form = CreateBlogForm()
     args = { "form" : form, "form_title" : _("ADD_BLOG") }
-    return rtr(team, "blog", request, "form.html", args)
+    return rtr(team, "blog", request, "common/form.html", args)
 
 

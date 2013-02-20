@@ -39,7 +39,7 @@
         <div id="container">
 
             {% block statusbar %}
-                {% include "statusbar.html" %}
+                {% include "common/statusbar.html" %}
             {% endblock %}
 
             <div id="body">
@@ -57,11 +57,11 @@
                             <td id="content_center"> 
 
                                 {% if tabs %}
-                                    {% include "tabs.html" %}
+                                    {% include "common/tabs.html" %}
                                 {% endif %}
 
                                 {% if description_title and description_content %}
-                                    {% include "description.html" %}
+                                    {% include "common/description.html" %}
                                 {% endif %}
 
                                 {% block content_center %}

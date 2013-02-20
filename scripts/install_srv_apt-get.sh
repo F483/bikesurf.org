@@ -14,7 +14,7 @@ apt-get -qy install apache2 postgresql libapache2-mod-wsgi python-imaging python
 # python packages
 pip install Django
 pip install django-countries
-pip install django-social-auth
+pip install django-allauth
 pip install easy-thumbnails
 pip install South
 pip install unidecode

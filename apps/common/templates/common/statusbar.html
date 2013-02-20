@@ -22,13 +22,14 @@
             </a>
         {% endif %}
 
-        <a href="/admin/logout/">{% trans "LOGOUT" %}</a>
-        <a href="/account/view">{{ current_user.username }}</a>
+
+        <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
+        <a href="/TODO">{{ current_user.username }}</a>
 
     {% else %}
 
-        <a href="/admin/">{% trans "LOGIN" %}</a>
-        <a href="/account/regester">{% trans "REGISTER" %}</a>
+        <a href="/accounts/login/">{% trans "LOGIN" %}</a>
+        <a href="/TODO">{% trans "REGISTER" %}</a>
 
     {% endif %}
 </div>

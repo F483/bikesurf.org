@@ -44,7 +44,7 @@ def create(request):
     else:
         form = CreateTeamForm()
     args = { "form" : form, "form_title" : _("CREATE_TEAM") }
-    return render_response(request, "form.html", args)
+    return render_response(request, "common/form.html", args)
 
 
 #################
@@ -95,7 +95,7 @@ def join_request(request, team_link):
     else:
         form = CreateJoinRequestForm()
     args = { "form" : form, "form_title" : _("JOIN_REQUEST") }
-    return rtr(team, None, request, "form.html", args)
+    return rtr(team, None, request, "common/form.html", args)
 
 
 @login_required
@@ -130,7 +130,7 @@ def join_request_process(request, team_link, join_request_id):
     else:
         form = ProcessJoinRequestForm()
     args = { "form" : form, "form_title" : "PROCESS_JOIN_REQUEST" }
-    return rtr(team, "join_requests", request, "form.html", args)
+    return rtr(team, "join_requests", request, "common/form.html", args)
 
 
 @login_required
