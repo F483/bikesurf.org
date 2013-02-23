@@ -1,8 +1,3 @@
-
-/**********/
-/* GLOBAL */
-/**********/
-
 body {
     background-color: #FFF;
     font-family: helvetica, arial, sans-serif;                       
@@ -79,10 +74,6 @@ table td {
     font-weight: bold;
 }
 
-/********************/
-/* common/base.html */
-/********************/
-
 #statusbar {
     background: #25272B;
     padding: 2px;
@@ -108,96 +99,3 @@ table td {
     left: -4px;
     width:100%;
 }
-
-/*******************/
-/* site/index.html */
-/*******************/
-
-#index_table {
-    width: 900px;
-    height: 460px;
-    margin: auto;
-    background-image: url(/static/index_background.png);
-}
-
-.index_column_select {
-    color: #FFFFFF;
-    text-align: center;
-    width: 200px;
-    vertical-align: middle;
-    background-color:#000000;
-    filter:alpha(opacity=70);
-    -moz-opacity:0.7;
-    -khtml-opacity: 0.7;
-    opacity: 0.7;
-}
-
-#index_cell_subtitle {
-    font-size: 28pt;
-    font-weight: bold;
-}
-
-#index_cell_logo {
-    height: 200px;
-}
-
-#index_cell_select {
-    height: 30px;
-}
-
-#index_button_create_team {
-    height: 24px;
-    width: 250px;
-    line-height: 24px;
-    background-image: url(/static/button_create_team_background.png);
-}
-
-#index_button_create_team span {
-    padding-left: 6px;
-    vertical-align: middle;
-    line-height: normal;
-    display: inline-block;
-}
-
-#index_button_create_team a {                                                                  
-    font-size: 12pt;
-    font-weight: bold;
-    color: #000000;                                                  
-    text-transform: uppercase;
-}                                                                    
-
-
-/******************/
-/* team/base.html */
-/******************/
-
-.column_menu {
-    width: 200px;
-    text-align: right;
-    padding-left: 24px;
-}
-
-.column_seperator {
-    width: 24px;
-    text-align: center;
-}
-
-.column_content {
-    padding-bottom: 0px;
-    background: #D1F9E1;
-}
-
-.column_info {
-    width: 250px;
-}
-
-#cell_seperator {
-    background-image: url(/static/chain_link.png);
-    background-repeat: repeat-y; 
-    background-position: top; 
-}
-
-#cell_logo {
-    background: #FFFFFF;
-}
-

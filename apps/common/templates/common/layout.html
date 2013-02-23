@@ -1,25 +1,27 @@
 {% extends "common/base.html" %}
 
 {% block body %}
+    <link rel="stylesheet" href="/static/common/layout.css" type="text/css" charset="utf-8" >
+
     <table>
         <tr>
-            <td class="column_menu"> 
+            <td class="layout_column_menu"> 
                 <a href="/"><img src="/static/home_button_left.png" alt="BikeSurf"></a>
             </td> 
 
-            <td class="column_seperator">
+            <td class="layout_column_seperator">
                 <a href="/"><img src="/static/home_button_middle.png" alt="BikeSurf"></a>
             </td>
 
-            <td id="cell_logo" class="column_content"> 
+            <td id="layout_cell_logo" class="layout_column_content"> 
                 <a href="/"><img src="/static/home_button_right.png" alt="BikeSurf"></a>
             </td> 
 
-            <td class="column_info"> 
+            <td class="layout_column_info"> 
             </td> 
         </tr>
         <tr> 
-            <td class="column_menu"> 
+            <td class="layout_column_menu"> 
                 {% if current_team %}
                     {% include "team/base_left.html" %}
                 {% endif %}
@@ -27,10 +29,10 @@
                 {% endblock %}
             </td> 
 
-            <td id="cell_seperator" class="column_seperator">
+            <td id="layout_cell_seperator" class="layout_column_seperator">
             </td>
 
-            <td class="column_content"> 
+            <td class="layout_column_content"> 
                 {% if tabs %}
                     {% include "common/tabs.html" %}
                 {% endif %}
@@ -39,7 +41,7 @@
                 {% endblock %}
             </td> 
 
-            <td class="column_info"> 
+            <td class="layout_column_info"> 
                 {% if current_team %}
                     {% include "team/base_right.html" %}
                 {% endif %}

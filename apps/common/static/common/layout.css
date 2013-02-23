@@ -1,0 +1,29 @@
+.layout_column_menu {
+    width: 200px;
+    text-align: right;
+    padding-left: 24px;
+}
+
+.layout_column_seperator {
+    width: 24px;
+    text-align: center;
+}
+
+.layout_column_content {
+    padding-bottom: 0px;
+    background: #D1F9E1;
+}
+
+.layout_column_info {
+    width: 250px;
+}
+
+#layout_cell_seperator {
+    background-image: url(/static/chain_link.png);
+    background-repeat: repeat-y; 
+    background-position: top; 
+}
+
+#layout_cell_logo {
+    background: #FFFFFF;
+}
