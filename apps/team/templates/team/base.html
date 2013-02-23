@@ -1,0 +1,51 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+    <table>
+        <tr>
+            <td class="column_menu"> 
+                <a href="/"><img src="/static/home_button_left.png" alt="BikeSurf"></a>
+            </td> 
+
+            <td class="column_seperator">
+                <a href="/"><img src="/static/home_button_middle.png" alt="BikeSurf"></a>
+            </td>
+
+            <td id="cell_logo" class="column_content"> 
+                <a href="/"><img src="/static/home_button_right.png" alt="BikeSurf"></a>
+            </td> 
+
+            <td class="column_info"> 
+            </td> 
+        </tr>
+        <tr> 
+            <td class="column_menu"> 
+                {% if current_team %}
+                    {% include "team/base_left.html" %}
+                {% endif %}
+                {% block content_left %}
+                {% endblock %}
+            </td> 
+
+            <td id="cell_seperator" class="column_seperator">
+            </td>
+
+            <td class="column_content"> 
+                {% if tabs %}
+                    {% include "common/tabs.html" %}
+                {% endif %}
+                {% block content %}
+                    CONTENT AREA
+                {% endblock %}
+            </td> 
+
+            <td class="column_info"> 
+                {% if current_team %}
+                    {% include "team/base_right.html" %}
+                {% endif %}
+                {% block content_right %}
+                {% endblock %}
+            </td> 
+        </tr>
+    <table>
+{% endblock %}

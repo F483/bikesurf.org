@@ -1,10 +1,49 @@
-/**
- * COLOURSCHEME
- *  #02281B (Drak Gray)
- *  #231508 (Dark Brown)
- *  #75A43A (Green)
- *  #E8B828 (Yellow)
- */
+
+/**********/
+/* GLOBAL */
+/**********/
+
+body {
+    background-color: #FFF;
+    font-family: helvetica, arial, sans-serif;                       
+    font-size: 10pt;
+    color: #000;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+a {                                                                  
+    color: #F47920;                                                  
+    text-decoration: none;                                           
+}                                                                    
+
+a:hover {                                                            
+    color: #ff9536;                                                  
+    text-shadow: #F47920 0px 0px 2px;
+}                                                                    
+                     
+h1 {                                                                 
+    font-size: 140%;                                                 
+    margin: 1.5em 0 0 0;                                             
+} 
+
+img {
+    /*display:block;*/
+    vertical-align: bottom;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    /*border: 1px dotted;*/
+}
+
+table td {
+    vertical-align:top;
+    padding: 0;
+    /*border: 1px dotted;*/
+}
 
 /***********/
 /* GENERIC */
@@ -13,21 +52,20 @@
 /* MENU */
 
 .menu {
-    background: #231508;
     padding: 10px;
     border: 1px;
     border-color: #000000;
     margin-bottom: 5px;
+    font-size: 12pt;
+    box-shadow: -5px 5px 5px #E0E0E0;
 }
 
 .menu a {
-    color: #FFFFFF;
     text-decoration: none; 
-    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .menu a:hover {
-    color: #E8B828;
 }
 
 .menu ul {
@@ -38,109 +76,15 @@
 
 .menu #selected {
     color: #E8B828;
-}
-
-
-/* TABS */
-
-.tabs {
-    background: #231508;
-    padding-top: 5px;
-    padding-right: 20px;
-    border: 1px;
-    border-color: #000000;
-    width: auto;
-}
-
-.tabs td {
-    padding-left: 20px;
-}
-
-.tabs a {
-    color: #FFFFFF;
-    text-decoration: none; 
     font-weight: bold;
 }
 
-.tabs a:hover {
-    color: #E8B828;
-}
-
-.tabs #selected {
-    color: #E8B828;
-}
-
-
-/* CONTENT BLOCK */
-
-.content_block {
-    background: #02281B;
-    padding: 10px;
-    border: 1px solid;
-    border-color: #000000;
-    margin-bottom: 5px;
-}
-
-.list_block {
-    background: #02281B;
-    //padding: 10px;
-    //border: 1px solid;
-    //border-color: #000000;
-    margin-bottom: 5px;
-}
-
-.list_block td {
-    border-bottom: 1px solid #DDD;
-    border-right: 1px solid #DDD;
-}
-
-
-/*************/
-/* base.html */
-/*************/
-
-body {
-    background: url("/static/background.jpg") repeat-y scroll center top #000000;
-    color: #FFFFFF;
-    font: 12px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
-    //position: relative;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#container {
-    min-height:100%;
-    position:relative;
-}
-
-body table {
-    width: 100%;
-    border-spacing: 0;
-    /*border: 1px dotted;*/
-}
-
-body table td {
-    vertical-align:top;
-    padding: 0;
-    /*border: 1px dotted;*/
-}
-
-body h2 {
-    color: #E8B828;
-    font: bold 14px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
-    margin: 0px 0px 5px 0px;
-    border-bottom: 1px solid #000000;
-}
-
-body a {
-    color: #E8B828;
-    text-decoration: none; 
-    font-weight: bold;
-}
+/********************/
+/* common/base.html */
+/********************/
 
 #statusbar {
-    background: none repeat scroll 0 0 #231508;
+    background: #25272B;
     padding: 2px;
     text-align: right;
 }
@@ -148,88 +92,112 @@ body a {
 #statusbar a { 
     margin-right: 5px; 
     text-decoration: none; 
-    color: #75A43A; 
 }
 
 #body {
-    padding:10px;
-    padding-bottom:12px;   /* Height for the footer */
+    padding:0px;
+    padding-bottom:12px; /* Height for the footer */
 }
 
 #footer {
-    background: none repeat scroll 0 0 #231508;
+    background: #25272B;
     padding: 2px;
     text-align: center;
     position:absolute;
     bottom:0;
+    left: -4px;
     width:100%;
-}
-
-#footer a { 
-    margin-right: 5px; 
-    text-decoration: none; 
-    color: #75A43A; 
-}
-
-#logo {
-    text-align: center;
-}
-
-#logo_small {
-    padding-bottom: 10px;
-}
-
-#content {
-}
-
-#content_left {
-    width: 150px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-}
-
-#content_center {
-    padding-bottom: 10px;
-}
-
-#content_right {
-    width: 300px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
 }
 
 /*******************/
 /* site/index.html */
 /*******************/
 
-#index_body {
+#index_table {
+    width: 900px;
+    height: 460px;
+    margin: auto;
+    background-image: url(/static/index_background.png);
+}
+
+.index_column_select {
+    color: #FFFFFF;
     text-align: center;
-    color: #231508;
-}
-
-#index_body p {
-    font: bold 16px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
-}
-
-
-/*******************/
-/* team/bikes.html */
-/*******************/
-
-#td_bike_image {
     width: 200px;
+    vertical-align: middle;
+    background-color:#000000;
+    filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
 }
 
-#td_bike_props {
-    padding-left: 10px;
-    width: 175px;
+#index_cell_subtitle {
+    font-size: 28pt;
+    font-weight: bold;
 }
 
-#td_bike_info {
-
+#index_cell_logo {
+    height: 200px;
 }
 
+#index_cell_select {
+    height: 30px;
+}
 
+#index_button_create_team {
+    height: 24px;
+    width: 250px;
+    line-height: 24px;
+    background-image: url(/static/button_create_team_background.png);
+}
+
+#index_button_create_team span {
+    padding-left: 6px;
+    vertical-align: middle;
+    line-height: normal;
+    display: inline-block;
+}
+
+#index_button_create_team a {                                                                  
+    font-size: 12pt;
+    font-weight: bold;
+    color: #000000;                                                  
+    text-transform: uppercase;
+}                                                                    
+
+
+/******************/
+/* team/base.html */
+/******************/
+
+.column_menu {
+    width: 200px;
+    text-align: right;
+    padding-left: 24px;
+}
+
+.column_seperator {
+    width: 24px;
+    text-align: center;
+}
+
+.column_content {
+    padding-bottom: 0px;
+    background: #D1F9E1;
+}
+
+.column_info {
+    width: 250px;
+}
+
+#cell_seperator {
+    background-image: url(/static/chain_link.png);
+    background-repeat: repeat-y; 
+    background-position: top; 
+}
+
+#cell_logo {
+    background: #FFFFFF;
+}
 

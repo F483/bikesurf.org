@@ -1,5 +1,6 @@
 {% load i18n %}
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 
     <head>
@@ -43,42 +44,8 @@
             {% endblock %}
 
             <div id="body">
-
-                {% block content %}
-                    <table id="content">
-                        <tr> 
-                            <td id="content_left"> 
-                                {% if current_team %}
-                                    {% include "team/base_left.html" %}
-                                {% endif %}
-                                {% block content_left %}
-                                {% endblock %}
-                            </td> 
-                            <td id="content_center"> 
-
-                                {% if tabs %}
-                                    {% include "common/tabs.html" %}
-                                {% endif %}
-
-                                {% if description_title and description_content %}
-                                    {% include "common/description.html" %}
-                                {% endif %}
-
-                                {% block content_center %}
-                                {% endblock %}
-
-                            </td> 
-                            <td id="content_right"> 
-                                {% if current_team %}
-                                    {% include "team/base_right.html" %}
-                                {% endif %}
-                                {% block content_right %}
-                                {% endblock %}
-                            </td> 
-                        </tr>
-                    <table>
+                {% block body %}
                 {% endblock %}
-
             </div>
 
             <div id="footer">
@@ -92,6 +59,7 @@
                     {% trans "REPOSITORY" %}
                 </a>
             </div>
+
         </div>
     </body>
 </html>

@@ -1,8 +1,8 @@
-{% extends "common/base.html" %}
+{% extends "team/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for blog in blogs %}
         <div class="content_block">
             <h2>{{ blog.name }}</h2>
