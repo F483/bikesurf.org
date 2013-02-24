@@ -1,35 +1,33 @@
 {% load i18n %}
 
-<div id="statusbar">
-    <!-- TODO fix urls and add return url for login/out -->
-    {% if current_user.is_authenticated %}
+<!-- TODO fix urls and add return url for login/out -->
+{% if current_user.is_authenticated %}
 
-        {% if borrow_count %}
-            <a href="/borrows">{% trans "MY_BORROWS" %} 
-                    ({{ borrow_count }})
-            </a>
-        {% endif %}
-
-        {% if bike_count %}
-            <a href="/bikes">{% trans "MY_BIKES" %}
-                    ({{ bike_count }})
-            </a>
-        {% endif %}
-
-        {% if station_count %}
-            <a href="/stations">{% trans "MY_STATIONS" %}
-                    ({{ station_count }})
-            </a>
-        {% endif %}
-
-
-        <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
-        <a href="/accounts/profile/">{{ current_user.username }}</a>
-
-    {% else %}
-
-        <a href="/accounts/login/">{% trans "LOGIN" %}</a>
-        <a href="/accounts/signup/">{% trans "SIGN UP" %}</a>
-
+    {% if borrow_count %}
+        <a href="/borrows">{% trans "MY_BORROWS" %} 
+                ({{ borrow_count }})
+        </a>
     {% endif %}
-</div>
+
+    {% if bike_count %}
+        <a href="/bikes">{% trans "MY_BIKES" %}
+                ({{ bike_count }})
+        </a>
+    {% endif %}
+
+    {% if station_count %}
+        <a href="/stations">{% trans "MY_STATIONS" %}
+                ({{ station_count }})
+        </a>
+    {% endif %}
+
+
+    <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
+    <a href="/accounts/profile/">{{ current_user.username }}</a>
+
+{% else %}
+
+    <a href="/accounts/login/">{% trans "LOGIN" %}</a>
+    <a href="/accounts/signup/">{% trans "SIGN UP" %}</a>
+
+{% endif %}

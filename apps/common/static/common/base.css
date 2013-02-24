@@ -1,11 +1,16 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: #FFF;
     font-family: helvetica, arial, sans-serif;                       
     font-size: 10pt;
     color: #000;
+    margin: 0px;
+    padding: 0px;
     height: 100%;
-    margin: 0;
-    padding: 0;
+    border: none;
 }
 
 a {                                                                  
@@ -14,7 +19,7 @@ a {
 }                                                                    
 
 a:hover {                                                            
-    color: #ff9536;                                                  
+    color: #FF9536;                                                  
     text-shadow: #F47920 0px 0px 2px;
 }                                                                    
                      
@@ -30,6 +35,8 @@ img {
 
 table {
     width: 100%;
+    height: 100%;
+    border: none;
     border-spacing: 0;
     /*border: 1px dotted;*/
 }
@@ -74,28 +81,42 @@ table td {
     font-weight: bold;
 }
 
-#statusbar {
+/**********/
+/* LAYOUT */
+/**********/
+
+#base_wrapper {
+    min-height: 100%;
+    margin: auto;
+    position: relative;
+}
+
+#base_inner_wrapper:after {
+    content:" ";
+    display: block;
+    clear: both;
+}
+
+#base_statusbar {
     background: #25272B;
     padding: 2px;
+    height: 16px;
     text-align: right;
 }
 
-#statusbar a { 
+#base_statusbar a { 
     margin-right: 5px; 
-    text-decoration: none; 
 }
 
-#body {
-    padding:0px;
-    padding-bottom:12px; /* Height for the footer */
+#base_body {
 }
 
-#footer {
-    background: #25272B;
-    padding: 2px;
+#base_footer {
+    height: 16px;
+    width: 100%;
+    color: #F47920;                                                  
+    position: absolute;
+    bottom: 0;
     text-align: center;
-    position:absolute;
-    bottom:0;
-    left: -4px;
-    width:100%;
+    background: #25272B;
 }

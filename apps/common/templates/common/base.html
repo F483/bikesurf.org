@@ -1,6 +1,5 @@
 {% load i18n %}
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 
     <head>
@@ -36,30 +35,23 @@
     </head>
 
     <body>
-
-        <div id="container">
-
-            {% block statusbar %}
-                {% include "common/statusbar.html" %}
-            {% endblock %}
-
-            <div id="body">
-                {% block body %}
+        <div id="base_wrapper">
+            <div id="base_statusbar">
+                {% block statusbar %}
+                    {% include "common/statusbar.html" %}
                 {% endblock %}
             </div>
-
-            <div id="footer">
-                <a href="/admin/">
-                    {% trans "ADMIN" %}
-                </a>
-                <a href="/rosetta/pick/?filter=third-party">
-                    {% trans "INTERNATIONALISATION" %}
-                </a>
-                <a href="https://bitbucket.org/fabe/bikesurf.org">
-                    {% trans "REPOSITORY" %}
-                </a>
+            <div id="base_inner_wrapper">
+                <div id="base_body">
+                    {% block body %}
+                    {% endblock %}
+                </div>
             </div>
-
+            <div id="base_footer">
+                {% block footer %}
+                    {% include "common/footer.html" %}
+                {% endblock %}
+            </div>
         </div>
     </body>
 </html>
