@@ -35,8 +35,13 @@
     vertical-align: middle;
 }
 
-#team_header_right {
+#team_header_right_donate {
     width: 32px;
-    background-image: url(/static/team/bg_header_right.png);
+    background-image: url(/static/team/bg_header_right_donate.png);
+}
+
+#team_header_right_borrow {
+    width: 32px;
+    background-image: url(/static/team/bg_header_right_borrow.png);
 }
 

@@ -7,13 +7,21 @@
     <tr>
         <td id="team_header_left"></td>
         <td id="team_header_borrow">
-            <a href="/{{ current_team.link }}/bikes">{% trans "BORROW_A_BIKE" %}</a>
+            <a href="/{{ current_team.link }}/bikes">
+                {% trans "BORROW_A_BIKE" %}
+            </a>
         </td>
-        <td id="team_header_middle"></td>
-        <td id="team_header_donate">
-            <a href="/{{ current_team.link }}/donate">{% trans "DONATE_NOW" %}</a>
-        </td>
-        <td id="team_header_right"></td>
+        {% if donation_page %}
+            <td id="team_header_middle"></td>
+            <td id="team_header_donate">
+                <a href="/{{ current_team.link }}/{{ donation_page.link }}">
+                    {% trans "DONATE_NOW" %}
+                </a>
+            </td>
+            <td id="team_header_right_donate"></td>
+        {% else %}
+            <td id="team_header_right_borrow"></td>
+        {% endif %}
     </tr>
 </table>
 

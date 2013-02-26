@@ -6,6 +6,7 @@
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from apps.common.shortcuts import render_response
+from apps.page.models import Page
 
 
 ENTRIE_NAMES = {
@@ -45,6 +46,7 @@ def render_team_response(team, current, request, template, args):
     args.update({
         "team_menu" : _get_team_menue(team, current),
         "current_team" : team,
+        "donation_page" : Page.objects.filter(team=team, link="donate"),
     })
     return render_response(request, template, args)
 
