@@ -1,5 +1,47 @@
-html {
+/* INFO Essential CSS for the grid layout */
+
+/* NOTE IE7 and older explorers don't know anything about CSS-tables,
+        so we use a CSS hack to exclude them. */
+*>/**/.base_wrapper {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
     height: 100%;
+}
+
+/* NOTE This is the only block IE7- should read */
+.base_wrapper>.base_row, .base_wrapper>.base_column, .base_wrapper>.base_row>.base_column {
+    height: 0.1%; /* NOTE: Forces child-margins inside the box */
+    position: relative;
+}
+.base_wrapper>/**/.base_row {
+    display: table-row;
+    height: 1px;
+}
+.base_wrapper>/**/.base_row.base_expand {
+    height: auto;
+}
+.base_wrapper>/**/.base_column, .base_wrapper>/**/.base_row>.base_column {
+    display: table-cell;
+    height: auto; /* NOTE Just to reset the IE7 fix */
+    width: 1px;
+}
+.base_wrapper>/**/.base_column.base_expand, .base_wrapper>/**/.base_row>.base_column.base_expand {
+    width: auto;
+}
+
+html, body {
+    height: 100%;
+}
+
+html, body {
+    margin: 0em;
+}   
+
+body>.base_wrapper {
+    table-layout: fixed; /* NOTE Speed up table rendering */
 }
 
 body {
@@ -7,10 +49,22 @@ body {
     font-family: helvetica, arial, sans-serif;                       
     font-size: 10pt;
     color: #000;
-    margin: 0px;
-    padding: 0px;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+table {
+    width: 100%;
     height: 100%;
     border: none;
+    border-spacing: 0;
+}
+
+table td {
+    vertical-align:top;
+    padding: 0;
 }
 
 a {                                                                  
@@ -22,43 +76,57 @@ a:hover {
     color: #FF9536;                                                  
     text-shadow: #F47920 0px 0px 2px;
 }                                                                    
-                     
-h1 {                                                                 
-    font-size: 140%;                                                 
-    margin: 1.5em 0 0 0;                                             
-} 
 
-img {
-    /*display:block;*/
-    vertical-align: bottom;
+#base_statusbar {
+    background: #25272B;
+    color: #F47920;
+    text-align: right;
+    padding: 2px;
 }
 
-table {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-spacing: 0;
-    /*border: 1px dotted;*/
+#base_header {
+    height: 100px;
+    padding-left: 65px;
 }
 
-table td {
-    vertical-align:top;
-    padding: 0;
-    /*border: 1px dotted;*/
+#base_main {
 }
 
-/***********/
-/* GENERIC */
-/***********/
+#base_footer {
+    text-align: center;
+    background: #25272B;
+    color: #F47920;
+    padding: 2px;
+}
 
-/* MENU */
+#base_menu {
+    width: 200px;
+    padding-left: 24px;
+}
+
+#base_separator {
+    width: 24px;
+    background-image: url(/static/chain_link.png);
+}
+
+#base_content {
+    padding: 8px;
+    background-color: #D1F9E1;
+}
+
+#base_info {
+    width:250px;
+}
+
+#header_button_home {
+    float: left;
+}
 
 .menu {
     padding: 10px;
     border: 1px;
     border-color: #000000;
     margin-bottom: 5px;
-    font-size: 12pt;
     box-shadow: -5px 5px 5px #E0E0E0;
 }
 
@@ -81,42 +149,11 @@ table td {
     font-weight: bold;
 }
 
-/**********/
-/* LAYOUT */
-/**********/
-
-#base_wrapper {
-    min-height: 100%;
-    margin: auto;
-    position: relative;
-}
-
-#base_inner_wrapper:after {
-    content:" ";
-    display: block;
-    clear: both;
-}
-
-#base_statusbar {
-    background: #25272B;
-    padding: 2px;
-    height: 16px;
-    text-align: right;
-}
-
-#base_statusbar a { 
-    margin-right: 5px; 
-}
-
-#base_body {
-}
-
-#base_footer {
-    height: 16px;
-    width: 100%;
-    color: #F47920;                                                  
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    background: #25272B;
+.content {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border: 1px;
+    border-color: #000000;
+    margin-bottom: 8px;
+    box-shadow: -5px 5px 5px #CCC;
 }

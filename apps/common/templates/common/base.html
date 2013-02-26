@@ -12,6 +12,8 @@
             {% if page_title %}
                - {{ page_title }}
             {% endif %}
+            {% block head_title %}
+            {% endblock %}
         </title>
 
         <link type="image/x-icon" rel="icon" href="/static/favicon.ico">
@@ -35,23 +37,78 @@
     </head>
 
     <body>
-        <div id="base_wrapper">
-            <div id="base_statusbar">
-                {% block statusbar %}
-                    {% include "common/statusbar.html" %}
-                {% endblock %}
-            </div>
-            <div id="base_inner_wrapper">
-                <div id="base_body">
-                    {% block body %}
+        <div class="base_wrapper">                                               
+            <div id="base_statusbar_row" class="base_row">                           
+                <div id="base_statusbar" class="base_column">                           
+                    {% block statusbar %}
+                        {% include "common/statusbar.html" %}
                     {% endblock %}
-                </div>
-            </div>
-            <div id="base_footer">
-                {% block footer %}
-                    {% include "common/footer.html" %}
-                {% endblock %}
-            </div>
-        </div>
+                </div>                                                               
+            </div>                                                               
+            {% block header %}
+                <div id="base_header_row" class="base_row">                              
+                    <div id="base_header" class="base_column">                     
+                        {% include "common/header.html" %}
+                    </div>                                                               
+                </div>                                                               
+            {% endblock %}
+            <div id="base_main" class="base_row base_expand">                    
+                <div id="base_inside" class="base_wrapper">                           
+                    {% block body %}
+                        <div id="base_menu" class="base_column">                     
+                            {% if current_team %}
+                                {% include "team/base_left.html" %}
+                            {% endif %}
+                            {% block menu %}
+                            {% endblock %}
+                        </div>                                                       
+                        <div id="base_separator" class="base_column">
+                        </div>
+                        <div id="base_content" class="base_column base_expand">      
+                            {% if current_team %}
+                                TODO TEAM BORROW AND DONATE BUTTONS
+                            {% endif %}
+                            {% if tabs %}
+                                {% include "common/tabs.html" %}
+                            {% endif %}
+                            {% block content_wrapper %}
+                                {% block content %}
+                                    Content                                                  
+                                {% endblock %}
+                            {% endblock %}
+                        </div>                                                       
+                        <div id="base_info" class="base_column">                     
+                            {% if current_team %}
+                                {% include "team/base_right.html" %}
+                            {% endif %}
+                            {% block info %}
+                            {% endblock %}
+                        </div>                                                       
+                    {% endblock %}
+                </div>                                                           
+            </div>                                                               
+            <div id="base_footer_row" class="base_row">                              
+                <div id="base_footer" class="base_column">                              
+                    {% block footer %}
+                        {% include "common/footer.html" %}
+                    {% endblock %}
+                </div>  
+            </div>  
+            <!--script type="text/javascript">                                   
+                // INFO IE and Opera need some fixing to display the correct height of nested grids.
+                                                                                 
+                // NOTE Fortunately IE *and* Opera both implement attachEvent() and they seem to be
+                //      the only browsers, so we can use it as a filter as well. 
+                if (window.attachEvent) {                                        
+                    function fixGrid() {                                         
+                        var grid = document.getElementById('Inside');            
+                        grid.style.height = null; // NOTE Remove old height before getting new value.
+                        grid.style.height = grid.parentNode.offsetHeight+'px';   
+                    }                                                            
+                    window.attachEvent('onload', fixGrid);                       
+                    window.attachEvent('onresize', fixGrid);                     
+                }                                                                
+            </script-->                                                          
+        </div>  
     </body>
 </html>

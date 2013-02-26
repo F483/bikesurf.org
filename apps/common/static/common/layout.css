@@ -1,32 +1,58 @@
-#layout_table {
+div {
+    border-style: dotted;
 }
 
-.layout_column_menu {
+#layout_header {
+    margin-left: 65px;
+}
+
+#layout_button_home {
+    float: left;
+}
+
+#layout_wrapper {
+    height: 100%;
+}
+
+#layout_main {
+    height: 100%;
+}
+
+#layout_left {
+    float: left;
+    height: 100%;
+}
+
+#layout_right {
+    height: 100%;
+}
+
+#layout_menu {
+    margin-left: 24px;
+    height: 100%;
+    float: left;
     width: 200px;
-    text-align: right;
-    padding-left: 24px;
 }
 
-.layout_column_seperator {
+#layout_seperator {
+    height: 100%;
+    float: right;
     width: 24px;
-    text-align: center;
-}
-
-.layout_column_content {
-    padding-bottom: 0px;
-    background: #D1F9E1;
-}
-
-.layout_column_info {
-    width: 250px;
-}
-
-#layout_cell_seperator {
     background-image: url(/static/chain_link.png);
-    background-repeat: repeat-y; 
-    background-position: top; 
 }
 
-#layout_cell_logo {
-    background: #FFFFFF;
+#layout_content {
+    float: left;
+    padding: 8px;
+    height: 100%;
+    background-color: #D1F9E1;
+}
+
+#layout_info {
+    padding: 8px;
+    margin-right: 16px;
+    height: 100%;
+    background-color: #0F0;
+    float: right;
+    width: 250px;
 }
