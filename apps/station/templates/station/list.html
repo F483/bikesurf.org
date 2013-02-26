@@ -3,9 +3,9 @@
 {% load thumbnail %}
 {% load common_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for station in stations %}
-        <div class="content_block">
+        <div class="content">
             <h2>
                 {% if current_team %}
                     <a href="/{{ current_team.link }}/station/view/{{ station.id }}">

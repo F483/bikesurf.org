@@ -2,9 +2,9 @@
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for rr in remove_requests %}
-        <div class="content_block">
+        <div class="content">
             <h2> {{ rr.concerned }}</h2>
             {% trans "REQUESTER" %}: {{ rr.requester }} <br />
             {% trans "PROCESSOR" %}: {% if rr.processor %} {{ rr.processor }} {% else %} {% trans "NONE" %} {% endif %} <br />

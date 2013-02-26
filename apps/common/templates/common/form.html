@@ -1,8 +1,8 @@
 {% extends "common/base.html" %}
 {% load i18n %}
 
-{% block content_center %}
-    <div class="content_block">
+{% block content %}
+    <div class="content">
         <h2>{{ form_title }}</h2>
         <form action="{{ current_path }}" method="post">
             {% csrf_token %}

@@ -2,9 +2,9 @@
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for jr in join_requests %}
-        <div class="content_block">
+        <div class="content">
             <h2> {{ jr.requester }}</h2>
 
             {% trans "PROCESSOR" %}: 

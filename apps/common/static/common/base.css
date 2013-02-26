@@ -115,6 +115,8 @@ a:hover {
 }
 
 #base_info {
+    padding-left: 12px;
+    padding-right: 24px;
     width:250px;
 }
 
