@@ -25,26 +25,36 @@ def assert_member(account, team):
         raise PermissionDenied
 
 
-def _get_team_menue(team, current):
-    """ return [(url, label, selected, members_only), ...] """
+def _get_team_menue_public(team, current):
+    """ return [(url, label, selected), ...] """
     url = lambda pl: "/%s/%s" % (team.link, pl)
-    entrie = lambda n, m: (url(n), ENTRIE_NAMES[n], current==n, m)
+    entrie = lambda e: (url(e), ENTRIE_NAMES[e], current==e)
     menu = [ 
-        entrie("blog", False),
-        entrie("bikes", False),
-        entrie("members", False),
-        entrie("borrows", True),
-        entrie("stations", True),
-        entrie("join_requests", True),
-        entrie("remove_requests", True),
+        entrie("blog"),
+        entrie("bikes"),
     ]
-    page_entrie = lambda p: (url(p.link), p.name, p.link == current, False)
+    page_entrie = lambda p: (url(p.link), p.name, p.link == current)
     return menu + map(page_entrie, team.pages.all())
+
+
+def _get_team_menue_intern(team, current):
+    """ return [(url, label, selected), ...] """
+    url = lambda pl: "/%s/%s" % (team.link, pl)
+    entrie = lambda e: (url(e), ENTRIE_NAMES[e], current==e)
+    menu = [ 
+        entrie("members"),
+        entrie("borrows"),
+        entrie("stations"),
+        entrie("join_requests"),
+        entrie("remove_requests"),
+    ]
+    return menu
 
 
 def render_team_response(team, current, request, template, args):
     args.update({
-        "team_menu" : _get_team_menue(team, current),
+        "team_menu_public" : _get_team_menue_public(team, current),
+        "team_menu_intern" : _get_team_menue_intern(team, current),
         "current_team" : team,
         "donation_page" : Page.objects.filter(team=team, link="donate"),
     })

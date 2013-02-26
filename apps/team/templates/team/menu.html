@@ -3,14 +3,26 @@
 {% load team_tags %}
 
 <div class="menu"> 
-    <!--
-    <a href="/{{ current_team.link }}">
-        <h2>{{ current_team.name }}</h2>
-    </a>
-    -->
     <ul>
-        {% for link, label, selected, members_only in team_menu %}
-            {% if not members_only or current_account|is_member:current_team %}
+        {% for link, label, selected in team_menu_public %}
+            <li>
+                {% if selected %}
+                    <a id="selected" href="{{ link }}">
+                        {{ label }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">{{ label }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% if current_account|is_member:current_team %}
+    <div class="menu"> 
+        <h2>{% trans "TEAM_INTERN" %}</h2>
+        <ul>
+            {% for link, label, selected in team_menu_intern %}
                 <li>
                     {% if selected %}
                         <a id="selected" href="{{ link }}">
@@ -20,10 +32,10 @@
                         <a href="{{ link }}">{{ label }}</a>
                     {% endif %}
                 </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 
 {% if current_account|is_member:current_team %}
     <div class="menu"> 
