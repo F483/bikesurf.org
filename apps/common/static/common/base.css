@@ -38,7 +38,7 @@ html, body {
 
 html, body {
     margin: 0em;
-}   
+}
 
 body>.base_wrapper {
     table-layout: fixed; /* NOTE Speed up table rendering */
@@ -46,9 +46,13 @@ body>.base_wrapper {
 
 body {
     background-color: #FFF;
-    font-family: helvetica, arial, sans-serif;                       
+    font-family: helvetica, arial, sans-serif;
     font-size: 10pt;
     color: #000;
+}
+
+div {
+    vertical-align: top;
 }
 
 img {
@@ -67,15 +71,15 @@ table td {
     padding: 0;
 }
 
-a {                                                                  
-    color: #F47920;                                                  
-    text-decoration: none;                                           
-}                                                                    
+a {
+    color: #F47920;
+    text-decoration: none;
+}
 
-a:hover {                                                            
-    color: #FF9536;                                                  
+a:hover {
+    color: #FF9536;
     text-shadow: #F47920 0px 0px 2px;
-}                                                                    
+}
 
 #base_statusbar {
     background: #25272B;
@@ -128,12 +132,13 @@ a:hover {
     padding: 10px;
     border: 1px;
     border-color: #000000;
+    text-align: right;
     margin-bottom: 5px;
     box-shadow: -5px 5px 5px #E0E0E0;
 }
 
 .menu a {
-    text-decoration: none; 
+    text-decoration: none;
     text-transform: uppercase;
 }
 

@@ -8,5 +8,9 @@
             <h2>{{ blog.name }}</h2>
             {{ blog.content }}
         </div>
+    {% empty %}
+        <div class="content">
+            {% trans "NO_BLOG_ENTRIES" %}
+        </div>
     {% endfor %}
 {% endblock %}
