@@ -9,6 +9,7 @@ from django.shortcuts import render_to_response
 from django.template.defaultfilters import slugify
 from unidecode import unidecode
 from django_countries import countries
+from django.shortcuts import _get_queryset
 
 from apps.borrow.models import Borrow
 from apps.bike.models import Bike
@@ -39,4 +40,11 @@ def render_response(request, template, args):
     args.update(csrf(request))
     # TODO check for mobile browser and use mobile template if it exists
     return render_to_response(template, args)
+
+def get_object_or_none(klass, *args, **kwargs):
+    queryset = _get_queryset(klass)
+    try:
+        return queryset.get(*args, **kwargs)
+    except queryset.model.DoesNotExist:
+        return None
 
