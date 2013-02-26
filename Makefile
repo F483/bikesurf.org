@@ -21,14 +21,11 @@ db_shell:
 	sqlite3 uploads/development.db
 
 db_sync:
-	# TODO handle dp file not existing
-	rm uploads/development.db
+	test -f uploads/development.db && rm uploads/development.db || echo ""
 	python manage.py syncdb
 
 py_shell:
 	python manage.py shell
 
-
 clean:
-	# TODO remove pyc files
-	#find | grep -i .*\.pyc$
+	rm $$(find | grep -i ".*\.pyc$$")
