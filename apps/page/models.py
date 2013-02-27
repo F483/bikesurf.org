@@ -16,7 +16,7 @@ class Page(models.Model):
     link        = models.SlugField(unique=True)
     name        = models.CharField(max_length=1024)
     content     = SanitizedCharField(
-                    max_length=10000, allowed_tags=SANITIZER_ALLOWED_TAGS, 
+                    max_length=50000, allowed_tags=SANITIZER_ALLOWED_TAGS, 
                     allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, strip=False
                 )
 
