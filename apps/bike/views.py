@@ -18,6 +18,8 @@ from apps.bike import control
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.bike import forms
+from django.forms import Form
+
 
 _VIEW = {
     "OVERVIEW" : {
@@ -31,6 +33,7 @@ _VIEW = {
         "description_content" : _("BIKE_BORROWS_DESCRIPTION_CONTENT"),
     },
 }
+
 
 def _tabs(bike, team, selected, authorized):
     if team:
@@ -147,6 +150,7 @@ def create(request, team_link):
     args = { "form" : form, "form_title" : _("BIKE_CREATE") }
     return rtr(team, "bikes", request, "common/form.html", args)
 
+
 @login_required
 @require_http_methods(["GET", "POST"])
 def edit(request, team_link, bike_id):
@@ -176,6 +180,27 @@ def edit(request, team_link, bike_id):
     return rtr(team, "bikes", request, "common/form.html", args)
 
 
+@login_required
+@require_http_methods(["GET", "POST"])
+def delete(request, team_link, bike_id):
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    assert_member(account, team)
+    bike = get_object_or_404(Bike, id=bike_id, team=team)
+
+    if request.method == "POST":
+        form = Form(request.POST)
+        if form.is_valid():
+            # TODO enusre db consistency and now open borrows
+            bike.delete()
+            return HttpResponseRedirect("/%s/bikes" % team.link)
+    else:
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("BIKE_DELETE?"), 
+        "object_name" : bike.name, "cancle_url" : "/%s/bikes" % team.link
+    }
+    return rtr(team, "bikes", request, "common/delete.html", args)
 
 
 
