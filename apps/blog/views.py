@@ -14,7 +14,8 @@ from apps.blog.models import Blog
 from apps.account.models import Account
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
-from apps.blog.forms import CreateBlogForm
+from apps.blog import forms
+from django.forms import Form
 
 
 @require_http_methods(["GET"])
@@ -34,7 +35,7 @@ def create(request, team_link):
     assert_member(account, team)
 
     if request.method == "POST":
-        form = CreateBlogForm(request.POST)
+        form = forms.Create(request.POST)
         if form.is_valid():
 
             # save blog
@@ -50,8 +51,56 @@ def create(request, team_link):
 
             return HttpResponseRedirect("/%s/blog" % team.link)
     else:
-        form = CreateBlogForm()
+        form = forms.Create()
     args = { "form" : form, "form_title" : _("ADD_BLOG") }
     return rtr(team, "blog", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def edit(request, team_link, blog_id):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    blog = get_object_or_404(Blog, team=team, id=blog_id)
+    assert_member(account, team)
+
+    if request.method == "POST":
+        form = forms.Edit(request.POST, blog=blog)
+        if form.is_valid():
+            blog.name = form.cleaned_data["name"]
+            blog.content = form.cleaned_data["content"]
+            blog.updated_by = account
+            blog.save()
+            return HttpResponseRedirect("/%s/blog" % (team.link))
+    else:
+        form = forms.Edit(blog=blog)
+    args = { "form" : form, "form_title" : _("BLOG_EDIT") }
+    return rtr(team, "blog", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def delete(request, team_link, blog_id):
+
+    # get data
+    team = get_object_or_404(Team, link=team_link)
+    account = get_object_or_404(Account, user=request.user)
+    blog = get_object_or_404(Blog, team=team, id=blog_id)
+    assert_member(account, team)
+
+    if request.method == "POST":
+        form = Form(request.POST)
+        if form.is_valid():
+            blog.delete()
+            return HttpResponseRedirect("/%s/blog" % team.link)
+    else:
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("BLOG_DELETE?"), 
+        "object_name" : blog.name, "cancle_url" : "/%s/blog" % team.link
+    }
+    return rtr(team, "blog", request, "common/delete.html", args)
 
 
