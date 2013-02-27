@@ -14,8 +14,10 @@ P = "(?P<page_link>%s)" % SLUG # Page Link
 
 
 urlpatterns = patterns("apps.page.views",
-    url(r"^%s/page/create$" % T, "create"),
-    url(r"^%s/%s$" % (T, P),     "view"),
+    url(r"^%s/page/create$" % T,         "create"),
+    url(r"^%s/page/edit/%s$" % (T, P),   "edit"),
+    url(r"^%s/page/delete/%s$" % (T, P), "delete"),
+    url(r"^%s/%s$" % (T, P),             "view"),
 )
 
 
