@@ -131,6 +131,6 @@ def create(request, team_link):
     else:
         form = CreateStationForm(team=team, account=account)
     args = { "form" : form, "form_title" : _("ADD_STATION") }
-    return rtr(team, "stations", request, "form.html", args)
+    return rtr(team, "stations", request, "common/form.html", args)
 
 

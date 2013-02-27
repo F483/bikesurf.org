@@ -1,0 +1,9 @@
+<div id="header_button_home">
+    <a href="/"><img src="/static/button_home.png" alt="Home"></a>
+</div>
+{% if current_team %}
+    <div id="header_button_team">
+        <!-- TODO TEAM BUTTON -->
+        <a href="/{{ current_team.link }}"><img src="/static/button_team.png" alt="Home"></a>
+    </div>
+{% endif %}

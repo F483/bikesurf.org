@@ -13,6 +13,15 @@ from django.db.models import DateTimeField
 from django.db.models import URLField
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
+from django.dispatch import receiver
+from allauth.account.signals import user_signed_up
+
+
+@receiver(user_signed_up)
+def signed_up_callback(sender, **kwargs):
+    account = Account()
+    account.user = kwargs["user"]
+    account.save()
 
 
 class Account(Model):
@@ -31,7 +40,7 @@ class Account(Model):
     description = TextField(blank=True)
     source = CharField(max_length=64, choices=SOURCES_CHOICES, default='OTHER')
     feedback = TextField(blank=True)
-    mobile = CharField(max_length=1024)
+    mobile = CharField(max_length=1024, blank=True)
 
     # meta
     created_on = DateTimeField(auto_now_add=True)
@@ -101,4 +110,6 @@ class Vacation(Model):
         args = (self.id, self.user.id, self.start, self.finish)
         return u"id: %s; user_id: %s; start: %s; finish: %s" % args
     
+
+
 

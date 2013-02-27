@@ -1,17 +1,19 @@
-{% extends "base.html" %}
+{% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
-    {% for rr in remove_requests %}
-        <div class="content_block">
+{% block content %}
+    <div class="content">
+        {% for rr in remove_requests %}
             <h2> {{ rr.concerned }}</h2>
             {% trans "REQUESTER" %}: {{ rr.requester }} <br />
             {% trans "PROCESSOR" %}: {% if rr.processor %} {{ rr.processor }} {% else %} {% trans "NONE" %} {% endif %} <br />
             {% trans "STATUS" %}: {{ rr.status }} <br />
             <p> {% trans "REASON" %}: {{ rr.reason }} </p>
             <p> {% trans "RESPONSE" %}: {{ rr.response }} </p>
-        </div>
-    {% endfor %}
+        {% empty %}
+            {% trans "NO_REMOVE_REQUESTS" %}
+        {% endfor %}
+    </div>
 {% endblock %}
 

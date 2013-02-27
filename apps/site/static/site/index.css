@@ -1,0 +1,54 @@
+
+#index_table {
+    width: 900px;
+    height: 460px;
+    margin: auto;
+    background-image: url(/static/index_background.png);
+}
+
+.index_column_select {
+    color: #FFFFFF;
+    text-align: center;
+    width: 200px;
+    vertical-align: middle;
+    background-color:#000000;
+    filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+
+#index_cell_subtitle {
+    font-size: 26pt;
+    font-weight: bold;
+}
+
+#index_cell_logo {
+    height: 200px;
+}
+
+#index_cell_select {
+    height: 30px;
+}
+
+#index_button_create_team {
+    height: 24px;
+    width: 250px;
+    line-height: 24px;
+    background-image: url(/static/button_create_team_background.png);
+}
+
+#index_button_create_team span {
+    padding-left: 6px;
+    vertical-align: middle;
+    line-height: normal;
+    display: inline-block;
+}
+
+#index_button_create_team a {                                                                  
+    font-size: 12pt;
+    font-weight: bold;
+    color: #000000;                                                  
+    text-transform: uppercase;
+}                                                                    
+

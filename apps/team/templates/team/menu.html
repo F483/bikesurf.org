@@ -1,0 +1,68 @@
+{% load i18n %}
+{% load common_tags %}
+{% load team_tags %}
+
+<div class="menu"> 
+    <ul>
+        {% for link, label, selected in team_menu_public %}
+            <li>
+                {% if selected %}
+                    <a id="selected" href="{{ link }}">
+                        {{ label }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">{{ label }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% if current_account|is_member:current_team %}
+    <div class="menu"> 
+        <h2>{% trans "TEAM_INTERN" %}</h2>
+        <ul>
+            {% for link, label, selected in team_menu_intern %}
+                <li>
+                    {% if selected %}
+                        <a id="selected" href="{{ link }}">
+                            {{ label }}
+                        </a>
+                    {% else %}
+                        <a href="{{ link }}">{{ label }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% if current_account|is_member:current_team %}
+    <div class="menu"> 
+        <h2>{% trans "TEAM_ACTIONS" %}</h2>
+        <ul>
+            <li>
+                {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}
+            </li>
+            <li>
+                {% draw_create "ADD_PAGE" "/" current_team.link "/page/create" %}
+            </li>
+            <li>
+                {% draw_create "BIKE_CREATE" "/" current_team.link "/bike/create" %}
+            </li>
+            <li>
+                {% draw_create "ADD_STATION" "/" current_team.link "/station/create" %}
+            </li>
+        </ul>
+    </div>
+{% endif %}
+
+<div class="menu"> 
+    <h2>{% trans "TEAM_INFO" %}</h2> 
+    {% trans "COUNTRY" %}: {{ current_team.country.name }}<br />
+
+    {% if current_user.is_authenticated and current_account|can_join:current_team %}
+        <a href="/{{ current_team.link }}/join_request">{% trans "JOIN_REQUEST" %}</a>
+    {% endif %}
+
+</div>

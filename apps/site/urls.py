@@ -8,5 +8,6 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('apps.site.views',
     url(r'^$', 'root'), # index or under construction
+    url(r'^accounts/profile/$', 'profile'),
 )
 

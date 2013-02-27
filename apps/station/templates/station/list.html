@@ -1,24 +1,26 @@
-{% extends "base.html" %}
+{% extends "common/base.html" %}
 {% load i18n %}
 {% load thumbnail %}
 {% load common_tags %}
 
-{% block content_center %}
-    {% for station in stations %}
-        <div class="content_block">
-            <h2>
-                {% if current_team %}
-                    <a href="/{{ current_team.link }}/station/view/{{ station.id }}">
-                {% else %}
-                    <a href="/station/view/{{ station.id }}">
-                {% endif %}
-                    {{ station }}
-                </a>
-            </h2>
-            <!-- TODO draw preview image -->
-            {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
-            {% trans "CAPACITY" %}: {{ station.capacity }}
-        </div>
-    {% endfor %}
+{% block content %}
+    <div class="content">
+        {% for station in stations %}
+                <h2>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/station/view/{{ station.id }}">
+                    {% else %}
+                        <a href="/station/view/{{ station.id }}">
+                    {% endif %}
+                        {{ station }}
+                    </a>
+                </h2>
+                <!-- TODO draw preview image -->
+                {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
+                {% trans "CAPACITY" %}: {{ station.capacity }}
+        {% empty %}
+            {% trans "NO_STATIONS" %}
+        {% endfor %}
+    </div>
 {% endblock %}
 

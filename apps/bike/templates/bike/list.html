@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "common/base.html" %}
 {% load i18n %}
 {% load thumbnail %}
 {% load common_tags %}
 {% load borrow_tags %}
 {% load team_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for bike in bikes %}
-        <div class="content_block">
+        <div class="content">
 
             <h2>
                 {% if current_team %}
@@ -61,6 +61,10 @@
                 {% endif %}
             </div>
 
+        </div>
+    {% empty %}
+        <div class="content">
+            {% trans "NO_BIKES" %}
         </div>
     {% endfor %}
 {% endblock %}

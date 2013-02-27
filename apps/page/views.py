@@ -48,6 +48,6 @@ def create(request, team_link):
     else:
         form = CreatePageForm(team=team)
     args = { "form" : form, "form_title" : _("ADD_PAGE") }
-    return rtr(team, None, request, "form.html", args)
+    return rtr(team, None, request, "common/form.html", args)
 
 

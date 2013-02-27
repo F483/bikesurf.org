@@ -1,0 +1,47 @@
+
+#team_header {
+    height: 64px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16pt;
+    text-align: center;
+}
+
+#team_header a {
+    color: #FFF;
+}
+#team_header a:hover {
+    color: #FFF;
+}
+
+#team_header_left {
+    width: 32px;
+    background-image: url(/static/team/bg_header_left.png);
+}
+
+#team_header_borrow {
+    background: #494949;
+    vertical-align: middle;
+}
+
+#team_header_middle {
+    width: 32px;
+    background-image: url(/static/team/bg_header_middle.png);
+}
+
+#team_header_donate {
+    background: #838383;
+    vertical-align: middle;
+}
+
+#team_header_right_donate {
+    width: 32px;
+    background-image: url(/static/team/bg_header_right_donate.png);
+}
+
+#team_header_right_borrow {
+    width: 32px;
+    background-image: url(/static/team/bg_header_right_borrow.png);
+}
+

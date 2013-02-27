@@ -64,7 +64,7 @@ def create(request, team_link, bike_id):
     else:
         form = forms.Create(bike=bike)
     args = { "form" : form, "form_title" : _("BORROW_CREATE") }
-    return rtr(team, "borrows", request, "form.html", args)
+    return rtr(team, "borrows", request, "common/form.html", args)
 
 
 @login_required
@@ -81,7 +81,7 @@ def respond(request, team_link, borrow_id):
     else:
         form = forms.Respond(borrow=borrow, account=account)
     args = { "form" : form, "form_title" : _("BORROW_RESPOND") }
-    return rtr(team, "borrows", request, "form.html", args)
+    return rtr(team, "borrows", request, "common/form.html", args)
 
 
 @login_required
@@ -97,7 +97,7 @@ def cancel_team(request, team_link, borrow_id):
     else:
         form = forms.Cancel(borrow=borrow, account=account)
     args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
-    return rtr(team, "borrows", request, "form.html", args)
+    return rtr(team, "borrows", request, "common/form.html", args)
 
 
 @login_required
@@ -116,7 +116,7 @@ def rate_team(request, team_link, borrow_id):
         form = forms.RateTeam(borrow=borrow, account=account)
     form_title = u"%s %s" % (_("RATE"), borrow)
     args = { "form" : form, "form_title" : form_title }
-    return rtr(team, "borrows", request, "form.html", args)
+    return rtr(team, "borrows", request, "common/form.html", args)
 
 
 @login_required
@@ -137,7 +137,7 @@ def rate_my(request, borrow_id):
         form = forms.RateMy(borrow=borrow, account=account)
     form_title = u"%s %s" % (_("RATE"), borrow)
     args = { "form" : form, "form_title" : form_title }
-    return render_response(request, "form.html", args)
+    return render_response(request, "common/form.html", args)
 
 
 @login_required
@@ -166,7 +166,7 @@ def cancel_my(request, borrow_id):
     else:
         form = forms.Cancel(borrow=borrow, account=account)
     args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
-    return render_response(request, "form.html", args)
+    return render_response(request, "common/form.html", args)
 
 
 @login_required

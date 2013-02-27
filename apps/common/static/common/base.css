@@ -1,0 +1,166 @@
+/* INFO Essential CSS for the grid layout */
+
+/* NOTE IE7 and older explorers don't know anything about CSS-tables,
+        so we use a CSS hack to exclude them. */
+*>/**/.base_wrapper {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+/* NOTE This is the only block IE7- should read */
+.base_wrapper>.base_row, .base_wrapper>.base_column, .base_wrapper>.base_row>.base_column {
+    height: 0.1%; /* NOTE: Forces child-margins inside the box */
+    position: relative;
+}
+.base_wrapper>/**/.base_row {
+    display: table-row;
+    height: 1px;
+}
+.base_wrapper>/**/.base_row.base_expand {
+    height: auto;
+}
+.base_wrapper>/**/.base_column, .base_wrapper>/**/.base_row>.base_column {
+    display: table-cell;
+    height: auto; /* NOTE Just to reset the IE7 fix */
+    width: 1px;
+}
+.base_wrapper>/**/.base_column.base_expand, .base_wrapper>/**/.base_row>.base_column.base_expand {
+    width: auto;
+}
+
+html, body {
+    height: 100%;
+}
+
+html, body {
+    margin: 0em;
+}
+
+body>.base_wrapper {
+    table-layout: fixed; /* NOTE Speed up table rendering */
+}
+
+body {
+    background-color: #FFF;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 10pt;
+    color: #000;
+}
+
+div {
+    vertical-align: top;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-spacing: 0;
+}
+
+table td {
+    vertical-align:top;
+    padding: 0;
+}
+
+a {
+    color: #F47920;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FF9536;
+    text-shadow: #F47920 0px 0px 2px;
+}
+
+#base_statusbar {
+    background: #25272B;
+    color: #F47920;
+    text-align: right;
+    padding: 2px;
+}
+
+#base_header {
+    height: 100px;
+    padding-left: 65px;
+}
+
+#base_main {
+}
+
+#base_footer {
+    text-align: center;
+    background: #25272B;
+    color: #F47920;
+    padding: 2px;
+}
+
+#base_menu {
+    width: 200px;
+    padding-left: 24px;
+}
+
+#base_separator {
+    width: 24px;
+    background-image: url(/static/chain_link.png);
+}
+
+#base_content {
+    padding: 8px;
+    background-color: #D1F9E1;
+}
+
+#base_info {
+    padding-left: 12px;
+    padding-right: 24px;
+    width:250px;
+}
+
+#header_button_home {
+    float: left;
+}
+
+.menu {
+    padding: 10px;
+    border: 1px;
+    border-color: #000000;
+    text-align: right;
+    margin-bottom: 5px;
+    box-shadow: -5px 5px 5px #E0E0E0;
+}
+
+.menu a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.menu a:hover {
+}
+
+.menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu #selected {
+    color: #E8B828;
+    font-weight: bold;
+}
+
+.content {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border: 1px;
+    border-color: #000000;
+    margin-bottom: 8px;
+    box-shadow: -5px 5px 5px #CCC;
+}

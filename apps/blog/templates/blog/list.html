@@ -1,12 +1,16 @@
-{% extends "base.html" %}
+{% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
+{% block content %}
     {% for blog in blogs %}
-        <div class="content_block">
+        <div class="content">
             <h2>{{ blog.name }}</h2>
             {{ blog.content }}
+        </div>
+    {% empty %}
+        <div class="content">
+            {% trans "NO_BLOG_ENTRIES" %}
         </div>
     {% endfor %}
 {% endblock %}

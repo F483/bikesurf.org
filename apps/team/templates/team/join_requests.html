@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
-{% block content_center %}
-    {% for jr in join_requests %}
-        <div class="content_block">
+{% block content %}
+    <div class="content">
+        {% for jr in join_requests %}
             <h2> {{ jr.requester }}</h2>
 
             {% trans "PROCESSOR" %}: 
@@ -24,8 +24,10 @@
                 </a>
             {% endif %}
 
-        </div>
-    {% endfor %}
+        {% empty %}
+            {% trans "NO_JOIN_REQUESTS" %}
+        {% endfor %}
+    </div>
 {% endblock %}
 
 
