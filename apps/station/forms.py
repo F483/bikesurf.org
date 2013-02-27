@@ -29,3 +29,26 @@ class CreateStationForm(forms.Form):
         self.fields["country"].initial = team.country.code
         self.fields["city"].initial = team.name
 
+
+class EditStationForm(forms.Form):
+
+    responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
+    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
+    postalcode = forms.CharField(label=_('POSTALCODE'))
+    city = forms.CharField(label=_('CITY'))
+    street = forms.CharField(label=_('STREET'))
+    capacity = forms.IntegerField(label=_("CAPACITY"), initial=1, min_value=0)
+    active = forms.BooleanField(label=_("ACTIVE"), required=False)
+
+    def __init__(self, *args, **kwargs):
+        station = kwargs.pop("station")
+        super(EditStationForm, self).__init__(*args, **kwargs)
+        self.fields["responsable"].queryset = station.team.members.all()
+        self.fields["responsable"].initial = station.responsable
+        self.fields["country"].initial = station.country.code
+        self.fields["postalcode"].initial = station.postalcode
+        self.fields["city"].initial = station.city
+        self.fields["street"].initial = station.street
+        self.fields["capacity"].initial = station.capacity
+        self.fields["active"].initial = station.active
+

@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.forms import Form
 
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
@@ -16,6 +17,7 @@ from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.station.models import Station
 from apps.station.forms import CreateStationForm
+from apps.station.forms import EditStationForm
 
 
 _VIEW = {
@@ -127,10 +129,61 @@ def create(request, team_link):
             station.postalcode = form.cleaned_data["postalcode"].strip()
             station.country = form.cleaned_data["country"].strip()
             station.save()
-            return HttpResponseRedirect("/%s/stations" % team.link)
+            url = "/%s/station/view/%s" % (team.link, station.id)
+            return HttpResponseRedirect(url)
     else:
         form = CreateStationForm(team=team, account=account)
     args = { "form" : form, "form_title" : _("ADD_STATION") }
     return rtr(team, "stations", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def edit(request, team_link, station_id):
+    account = get_object_or_404(Account, user=request.user)
+    team = get_object_or_404(Team, link=team_link)
+    assert_member(account, team)
+    station = get_object_or_404(Station, team=team, id=station_id)
+    if request.method == "POST":
+        form = EditStationForm(request.POST, station=station)
+        if form.is_valid():
+            # TODO check DB consistency (capacity, borrows, etc ...)
+            station.responsable = form.cleaned_data["responsable"]
+            station.capacity = form.cleaned_data["capacity"]
+            station.active = form.cleaned_data["active"]
+            station.street = form.cleaned_data["street"].strip()
+            station.city = form.cleaned_data["city"].strip()
+            station.postalcode = form.cleaned_data["postalcode"].strip()
+            station.country = form.cleaned_data["country"].strip()
+            station.save()
+            url = "/%s/station/view/%s" % (team.link, station.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = EditStationForm(station=station)
+    args = { "form" : form, "form_title" : _("ADD_STATION") }
+    return rtr(team, "stations", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def delete(request, team_link, station_id):
+    account = get_object_or_404(Account, user=request.user)
+    team = get_object_or_404(Team, link=team_link)
+    assert_member(account, team)
+    station = get_object_or_404(Station, team=team, id=station_id)
+    if request.method == "POST":
+        form = Form(request.POST)
+        if form.is_valid():
+            # TODO enusre db consistency and no open borrows or bikes at station
+            station.delete()
+            return HttpResponseRedirect("/%s/stations" % team.link)
+    else:
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("STATION_DELETE?"), 
+        "object_name" : str(station), "cancle_url" : "/%s/stations" % team.link
+    }
+    return rtr(team, "stations", request, "common/delete.html", args)
+
 
 
