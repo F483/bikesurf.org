@@ -5,11 +5,15 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from sanitizer.forms import SanitizedCharField
+from config.settings import SANITIZER_ALLOWED_TAGS, SANITIZER_ALLOWED_ATTRIBUTES
 
 
 class CreateBlogForm(forms.Form):
 
-    name = forms.CharField(label=_("TITLE"))
-    content = forms.CharField(label=_("CONTENT"), widget=forms.Textarea)
-
+    name    = forms.CharField(label=_("TITLE"))
+    content = SanitizedCharField(label=_("CONTENT"), widget=forms.Textarea,
+                                 max_length=10000, allowed_tags=SANITIZER_ALLOWED_TAGS,
+                                 allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, 
+                                 strip=False)
 

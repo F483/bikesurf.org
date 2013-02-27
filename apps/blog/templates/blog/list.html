@@ -1,12 +1,13 @@
 {% extends "common/base.html" %}
 {% load i18n %}
+{% load sanitizer %}
 {% load common_tags %}
 
 {% block content %}
     {% for blog in blogs %}
         <div class="content">
             <h2>{{ blog.name }}</h2>
-            {{ blog.content }}
+            {{ blog.content|escape_html|safe }}
         </div>
     {% empty %}
         <div class="content">

@@ -6,6 +6,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
+from sanitizer.models import SanitizedCharField
+from config.settings import SANITIZER_ALLOWED_TAGS, SANITIZER_ALLOWED_ATTRIBUTES
 
 
 class Page(models.Model):
@@ -13,7 +15,11 @@ class Page(models.Model):
     team        = models.ForeignKey("team.Team", related_name="pages")
     link        = models.SlugField(unique=True)
     name        = models.CharField(max_length=1024)
-    content     = models.TextField() # TODO make wiki or markdown
+    content     = SanitizedCharField(
+                    max_length=10000, allowed_tags=SANITIZER_ALLOWED_TAGS, 
+                    allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, strip=False
+                )
+
     order       = models.IntegerField() # TODO allow None
 
     # meta

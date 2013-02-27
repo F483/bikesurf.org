@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
     'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
     'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
+    'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
 
     # biksurfing apps
     'apps.common',
@@ -287,8 +288,15 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 #    },
 #}
 
+######################
+# sanitizer settings #
+######################
 
-
+SANITIZER_ALLOWED_TAGS = [
+    'a', 'p', 'h1', 'h2', 'h3', 'img', 'br', 'table', 'tbody', 'tr', 'td'
+]
+SANITIZER_ALLOWED_ATTRIBUTES = [ 'href', 'src' ]
+SANITIZER_ALLOWED_STYLES = []
 
 ###################
 # server settings #

@@ -17,6 +17,7 @@ apt-get -qy install python-docutils
 pip install Django
 pip install django-countries
 pip install django-allauth
+pip install django-html_sanitizer
 pip install easy-thumbnails
 pip install South
 pip install unidecode

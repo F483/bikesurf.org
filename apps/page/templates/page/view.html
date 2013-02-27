@@ -1,10 +1,11 @@
 {% extends "common/base.html" %}
+{% load sanitizer %}
 {% load i18n %}
 
 {% block content %}
     <div class="content">
         <h2>{{ page.name }}</h2>
-        {{ page.content }}
+        {{ page.content|escape_html|safe }}
     </div>
 {% endblock %}
 
