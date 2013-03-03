@@ -29,4 +29,5 @@ py_shell:
 
 clean:
 	rm $$(find | grep -i ".*\.pyc$$")
+	rm $$(find | grep -i ".*\.orig$$")
 

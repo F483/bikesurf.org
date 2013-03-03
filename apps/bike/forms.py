@@ -16,7 +16,6 @@ from apps.bike.models import SIZE_CHOICES
 
 class Create(Form):
 
-    owner = ModelChoiceField(label=_("OWNER"), queryset=None)
     name = CharField(label=_("NAME"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
@@ -30,14 +29,11 @@ class Create(Form):
         team = kwargs.pop("team")
         account = kwargs.pop("account")
         super(Create, self).__init__(*args, **kwargs)
-        self.fields["owner"].queryset = team.members.all()
-        self.fields["owner"].initial = account
         self.fields["station"].queryset = team.stations.all()
 
 
 class Edit(Form):
 
-    owner = ModelChoiceField(label=_("OWNER"), queryset=None)
     name = CharField(label=_("NAME"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
@@ -51,16 +47,12 @@ class Edit(Form):
         bike = kwargs.pop("bike")
         account = kwargs.pop("account")
         super(Edit, self).__init__(*args, **kwargs)
-        self.fields["owner"].queryset = bike.team.members.all()
-        self.fields["owner"].initial = bike.owner
         self.fields["name"].initial = bike.name
         self.fields["active"].initial = bike.active
         self.fields["reserve"].initial = bike.reserve
         self.fields["station"].queryset = bike.team.stations.all()
         self.fields["station"].initial = bike.station
         self.fields["lockcode"].initial = bike.lockcode
-        self.fields["kind"].initial = bike.kind
-        self.fields["gender"].initial = bike.gender
         self.fields["size"].initial = bike.size
         self.fields["lights"].initial = bike.lights
         self.fields["description"].initial = bike.description

@@ -36,10 +36,7 @@ _VIEW = {
 
 
 def _tabs(bike, team, selected, authorized):
-    if team:
-        base_link = "/%s/bike/view/%d" % (team.link, bike.id)
-    else:
-        base_link = "/bike/view/%d" % bike.id
+    base_link = "/%s/bike/view/%d" % (team.link, bike.id)
     overview = (base_link,              _("OVERVIEW"), selected == "OVERVIEW")
     borrows =  (base_link + "/borrows", _("BORROWS"),  selected == "BORROWS")
     if authorized:
@@ -64,14 +61,10 @@ def _get_bike_filters(request, form, team):
 
 
 @require_http_methods(["GET"])
-def view(request, **kwargs):
-    tab = kwargs["tab"]
-    bike_id = kwargs["bike_id"]
-    team_link = kwargs.get("team_link")
-    team = team_link and get_object_or_404(Team, link=team_link) or None
-
-    requires_login = not team or tab != "OVERVIEW"
-    requires_membership = team and tab != "OVERVIEW"
+def view(request, team_link, bike_id, tab):
+    team = get_object_or_404(Team, link=team_link)
+    requires_login = tab != "OVERVIEW"
+    requires_membership = tab != "OVERVIEW"
     logged_in = request.user.is_authenticated()
 
     if not logged_in and requires_login:
@@ -80,14 +73,8 @@ def view(request, **kwargs):
     if requires_membership and account not in team.members.all():
         raise PermissionDenied
 
-    if team:
-        bike = get_object_or_404(Bike, id=bike_id, team=team)
-    else:
-        bike = get_object_or_404(Bike, id=bike_id, owner=account)
-
-    authorized = (account and account == bike.owner or 
-                  account and account in bike.members.all())
-
+    bike = get_object_or_404(Bike, id=bike_id, team=team)
+    authorized = (account and account in team.members.all())
     template = _VIEW[tab]["template"]
     args = { 
         "bike" : bike, 
@@ -96,26 +83,15 @@ def view(request, **kwargs):
         "description_content" : _VIEW[tab]["description_content"],
         "tabs" : _tabs(bike, team, tab, authorized), 
     }
-    if team:
-        return rtr(team, "bikes", request, template, args)
-    return render_response(request, template, args)
-
+    return rtr(team, "bikes", request, template, args)
 
 
 @require_http_methods(["GET"])
-def list(request, **kwargs):
-    team_link = kwargs.get("team_link")
-    if not team_link and not request.user.is_authenticated():
-        raise Exception("TODO login redirect")
-    if team_link:
-        team = get_object_or_404(Team, link=team_link)
-        filters = _get_bike_filters(request, None, team)
-        args = { "bikes" :  team.bikes.filter(**filters) }
-        return rtr(team, "bikes", request, "bike/list.html", args)
-    else:
-        account = get_object_or_404(Account, user=request.user)
-        args = { "bikes" :  Bike.objects.filter(owner=account) }
-        return render_response(request, "bike/list.html", args)
+def list(request, team_link):
+    team = get_object_or_404(Team, link=team_link)
+    filters = _get_bike_filters(request, None, team)
+    args = { "bikes" :  team.bikes.filter(**filters) }
+    return rtr(team, "bikes", request, "bike/list.html", args)
 
 
 @login_required
@@ -128,8 +104,7 @@ def create(request, team_link):
         form = forms.Create(request.POST, team=team, account=account)
         if form.is_valid():
             bike = control.create(
-                team, form.cleaned_data["owner"],
-                form.cleaned_data["name"].strip(),
+                team, form.cleaned_data["name"].strip(),
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
                 form.cleaned_data["station"], form.cleaned_data["lockcode"],
@@ -154,13 +129,12 @@ def edit(request, team_link, bike_id):
         form = forms.Edit(request.POST, bike=bike, account=account)
         if form.is_valid():
             control.edit(
-                bike, form.cleaned_data["owner"],
+                bike,
                 form.cleaned_data["name"].strip(),
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
                 form.cleaned_data["station"], form.cleaned_data["lockcode"],
-                form.cleaned_data["size"],
-                form.cleaned_data["lights"],
+                form.cleaned_data["size"], form.cleaned_data["lights"],
             )
             url = "/%s/bike/view/%s" % (team.link, bike.id)
             return HttpResponseRedirect(url)

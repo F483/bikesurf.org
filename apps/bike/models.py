@@ -22,7 +22,6 @@ SIZE_CHOICES = [      # Body Hight
 class Bike(Model):
 
     # main data
-    owner = ForeignKey('account.Account', related_name='bikes')
     team = ForeignKey('team.Team', related_name='bikes')
     name = CharField(max_length=1024)
     description = TextField()
@@ -30,8 +29,6 @@ class Bike(Model):
     reserve = BooleanField(default=False) # not requestable
     station = ForeignKey('station.Station', blank=True, null=True, related_name="bikes")
     lockcode = CharField(max_length=1024)
-    
-    # Usefull properties to filter by.
     size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM') # TODO add height in cm
     lights = BooleanField(default=False) # to cycle when dark
     

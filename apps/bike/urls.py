@@ -14,9 +14,6 @@ B = "(?P<bike_id>%s)" % ID
 
 
 urlpatterns = patterns("apps.bike.views",
-    url(r"^bike/view/%s$" % B,                  "view", { "tab" : "OVERVIEW" }),
-    url(r"^bike/view/%s/borrows$" % B,          "view", { "tab" : "BORROWS" }),
-    url(r"^bikes$",                             "list"),
     url(r"^%s/bikes$" % T,                      "list"),
     url(r"^%s/bike/view/%s$" % (T, B),          "view", { "tab" : "OVERVIEW" }),
     url(r"^%s/bike/edit/%s$" % (T, B),          "edit"),

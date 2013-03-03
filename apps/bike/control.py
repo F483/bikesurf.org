@@ -1,11 +1,10 @@
 from apps.bike.models import Bike
 
 
-def create( team, owner, name, description, active, reserve, station, lockcode, 
+def create( team, name, description, active, reserve, station, lockcode, 
             size, lights ):
     bike = Bike()
     bike.team = team
-    bike.owner = owner
     bike.name = name
     bike.description = description
     bike.active = active
@@ -18,9 +17,8 @@ def create( team, owner, name, description, active, reserve, station, lockcode,
     return bike
 
 
-def edit( bike, owner, name, description, active, reserve, station, lockcode, 
+def edit( bike, name, description, active, reserve, station, lockcode, 
           size, lights ):
-    bike.owner = owner
     bike.name = name
     bike.description = description
     bike.active = active

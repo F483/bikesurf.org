@@ -25,7 +25,6 @@
                     {% trans "BASKET" %}: {% draw_bool bike.basket %} <br />
                 </td>
                 <td id="td_bike_info">
-                    {% trans "OWNER" %}: {{ bike.owner }}<br /><!-- TODO link bike.owner -->
                     {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                     {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
                     {% if current_account|is_member:bike.team %}
