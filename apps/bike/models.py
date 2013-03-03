@@ -77,23 +77,3 @@ class Bike(Model):
         return self.name
 
 
-class Issue(Model):
-
-    bike = ForeignKey('bike.Bike')
-    problem = TextField() # by notifier
-    solution = TextField() # by reslver
-    resolved = BooleanField(default=False)
-    notifier = ForeignKey('account.Account', related_name='issues_notified')
-    resolver = ForeignKey('account.Account', related_name='issues_resolved')
-
-    # meta
-    created_on = DateTimeField(auto_now_add=True)
-    updated_on = DateTimeField(auto_now=True)
-
-    # TODO validation
-
-    def __unicode__(self):
-        args = (self.id, self.bike.id)
-        return u"id: %s; bike_id: %s" % args
-
-

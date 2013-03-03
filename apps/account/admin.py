@@ -6,11 +6,9 @@
 from django.contrib import admin
 from apps.account.models import Account
 from apps.account.models import Site
-from apps.account.models import Vacation
 
 
 admin.site.register(Account)
 admin.site.register(Site)
-admin.site.register(Vacation)
 
 

@@ -5,10 +5,8 @@
 
 from django.contrib import admin
 from apps.bike.models import Bike
-from apps.bike.models import Issue
 
 
 admin.site.register(Bike)
-admin.site.register(Issue)
 
 
