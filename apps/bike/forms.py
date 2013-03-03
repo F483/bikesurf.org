@@ -11,8 +11,6 @@ from django.forms import CharField
 from django.forms import BooleanField
 from django.forms import ChoiceField
 
-from apps.bike.models import KIND_CHOICES
-from apps.bike.models import GENDER_CHOICES
 from apps.bike.models import SIZE_CHOICES
 
 
@@ -24,14 +22,8 @@ class Create(Form):
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(label=_("STATION"), queryset=None, required=False)
     lockcode = CharField(label=_("LOCKCODE"))
-    keycode = CharField(label=_("KEYCODE"), required=False)
-    kind = ChoiceField(choices=KIND_CHOICES, label=_("TYPE"))
-    gender = ChoiceField(choices=GENDER_CHOICES, label=_("GENDER"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
-    fenders = BooleanField(label=_("FENDERS"), initial=False, required=False)
-    rack = BooleanField(label=_("RACK"), initial=False, required=False)
-    basket = BooleanField(label=_("BASKET"), initial=False, required=False)
     description = CharField(label=_("description"), widget=Textarea)
 
     def __init__(self, *args, **kwargs):
@@ -51,14 +43,8 @@ class Edit(Form):
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(label=_("STATION"), queryset=None, required=False)
     lockcode = CharField(label=_("LOCKCODE"))
-    keycode = CharField(label=_("KEYCODE"), required=False)
-    kind = ChoiceField(choices=KIND_CHOICES, label=_("TYPE"))
-    gender = ChoiceField(choices=GENDER_CHOICES, label=_("GENDER"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
-    fenders = BooleanField(label=_("FENDERS"), initial=False, required=False)
-    rack = BooleanField(label=_("RACK"), initial=False, required=False)
-    basket = BooleanField(label=_("BASKET"), initial=False, required=False)
     description = CharField(label=_("description"), widget=Textarea)
 
     def __init__(self, *args, **kwargs):
@@ -73,13 +59,9 @@ class Edit(Form):
         self.fields["station"].queryset = bike.team.stations.all()
         self.fields["station"].initial = bike.station
         self.fields["lockcode"].initial = bike.lockcode
-        self.fields["keycode"].initial = bike.keycode
         self.fields["kind"].initial = bike.kind
         self.fields["gender"].initial = bike.gender
         self.fields["size"].initial = bike.size
         self.fields["lights"].initial = bike.lights
-        self.fields["fenders"].initial = bike.fenders
-        self.fields["rack"].initial = bike.rack
-        self.fields["basket"].initial = bike.basket
         self.fields["description"].initial = bike.description
 

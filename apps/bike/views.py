@@ -58,13 +58,8 @@ def _get_bike_filters(request, form, team):
     #  date from and to
     #  active (only members)
     #  reserve (only members)
-    #  kind (default all)
-    #  gender (default all)
     #  size (default all)
     #  lights (default all)
-    #  fenders (default all)
-    #  rack (default all)
-    #  basket (default all)
     return filters
 
 
@@ -138,10 +133,7 @@ def create(request, team_link):
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
                 form.cleaned_data["station"], form.cleaned_data["lockcode"],
-                form.cleaned_data["keycode"], form.cleaned_data["kind"],
-                form.cleaned_data["gender"], form.cleaned_data["size"],
-                form.cleaned_data["lights"], form.cleaned_data["fenders"],
-                form.cleaned_data["rack"], form.cleaned_data["basket"]
+                form.cleaned_data["size"], form.cleaned_data["lights"], 
             )
             url = "/%s/bike/view/%s" % (team.link, bike.id)
             return HttpResponseRedirect(url)
@@ -167,10 +159,8 @@ def edit(request, team_link, bike_id):
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
                 form.cleaned_data["station"], form.cleaned_data["lockcode"],
-                form.cleaned_data["keycode"], form.cleaned_data["kind"],
-                form.cleaned_data["gender"], form.cleaned_data["size"],
-                form.cleaned_data["lights"], form.cleaned_data["fenders"],
-                form.cleaned_data["rack"], form.cleaned_data["basket"]
+                form.cleaned_data["size"],
+                form.cleaned_data["lights"],
             )
             url = "/%s/bike/view/%s" % (team.link, bike.id)
             return HttpResponseRedirect(url)
