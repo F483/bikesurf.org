@@ -9,18 +9,11 @@
         </a>
     {% endif %}
 
-    {% if bike_count %}
-        <a href="/bikes">{% trans "MY_BIKES" %}
-                ({{ bike_count }})
-        </a>
-    {% endif %}
-
     {% if station_count %}
         <a href="/stations">{% trans "MY_STATIONS" %}
                 ({{ station_count }})
         </a>
     {% endif %}
-
 
     <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
     <a href="/accounts/profile/">{{ current_user.username }}</a>

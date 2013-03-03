@@ -34,7 +34,6 @@ def render_response(request, template, args):
             "current_path" : request.path,
             "current_account" : account,
             "borrow_count" : len(borrows),
-            "bike_count" : len(Bike.objects.filter(owner=account)),
             "station_count" : len(Station.objects.filter(responsable=account))
         })
     args.update(csrf(request))
