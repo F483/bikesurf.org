@@ -22,6 +22,7 @@ urlpatterns = patterns("",
 
     # bikesurf urls
     url(r"^", include("apps.site.urls")),
+    url(r"^", include("apps.gallery.urls")),
     url(r"^", include("apps.station.urls")),
     url(r"^", include("apps.bike.urls")),
     url(r"^", include("apps.borrow.urls")),

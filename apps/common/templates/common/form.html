@@ -4,7 +4,9 @@
 {% block content %}
     <div class="content">
         <h2>{{ form_title }}</h2>
-        <form action="{{ current_path }}" method="post">
+        <form action="{{ current_path }}" method="post" 
+              {% if multipart_form %}enctype="multipart/form-data" {% endif %}>
+
             {% csrf_token %}
             <table class="input_form">
                 {{ form.as_table }}

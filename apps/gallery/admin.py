@@ -3,7 +3,9 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from apps.image.models import Image
+from apps.gallery.models import Picture
+from apps.gallery.models import Gallery
 from django.contrib import admin
 
-admin.site.register(Image)
+admin.site.register(Picture)
+admin.site.register(Gallery)

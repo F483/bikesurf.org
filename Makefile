@@ -30,4 +30,5 @@ py_shell:
 clean:
 	rm $$(find | grep -i ".*\.pyc$$")
 	rm $$(find | grep -i ".*\.orig$$")
-
+	rm $$(find | grep -i "uploads/images/.*\.jpg$$")
+	test -f uploads/development.db && rm uploads/development.db || echo ""

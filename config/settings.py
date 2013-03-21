@@ -115,7 +115,7 @@ INSTALLED_APPS = (
 
     # third party apps
     'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
-    'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
+    #'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
     'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
     'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
 
@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'apps.borrow',
     'apps.message',
     'apps.account',
-    'apps.image',
+    'apps.gallery',
     'apps.team',
     'apps.blog',
     'apps.page',
@@ -199,7 +199,7 @@ ROSETTA_EXCLUDED_APPLICATIONS = (
     #'apps.borrow',
     #'apps.message',
     #'apps.account',
-    #'apps.image',
+    #'apps.gallery',
     #'apps.team',
     #'apps.blog',
     #'apps.page',
@@ -287,6 +287,13 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 #        'AUTH_PARAMS': { 'access_type': 'online' } 
 #    },
 #}
+
+####################
+# gallery settings #
+####################
+
+GALLERY_IMAGE_MAX_SIZE = (640, 480)
+GALLERY_THUMBNAIL_MAX_SIZE = (100, 75)
 
 ######################
 # sanitizer settings #
