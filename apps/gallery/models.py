@@ -6,11 +6,14 @@
 import hashlib
 import os.path
 from django.db import models
+from config.settings import GALLERY_IMAGE_MAX_SIZE, GALLERY_THUMBNAIL_MAX_SIZE
 
 
 class Gallery(models.Model):
 
-    primary      = models.ForeignKey('gallery.Picture', related_name="primary", null=True, blank=True)
+    primary = models.ForeignKey(
+        'gallery.Picture', related_name="primary", null=True, blank=True
+    )
 
     # TODO put meta in parent class
     #created_by  = models.ForeignKey('account.Account', null=True, blank=True)
@@ -55,6 +58,10 @@ class Picture(models.Model):
     )
     thumbnail_height = models.PositiveIntegerField(default=0, editable=False)
     thumbnail_width = models.PositiveIntegerField(default=0, editable=False)
+
+    def save(self, *args, **kwargs):
+        return super(Picture, self).__init__(*args, **kwargs)
+
 
     # TODO put meta in parent class
     #created_by  = models.ForeignKey('account.Account', null=True, blank=True)

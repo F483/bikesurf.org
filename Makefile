@@ -28,7 +28,7 @@ py_shell:
 	python manage.py shell
 
 clean:
-	rm $$(find | grep -i ".*\.pyc$$")
-	rm $$(find | grep -i ".*\.orig$$")
-	rm $$(find | grep -i "uploads/images/.*\.jpg$$")
+	find | grep -i ".*\.pyc$$" | xargs -r -L1 rm
+	find | grep -i ".*\.orig$$" | xargs -r -L1 rm
+	find | grep -i "uploads/images/.*\.jpg$$" | xargs -r -L1 rm
 	test -f uploads/development.db && rm uploads/development.db || echo ""
