@@ -6,18 +6,19 @@
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
 
-# XXX check out https://github.com/mirumee/django-images/blob/master/django_images/models.py
 # XXX http://www.fontsquirrel.com/fonts/League-Gothic
 
 
 def create(account, image):
-    # TODO add account and meta data
     gallery = Gallery()
+    gallery.created_by = account
     gallery.save()
     picture = Picture()
     picture.image_data = image
+    picture.preview_data = image
     picture.thumbnail_data = image
     picture.gallery = gallery
+    picture.created_by = account
     picture.save()
     gallery.primary = picture
     gallery.save()

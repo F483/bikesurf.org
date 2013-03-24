@@ -114,10 +114,10 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     # third party apps
-    'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
-    #'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
-    'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
+    'django_countries', # https://www.djangopackages.com/packages/p/django-countries/
+    'rosetta',          # https://www.djangopackages.com/packages/p/django-rosetta/
     'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
+    'imagekit',         # https://www.djangopackages.com/packages/p/django-imagekit/
 
     # biksurfing apps
     'apps.common',
@@ -188,10 +188,10 @@ ROSETTA_MESSAGES_PER_PAGE = 50
 ROSETTA_EXCLUDED_APPLICATIONS = (
 
     # third party apps
-    'django_countries', # http://www.djangopackages.com/packages/p/django-countries/
-    # TODO add allauth
-    'easy_thumbnails',  # http://www.djangopackages.com/packages/p/easy-thumbnails/
-    'rosetta',          # http://www.djangopackages.com/packages/p/django-rosetta/
+    'django_countries',
+    'rosetta',
+    'sanitizer',
+    'imagekit',
 
     # biksurfing apps
     #'apps.common',
@@ -287,13 +287,6 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 #        'AUTH_PARAMS': { 'access_type': 'online' } 
 #    },
 #}
-
-####################
-# gallery settings #
-####################
-
-GALLERY_IMAGE_MAX_SIZE = (640, 480)
-GALLERY_THUMBNAIL_MAX_SIZE = (100, 75)
 
 ######################
 # sanitizer settings #

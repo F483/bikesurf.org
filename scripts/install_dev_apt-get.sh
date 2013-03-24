@@ -18,7 +18,7 @@ pip install Django
 pip install django-countries
 pip install django-allauth
 pip install django-html_sanitizer
-pip install easy-thumbnails
+pip install django-imagekit
 pip install South
 pip install unidecode
 pip install django-rosetta
