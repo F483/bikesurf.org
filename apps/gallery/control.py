@@ -5,13 +5,19 @@
 
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
+from apps.team.utils import assert_member
+
 
 # XXX http://www.fontsquirrel.com/fonts/League-Gothic
 
 
-def create(account, image):
+def create(account, image, team):
+    if team:
+        assert_member(account, team)
     gallery = Gallery()
     gallery.created_by = account
+    gallery.updated_by = account
+    gallery.team = team
     gallery.save()
     picture = Picture()
     picture.image_data = image
@@ -19,6 +25,7 @@ def create(account, image):
     picture.thumbnail_data = image
     picture.gallery = gallery
     picture.created_by = account
+    picture.updated_by = account
     picture.save()
     gallery.primary = picture
     gallery.save()

@@ -12,17 +12,22 @@ from imagekit.processors import ResizeToFill
 
 class Gallery(models.Model):
 
-    # TODO team relation for rights
+    team = models.ForeignKey(
+        'team.Team', related_name="galleries", null=True, blank=True
+    )
+
     primary = models.ForeignKey(
         'gallery.Picture', related_name="primary", null=True, blank=True
     )
 
-    # TODO put meta in parent class
-    created_by  = models.ForeignKey('account.Account', null=True, blank=True)
+    # metadata
+    created_by  = models.ForeignKey('account.Account', related_name="galleries_created")
     created_on  = models.DateTimeField(auto_now_add=True)
+    updated_by  = models.ForeignKey("account.Account", related_name="galleries_updated")
+    updated_on  = models.DateTimeField(auto_now=True)
 
-    #def __unicode__(self):
-    #    return u"id: %s" % self.id
+    def __unicode__(self):
+        return u"%s" % self.id
 
 
 def _get_upload_path(prefix, data):
@@ -79,11 +84,12 @@ class Picture(models.Model):
         format='JPEG', options={'quality': 90}
     )
 
-    # TODO put meta in parent class
-    created_by  = models.ForeignKey('account.Account', null=True, blank=True)
+    # metadata
+    created_by  = models.ForeignKey('account.Account', related_name="pictures_created")
     created_on  = models.DateTimeField(auto_now_add=True)
+    updated_by  = models.ForeignKey("account.Account", related_name="pictures_updated")
+    updated_on  = models.DateTimeField(auto_now=True)
 
-    #def __unicode__(self):
-    #    return u"id: %s" % self.id
-
+    def __unicode__(self):
+        return u"%s" % self.id
 

@@ -14,6 +14,7 @@ from apps.common.shortcuts import render_response
 from apps.team.models import Team
 from apps.gallery import forms
 from apps.gallery import control
+from apps.team.utils import assert_member
 
 
 @login_required
@@ -22,10 +23,12 @@ def create(request, **kwargs):
     team_link = kwargs.get("team_link")
     team = team_link and get_object_or_404(Team, link=team_link) or None
     account = get_object_or_404(Account, user=request.user)
+    if team:
+        assert_member(account, team)
     if request.method == "POST":
         form = forms.Create(request.POST, request.FILES)
         if form.is_valid():
-            gallery = control.create(account, form.cleaned_data["image"])
+            gallery = control.create(account, form.cleaned_data["image"], team)
             prefix = team and "/%s" % team.link or ""
             url = "%s/image/list/%s" % (prefix, gallery.id)
             return HttpResponseRedirect(url)
