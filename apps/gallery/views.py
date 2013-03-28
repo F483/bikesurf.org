@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from apps.account.models import Account
 from apps.gallery.models import Gallery
+from apps.gallery.models import Picture
 from apps.team.utils import render_team_response as rtr
 from apps.common.shortcuts import render_response
 from apps.team.models import Team
@@ -103,6 +104,12 @@ def list(request, **kwargs):
 def view(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
-    pass
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    picture = get_object_or_404(Picture, id=picture_id)
+    args = { "picture" : picture }
+    if team:
+        return rtr(team, None, request, "gallery/view.html", args)
+    else:
+        return render_response(request, "gallery/view.html", args)
 
 
