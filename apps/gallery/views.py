@@ -3,12 +3,13 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from apps.account.models import Account
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from apps.account.models import Account
+from apps.gallery.models import Gallery
 from apps.team.utils import render_team_response as rtr
 from apps.common.shortcuts import render_response
 from apps.team.models import Team
@@ -30,7 +31,7 @@ def create(request, **kwargs):
         if form.is_valid():
             gallery = control.create(account, form.cleaned_data["image"], team)
             prefix = team and "/%s" % team.link or ""
-            url = "%s/image/list/%s" % (prefix, gallery.id)
+            url = "%s/gallery/list/%s" % (prefix, gallery.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.Create()
@@ -88,7 +89,14 @@ def update(request, **kwargs):
 def list(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
-    pass
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    gallery = get_object_or_404(Gallery, id=gallery_id)
+    pictures = gallery.pictures.all()
+    args = { "gallery" : gallery, "pictures" : pictures }
+    if team:
+        return rtr(team, None, request, "gallery/list.html", args)
+    else:
+        return render_response(request, "gallery/list.html", args)
 
 
 @require_http_methods(["GET"])

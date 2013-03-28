@@ -11,7 +11,7 @@ ID = r"[0-9]+"
 
 P = "(?P<picture_id>%s)" % ID
 G = "(?P<gallery_id>%s)" % ID
-T = "(?P<team_link>%s)" % SLUG,
+T = "(?P<team_link>%s)" % SLUG
 
 
 urlpatterns = patterns("apps.gallery.views",
