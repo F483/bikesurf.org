@@ -7,11 +7,11 @@
         {% for picture in pictures %}
             {% if current_team %}
                 <a href="/{{ current_team.link }}/gallery/view/{{ picture.id }}">
-                    <img src="{{ picture.preview_data.url }}">
+                    <img src="{{ picture.preview.url }}">
                 </a>
             {% else %}
                 <a href="/gallery/view/{{ picture.id }}">
-                    <img src="{{ picture.preview_data.url }}">
+                    <img src="{{ picture.preview.url }}">
                 </a>
             {% endif %}
         {% empty %}

@@ -39,47 +39,35 @@ def _get_upload_path(prefix, data):
 
 
 def _image_upload_to(instance, filename, **kwargs):
-    return _get_upload_path("images", instance.image_data)
+    return _get_upload_path("images", instance.image)
 
 
 def _thumbnail_upload_to(instance, filename, **kwargs):
-    return _get_upload_path("thumbnails", instance.thumbnail_data)
+    return _get_upload_path("thumbnails", instance.thumbnail)
 
 
 def _preview_upload_to(instance, filename, **kwargs):
-    return _get_upload_path("previews", instance.preview_data)
+    return _get_upload_path("previews", instance.preview)
 
 
 class Picture(models.Model):
 
     gallery = models.ForeignKey('gallery.Gallery', related_name="pictures")
 
-    # image fields
-    image_height = models.PositiveIntegerField(default=0, editable=False)
-    image_width = models.PositiveIntegerField(default=0, editable=False)
-    image_data = ProcessedImageField(
+    image = ProcessedImageField(
         upload_to=_image_upload_to, 
-        height_field='image_height', width_field='image_width',
         processors=[ResizeToFill(640, 480)],
         format='JPEG', options={'quality': 90}
     )
 
-    # preview fields
-    preview_height = models.PositiveIntegerField(default=0, editable=False)
-    preview_width = models.PositiveIntegerField(default=0, editable=False)
-    preview_data = ProcessedImageField(
+    preview = ProcessedImageField(
         upload_to=_preview_upload_to, 
-        height_field='preview_height', width_field='preview_width',
         processors=[ResizeToFill(320, 240)],
         format='JPEG', options={'quality': 90}
     )
 
-    # thumbnail fields
-    thumbnail_height = models.PositiveIntegerField(default=0, editable=False)
-    thumbnail_width = models.PositiveIntegerField(default=0, editable=False)
-    thumbnail_data = ProcessedImageField(
+    thumbnail = ProcessedImageField(
         upload_to=_thumbnail_upload_to, 
-        height_field='thumbnail_height', width_field='thumbnail_width',
         processors=[ResizeToFill(100, 75)],
         format='JPEG', options={'quality': 90}
     )

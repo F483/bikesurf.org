@@ -20,9 +20,9 @@ def create(account, image, team):
     gallery.team = team
     gallery.save()
     picture = Picture()
-    picture.image_data = image
-    picture.preview_data = image
-    picture.thumbnail_data = image
+    picture.image = image
+    picture.preview = image
+    picture.thumbnail = image
     picture.gallery = gallery
     picture.created_by = account
     picture.updated_by = account
