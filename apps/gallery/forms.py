@@ -12,3 +12,8 @@ class Create(Form):
 
     image = ImageField(label=_("IMAGE"))
 
+
+class Add(Form):
+
+    image = ImageField(label=_("IMAGE"))
+

@@ -1,5 +1,6 @@
 
 APP=""
+SQLITE_FILE="uploads/development.db"
 
 help:
 	@echo "Usage: make <target> <option>=VALUE"
@@ -18,17 +19,16 @@ db_sql:
 	python manage.py sql $(APP)
 
 db_shell:
-	sqlite3 uploads/development.db
+	sqlite3 $(SQLITE_FILE)
 
-db_sync:
-	test -f uploads/development.db && rm uploads/development.db || echo ""
+db_sync: clean
 	python manage.py syncdb
 
 py_shell:
 	python manage.py shell
 
 clean:
+	test -f $(SQLITE_FILE) && rm $(SQLITE_FILE) || echo ""
 	find | grep -i ".*\.pyc$$" | xargs -r -L1 rm
 	find | grep -i ".*\.orig$$" | xargs -r -L1 rm
 	find | grep -i "uploads/.*\.jpeg$$" | xargs -r -L1 rm
-	test -f uploads/development.db && rm uploads/development.db || echo ""

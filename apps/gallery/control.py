@@ -3,12 +3,27 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from django.core.exceptions import PermissionDenied
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
 from apps.team.utils import assert_member
 
 
 # XXX http://www.fontsquirrel.com/fonts/League-Gothic
+
+def add(account, image, gallery):
+    if ((gallery.team and account not in gallery.team.members.all()) or 
+            (not gallery.team and gallery.created_by != account)):
+        raise PermissionDenied
+    picture = Picture()
+    picture.image = image
+    picture.preview = image
+    picture.thumbnail = image
+    picture.gallery = gallery
+    picture.created_by = account
+    picture.updated_by = account
+    picture.save()
+    return picture
 
 
 def create(account, image, team):
@@ -19,14 +34,7 @@ def create(account, image, team):
     gallery.updated_by = account
     gallery.team = team
     gallery.save()
-    picture = Picture()
-    picture.image = image
-    picture.preview = image
-    picture.thumbnail = image
-    picture.gallery = gallery
-    picture.created_by = account
-    picture.updated_by = account
-    picture.save()
+    picture = add(account, image, gallery)
     gallery.primary = picture
     gallery.save()
     return gallery

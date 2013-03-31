@@ -21,10 +21,39 @@ from apps.team.utils import assert_member
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def add(request, **kwargs):
+    team_link = kwargs.get("team_link")
+    gallery_id = kwargs["gallery_id"]
+    account = get_object_or_404(Account, user=request.user)
+    gallery = get_object_or_404(Gallery, id=gallery_id)
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    if team:
+        assert_member(account, team)
+    if request.method == "POST":
+        form = forms.Add(request.POST, request.FILES)
+        if form.is_valid():
+            picture = control.add(account, form.cleaned_data["image"], gallery)
+            prefix = team_link and "/%s" % team_link or ""
+            url = "%s/gallery/view/%s" % (prefix, picture.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.Add()
+    args = { 
+        "form" : form, "form_title" : _("ADD_PICTURE_TO_GALLERY"), 
+        "multipart_form" : True 
+    }
+    if team:
+        return rtr(team, None, request, "common/form.html", args)
+    else:
+        return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def create(request, **kwargs):
     team_link = kwargs.get("team_link")
-    team = team_link and get_object_or_404(Team, link=team_link) or None
     account = get_object_or_404(Account, user=request.user)
+    team = team_link and get_object_or_404(Team, link=team_link) or None
     if team:
         assert_member(account, team)
     if request.method == "POST":
@@ -57,14 +86,6 @@ def delete(request, **kwargs):
 @login_required
 @require_http_methods(["GET", "POST"])
 def primary(request, **kwargs):
-    team_link = kwargs.get("team_link")
-    gallery_id = kwargs["gallery_id"]
-    pass
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def add(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
     pass
