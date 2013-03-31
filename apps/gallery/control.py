@@ -11,6 +11,16 @@ from apps.team.utils import assert_member
 
 # XXX http://www.fontsquirrel.com/fonts/League-Gothic
 
+def setprimary(account, picture, gallery):
+    if ((gallery.team and account not in gallery.team.members.all()) or 
+            (not gallery.team and gallery.created_by != account)):
+        raise PermissionDenied
+    if picture not in gallery.pictures.all():
+        raise Exception("Cannot set primary picture to non gallery picture!")
+    gallery.primary = picture
+    gallery.save()
+
+
 def add(account, image, gallery):
     if ((gallery.team and account not in gallery.team.members.all()) or 
             (not gallery.team and gallery.created_by != account)):

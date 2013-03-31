@@ -21,9 +21,13 @@ class Gallery(models.Model):
     )
 
     # metadata
-    created_by  = models.ForeignKey('account.Account', related_name="galleries_created")
+    created_by  = models.ForeignKey(
+            'account.Account', related_name="galleries_created"
+    )
     created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey("account.Account", related_name="galleries_updated")
+    updated_by  = models.ForeignKey(
+            "account.Account", related_name="galleries_updated"
+    )
     updated_on  = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):

@@ -80,15 +80,40 @@ def create(request, **kwargs):
 def delete(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
+
+
+
+
     pass
 
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def primary(request, **kwargs):
+def setprimary(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
-    pass
+    account = get_object_or_404(Account, user=request.user)
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    gallery = get_object_or_404(Gallery, id=gallery_id)
+    if team:
+        assert_member(account, team)
+    if request.method == "POST":
+        form = forms.SetPrimary(request.POST, request.FILES, gallery=gallery)
+        if form.is_valid():
+
+            picture = form.cleaned_data["picture"]
+            control.setprimary(account, picture, gallery)
+
+            prefix = team_link and "/%s" % team_link or ""
+            url = "%s/gallery/list/%s" % (prefix, gallery.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.SetPrimary(gallery=gallery)
+    args = { "form" : form, "form_title" : _("SET_GALLERY_PRIMARY_PICTURE"), }
+    if team:
+        return rtr(team, None, request, "common/form.html", args)
+    else:
+        return render_response(request, "common/form.html", args)
 
 
 @login_required
