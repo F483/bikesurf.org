@@ -5,15 +5,27 @@
 {% block content %}
     <div class="content">
         {% for picture in pictures %}
-            {% if current_team %}
-                <a href="/{{ current_team.link }}/gallery/view/{{ picture.id }}">
-                    <img src="{{ picture.preview.url }}">
-                </a>
-            {% else %}
-                <a href="/gallery/view/{{ picture.id }}">
-                    <img src="{{ picture.preview.url }}">
-                </a>
-            {% endif %}
+
+            <span>
+                <div>
+                    {% if current_team %}
+                        <a href="/{{ current_team.link }}/gallery/view/{{ picture.id }}">
+                            <img src="{{ picture.preview.url }}">
+                        </a>
+                    {% else %}
+                        <a href="/gallery/view/{{ picture.id }}">
+                            <img src="{{ picture.preview.url }}">
+                        </a>
+                    {% endif %}
+                </div>
+
+                {% if picture == gallery.primary %} 
+                    TODO set primary link
+                {% else %}
+                    TODO is primary
+                {% endif %}
+            </span>
+
         {% empty %}
             {% trans "NO_PICTURES" %}
         {% endfor %}

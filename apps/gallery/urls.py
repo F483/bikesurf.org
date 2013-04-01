@@ -20,7 +20,7 @@ urlpatterns = patterns("apps.gallery.views",
     url(r"^gallery/setprimary/%s$" % G,         "setprimary"), # update primary picture
     url(r"^gallery/add/%s$" % G,                "add"),     # add picture to gallery
     url(r"^gallery/remove/%s$" % P,             "remove"),  # remove gallery picture
-    url(r"^gallery/update/%s$" % P,             "update"),  # update gallery picture
+    url(r"^gallery/update/%s$" % P,             "update"),  # update gallery picture # TODO rm
     url(r"^gallery/list/%s$" % G,               "list"),    # view gallery
     url(r"^gallery/view/%s$" % P,               "view"),    # view picture
 

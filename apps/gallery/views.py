@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.forms import Form
 from apps.account.models import Account
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
@@ -80,10 +81,6 @@ def create(request, **kwargs):
 def delete(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
-
-
-
-
     pass
 
 
@@ -100,10 +97,8 @@ def setprimary(request, **kwargs):
     if request.method == "POST":
         form = forms.SetPrimary(request.POST, request.FILES, gallery=gallery)
         if form.is_valid():
-
             picture = form.cleaned_data["picture"]
             control.setprimary(account, picture, gallery)
-
             prefix = team_link and "/%s" % team_link or ""
             url = "%s/gallery/list/%s" % (prefix, gallery.id)
             return HttpResponseRedirect(url)
@@ -121,15 +116,27 @@ def setprimary(request, **kwargs):
 def remove(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
-    pass
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def update(request, **kwargs):
-    team_link = kwargs.get("team_link")
-    picture_id = kwargs["picture_id"]
-    pass
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    picture = get_object_or_404(Picture, id=picture_id)
+    gallery = picture.gallery
+    account = get_object_or_404(Account, user=request.user)
+    prefix = team_link and "/%s" % team_link or ""
+    url = "%s/gallery/list/%s" % (prefix, gallery.id)
+    if request.method == "POST":
+        form = Form(request.POST)
+        if form.is_valid():
+            control.remove(account, picture)
+            return HttpResponseRedirect(url)
+    else:
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("REMOVE_GALLERY_PICTURE"), 
+        "object_name" : "TODO some name", "cancle_url" : url # TODO why no cancel?
+    }
+    if team:
+        return rtr(team, None, request, "common/form.html", args)
+    else:
+        return render_response(request, "common/form.html", args)
 
 
 @require_http_methods(["GET"])
