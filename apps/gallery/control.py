@@ -19,6 +19,13 @@ def _assert_can_edit(account, gallery):
         raise PermissionDenied
 
 
+def delete(account, gallery):
+    _assert_can_edit(account, gallery)
+    for picture in gallery.pictures.all():
+        remove(account, picture)
+    gallery.delete()
+
+
 def remove(account, picture):
     gallery = picture.gallery
     _assert_can_edit(account, gallery)

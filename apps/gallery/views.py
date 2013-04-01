@@ -78,14 +78,6 @@ def create(request, **kwargs):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def delete(request, **kwargs):
-    team_link = kwargs.get("team_link")
-    gallery_id = kwargs["gallery_id"]
-    pass
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
 def setprimary(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
@@ -105,6 +97,33 @@ def setprimary(request, **kwargs):
     else:
         form = forms.SetPrimary(gallery=gallery)
     args = { "form" : form, "form_title" : _("SET_GALLERY_PRIMARY_PICTURE"), }
+    if team:
+        return rtr(team, None, request, "common/form.html", args)
+    else:
+        return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def delete(request, **kwargs):
+    team_link = kwargs.get("team_link")
+    gallery_id = kwargs["gallery_id"]
+    team = team_link and get_object_or_404(Team, link=team_link) or None
+    gallery = get_object_or_404(Gallery, id=gallery_id)
+    account = get_object_or_404(Account, user=request.user)
+    prefix = team_link and "/%s" % team_link or ""
+    cancle_url = "%s/gallery/list/%s" % (prefix, gallery.id)
+    if request.method == "POST":
+        form = Form(request.POST)
+        if form.is_valid():
+            control.delete(account, gallery)
+            return HttpResponseRedirect(team_link and "/%s" % team_link or "/")
+    else:
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("DELETE_GALLERY"), 
+        "object_name" : "TODO some name", "cancle_url" : cancle_url # TODO why no cancel?
+    }
     if team:
         return rtr(team, None, request, "common/form.html", args)
     else:
