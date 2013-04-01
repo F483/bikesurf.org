@@ -122,12 +122,12 @@ def delete(request, **kwargs):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("DELETE_GALLERY"), 
-        "object_name" : "TODO some name", "cancle_url" : cancle_url # TODO why no cancel?
+        "object_name" : "TODO some name", "cancle_url" : cancle_url
     }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "common/delete.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "common/delete.html", args)
 
 
 @login_required
@@ -150,12 +150,12 @@ def remove(request, **kwargs):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("REMOVE_GALLERY_PICTURE"), 
-        "object_name" : "TODO some name", "cancle_url" : url # TODO why no cancel?
+        "object_name" : "TODO some name", "cancle_url" : url
     }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "common/delete.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "common/delete.html", args)
 
 
 @require_http_methods(["GET"])
