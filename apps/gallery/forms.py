@@ -19,14 +19,3 @@ class Add(Form):
     image = ImageField(label=_("IMAGE"))
 
 
-class SetPrimary(Form):
-
-    picture = ModelChoiceField(
-            label='TEST', empty_label=_("WHICH?"), queryset=None
-    ) 
-
-    def __init__(self, *args, **kwargs):
-        self.gallery = kwargs.pop("gallery")
-        super(SetPrimary, self).__init__(*args, **kwargs)
-        self.fields["picture"].queryset = self.gallery.pictures.all()
-

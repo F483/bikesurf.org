@@ -80,27 +80,29 @@ def create(request, **kwargs):
 @require_http_methods(["GET", "POST"])
 def setprimary(request, **kwargs):
     team_link = kwargs.get("team_link")
-    gallery_id = kwargs["gallery_id"]
+    picture_id = kwargs["picture_id"]
     account = get_object_or_404(Account, user=request.user)
     team = team_link and get_object_or_404(Team, link=team_link) or None
-    gallery = get_object_or_404(Gallery, id=gallery_id)
+    picture = get_object_or_404(Picture, id=picture_id)
+    prefix = team_link and "/%s" % team_link or ""
+    url = "%s/gallery/list/%s" % (prefix, picture.gallery.id)
     if team:
         assert_member(account, team)
     if request.method == "POST":
-        form = forms.SetPrimary(request.POST, request.FILES, gallery=gallery)
+        form = Form(request.POST)
         if form.is_valid():
-            picture = form.cleaned_data["picture"]
-            control.setprimary(account, picture, gallery)
-            prefix = team_link and "/%s" % team_link or ""
-            url = "%s/gallery/list/%s" % (prefix, gallery.id)
+            control.setprimary(account, picture)
             return HttpResponseRedirect(url)
     else:
-        form = forms.SetPrimary(gallery=gallery)
-    args = { "form" : form, "form_title" : _("SET_GALLERY_PRIMARY_PICTURE"), }
+        form = Form()
+    args = { 
+        "form" : form, "form_title" : _("SET_PRIMARY_PICTURE"), 
+        "object_name" : "TODO some name", "cancle_url" : url
+    }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "common/delete.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "common/delete.html", args)
 
 
 @login_required

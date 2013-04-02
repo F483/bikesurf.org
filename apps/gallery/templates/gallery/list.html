@@ -4,31 +4,51 @@
 
 {% block content %}
     <div class="content">
+
         {% for picture in pictures %}
 
-            <span>
-                <div>
-                    {% if current_team %}
-                        <a href="/{{ current_team.link }}/gallery/view/{{ picture.id }}">
-                            <img src="{{ picture.preview.url }}">
-                        </a>
-                    {% else %}
-                        <a href="/gallery/view/{{ picture.id }}">
-                            <img src="{{ picture.preview.url }}">
-                        </a>
-                    {% endif %}
-                </div>
-
-                {% if picture == gallery.primary %} 
-                    TODO set primary link
+            <div>
+                {% if current_team %}
+                    <a href="/{{ current_team.link }}/gallery/view/{{ picture.id }}">
+                        <img src="{{ picture.preview.url }}">
+                    </a>
                 {% else %}
-                    TODO is primary
+                    <a href="/gallery/view/{{ picture.id }}">
+                        <img src="{{ picture.preview.url }}">
+                    </a>
                 {% endif %}
-            </span>
+
+
+                <!-- TODO check edit rights -->
+                {% if current_team %}
+                    {% if picture != gallery.primary %} 
+                        {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/" current_team.link "/gallery/setprimary/" picture.id %}
+                    {% endif %}
+                    {% draw_delete "/" current_team.link "/gallery/remove/" picture.id %}
+                {% else %}
+                    {% if picture != gallery.primary %} 
+                        {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/gallery/setprimary/" picture.id %}
+                    {% endif %}
+                    {% draw_delete "/gallery/remove/" picture.id %}
+                {% endif %}
+
+            </div>
 
         {% empty %}
             {% trans "NO_PICTURES" %}
         {% endfor %}
+
+        <div>
+            <!-- TODO check edit rights -->
+            {% if current_team %}
+                {% draw_create "ADD_PICTURE" "/" current_team.link "/gallery/add/" gallery.id %}
+                {% draw_delete "/" current_team.link "/gallery/delete/" gallery.id %}
+            {% else %}
+                {% draw_create "ADD_PICTURE" "/gallery/add/" gallery.id %}
+                {% draw_delete "/gallery/delete/" gallery.id %}
+            {% endif %}
+        </div>
+
     </div>
 {% endblock %}
 

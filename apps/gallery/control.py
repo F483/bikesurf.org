@@ -40,10 +40,9 @@ def remove(account, picture):
     return gallery
 
 
-def setprimary(account, picture, gallery):
+def setprimary(account, picture):
+    gallery = picture.gallery
     _assert_can_edit(account, gallery)
-    if picture not in gallery.pictures.all():
-        raise Exception("Cannot set primary picture to non gallery picture!")
     gallery.primary = picture
     gallery.save()
 
