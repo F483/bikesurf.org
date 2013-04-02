@@ -1,6 +1,7 @@
 {% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
+{% load gallery_tags %}
 
 {% block styles %}
     <link rel="stylesheet" href="/static/gallery/list.css"
@@ -29,18 +30,19 @@
                         {% endif %}
                     </div>
 
-                    <!-- TODO check edit rights -->
-                    {% if current_team %}
-                        {% if picture != gallery.primary %} 
-                            {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/" current_team.link "/gallery/setprimary/" picture.id %}
+                    {% if_can_edit_gallery current_account gallery %}
+                        {% if current_team %}
+                            {% if picture != gallery.primary %} 
+                                {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/" current_team.link "/gallery/setprimary/" picture.id %}
+                            {% endif %}
+                            {% draw_delete "/" current_team.link "/gallery/remove/" picture.id %}
+                        {% else %}
+                            {% if picture != gallery.primary %} 
+                                {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/gallery/setprimary/" picture.id %}
+                            {% endif %}
+                            {% draw_delete "/gallery/remove/" picture.id %}
                         {% endif %}
-                        {% draw_delete "/" current_team.link "/gallery/remove/" picture.id %}
-                    {% else %}
-                        {% if picture != gallery.primary %} 
-                            {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/gallery/setprimary/" picture.id %}
-                        {% endif %}
-                        {% draw_delete "/gallery/remove/" picture.id %}
-                    {% endif %}
+                    {% endif_can_edit_gallery %}
                 </td>
 
                 {% cycle '' '</tr>' %}
@@ -51,12 +53,13 @@
         </table>
 
         <div>
-            <!-- TODO check edit rights -->
-            {% if current_team %}
-                {% draw_create "ADD_PICTURE" "/" current_team.link "/gallery/add/" gallery.id %}
-            {% else %}
-                {% draw_create "ADD_PICTURE" "/gallery/add/" gallery.id %}
-            {% endif %}
+            {% if_can_edit_gallery current_account gallery %}
+                {% if current_team %}
+                    {% draw_create "ADD_PICTURE" "/" current_team.link "/gallery/add/" gallery.id %}
+                {% else %}
+                    {% draw_create "ADD_PICTURE" "/gallery/add/" gallery.id %}
+                {% endif %}
+            {% endif_can_edit_gallery %}
         </div>
 
     </div>
