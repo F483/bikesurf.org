@@ -42,10 +42,8 @@
             <!-- TODO check edit rights -->
             {% if current_team %}
                 {% draw_create "ADD_PICTURE" "/" current_team.link "/gallery/add/" gallery.id %}
-                {% draw_delete "/" current_team.link "/gallery/delete/" gallery.id %}
             {% else %}
                 {% draw_create "ADD_PICTURE" "/gallery/add/" gallery.id %}
-                {% draw_delete "/gallery/delete/" gallery.id %}
             {% endif %}
         </div>
 

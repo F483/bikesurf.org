@@ -16,7 +16,6 @@ T = "(?P<team_link>%s)" % SLUG
 
 urlpatterns = patterns("apps.gallery.views",
     url(r"^gallery/create$",                    "create"),     # create gallery
-    url(r"^gallery/delete/%s$" % G,             "delete"),     # delete gallery
     url(r"^gallery/setprimary/%s$" % P,         "setprimary"), # update primary picture
     url(r"^gallery/add/%s$" % G,                "add"),        # add picture to gallery
     url(r"^gallery/remove/%s$" % P,             "remove"),     # remove gallery picture
@@ -24,7 +23,6 @@ urlpatterns = patterns("apps.gallery.views",
     url(r"^gallery/view/%s$" % P,               "view"),       # view picture
 
     url(r"^%s/gallery/create$" % T,             "create"),     # create gallery
-    url(r"^%s/gallery/delete/%s$" % (T, G),     "delete"),     # delete gallery
     url(r"^%s/gallery/setprimary/%s$" % (T, P), "setprimary"), # update primary picture
     url(r"^%s/gallery/add/%s$" % (T, G),        "add"),        # add picture to gallery
     url(r"^%s/gallery/remove/%s$" % (T, P),     "remove"),     # remove gallery picture
