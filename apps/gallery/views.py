@@ -96,7 +96,7 @@ def setprimary(request, **kwargs):
     else:
         form = Form()
     args = { 
-        "form" : form, "form_title" : _("SET_PRIMARY_PICTURE"), 
+        "form" : form, "form_title" : _("SET_AS_PRIMARY_PICTURE"), 
         "object_name" : "TODO some name", "cancle_url" : url
     }
     if team:

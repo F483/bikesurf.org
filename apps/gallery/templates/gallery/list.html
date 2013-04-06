@@ -33,12 +33,12 @@
                     {% if_can_edit_gallery current_account gallery %}
                         {% if current_team %}
                             {% if picture != gallery.primary %} 
-                                {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/" current_team.link "/gallery/setprimary/" picture.id %}
+                                {% draw_action "/static/famfamfam/pencil.png" "SET_AS_PRIMARY_PICTURE" "/" current_team.link "/gallery/setprimary/" picture.id %}
                             {% endif %}
                             {% draw_delete "/" current_team.link "/gallery/remove/" picture.id %}
                         {% else %}
                             {% if picture != gallery.primary %} 
-                                {% draw_action "/static/famfamfam/pencil.png" "SET_PRIMARY_PICTURE" "/gallery/setprimary/" picture.id %}
+                                {% draw_action "/static/famfamfam/pencil.png" "SET_AS_PRIMARY_PICTURE" "/gallery/setprimary/" picture.id %}
                             {% endif %}
                             {% draw_delete "/gallery/remove/" picture.id %}
                         {% endif %}

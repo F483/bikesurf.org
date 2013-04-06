@@ -22,7 +22,7 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "BIKE_CREATE" : _("BIKE_CREATE"),
         "ADD_STATION" : _("ADD_STATION"),
         "ADD_PICTURE" : _("ADD_PICTURE"),
-        "SET_PRIMARY_PICTURE" : _("SET_PRIMARY_PICTURE")
+        "SET_AS_PRIMARY_PICTURE" : _("SET_AS_PRIMARY_PICTURE")
 }
 
 
