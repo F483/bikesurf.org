@@ -22,8 +22,6 @@ class Message(models.Model):
     # meta
     created_on   = models.DateTimeField(auto_now_add=True)
 
-    # TODO validation
-
     def __unicode__(self):
         args = (self.id, self.sender.id, self.recipient.id)
         return u"id: %s; sender_id: %s; recipient_id: %s" % args

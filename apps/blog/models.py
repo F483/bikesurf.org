@@ -28,8 +28,6 @@ class Blog(Model):
     updated_by = ForeignKey("account.Account", related_name="blogs_updated")
     updated_on = DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def __unicode__(self):
         return u"%s: %s" % (self.team.name, self.name)
 

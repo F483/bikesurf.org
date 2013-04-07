@@ -101,10 +101,12 @@ def create(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
-        form = forms.Create(request.POST, team=team, account=account)
+        form = forms.Create(request.POST, request.FILES, 
+                            team=team, account=account)
         if form.is_valid():
             bike = control.create(
-                team, form.cleaned_data["name"].strip(),
+                account, team, form.cleaned_data["name"].strip(),
+                form.cleaned_data["image"],
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
                 form.cleaned_data["station"], form.cleaned_data["lockcode"],
@@ -114,7 +116,9 @@ def create(request, team_link):
             return HttpResponseRedirect(url)
     else:
         form = forms.Create(team=team, account=account)
-    args = { "form" : form, "form_title" : _("BIKE_CREATE") }
+    args = { 
+        "form" : form, "form_title" : _("BIKE_CREATE"), "multipart_form" : True 
+    }
     return rtr(team, "bikes", request, "common/form.html", args)
 
 
@@ -129,7 +133,7 @@ def edit(request, team_link, bike_id):
         form = forms.Edit(request.POST, bike=bike, account=account)
         if form.is_valid():
             control.edit(
-                bike,
+                account, bike,
                 form.cleaned_data["name"].strip(),
                 form.cleaned_data["description"].strip(),
                 form.cleaned_data["active"], form.cleaned_data["reserve"],
@@ -149,14 +153,12 @@ def edit(request, team_link, bike_id):
 def delete(request, team_link, bike_id):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-    assert_member(account, team)
     bike = get_object_or_404(Bike, id=bike_id, team=team)
 
     if request.method == "POST":
         form = Form(request.POST)
         if form.is_valid():
-            # TODO enusre db consistency and now open borrows
-            bike.delete()
+            control.delete(account, bike)
             return HttpResponseRedirect("/%s/bikes" % team.link)
     else:
         form = Form()

@@ -28,8 +28,6 @@ class Page(models.Model):
     updated_by  = models.ForeignKey("account.Account", related_name="pages_updated")
     updated_on  = models.DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def __unicode__(self):
         return u"%s: %s" % (self.team.name, self.name)
 

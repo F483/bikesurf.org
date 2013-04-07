@@ -46,8 +46,6 @@ class Account(Model):
     created_on = DateTimeField(auto_now_add=True)
     updated_on = DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def get_name():
         return self.user.username
 

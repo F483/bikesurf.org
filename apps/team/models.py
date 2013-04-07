@@ -29,8 +29,6 @@ class Team(models.Model):
     updated_by  = models.ForeignKey('account.Account', related_name='team_updated')
     updated_on  = models.DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def __unicode__(self):
         return u"%s" % self.name
 
@@ -52,8 +50,6 @@ class JoinRequest(models.Model):
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
     updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
 
     def __unicode__(self):
         return u"%s > %s (%s)" % (self.requester, self.team, self.status)
@@ -77,8 +73,6 @@ class RemoveRequest(models.Model):
     # meta
     created_on  = models.DateTimeField(auto_now_add=True)
     updated_on  = models.DateTimeField(auto_now=True)
-
-    # TODO validation
 
     def __unicode__(self):
         return u"%s < %s (%s)" % (self.concerned, self.team, self.status)

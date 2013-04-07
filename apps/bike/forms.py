@@ -10,6 +10,7 @@ from django.forms import ModelChoiceField
 from django.forms import CharField
 from django.forms import BooleanField
 from django.forms import ChoiceField
+from django.forms import ImageField
 
 from apps.bike.models import SIZE_CHOICES
 
@@ -17,6 +18,7 @@ from apps.bike.models import SIZE_CHOICES
 class Create(Form):
 
     name = CharField(label=_("NAME"))
+    image = ImageField(label=_("IMAGE"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(label=_("STATION"), queryset=None, required=False)

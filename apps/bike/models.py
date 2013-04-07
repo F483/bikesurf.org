@@ -24,6 +24,7 @@ class Bike(Model):
     # main data
     team = ForeignKey('team.Team', related_name='bikes')
     name = CharField(max_length=1024)
+    gallery = ForeignKey('gallery.Gallery')
     description = TextField()
     active = BooleanField(default=True)
     reserve = BooleanField(default=False) # not requestable
@@ -32,12 +33,11 @@ class Bike(Model):
     size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM') # TODO add height in cm
     lights = BooleanField(default=False) # to cycle when dark
     
-    # meta
-    created_on = DateTimeField(auto_now_add=True)
-    updated_on = DateTimeField(auto_now=True)
-
-    # TODO validation
-    # TODO galerie
+    # metadata
+    created_by  = ForeignKey('account.Account', related_name="bikes_created")
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_by  = ForeignKey("account.Account", related_name="bikes_updated")
+    updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.name

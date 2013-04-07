@@ -39,8 +39,6 @@ class Borrow(Model):
     created_on  = DateTimeField(auto_now_add=True)
     updated_on  = DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def __unicode__(self):
         args = (self.id, self.bike.id, self.state, self.start, self.finish)
         return u"id: %s; bike_id: %s; state: %s; start: %s; finish %s" % args
@@ -65,8 +63,6 @@ class Log(Model):
     # meta
     created_on  = DateTimeField(auto_now_add=True)
 
-    # TODO validation
-
     def __unicode__(self):
         return u"%s %s %s" % (self.initiator, self.action, self.borrow.id)
 
@@ -83,14 +79,12 @@ class Rating(Model): # only borrower rates ...
     ]
 
     borrow = ForeignKey('borrow.Borrow')
-    rating = IntegerField() # 0 - 5 'Stars'
+    rating = IntegerField() # 0 - 5 'Stars' # TODO only (thumbs up|meh|thumbs down)
     account = ForeignKey('account.Account') # borrower or lender
     originator = CharField(max_length=64, choices=ORIGINATOR_CHOICES)
 
     # meta
     created_on  = DateTimeField(auto_now_add=True)
-
-    # TODO validation
 
     def __unicode__(self):
         args = (self.id, self.borrow.id, self.rating)

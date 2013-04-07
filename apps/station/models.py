@@ -25,8 +25,6 @@ class Station(models.Model):
     created_on  = models.DateTimeField(auto_now_add=True)
     updated_on  = models.DateTimeField(auto_now=True)
 
-    # TODO validation
-
     def __unicode__(self):
         args = (
             self.country.name, 
