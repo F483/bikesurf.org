@@ -5,7 +5,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="/static/gallery/list.css"
-             type="text/css" charset="utf-8">
+          type="text/css" charset="utf-8">
 {% endblock %}
 
 {% block content %}
@@ -45,7 +45,7 @@
                     {% endif_can_edit_gallery %}
                 </td>
 
-                {% cycle '' '</tr>' %}
+                {% cycle '' '</tr>' %} <!-- TODO what when uneven count? -->
 
             {% empty %}
                 {% trans "NO_PICTURES" %}

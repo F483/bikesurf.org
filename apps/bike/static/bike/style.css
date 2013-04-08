@@ -1,0 +1,21 @@
+
+#bike_list_layout_table tr {
+    height: 100px; /* TODO why does this not work? */
+}
+
+#bike_list_entrie a {
+    color: #000;
+}
+
+.td_bike_image {
+    width: 110px;
+}
+
+#td_bike_info {
+    padding-left: 10px;
+}
+
+.td_bike_props {
+    text-align: left;
+}
+
