@@ -10,9 +10,6 @@ from apps.gallery.models import Picture
 from apps.team.utils import assert_member
 
 
-# XXX http://www.fontsquirrel.com/fonts/League-Gothic
-
-
 def _assert_can_edit(account, gallery):
     if ((gallery.team and account not in gallery.team.members.all()) or 
             (not gallery.team and gallery.created_by != account)):

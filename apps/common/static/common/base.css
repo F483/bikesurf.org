@@ -134,7 +134,14 @@ a:hover {
     float: left;
 }
 
+@font-face {
+    font-family: LeagueGothic;
+    src: url("apps/common/static/common/fonts/League-Gothic/League_Gothic.otf") format("opentype");
+}
+
 .menu {
+    font-family: LeagueGothic;
+    font-size: 10pt;
     padding: 10px;
     border: 1px;
     border-color: #000000;
@@ -146,6 +153,7 @@ a:hover {
 .menu a {
     text-decoration: none;
     text-transform: uppercase;
+    color: #000;
 }
 
 .menu a:hover {
@@ -158,7 +166,7 @@ a:hover {
 }
 
 .menu #selected {
-    color: #E8B828;
+    color: #000;
     font-weight: bold;
 }
 
