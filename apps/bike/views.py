@@ -18,7 +18,6 @@ from apps.bike import control
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.bike import forms
-from django.forms import Form
 
 
 _VIEW = {
@@ -156,17 +155,17 @@ def delete(request, team_link, bike_id):
     bike = get_object_or_404(Bike, id=bike_id, team=team)
 
     if request.method == "POST":
-        form = Form(request.POST)
+        form = forms.Delete(request.POST, bike=bike, account=account)
         if form.is_valid():
             control.delete(account, bike)
             return HttpResponseRedirect("/%s/bikes" % team.link)
     else:
-        form = Form()
+        form = forms.Delete(bike=bike, account=account)
     args = { 
         "form" : form, "form_title" : _("BIKE_DELETE?"), 
         "object_name" : bike.name, "cancle_url" : "/%s/bikes" % team.link
     }
-    return rtr(team, "bikes", request, "common/delete.html", args)
+    return rtr(team, "bikes", request, "common/form.html", args)
 
 
 

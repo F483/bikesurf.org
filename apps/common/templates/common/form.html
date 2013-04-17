@@ -4,6 +4,9 @@
 {% block content %}
     <div class="content">
         <h2>{{ form_title }}</h2>
+        {% if object_name %}
+            <h3>{{ object_name }}</h3>
+        {% endif %}
         <form action="{{ current_path }}" method="post" 
               {% if multipart_form %}enctype="multipart/form-data" {% endif %}>
 
@@ -11,6 +14,9 @@
             <table class="input_form">
                 {{ form.as_table }}
             </table>
+            {% if cancle_url %}
+                <input type="button" onclick="window.location.href = '{{ cancle_url }}';" value="CANCEL">
+            {% endif %}
             <input type="submit" value="{% trans "SUBMIT" %}" />
         </form>
     </div>

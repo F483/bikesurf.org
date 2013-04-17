@@ -4,6 +4,7 @@
 
 
 from django.utils.translation import ugettext_lazy as _
+from django.forms import ValidationError
 from django.forms import Form
 from django.forms import Textarea
 from django.forms import ModelChoiceField
@@ -58,4 +59,22 @@ class Edit(Form):
         self.fields["size"].initial = bike.size
         self.fields["lights"].initial = bike.lights
         self.fields["description"].initial = bike.description
+
+
+class Delete(Form):
+
+    def __init__(self, *args, **kwargs):
+        self.bike = kwargs.pop("bike")
+        self.account = kwargs.pop("account")
+        super(Delete, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(Delete, self).clean()
+
+        # XXX see apps.bike.control.can_delete
+        if len(self.bike.borrows.filter(active=True)): # active_borrows 
+            raise ValidationError(_("BIKE_HAS_ACTIVE_BORROWS"))
+
+        return cleaned_data
+
 
