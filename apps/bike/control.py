@@ -54,7 +54,8 @@ def delete(account, bike):
     if not can_delete(account, bike):
         raise PermissionDenied
     for borrow in bike.borrows.all():
-        borrow.delete()
+        borrow.bike = None
+        borrow.save()
     delete_gallery(account, bike.gallery)
     bike.delete()
 

@@ -95,6 +95,7 @@ def rate_my(account, borrow, rating_value, note):
 def create(bike, account, start, finish, note):
     borrow = Borrow()
     borrow.bike = bike
+    borrow.team = bike.team
     borrow.borrower = account
     borrow.start = start
     borrow.finish = finish

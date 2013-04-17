@@ -26,7 +26,11 @@ STATE_CHOICES = [
 
 class Borrow(Model):
 
-    bike = ForeignKey('bike.Bike', related_name="borrows")
+    bike = ForeignKey( # None => Bike deleted
+            'bike.Bike', related_name="borrows", 
+            blank=True, null=True
+    )
+    team = ForeignKey('team.Team', related_name='borrows') # only because bikes may be deleted
     borrower = ForeignKey('account.Account')
     start = DateField()
     finish = DateField() # inclusive

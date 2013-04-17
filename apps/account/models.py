@@ -57,7 +57,7 @@ class Account(Model):
         ordering = ['user__username']
 
 
-class Site(Model):
+class Site(Model): # TODO do something with it or delete it
 
     SITE_CHOICES = [ # TODO add url validation functions per site
         ('COUCHSURFING', _('COUCHSURFING')),
