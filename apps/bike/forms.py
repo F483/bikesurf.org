@@ -16,13 +16,22 @@ from django.forms import ImageField
 from apps.bike.models import SIZE_CHOICES
 
 
+def _validate_capacity(station):
+    bike_count = len(station.bikes.all())
+    if bike_count >= station.capacity:
+        raise ValidationError(_("STATION_AT_MAX_CAPACITY"))
+
+
 class Create(Form):
 
     name = CharField(label=_("NAME"))
     image = ImageField(label=_("IMAGE"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
-    station = ModelChoiceField(label=_("STATION"), queryset=None, required=False)
+    station = ModelChoiceField(
+            label=_("STATION"), queryset=None, required=False, 
+            validators=[_validate_capacity]
+    )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
@@ -40,7 +49,10 @@ class Edit(Form):
     name = CharField(label=_("NAME"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
-    station = ModelChoiceField(label=_("STATION"), queryset=None, required=False)
+    station = ModelChoiceField(
+            label=_("STATION"), queryset=None, required=False, 
+            validators=[_validate_capacity]
+    )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)

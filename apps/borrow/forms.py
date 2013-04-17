@@ -123,7 +123,6 @@ class Cancel(Form):
         return cleaned_data
 
 
-
 RATING_CHOICES = [
     (0, _("0")),
     (1, _("1")),
