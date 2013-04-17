@@ -181,9 +181,9 @@ def delete(request, team_link, station_id):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("STATION_DELETE?"), 
-        "object_name" : str(station), "cancle_url" : "/%s/stations" % team.link
+        "form_subtitle" : str(station), "cancle_url" : "/%s/stations" % team.link
     }
-    return rtr(team, "stations", request, "common/delete.html", args)
+    return rtr(team, "stations", request, "common/form.html", args)
 
 
 

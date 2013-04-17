@@ -163,7 +163,7 @@ def delete(request, team_link, bike_id):
         form = forms.Delete(bike=bike, account=account)
     args = { 
         "form" : form, "form_title" : _("BIKE_DELETE?"), 
-        "object_name" : bike.name, "cancle_url" : "/%s/bikes" % team.link
+        "form_subtitle" : bike.name, "cancle_url" : "/%s/bikes" % team.link
     }
     return rtr(team, "bikes", request, "common/form.html", args)
 

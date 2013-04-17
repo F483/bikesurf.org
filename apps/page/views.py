@@ -93,8 +93,8 @@ def delete(request, team_link, page_link):
     cancle_url = "/%s/%s" % (team.link, page.link)
     args = { 
         "form" : form, "form_title" : _("PAGE_DELETE?"), 
-        "object_name" : page.name, "cancle_url" : cancle_url
+        "form_subtitle" : page.name, "cancle_url" : cancle_url
     }
-    return rtr(team, page.link, request, "common/delete.html", args)
+    return rtr(team, page.link, request, "common/form.html", args)
 
 

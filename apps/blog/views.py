@@ -99,8 +99,8 @@ def delete(request, team_link, blog_id):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("BLOG_DELETE?"), 
-        "object_name" : blog.name, "cancle_url" : "/%s/blog" % team.link
+        "form_subtitle" : blog.name, "cancle_url" : "/%s/blog" % team.link
     }
-    return rtr(team, "blog", request, "common/delete.html", args)
+    return rtr(team, "blog", request, "common/form.html", args)
 
 

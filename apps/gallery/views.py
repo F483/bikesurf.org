@@ -97,12 +97,12 @@ def setprimary(request, **kwargs):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("SET_AS_PRIMARY_PICTURE"), 
-        "object_name" : "TODO some name", "cancle_url" : url
+        "cancle_url" : url
     }
     if team:
-        return rtr(team, None, request, "common/delete.html", args)
+        return rtr(team, None, request, "common/form.html", args)
     else:
-        return render_response(request, "common/delete.html", args)
+        return render_response(request, "common/form.html", args)
 
 
 @login_required
@@ -125,12 +125,12 @@ def remove(request, **kwargs):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("REMOVE_GALLERY_PICTURE"), 
-        "object_name" : "TODO some name", "cancle_url" : url
+        "cancle_url" : url
     }
     if team:
-        return rtr(team, None, request, "common/delete.html", args)
+        return rtr(team, None, request, "common/form.html", args)
     else:
-        return render_response(request, "common/delete.html", args)
+        return render_response(request, "common/form.html", args)
 
 
 @require_http_methods(["GET"])
