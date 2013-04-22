@@ -134,13 +134,7 @@ a:hover {
     float: left;
 }
 
-@font-face {
-    font-family: LeagueGothic;
-    src: url("apps/common/static/common/fonts/League-Gothic/League_Gothic.otf") format("opentype");
-}
-
 .menu {
-    font-family: LeagueGothic;
     font-size: 10pt;
     padding: 10px;
     border: 1px;
