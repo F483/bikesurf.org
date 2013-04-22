@@ -16,8 +16,7 @@ from apps.team.models import Team
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.station.models import Station
-from apps.station.forms import CreateStationForm
-from apps.station.forms import EditStationForm
+from apps.station import forms
 from apps.station import control
 
 
@@ -118,7 +117,7 @@ def create(request, team_link):
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
-        form = CreateStationForm(request.POST, team=team, account=account)
+        form = forms.Create(request.POST, team=team, account=account)
         if form.is_valid():
             station = control.create(
                     account, team,
@@ -132,7 +131,7 @@ def create(request, team_link):
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
-        form = CreateStationForm(team=team, account=account)
+        form = forms.Create(team=team, account=account)
     args = { "form" : form, "form_title" : _("ADD_STATION") }
     return rtr(team, "stations", request, "common/form.html", args)
 
@@ -145,7 +144,7 @@ def edit(request, team_link, station_id):
     assert_member(account, team)
     station = get_object_or_404(Station, team=team, id=station_id)
     if request.method == "POST":
-        form = EditStationForm(request.POST, station=station)
+        form = forms.Edit(request.POST, station=station, account=account)
         if form.is_valid():
             station = control.edit( 
                     account, station,
@@ -159,7 +158,7 @@ def edit(request, team_link, station_id):
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
-        form = EditStationForm(station=station)
+        form = forms.Edit(station=station, account=account)
     args = { "form" : form, "form_title" : _("ADD_STATION") }
     return rtr(team, "stations", request, "common/form.html", args)
 
@@ -172,15 +171,16 @@ def delete(request, team_link, station_id):
     assert_member(account, team)
     station = get_object_or_404(Station, team=team, id=station_id)
     if request.method == "POST":
-        form = Form(request.POST)
+        form = forms.Delete(request.POST, account=account, station=station)
         if form.is_valid():
             control.delete(account, station)
             return HttpResponseRedirect("/%s/stations" % team.link)
     else:
-        form = Form()
+        form = forms.Delete(account=account, station=station)
     args = { 
         "form" : form, "form_title" : _("STATION_DELETE?"), 
-        "form_subtitle" : str(station), "cancle_url" : "/%s/stations" % team.link
+        "form_subtitle" : str(station), 
+        "cancle_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
     return rtr(team, "stations", request, "common/form.html", args)
 

@@ -9,18 +9,27 @@ from apps.station.models import Station
 from apps.borrow.models import Borrow
 
 
-def can_delete(account, station):
+def can_edit(account, station):
+    # account must be a member of the stations team
+    return account in station.team.members.all()
+
+
+def in_use(station):
     today = datetime.datetime.now().date()
-    return not (
-        # account must be a member of the stations team
-        account not in station.team.members.all() or 
-
-        # no bike can be currently at the station
+    return (
+        # bikes currently at the station
         len(station.bikes.all()) or 
-
-        # no bike can be heading to the station in the future
+        # bikes heading to the station in the future
         len(Borrow.objects.filter(active=True, dest=station, finish__gte=today))
     )
+
+
+def can_delete(account, station):
+    return can_edit(account, station) and not in_use(station)
+
+
+def can_deactivate(account, station):
+    return can_edit(account, station) and not in_use(station)
 
 
 def create( account, team, responsable, 
@@ -41,7 +50,7 @@ def create( account, team, responsable,
 
 def edit( account, station, responsable, 
           active, street, city, postalcode, country ):
-    if not active and not can_delete(account, station):
+    if not active and not can_deactivate(account, station):
         raise PermissionDenied
     station.updated_by = account
     station.responsable = responsable
