@@ -15,7 +15,6 @@ from apps.station import control
 class Create(forms.Form):
 
     responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
-    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
@@ -27,14 +26,12 @@ class Create(forms.Form):
         super(Create, self).__init__(*args, **kwargs)
         self.fields["responsable"].queryset = team.members.all()
         self.fields["responsable"].initial = account
-        self.fields["country"].initial = team.country.code
         self.fields["city"].initial = team.name
 
 
 class Edit(forms.Form):
 
     responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
-    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
@@ -46,7 +43,6 @@ class Edit(forms.Form):
         super(Edit, self).__init__(*args, **kwargs)
         self.fields["responsable"].queryset = self.station.team.members.all()
         self.fields["responsable"].initial = self.station.responsable
-        self.fields["country"].initial = self.station.country.code
         self.fields["postalcode"].initial = self.station.postalcode
         self.fields["city"].initial = self.station.city
         self.fields["street"].initial = self.station.street

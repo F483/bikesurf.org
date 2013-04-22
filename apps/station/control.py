@@ -33,7 +33,7 @@ def can_deactivate(account, station):
 
 
 def create( account, team, responsable, 
-            active, street, city, postalcode, country ):
+            active, street, city, postalcode ):
     station = Station()
     station.created_by = account
     station.updated_by = account
@@ -43,13 +43,12 @@ def create( account, team, responsable,
     station.street = street
     station.city = city
     station.postalcode = postalcode
-    station.country = country
     station.save()
     return station
 
 
 def edit( account, station, responsable, 
-          active, street, city, postalcode, country ):
+          active, street, city, postalcode ):
     if not active and not can_deactivate(account, station):
         raise PermissionDenied
     station.updated_by = account
@@ -58,7 +57,6 @@ def edit( account, station, responsable,
     station.street = street
     station.city = city
     station.postalcode = postalcode
-    station.country = country
     station.save()
     return station
 

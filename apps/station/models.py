@@ -21,9 +21,6 @@ class Station(Model):
     street      = CharField(max_length=1024)
     city        = CharField(max_length=1024)
     postalcode  = CharField(max_length=1024)
-    country     = CountryField()
-    # TODO link on google maps 
-    # TODO image galerie
     
     # metadata
     created_by  = ForeignKey('account.Account', related_name="stations_created")
@@ -33,13 +30,11 @@ class Station(Model):
 
     def __unicode__(self):
         args = (
-            self.country.name, 
             self.postalcode, 
             self.city, 
             self.street, 
             self.responsable
         )
-        return u"%s - %s %s - %s (%s)" % args
-
+        return u"%s %s / %s (%s)" % args
 
 

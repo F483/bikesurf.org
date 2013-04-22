@@ -125,14 +125,16 @@ def create(request, team_link):
                     form.cleaned_data["active"],
                     form.cleaned_data["street"].strip(),
                     form.cleaned_data["city"].strip(),
-                    form.cleaned_data["postalcode"].strip(),
-                    form.cleaned_data["country"].strip()
+                    form.cleaned_data["postalcode"].strip()
             )
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.Create(team=team, account=account)
-    args = { "form" : form, "form_title" : _("ADD_STATION") }
+    args = { 
+        "form" : form, "form_title" : _("ADD_STATION"),
+        "cancle_url" : "/%s" % team.link
+    }
     return rtr(team, "stations", request, "common/form.html", args)
 
 
@@ -152,14 +154,16 @@ def edit(request, team_link, station_id):
                     form.cleaned_data["active"],
                     form.cleaned_data["street"].strip(),
                     form.cleaned_data["city"].strip(),
-                    form.cleaned_data["postalcode"].strip(),
-                    form.cleaned_data["country"].strip()
+                    form.cleaned_data["postalcode"].strip()
             )
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
         form = forms.Edit(station=station, account=account)
-    args = { "form" : form, "form_title" : _("ADD_STATION") }
+    args = { 
+        "form" : form, "form_title" : _("ADD_STATION"),
+        "cancle_url" : "/%s/station/view/%s" % (team.link, station.id)
+    }
     return rtr(team, "stations", request, "common/form.html", args)
 
 
