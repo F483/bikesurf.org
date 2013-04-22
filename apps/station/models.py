@@ -3,27 +3,33 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.db import models
+from django.db.models import Model
+from django.db.models import ForeignKey
+from django.db.models import IntegerField
+from django.db.models import BooleanField
+from django.db.models import CharField
+from django.db.models import DateTimeField
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 
 
-class Station(models.Model):
+class Station(Model):
 
-    team        = models.ForeignKey("team.Team", related_name="stations")
-    responsable = models.ForeignKey("account.Account")
-    capacity    = models.IntegerField(default=1)
-    active      = models.BooleanField(default=True)
-    street      = models.CharField(max_length=1024)
-    city        = models.CharField(max_length=1024)
-    postalcode  = models.CharField(max_length=1024)
+    team        = ForeignKey("team.Team", related_name="stations")
+    responsable = ForeignKey("account.Account")
+    active      = BooleanField(default=True)
+    street      = CharField(max_length=1024)
+    city        = CharField(max_length=1024)
+    postalcode  = CharField(max_length=1024)
     country     = CountryField()
     # TODO link on google maps 
     # TODO image galerie
     
-    # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    # metadata
+    created_by  = ForeignKey('account.Account', related_name="stations_created")
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_by  = ForeignKey("account.Account", related_name="stations_updated")
+    updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         args = (

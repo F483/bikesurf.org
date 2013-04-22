@@ -17,7 +17,6 @@ class CreateStationForm(forms.Form):
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
-    capacity = forms.IntegerField(label=_("CAPACITY"), initial=1, min_value=0)
     active = forms.BooleanField(label=_("ACTIVE"), initial=True, required=False)
 
     def __init__(self, *args, **kwargs):
@@ -37,8 +36,7 @@ class EditStationForm(forms.Form):
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
-    capacity = forms.IntegerField(label=_("CAPACITY"), initial=1, min_value=0)
-    active = forms.BooleanField(label=_("ACTIVE"), required=False)
+    active = forms.BooleanField(label=_("ACTIVE"), required=False) # TODO check borrows/bikes
 
     def __init__(self, *args, **kwargs):
         station = kwargs.pop("station")
@@ -49,6 +47,6 @@ class EditStationForm(forms.Form):
         self.fields["postalcode"].initial = station.postalcode
         self.fields["city"].initial = station.city
         self.fields["street"].initial = station.street
-        self.fields["capacity"].initial = station.capacity
         self.fields["active"].initial = station.active
 
+# TODO add delete form with validation

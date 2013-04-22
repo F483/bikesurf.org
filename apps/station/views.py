@@ -18,6 +18,7 @@ from apps.team.utils import assert_member
 from apps.station.models import Station
 from apps.station.forms import CreateStationForm
 from apps.station.forms import EditStationForm
+from apps.station import control
 
 
 _VIEW = {
@@ -119,16 +120,15 @@ def create(request, team_link):
     if request.method == "POST":
         form = CreateStationForm(request.POST, team=team, account=account)
         if form.is_valid():
-            station = Station()
-            station.team = team
-            station.responsable = form.cleaned_data["responsable"]
-            station.capacity = form.cleaned_data["capacity"]
-            station.active = form.cleaned_data["active"]
-            station.street = form.cleaned_data["street"].strip()
-            station.city = form.cleaned_data["city"].strip()
-            station.postalcode = form.cleaned_data["postalcode"].strip()
-            station.country = form.cleaned_data["country"].strip()
-            station.save()
+            station = control.create(
+                    account, team,
+                    form.cleaned_data["responsable"],
+                    form.cleaned_data["active"],
+                    form.cleaned_data["street"].strip(),
+                    form.cleaned_data["city"].strip(),
+                    form.cleaned_data["postalcode"].strip(),
+                    form.cleaned_data["country"].strip()
+            )
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
@@ -147,15 +147,15 @@ def edit(request, team_link, station_id):
     if request.method == "POST":
         form = EditStationForm(request.POST, station=station)
         if form.is_valid():
-            # TODO check DB consistency (capacity, borrows, etc ...)
-            station.responsable = form.cleaned_data["responsable"]
-            station.capacity = form.cleaned_data["capacity"]
-            station.active = form.cleaned_data["active"]
-            station.street = form.cleaned_data["street"].strip()
-            station.city = form.cleaned_data["city"].strip()
-            station.postalcode = form.cleaned_data["postalcode"].strip()
-            station.country = form.cleaned_data["country"].strip()
-            station.save()
+            station = control.edit( 
+                    account, station,
+                    form.cleaned_data["responsable"],
+                    form.cleaned_data["active"],
+                    form.cleaned_data["street"].strip(),
+                    form.cleaned_data["city"].strip(),
+                    form.cleaned_data["postalcode"].strip(),
+                    form.cleaned_data["country"].strip()
+            )
             url = "/%s/station/view/%s" % (team.link, station.id)
             return HttpResponseRedirect(url)
     else:
@@ -174,8 +174,7 @@ def delete(request, team_link, station_id):
     if request.method == "POST":
         form = Form(request.POST)
         if form.is_valid():
-            # TODO enusre db consistency and no open borrows or bikes at station
-            station.delete()
+            control.delete(account, station)
             return HttpResponseRedirect("/%s/stations" % team.link)
     else:
         form = Form()
@@ -184,6 +183,5 @@ def delete(request, team_link, station_id):
         "form_subtitle" : str(station), "cancle_url" : "/%s/stations" % team.link
     }
     return rtr(team, "stations", request, "common/form.html", args)
-
 
 

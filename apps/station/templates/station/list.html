@@ -15,8 +15,7 @@
                     </a>
                 </h2>
                 <!-- TODO draw preview image -->
-                {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
-                {% trans "CAPACITY" %}: {{ station.capacity }}
+                {% trans "ACTIVE" %}: {% draw_bool station.active %} 
         {% empty %}
             {% trans "NO_STATIONS" %}
         {% endfor %}
