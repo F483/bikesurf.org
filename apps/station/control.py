@@ -11,7 +11,7 @@ from apps.borrow.models import Borrow
 
 def can_edit(account, station):
     # account must be a member of the stations team
-    return account in station.team.members.all()
+    return account in station.team.members.all() # TODO make general is_member in team control instead
 
 
 def in_use(station):

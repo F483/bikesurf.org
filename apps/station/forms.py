@@ -70,4 +70,3 @@ class Delete(forms.Form):
         return cleaned_data
 
 
-# TODO add delete form with validation

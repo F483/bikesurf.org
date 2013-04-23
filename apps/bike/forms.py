@@ -14,6 +14,12 @@ from django.forms import ChoiceField
 from django.forms import ImageField
 
 from apps.bike.models import SIZE_CHOICES
+from apps.bike import control
+
+
+def _validate_station_active(station):
+    if not station.active:
+        raise ValidationError(_("STATION_MUST_BE_ACTIVE"))
 
 
 class Create(Form):
@@ -23,7 +29,8 @@ class Create(Form):
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=False
+            label=_("STATION"), queryset=None, required=False, 
+            validators=[_validate_station_active]
     )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
@@ -43,7 +50,8 @@ class Edit(Form):
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=False
+            label=_("STATION"), queryset=None, required=False,
+            validators=[_validate_station_active]
     )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
@@ -51,18 +59,25 @@ class Edit(Form):
     description = CharField(label=_("description"), widget=Textarea)
 
     def __init__(self, *args, **kwargs):
-        bike = kwargs.pop("bike")
-        account = kwargs.pop("account")
+        self.bike = kwargs.pop("bike")
+        self.account = kwargs.pop("account")
         super(Edit, self).__init__(*args, **kwargs)
-        self.fields["name"].initial = bike.name
-        self.fields["active"].initial = bike.active
-        self.fields["reserve"].initial = bike.reserve
-        self.fields["station"].queryset = bike.team.stations.all()
-        self.fields["station"].initial = bike.station
-        self.fields["lockcode"].initial = bike.lockcode
-        self.fields["size"].initial = bike.size
-        self.fields["lights"].initial = bike.lights
-        self.fields["description"].initial = bike.description
+        self.fields["name"].initial = self.bike.name
+        self.fields["active"].initial = self.bike.active
+        self.fields["reserve"].initial = self.bike.reserve
+        self.fields["station"].queryset = self.bike.team.stations.all()
+        self.fields["station"].initial = self.bike.station
+        self.fields["lockcode"].initial = self.bike.lockcode
+        self.fields["size"].initial = self.bike.size
+        self.fields["lights"].initial = self.bike.lights
+        self.fields["description"].initial = self.bike.description
+
+    def clean(self):
+        cleaned_data = super(Edit, self).clean()
+        if (not cleaned_data.get("active") and self.bike.active and
+                not control.can_deactivate(self.account, self.bike)):
+            raise ValidationError(_("CANNOT_DEACTIVATE_BIKE_IN_USE"))
+        return cleaned_data
 
 
 class Delete(Form):
@@ -74,11 +89,8 @@ class Delete(Form):
 
     def clean(self):
         cleaned_data = super(Delete, self).clean()
-
-        # XXX see apps.bike.control.can_delete
-        if len(self.bike.borrows.filter(active=True)): # active_borrows 
-            raise ValidationError(_("BIKE_HAS_ACTIVE_BORROWS"))
-
+        if not control.can_delete(self.account, self.bike):
+            raise ValidationError(_("CANNOT_DELETE_BIKE_IN_USE"))
         return cleaned_data
 
 
