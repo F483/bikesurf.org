@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 
 from apps.team.models import Team
 from apps.blog.models import Blog
+from apps.blog import control
 from apps.account.models import Account
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
@@ -28,31 +29,22 @@ def list(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link):
-
-    # get data
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
-
     if request.method == "POST":
         form = forms.Create(request.POST)
         if form.is_valid():
-
-            # save blog
-            blog = Blog()
-            blog.team = team
-            blog.name = form.cleaned_data["name"]
-            blog.content = form.cleaned_data["content"]
-            blog.created_by = account
-            blog.updated_by = account
-            blog.save()
-
-            # TODO send messages
-
+            name = form.cleaned_data["name"]
+            content = form.cleaned_data["content"]
+            blog = control.create(account, team, name, content)
             return HttpResponseRedirect("/%s/blog" % team.link)
     else:
         form = forms.Create()
-    args = { "form" : form, "form_title" : _("ADD_BLOG") }
+    args = { 
+        "form" : form, "form_title" : _("ADD_BLOG"), 
+        "cancle_url" : "/%s" % team.link
+    }
     return rtr(team, "blog", request, "common/form.html", args)
 
 
@@ -69,14 +61,16 @@ def edit(request, team_link, blog_id):
     if request.method == "POST":
         form = forms.Edit(request.POST, blog=blog)
         if form.is_valid():
-            blog.name = form.cleaned_data["name"]
-            blog.content = form.cleaned_data["content"]
-            blog.updated_by = account
-            blog.save()
+            name = form.cleaned_data["name"]
+            content = form.cleaned_data["content"]
+            control.edit(account, blog, name, content)
             return HttpResponseRedirect("/%s/blog" % (team.link))
     else:
         form = forms.Edit(blog=blog)
-    args = { "form" : form, "form_title" : _("BLOG_EDIT") }
+    args = { 
+        "form" : form, "form_title" : _("BLOG_EDIT"), 
+        "cancle_url" : "/%s" % team.link
+    }
     return rtr(team, "blog", request, "common/form.html", args)
 
 
@@ -93,7 +87,7 @@ def delete(request, team_link, blog_id):
     if request.method == "POST":
         form = Form(request.POST)
         if form.is_valid():
-            blog.delete()
+            control.delete(account, blog)
             return HttpResponseRedirect("/%s/blog" % team.link)
     else:
         form = Form()
