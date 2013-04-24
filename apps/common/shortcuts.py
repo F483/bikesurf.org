@@ -40,6 +40,7 @@ def render_response(request, template, args):
     # TODO check for mobile browser and use mobile template if it exists
     return render_to_response(template, args)
 
+
 def get_object_or_none(klass, *args, **kwargs):
     queryset = _get_queryset(klass)
     try:

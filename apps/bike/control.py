@@ -76,7 +76,7 @@ def edit( account, bike, name, description, active, reserve, station, lockcode,
 
 
 def delete(account, bike):
-    assert_member(account, team)
+    assert_member(account, bike.team)
     if not can_delete(account, bike):
         raise PermissionDenied
     for borrow in bike.borrows.all():

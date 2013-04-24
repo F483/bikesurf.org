@@ -6,12 +6,12 @@
 from django import template
 from django.utils.translation import ugettext as _
 from apps.common.templatetags.common_tags import condition_tag
+from apps.gallery import control
 
 register = template.Library()
 
 @register.tag
 @condition_tag
 def if_can_edit_gallery(account, gallery):
-    return not ((gallery.team and account not in gallery.team.members.all()) or 
-                (not gallery.team and gallery.created_by != account))
+    return control.can_edit(account, gallery) 
 

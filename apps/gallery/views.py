@@ -51,33 +51,6 @@ def add(request, **kwargs):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def create(request, **kwargs):
-    team_link = kwargs.get("team_link")
-    account = get_object_or_404(Account, user=request.user)
-    team = team_link and get_object_or_404(Team, link=team_link) or None
-    if team:
-        assert_member(account, team)
-    if request.method == "POST":
-        form = forms.Create(request.POST, request.FILES)
-        if form.is_valid():
-            gallery = control.create(account, form.cleaned_data["image"], team)
-            prefix = team and "/%s" % team.link or ""
-            url = "%s/gallery/list/%s" % (prefix, gallery.id)
-            return HttpResponseRedirect(url)
-    else:
-        form = forms.Create()
-    args = { 
-        "form" : form, "form_title" : _("GALLERY_CREATE"), 
-        "multipart_form" : True 
-    }
-    if team:
-        return rtr(team, None, request, "common/form.html", args)
-    else:
-        return render_response(request, "common/form.html", args)
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
 def setprimary(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
@@ -95,6 +68,7 @@ def setprimary(request, **kwargs):
             return HttpResponseRedirect(url)
     else:
         form = Form()
+    # TODO make template that shows the image being set!
     args = { 
         "form" : form, "form_title" : _("SET_AS_PRIMARY_PICTURE"), 
         "cancle_url" : url

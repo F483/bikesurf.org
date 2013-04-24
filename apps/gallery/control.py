@@ -10,13 +10,18 @@ from apps.gallery.models import Picture
 from apps.team.utils import assert_member
 
 
+def can_edit(account, gallery):
+    return not ((gallery.team and account not in gallery.team.members.all()) or 
+                (not gallery.team and gallery.created_by != account))
+
+
 def _assert_can_edit(account, gallery):
-    if ((gallery.team and account not in gallery.team.members.all()) or 
-            (not gallery.team and gallery.created_by != account)):
+    if not can_edit(account, gallery):
         raise PermissionDenied
 
 
 def delete(account, gallery):
+    """ Delete gallery and all pictures belonging to it. """
     _assert_can_edit(account, gallery)
     for picture in gallery.pictures.all():
         remove(account, picture)
@@ -24,6 +29,7 @@ def delete(account, gallery):
 
 
 def remove(account, picture):
+    """ Remove picture from the gallery and delete the image file on server. """
     gallery = picture.gallery
     _assert_can_edit(account, gallery)
     if gallery.primary == picture:
@@ -38,6 +44,7 @@ def remove(account, picture):
 
 
 def setprimary(account, picture):
+    """ Set picture as the galleries primary picture. """
     gallery = picture.gallery
     _assert_can_edit(account, gallery)
     gallery.primary = picture
@@ -45,6 +52,7 @@ def setprimary(account, picture):
 
 
 def add(account, image, gallery):
+    """ Add a picture to the gallery. """
     _assert_can_edit(account, gallery)
     picture = Picture()
     picture.image = image
@@ -58,6 +66,7 @@ def add(account, image, gallery):
 
 
 def create(account, image, team):
+    """ Create a new gallery. """
     if team:
         assert_member(account, team)
     gallery = Gallery()
