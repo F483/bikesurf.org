@@ -7,11 +7,12 @@ import datetime
 from django.core.exceptions import PermissionDenied
 from apps.station.models import Station
 from apps.borrow.models import Borrow
+from apps.team import control as team_control
 
 
 def can_edit(account, station):
     # account must be a member of the stations team
-    return account in station.team.members.all() # TODO make general is_member in team control instead
+    return team_control.is_member(account, station.team)
 
 
 def in_use(station):

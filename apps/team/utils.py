@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from apps.common.shortcuts import render_response
 from apps.page.models import Page
 from apps.common.shortcuts import get_object_or_none
+from apps.team import control
 
 
 ENTRIE_NAMES = {
@@ -22,7 +23,7 @@ ENTRIE_NAMES = {
 
 
 def assert_member(account, team):
-    if account not in team.members.all():
+    if not control.is_member(account, team):
         raise PermissionDenied
 
 

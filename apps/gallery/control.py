@@ -8,10 +8,11 @@ from django.core.exceptions import PermissionDenied
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
 from apps.team.utils import assert_member
+from apps.team import control as team_control
 
 
 def can_edit(account, gallery):
-    return not ((gallery.team and account not in gallery.team.members.all()) or 
+    return not ((gallery.team and not team_control.is_member(account, gallery.team)) or 
                 (not gallery.team and gallery.created_by != account))
 
 

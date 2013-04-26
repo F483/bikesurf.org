@@ -18,6 +18,7 @@ from django.core.exceptions import PermissionDenied
 
 from apps.borrow.models import Borrow
 from apps.borrow import control
+from apps.team import control as team_control
 
 
 RESPONSES = [
@@ -42,7 +43,7 @@ class Respond(Form):
         cleaned_data = super(Respond, self).clean()
 
         # sanity check
-        if self.account not in self.borrow.bike.team.members.all():
+        if not team_control.is_member(self.account, self.borrow.bike.team):
             raise PermissionDenied
         if self.borrow.state != "REQUEST":
             raise PermissionDenied

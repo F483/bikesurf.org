@@ -12,7 +12,6 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 
 from apps.common.shortcuts import render_response
-from apps.common.shortcuts import uslugify
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import JoinRequest
@@ -22,6 +21,7 @@ from apps.team.forms import CreateJoinRequestForm
 from apps.team.forms import ProcessJoinRequestForm
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
+from apps.team import control
 
 
 @login_required
@@ -32,14 +32,8 @@ def create(request):
         form = CreateTeamForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["name"].strip()
-            team = Team()
-            team.name = name
-            team.link = uslugify(name)
-            team.country = form.cleaned_data["country"]
-            team.created_by = account
-            team.updated_by = account
-            team.save()
-            team.members.add(account)
+            country = form.cleaned_data["country"]
+            team = control.create(account, name, country)
             return HttpResponseRedirect("/%s" % team.link)
     else:
         form = CreateTeamForm()
@@ -66,31 +60,13 @@ def join_requests(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def join_request(request, team_link):
-
-    # get data
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
-
-    # check permission to create join request
-    if account in team.members.all():
-        raise PermissionDenied # already a member
-    filters = {"team" : team, "requester" : account, "status" : "PENDING"}
-    if len(JoinRequest.objects.filter(**filters)) > 0:
-        raise PermissionDenied # already requested
-
     if request.method == "POST":
         form = CreateJoinRequestForm(request.POST)
         if form.is_valid():
-
-            # create join request
-            jr = JoinRequest()
-            jr.team = team
-            jr.requester = account
-            jr.application = form.cleaned_data["application"]
-            jr.save()
-
-            # TODO send messages
-
+            application = form.cleaned_data["application"]
+            jr = control.create_join_request(account, team, application)
             return HttpResponseRedirect("/%s/join_requested" % team_link)
     else:
         form = CreateJoinRequestForm()
@@ -101,31 +77,15 @@ def join_request(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def join_request_process(request, team_link, join_request_id):
-
-    # get data
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     jr = get_object_or_404(JoinRequest, id=join_request_id)
-    
-    # check permission to process join request
-    assert_member(account, team)
-    if jr.status != "PENDING":
-        raise PermissionDenied # already processed
-
     if request.method == "POST":
         form = ProcessJoinRequestForm(request.POST)
         if form.is_valid():
-
-            # process join request
-            jr.processor = account
-            jr.response = form.cleaned_data["response"]
-            jr.status = form.cleaned_data["status"]
-            jr.save()
-            if jr.status == 'ACCEPTED':
-                jr.team.members.add(jr.requester)
-
-            # TODO send messages
-
+            response = form.cleaned_data["response"]
+            status = form.cleaned_data["status"]
+            control.process_join_request(account, team, jr, response, status)
             return HttpResponseRedirect("/%s/join_requests" % team_link)
     else:
         form = ProcessJoinRequestForm()

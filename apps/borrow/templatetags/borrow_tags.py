@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 
 from apps.common.templatetags.common_tags import draw_action
 from apps.borrow import control
+from apps.team import control as team_control
 
 
 register = template.Library()
@@ -24,7 +25,8 @@ def draw_borrow(bike):
 
 @register.simple_tag
 def draw_respond(account, borrow):
-    if borrow.state == "REQUEST" and account in borrow.bike.team.members.all():
+    is_request = borrow.state == "REQUEST"
+    if is_request and team_control.is_member(account, borrow.bike.team):
         image = "/static/famfamfam/bullet_go.png"
         url = "/%s/borrow/respond/%i" % (borrow.bike.team.link, borrow.id)
         return draw_action(image, "RESPOND", url)

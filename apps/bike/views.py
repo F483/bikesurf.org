@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 
+from apps.team import control as team_control
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
@@ -47,7 +48,7 @@ def _get_bike_filters(request, form, team):
     filters = {}
     logged_in = request.user.is_authenticated()
     account = logged_in and get_object_or_404(Account, user=request.user) or 0
-    if not logged_in or account not in team.members.all():
+    if not logged_in or not team_control.is_member(account, team):
         filters.update({ "reserve" : False, "active" : True })
 
     # filters 
@@ -69,11 +70,11 @@ def view(request, team_link, bike_id, tab):
     if not logged_in and requires_login:
         raise Exception("TODO login redirect")
     account = logged_in and get_object_or_404(Account, user=request.user)
-    if requires_membership and account not in team.members.all():
+    if requires_membership and not team_control.is_member(account, team):
         raise PermissionDenied
 
     bike = get_object_or_404(Bike, id=bike_id, team=team)
-    authorized = (account and account in team.members.all())
+    authorized = (account and team_control.is_member(account, team))
     template = _VIEW[tab]["template"]
     args = { 
         "bike" : bike, 

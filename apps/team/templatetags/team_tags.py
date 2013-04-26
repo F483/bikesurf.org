@@ -7,18 +7,19 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.team.models import JoinRequest
+from apps.team import control
 
 
 register = template.Library()
 
 
 @register.filter
-def is_member(account, team):
-    return team and account in team.members.all()
+def is_member(account, team): # TODO use condition_tag instead?
+    return team and control.is_member(account, team)
 
 
 @register.filter
-def can_join(account, team):
+def can_join(account, team): # TODO use control instead?
     member = is_member(account, team)
     requests = len(JoinRequest.objects.filter(team=team, requester=account)) > 0
     return not member and not requests

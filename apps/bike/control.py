@@ -6,6 +6,7 @@
 import datetime
 from django.core.exceptions import PermissionDenied
 from apps.bike.models import Bike
+from apps.team import control as team_control
 from apps.team.utils import assert_member
 from apps.gallery.control import create as create_gallery
 from apps.gallery.control import delete as delete_gallery
@@ -21,16 +22,14 @@ def can_deactivate(account, bike):
     """ Check if an account can deactivate a bike.
     Account must be a team member and bike not borrowed in the future.
     """
-    is_member = account in bike.team.members.all()
-    return is_member and not in_use(bike)
+    return team_control.is_member(account, bike.team) and not in_use(bike)
 
 
 def can_delete(account, bike):
     """ Check if an account can delete a bike.
     Account must be a team member and bike not borrowed in the future.
     """
-    is_member = account in bike.team.members.all()
-    return is_member and not in_use(bike)
+    return team_control.is_member(account, bike.team) and not in_use(bike)
 
 
 def create( account, team, name, image, description, active, reserve, station, 

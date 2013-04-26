@@ -5,9 +5,11 @@
 
 import datetime
 
+from apps.team import control as team_control
 from apps.borrow.models import Borrow
 from apps.borrow.models import Rating
 from apps.borrow.models import Log
+from apps.team import control as team_control
 
 
 def _log(account, borrow, note, action):
@@ -26,10 +28,11 @@ def can_cancel(account, borrow):
         return False
     borrower_states = ["REQUEST", "MEETUP", "ACCEPTED"] 
     member_states = ["MEETUP", "ACCEPTED"]
-    members = borrow.bike.team.members.all()
-    if (borrow.state in member_states and account in members):
+    is_member_state = borrow.state in member_states
+    if (is_member_state and team_control.is_member(account, borrow.bike.team):
         return True
-    if (borrow.state in borrower_states and account == borrow.borrower):
+    is_borrow_state = borrow.state in borrower_states
+    if (is_borrow_state and account == borrow.borrower):
         return True
     return False
 
@@ -50,7 +53,7 @@ def can_rate_team(account, borrow):
         return False # to soon
     if not borrow.state == 'MEETUP' and not borrow.state == 'ACCEPTED':
         return False # wrong state
-    if not account in borrow.bike.team.members.all():
+    if not team_control.is_member(account, borrow.bike.team):
         return False # only members
     if len(Rating.objects.filter(borrow=borrow, originator='LENDER')):
         return False # already rated but not by borrower
