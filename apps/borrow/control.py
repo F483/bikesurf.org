@@ -29,7 +29,7 @@ def can_cancel(account, borrow):
     borrower_states = ["REQUEST", "MEETUP", "ACCEPTED"] 
     member_states = ["MEETUP", "ACCEPTED"]
     is_member_state = borrow.state in member_states
-    if (is_member_state and team_control.is_member(account, borrow.bike.team):
+    if is_member_state and team_control.is_member(account, borrow.bike.team):
         return True
     is_borrow_state = borrow.state in borrower_states
     if (is_borrow_state and account == borrow.borrower):

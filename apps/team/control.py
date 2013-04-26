@@ -3,7 +3,6 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from apps.team.utils import assert_member
 from apps.team.models import Team
 from apps.team.models import JoinRequest
 from django.core.exceptions import PermissionDenied
@@ -33,16 +32,17 @@ def create_join_request(account, team, application):
     filters = {"team" : team, "requester" : account, "status" : "PENDING"}
     if len(JoinRequest.objects.filter(**filters)) > 0:
         raise PermissionDenied # already requested
-    jr = JoinRequest()
-    jr.team = team
-    jr.requester = account
-    jr.application = application
-    jr.save()
-    return jr
+    join_request = JoinRequest()
+    join_request.team = team
+    join_request.requester = account
+    join_request.application = application
+    join_request.save()
+    return join_request
 
 
 def process_join_request(account, team, join_request, response, status):
-    assert_member(account, team)
+    if not is_member(account, team):
+        raise PermissionDenied
     if join_request.status != "PENDING":
         raise PermissionDenied # already processed
     join_request.processor = account
@@ -50,6 +50,6 @@ def process_join_request(account, team, join_request, response, status):
     join_request.status = status
     join_request.save()
     if join_request.status == 'ACCEPTED':
-        join_request.team.members.add(jr.requester)
+        join_request.team.members.add(join_request.requester)
 
 
