@@ -9,20 +9,25 @@ SLUG = r"[a-z0-9\-]+"
 
 T = "(?P<team_link>%s)" % SLUG # Team Link
 P = "(?P<page_link>%s)" % SLUG # Page Link
+CA = "(?P<concerned_id>[0-9]+)" # Concerned Account Link
 JR = "(?P<join_request_id>[0-9]+)" # Join Request Link
+RR = "(?P<remove_request_id>[0-9]+)" # Remove Request Link
 
 
 urlpatterns = patterns("apps.team.views",
 
-    url(r"^team/create$",                           "create"),
-    url(r"^%s/members$" % T,                        "members"),
+    url(r"^team/create$",                            "create"),
+    url(r"^%s/members$" % T,                         "members"),
 
-    url(r"^%s/join_request$" % T,                   "join_request"),
-    url(r"^%s/join_requested$" % T,                 "join_requested"),
-    url(r"^%s/join_requests$" % T,                  "join_requests"),
-    url(r"^%s/join_request_process/%s$" % (T, JR),  "join_request_process"),
+    url(r"^%s/join_request$" % T,                    "join_request"),
+    url(r"^%s/join_requested$" % T,                  "join_requested"),
+    url(r"^%s/join_requests$" % T,                   "join_requests"),
+    url(r"^%s/join_request_process/%s$" % (T, JR),   "join_request_process"),
 
-    url(r"^%s/remove_requests$" % T,                "remove_requests"),
+    url(r"^%s/remove_request/%s$" % (T, CA),         "remove_request"),
+    url(r"^%s/remove_requested$" % T,                "remove_requested"),
+    url(r"^%s/remove_requests$" % T,                 "remove_requests"),
+    url(r"^%s/remove_request_process/%s$" % (T, RR), "remove_request_process"),
 )
 
 

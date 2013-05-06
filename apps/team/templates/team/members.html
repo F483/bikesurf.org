@@ -1,11 +1,17 @@
 {% extends "common/base.html" %}
 {% load i18n %}
+{% load team_tags %}
+{% load common_tags %}
 
 {% block content %}
     {% for member in members %}
         <div class="content">
             <h2>{{ member }}</h2>
             {{ member.description }}
+
+            {% if_can_create_remove_request current_account member current_team %}
+                {% draw_delete "/" current_team.link "/remove_request/" member.id %}
+            {% endif_can_create_remove_request %}
         </div>
     {% endfor %}
 {% endblock %}

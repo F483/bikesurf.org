@@ -71,6 +71,7 @@ class RemoveRequest(models.Model):
     response    = models.TextField(blank=True) # reason given by processor
 
     # meta
+    # TODO created_by updated_by fields
     created_on  = models.DateTimeField(auto_now_add=True)
     updated_on  = models.DateTimeField(auto_now=True)
 

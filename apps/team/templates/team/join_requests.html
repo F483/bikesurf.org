@@ -1,29 +1,27 @@
 {% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
+{% load team_tags %}
 
 {% block content %}
     <div class="content">
-        {% for jr in join_requests %}
-            <h2> {{ jr.requester }}</h2>
+        {% for join_request in join_requests %}
+            <h2> {{ join_request.requester }}</h2>
 
             {% trans "PROCESSOR" %}: 
-            {% if jr.processor %} 
-                {{ jr.processor }} 
+            {% if join_request.processor %} 
+                {{ join_request.processor }} 
             {% else %} 
                 {% trans "NONE" %} 
             {% endif %} <br />
 
-            {% trans "STATUS" %}: {{ jr.status }} <br />
-            <p> {% trans "APPLICATION" %}: {{ jr.application }} </p>
-            <p> {% trans "RESPONSE" %}: {{ jr.response }} </p>
+            {% trans "STATUS" %}: {{ join_request.status }} <br />
+            <p> {% trans "APPLICATION" %}: {{ join_request.application }} </p>
+            <p> {% trans "RESPONSE" %}: {{ join_request.response }} </p>
 
-            {% if jr.status == "PENDING" %}
-                <a href="/{{ current_team.link }}/join_request_process/{{ jr.id }}">
-                    {% trans "PROCESS" %}
-                </a>
-            {% endif %}
-
+            {% if_can_process_join_request current_account join_request %}
+                {% draw_edit "/" current_team.link "/join_request_process/" join_request.id %}
+            {% endif_can_process_join_request %}
         {% empty %}
             {% trans "NO_JOIN_REQUESTS" %}
         {% endfor %}

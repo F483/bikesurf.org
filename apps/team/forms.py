@@ -46,3 +46,14 @@ class ProcessJoinRequestForm(forms.Form):
     status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
 
 
+class CreateRemoveRequestForm(forms.Form):
+
+    reason = forms.CharField(label=_('REASON'), widget=forms.Textarea)
+
+
+class ProcessRemoveRequestForm(forms.Form):
+
+    response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
+    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
+
+
