@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 
 ACTION_LABELS = { # TODO find a better way of doing this
         "BORROW" : _("BORROW"),
+        "PROCESS_REQUEST" : _("PROCESS_REQUEST"),
         "RESPOND" : _("RESPOND"),
         "CANCEL" : _("CANCEL"),
         "RATE" : _("RATE"),

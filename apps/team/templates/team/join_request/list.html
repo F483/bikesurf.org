@@ -1,0 +1,39 @@
+{% extends "common/base.html" %}
+{% load i18n %}
+{% load common_tags %}
+{% load team_tags %}
+
+{% block content %}
+    {% for join_request in join_requests %}
+        <div class="content">
+            <h2> {% trans "REQUEST" %} ({{ join_request.status }})</br>
+            </h2>
+            <p>
+                {% trans "REQUESTER" %}: {{ join_request.requester }}</br>
+                {% trans "APPLICATION" %}: {{ join_request.application }}
+            </p>
+
+            <h2> {% trans "RESPONSE" %}</h2>
+
+            <p>
+                {% if join_request.processor and join_request.response %} 
+                    {% trans "PROCESSOR" %}: {{ join_request.processor }}</br>
+                    {% trans "RESPONSE" %}: {{ join_request.response }}
+                {% else %}
+                    {% trans "NONE" %}
+                {% endif %}
+            </p>
+
+            {% if_can_process_join_request current_account join_request %}
+                <!-- TODO create template tag draw_process_request in team app -->
+                {% draw_action "/static/famfamfam/pencil.png" "PROCESS_REQUEST" "/" current_team.link "/join_request/process/" join_request.id %}
+            {% endif_can_process_join_request %}
+        </div>
+    {% empty %}
+        <div class="content">
+            {% trans "NO_JOIN_REQUESTS" %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+

@@ -17,7 +17,7 @@ ENTRIE_NAMES = {
     "members" : _("MEMBERS"),
     "borrows" : _("BORROWS"),
     "stations" : _("STATIONS"),
-    "join_requests" : _("JOIN_REQUESTS"),
+    "join_request/list" : _("JOIN_REQUESTS"),
     "remove_requests" : _("REMOVE_REQUESTS"),
 }
 
@@ -47,7 +47,7 @@ def _get_team_menue_intern(team, current):
         entrie("members"),
         entrie("borrows"),
         entrie("stations"),
-        entrie("join_requests"),
+        entrie("join_request/list"),
         entrie("remove_requests"),
     ]
     return menu

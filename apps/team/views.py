@@ -57,18 +57,18 @@ def members(request, team_link):
 
 @login_required
 @require_http_methods(["GET"])
-def join_requests(request, team_link):
+def join_request_list(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
-    template = "team/join_requests.html"
+    template = "team/join_request/list.html"
     args = { "join_requests" : JoinRequest.objects.filter(team=team) }
-    return rtr(team, "join_requests", request, template, args)
+    return rtr(team, "join_request/list", request, template, args)
 
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def join_request(request, team_link):
+def join_request_create(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
@@ -76,11 +76,14 @@ def join_request(request, team_link):
         if form.is_valid():
             application = form.cleaned_data["application"]
             jr = control.create_join_request(account, team, application)
-            return HttpResponseRedirect("/%s/join_requested" % team_link)
+            return HttpResponseRedirect("/%s/join_request/created" % team_link)
     else:
         form = CreateJoinRequestForm()
-    args = { "form" : form, "form_title" : _("JOIN_REQUEST") }
-    return rtr(team, "join_requests", request, "common/form.html", args)
+    args = { 
+        "form" : form, "form_title" : _("JOIN_REQUEST"),
+        "cancle_url" : "/%s" % team.link
+    }
+    return rtr(team, "join_request/list", request, "common/form.html", args)
 
 
 @login_required
@@ -95,18 +98,22 @@ def join_request_process(request, team_link, join_request_id):
             response = form.cleaned_data["response"]
             status = form.cleaned_data["status"]
             control.process_join_request(account, jr, response, status)
-            return HttpResponseRedirect("/%s/join_requests" % team_link)
+            return HttpResponseRedirect("/%s/join_request/list" % team_link)
     else:
         form = ProcessJoinRequestForm()
-    args = { "form" : form, "form_title" : "PROCESS_JOIN_REQUEST" }
-    return rtr(team, "join_requests", request, "common/form.html", args)
+    args = { 
+        "form" : form, "form_title" : "PROCESS_JOIN_REQUEST",
+        "cancle_url" : "/%s/join_request/list" % team.link
+    }
+    return rtr(team, "join_request/list", request, "common/form.html", args)
 
 
 @login_required
 @require_http_methods(["GET"])
-def join_requested(request, team_link):
+def join_request_created(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    return rtr(team, "join_requests", request, "team/join_requested.html", {})
+    template = "team/join_request/created.html"
+    return rtr(team, "join_request/list", request, template, {})
 
 
 ###################
@@ -139,7 +146,8 @@ def remove_request(request, team_link, concerned_id): # TODO rename to create_re
 @require_http_methods(["GET"])
 def remove_requested(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    return rtr(team, "remove_requests", request, "team/remove_requested.html", {})
+    template = "team/remove_requested.html"
+    return rtr(team, "remove_requests", request, template, {})
 
 
 @login_required

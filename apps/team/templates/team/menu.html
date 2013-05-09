@@ -62,7 +62,7 @@
     {% trans "COUNTRY" %}: {{ current_team.country.name }}<br />
 
     {% if current_user.is_authenticated and current_account|can_join:current_team %}
-        <a href="/{{ current_team.link }}/join_request">{% trans "JOIN_REQUEST" %}</a>
+        <a href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
     {% endif %}
 
 </div>

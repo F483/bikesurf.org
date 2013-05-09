@@ -37,7 +37,7 @@ class CreateTeamForm(forms.Form):
 
 class CreateJoinRequestForm(forms.Form):
 
-    application = forms.CharField(label=_('REASON'), widget=forms.Textarea)
+    application = forms.CharField(label=_('JOIN_REQUEST_REASON'), widget=forms.Textarea)
 
 
 class ProcessJoinRequestForm(forms.Form):
