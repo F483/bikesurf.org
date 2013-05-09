@@ -29,29 +29,29 @@ def _validate_name(value):
         raise ValidationError(_("NAME_USED"))
 
 
-class CreateTeamForm(forms.Form):
+class CreateTeam(forms.Form):
 
     name = forms.CharField(label=_('TEAM_NAME'), validators=[_validate_name])
     country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
 
 
-class CreateJoinRequestForm(forms.Form):
+class CreateJoinRequest(forms.Form):
 
     application = forms.CharField(label=_('JOIN_REQUEST_REASON'), widget=forms.Textarea)
 
 
-class ProcessJoinRequestForm(forms.Form):
+class ProcessJoinRequest(forms.Form):
 
     response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
     status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
 
 
-class CreateRemoveRequestForm(forms.Form):
+class CreateRemoveRequest(forms.Form):
 
     reason = forms.CharField(label=_('REASON'), widget=forms.Textarea)
 
 
-class ProcessRemoveRequestForm(forms.Form):
+class ProcessRemoveRequest(forms.Form):
 
     response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
     status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))

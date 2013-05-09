@@ -6,8 +6,8 @@
 {% block content %}
     {% for join_request in join_requests %}
         <div class="content">
-            <h2> {% trans "REQUEST" %} ({{ join_request.status }})</br>
-            </h2>
+            <h2> {% trans "REQUEST" %} ({{ join_request.status }})</br> </h2>
+
             <p>
                 {% trans "REQUESTER" %}: {{ join_request.requester }}</br>
                 {% trans "APPLICATION" %}: {{ join_request.application }}

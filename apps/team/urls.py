@@ -24,10 +24,10 @@ urlpatterns = patterns("apps.team.views",
     url(r"^%s/join_request/list$" % T,               "join_request_list"),
     url(r"^%s/join_request/process/%s$" % (T, JR),   "join_request_process"),
 
-    url(r"^%s/remove_request/%s$" % (T, CA),         "remove_request"),
-    url(r"^%s/remove_requested$" % T,                "remove_requested"),
-    url(r"^%s/remove_requests$" % T,                 "remove_requests"),
-    url(r"^%s/remove_request_process/%s$" % (T, RR), "remove_request_process"),
+    url(r"^%s/remove_request/create/%s$" % (T, CA),  "remove_request_create"),
+    url(r"^%s/remove_request/created$" % T,          "remove_request_created"),
+    url(r"^%s/remove_request/list$" % T,             "remove_request_list"),
+    url(r"^%s/remove_request/process/%s$" % (T, RR), "remove_request_process"),
 )
 
 

@@ -10,7 +10,7 @@
             {{ member.description }}
 
             {% if_can_create_remove_request current_account member current_team %}
-                {% draw_delete "/" current_team.link "/remove_request/" member.id %}
+                {% draw_delete "/" current_team.link "/remove_request/create/" member.id %}
             {% endif_can_create_remove_request %}
         </div>
     {% endfor %}

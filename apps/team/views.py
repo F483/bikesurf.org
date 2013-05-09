@@ -16,11 +16,7 @@ from apps.account.models import Account
 from apps.team.models import Team
 from apps.team.models import JoinRequest
 from apps.team.models import RemoveRequest
-from apps.team.forms import CreateTeamForm
-from apps.team.forms import CreateJoinRequestForm
-from apps.team.forms import CreateRemoveRequestForm
-from apps.team.forms import ProcessJoinRequestForm
-from apps.team.forms import ProcessRemoveRequestForm
+from apps.team import forms
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.team import control
@@ -31,14 +27,14 @@ from apps.team import control
 def create(request):
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
-        form = CreateTeamForm(request.POST)
+        form = forms.CreateTeam(request.POST)
         if form.is_valid():
             name = form.cleaned_data["name"].strip()
             country = form.cleaned_data["country"]
             team = control.create(account, name, country)
             return HttpResponseRedirect("/%s" % team.link)
     else:
-        form = CreateTeamForm()
+        form = forms.CreateTeam()
     args = { "form" : form, "form_title" : _("CREATE_TEAM") }
     return render_response(request, "common/form.html", args)
 
@@ -72,13 +68,13 @@ def join_request_create(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
-        form = CreateJoinRequestForm(request.POST)
+        form = forms.CreateJoinRequest(request.POST)
         if form.is_valid():
             application = form.cleaned_data["application"]
             jr = control.create_join_request(account, team, application)
             return HttpResponseRedirect("/%s/join_request/created" % team_link)
     else:
-        form = CreateJoinRequestForm()
+        form = forms.CreateJoinRequest()
     args = { 
         "form" : form, "form_title" : _("JOIN_REQUEST"),
         "cancle_url" : "/%s" % team.link
@@ -93,14 +89,14 @@ def join_request_process(request, team_link, join_request_id):
     account = get_object_or_404(Account, user=request.user)
     jr = get_object_or_404(JoinRequest, id=join_request_id)
     if request.method == "POST":
-        form = ProcessJoinRequestForm(request.POST)
+        form = forms.ProcessJoinRequest(request.POST)
         if form.is_valid():
             response = form.cleaned_data["response"]
             status = form.cleaned_data["status"]
             control.process_join_request(account, jr, response, status)
             return HttpResponseRedirect("/%s/join_request/list" % team_link)
     else:
-        form = ProcessJoinRequestForm()
+        form = forms.ProcessJoinRequest()
     args = { 
         "form" : form, "form_title" : "PROCESS_JOIN_REQUEST",
         "cancle_url" : "/%s/join_request/list" % team.link
@@ -123,42 +119,43 @@ def join_request_created(request, team_link):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def remove_request(request, team_link, concerned_id): # TODO rename to create_remove_request
+def remove_request_create(request, team_link, concerned_id):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     concerned = get_object_or_404(Account, id=concerned_id)
     if request.method == "POST":
-        form = CreateRemoveRequestForm(request.POST)
+        form = forms.CreateRemoveRequest(request.POST)
         if form.is_valid():
             reason = form.cleaned_data["reason"]
             control.create_remove_request(account, concerned, team, reason)
-            return HttpResponseRedirect("/%s/remove_requested" % team_link)
+            return HttpResponseRedirect("/%s/remove_request/created" % team_link)
     else:
-        form = CreateRemoveRequestForm()
+        form = forms.CreateRemoveRequest()
     args = { 
         "form" : form, "form_title" : _("REMOVE_REQUEST"),
-        "form_subtitle" : concerned
+        "form_subtitle" : concerned,
+        "cancle_url" : "/%s/members" % team.link
     }
-    return rtr(team, "remove_requests", request, "common/form.html", args)
+    return rtr(team, "remove_request/list", request, "common/form.html", args)
 
 
 @login_required
 @require_http_methods(["GET"])
-def remove_requested(request, team_link):
+def remove_request_created(request, team_link):
     team = get_object_or_404(Team, link=team_link)
-    template = "team/remove_requested.html"
-    return rtr(team, "remove_requests", request, template, {})
+    template = "team/remove_request/created.html"
+    return rtr(team, "remove_request/list", request, template, {})
 
 
 @login_required
 @require_http_methods(["GET"])
-def remove_requests(request, team_link):
+def remove_request_list(request, team_link):
     team = get_object_or_404(Team, link=team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
-    template = "team/remove_requests.html"
+    template = "team/remove_request/list.html"
     args = { "remove_requests" : RemoveRequest.objects.filter(team=team) }
-    return rtr(team, "remove_requests", request, template, args)
+    return rtr(team, "remove_request/list", request, template, args)
 
 
 @login_required
@@ -168,16 +165,19 @@ def remove_request_process(request, team_link, remove_request_id):
     account = get_object_or_404(Account, user=request.user)
     remove_request = get_object_or_404(RemoveRequest, id=remove_request_id)
     if request.method == "POST":
-        form = ProcessRemoveRequestForm(request.POST)
+        form = forms.ProcessRemoveRequest(request.POST)
         if form.is_valid():
             response = form.cleaned_data["response"]
             status = form.cleaned_data["status"]
             control.process_remove_request(account, remove_request, 
                                            response, status)
-            return HttpResponseRedirect("/%s/remove_requests" % team_link)
+            return HttpResponseRedirect("/%s/remove_request/list" % team_link)
     else:
-        form = ProcessRemoveRequestForm()
-    args = { "form" : form, "form_title" : "PROCESS_REMOVE_REQUEST" }
-    return rtr(team, "remove_requests", request, "common/form.html", args)
+        form = forms.ProcessRemoveRequest()
+    args = { 
+        "form" : form, "form_title" : "PROCESS_REMOVE_REQUEST", 
+        "cancle_url" : "/%s/remove_request/list" % team.link
+    }
+    return rtr(team, "remove_request/list", request, "common/form.html", args)
 
 
