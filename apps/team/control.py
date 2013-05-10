@@ -27,12 +27,15 @@ def create(account, name, country):
     return team
 
 
-def create_join_request(account, team, application):
-    if is_member(account, team):
-        raise PermissionDenied # already a member
+def can_join(account, team):
     filters = {"team" : team, "requester" : account, "status" : "PENDING"}
-    if len(JoinRequest.objects.filter(**filters)) > 0:
-        raise PermissionDenied # already requested
+    return ( not is_member(account, team) and 
+             not len(JoinRequest.objects.filter(**filters)) > 0 )
+
+
+def create_join_request(account, team, application):
+    if not can_join(account, team):
+        raise PermissionDenied
     join_request = JoinRequest()
     join_request.team = team
     join_request.requester = account

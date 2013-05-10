@@ -36,14 +36,14 @@
                                     {% trans "NAME" %}: {{ bike.name }} <br />
                                     {% trans "SIZE" %}: {% trans bike.size %}<br />
                                     {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
-                                    {% if current_account|is_member:bike.team %}
+                                    {% if_member current_account bike.team %}
                                         {% trans "STATION" %}: 
                                         {% if bike.station %}
                                             {{ bike.station.street }}<br />
                                         {% else %}
                                             {% trans "UNKNOWN" %}<br />
                                         {% endif %}
-                                    {% endif %}
+                                    {% endif_member %}
                                 </td>
                             </tr>
                         </table>

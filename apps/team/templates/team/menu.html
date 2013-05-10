@@ -18,7 +18,7 @@
     </ul>
 </div>
 
-{% if current_account|is_member:current_team %}
+{% if_member current_account current_team %}
     <div class="menu"> 
         <h2>{% trans "TEAM_INTERN" %}</h2>
         <ul>
@@ -35,9 +35,9 @@
             {% endfor %}
         </ul>
     </div>
-{% endif %}
+{% endif_member %}
 
-{% if current_account|is_member:current_team %}
+{% if_member current_account current_team %}
     <div class="menu"> 
         <h2>{% trans "TEAM_ACTIONS" %}</h2>
         <ul>
@@ -55,14 +55,14 @@
             </li>
         </ul>
     </div>
-{% endif %}
+{% endif_member %}
 
 <div class="menu"> 
     <h2>{% trans "TEAM_INFO" %}</h2> 
     {% trans "COUNTRY" %}: {{ current_team.country.name }}<br />
 
-    {% if current_user.is_authenticated and current_account|can_join:current_team %}
+    {% if_can_join current_account current_team %}
         <a href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
-    {% endif %}
+    {% endif_can_join %}
 
 </div>

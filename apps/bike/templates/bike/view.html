@@ -38,14 +38,14 @@
                     {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
                     {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
                     {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
-                    {% if current_account|is_member:bike.team %}
+                    {% if_member current_account bike.team %}
                         {% trans "STATION" %}: 
                         {% if bike.station %}
                             {{ bike.station.street }}<br />
                         {% else %}
                             {% trans "UNKNOWN" %}<br />
                         {% endif %}
-                    {% endif %}
+                    {% endif_member %}
                     <h4> {% trans "DESCRIPTION" %} </h4>
                     <p> {{ bike.description }} </p>
                 </td>
@@ -54,10 +54,10 @@
 
         <div>
             {% draw_borrow bike %}
-            {% if current_account|is_member:bike.team %}
+            {% if_member current_account bike.team %}
                 {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
                 {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}
-            {% endif %}
+            {% endif_member %}
         </div>
 
     </div>

@@ -9,12 +9,12 @@
         <h2>{{ page.name }}</h2>
         {{ page.content|escape_html|safe }}
 
-        {% if current_account|is_member:page.team %}
+        {% if_member current_account page.team %}
             <div class="actions">
                 {% draw_edit "/" page.team.link "/page/edit/" page.link %}
                 {% draw_delete "/" page.team.link "/page/delete/" page.link %}
             </div>
-        {% endif %}
+        {% endif_member %}
     </div>
 {% endblock %}
 

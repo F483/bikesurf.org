@@ -9,12 +9,12 @@
         <div class="content">
             <h2>{{ blog.name }}</h2>
             {{ blog.content|escape_html|safe }}
-            {% if current_account|is_member:blog.team %}
+            {% if_member current_account blog.team %}
                 <div class="actions">
                     {% draw_edit "/" blog.team.link "/blog/edit/" blog.id %}
                     {% draw_delete "/" blog.team.link "/blog/delete/" blog.id %}
                 </div>
-            {% endif %}
+            {% endif_member %}
         </div>
     {% empty %}
         <div class="content">
