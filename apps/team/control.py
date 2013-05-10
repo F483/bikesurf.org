@@ -40,6 +40,9 @@ def create_join_request(account, team, application):
     join_request.team = team
     join_request.requester = account
     join_request.application = application
+    if len(team.members.all()) == 0: # auto join empty teams
+        join_request.status = "ACCEPTED"
+        team.members.add(account)
     join_request.save()
     return join_request
 
@@ -67,16 +70,21 @@ def has_remove_request(concerned, team):
 
 def can_create_remove_request(requester, concerned, team):
     return (is_member(requester, team) and is_member(concerned, team) and
-            not has_remove_request(concerned, team))
+            not has_remove_request(concerned, team) and
+            not has_remove_request(requester, team))
 
 
 def can_process_remove_request(account, remove_request):
-    return (remove_request.status == "PENDING" and 
-            remove_request.concerned != account and (
-                remove_request.requester != account or 
-                len(remove_request.team.members.all()) == 2
-            ) and
-            is_member(account,remove_request.team))
+    return (
+        remove_request.status == "PENDING" and # must be pending
+        remove_request.concerned != account and # cannot process oneself
+        (
+            remove_request.requester != account or # requester cant process
+            len(remove_request.team.members.all()) == 2 # unless 2 members
+        ) and
+        is_member(account, remove_request.team) and # processor must be member
+        not has_remove_request(account, remove_request.team) # no remove request for processor
+    )
 
 
 def create_remove_request(requester, concerned, team, reason):
@@ -87,6 +95,9 @@ def create_remove_request(requester, concerned, team, reason):
     remove_request.requester = requester
     remove_request.concerned = concerned
     remove_request.reason = reason
+    if len(team.members.all()) == 1: # auto remove last member
+        remove_request.status = "ACCEPTED"
+        remove_request.team.members.remove(remove_request.concerned)
     remove_request.save()
     return remove_request
 

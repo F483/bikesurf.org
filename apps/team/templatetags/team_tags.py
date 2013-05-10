@@ -16,13 +16,13 @@ register = template.Library()
 @register.tag
 @condition_tag
 def if_member(account, team):
-    return account and team and control.is_member(account, team)
+    return account and control.is_member(account, team)
 
 
 @register.tag
 @condition_tag
 def if_can_join(account, team):
-    return account and team and control.can_join(account, team)
+    return account and control.can_join(account, team)
 
 
 @register.tag
