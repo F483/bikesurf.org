@@ -6,7 +6,7 @@
 from django.conf.urls import patterns, include, url
 
 
-urlpatterns = patterns('apps.site.views',
-    url(r'^$', 'index'),
+urlpatterns = patterns('apps.account.views',
+    url(r'^accounts/profile/$', 'profile'),
 )
 

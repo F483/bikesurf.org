@@ -7,12 +7,10 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from apps.common.shortcuts import render_response
 from apps.site.forms import TeamSelectForm
-from django.contrib.auth.decorators import login_required
 
 
 @require_http_methods(['GET', 'POST'])
-def root(request):
-    # index
+def index(request):
     if request.method == 'POST':
         form = TeamSelectForm(request.POST)
         if form.is_valid():
@@ -22,9 +20,4 @@ def root(request):
         form = TeamSelectForm()
     return render_response(request, 'site/index.html', { 'form' : form })
 
-
-@login_required
-@require_http_methods(['GET'])
-def profile(request):
-    return render_response(request, 'site/profile.html', {})
 

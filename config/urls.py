@@ -21,6 +21,7 @@ urlpatterns = patterns("",
     url(r'^accounts/', include('allauth.urls')),
 
     # bikesurf urls
+    url(r"^", include("apps.account.urls")),
     url(r"^", include("apps.site.urls")),
     url(r"^", include("apps.gallery.urls")),
     url(r"^", include("apps.station.urls")),
