@@ -68,7 +68,7 @@ def view(request, team_link, bike_id, tab):
     logged_in = request.user.is_authenticated()
 
     if not logged_in and requires_login:
-        raise Exception("TODO login redirect")
+        return HttpResponseRedirect("/accounts/login/?next=%s" % request.path)
     account = logged_in and get_object_or_404(Account, user=request.user)
     if requires_membership and not team_control.is_member(account, team):
         raise PermissionDenied

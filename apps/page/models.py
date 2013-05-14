@@ -20,7 +20,7 @@ class Page(models.Model):
                     allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, strip=False
                 )
 
-    order       = models.IntegerField() # TODO allow None
+    order       = models.IntegerField(blank=True, null=True)
 
     # meta
     created_by  = models.ForeignKey("account.Account", related_name="pages_created")
@@ -34,6 +34,6 @@ class Page(models.Model):
     class Meta:                                                                                                 
                                                                                                                 
         unique_together = (("team", "name"), ("team", "link")) 
-        ordering = ["order", "created_on"]
+        ordering = ["order", "name"]
 
 

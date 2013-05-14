@@ -44,6 +44,8 @@ class Account(Model):
     mobile = CharField(max_length=1024, blank=True)
 
     # meta
+    # created_by = self
+    # updated_by = self
     created_on = DateTimeField(auto_now_add=True)
     updated_on = DateTimeField(auto_now=True)
 
@@ -56,40 +58,4 @@ class Account(Model):
     class Meta:
 
         ordering = ['user__username']
-
-
-class Site(Model): # TODO do something with it or delete it
-
-    SITE_CHOICES = [ # TODO add url validation functions per site
-        ('COUCHSURFING', _('COUCHSURFING')),
-        ('FACEBOOK', _('FACEBOOK')),
-        ('TWITTER', _('TWITTER')),
-        ('GOOGLEPLUS', _('GOOGLEPLUS')),
-        ('BLOG', _('BLOG')),
-        ('SKYPE', _('SKYPE')),
-        ('LINKED_IN', _('LINKED_IN')),
-        ('BE_WELCOME', _('BE_WELCOME')),
-        ('WARM_SHOWERS', _('WARM_SHOWERS')),
-        ('PINTEREST', _('PINTEREST')),
-        ('YOUTUBE', _('YOUTUBE')),
-    ]
-
-    # main data
-    account = ForeignKey('account.Account')
-    site = CharField(max_length=64, choices=SITE_CHOICES)
-    link = URLField()
-    confirmed = BooleanField(default=False) # done by bike lender
-
-    # meta
-    created_on = DateTimeField(auto_now_add=True)
-    updated_on = DateTimeField(auto_now=True)
-
-    def __unicode__(self):
-        args = (self.id, self.account.id, self.site, self.confirmed)
-        return u"id: %s; account_id: %s; site: %s; confirmed: %s" % args
-
-    class Meta:                                                             
-                                                                             
-        unique_together = (('account', 'site'),) 
-
 

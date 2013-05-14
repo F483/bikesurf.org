@@ -1,6 +1,5 @@
 {% load i18n %}
 
-<!-- TODO fix urls and add return url for login/out -->
 {% if current_user.is_authenticated %}
 
     {% if borrow_count %}
@@ -20,7 +19,7 @@
 
 {% else %}
 
-    <a href="/accounts/login/">{% trans "LOGIN" %}</a>
+    <a href="/accounts/login/?next={{ current_path }}">{% trans "LOGIN" %}</a>
     <a href="/accounts/signup/">{% trans "SIGN UP" %}</a>
 
 {% endif %}

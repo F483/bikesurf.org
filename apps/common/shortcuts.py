@@ -25,13 +25,15 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
-    args.update({ "current_user" : request.user })
+    args.update({ 
+        "current_user" : request.user,
+        "current_path" : request.path,
+    })
     if request.user.is_authenticated():
         account = request.user.accounts.all()[0]
         borrows = Borrow.objects.filter(borrower=account)
         borrows = borrows.exclude(state="CANCELED").exclude(state="FINISHED")
         args.update({ 
-            "current_path" : request.path,
             "current_account" : account,
             "borrow_count" : len(borrows),
             "station_count" : len(Station.objects.filter(responsable=account))

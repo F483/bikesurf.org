@@ -41,6 +41,7 @@ class Edit(Form):
         self.fields["description"].initial = self.account.description
 
     def clean_username(self):
+        # copied from /usr/local/lib/python2.7/dist-packages/allauth/account/forms.py
         value = self.cleaned_data["username"]
         if not USERNAME_REGEX.match(value):
             raise ValidationError(_("Usernames can only contain "

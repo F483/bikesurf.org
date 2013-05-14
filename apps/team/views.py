@@ -39,6 +39,7 @@ def create(request):
     return render_response(request, "common/form.html", args)
 
 
+@login_required
 @require_http_methods(["GET"])
 def members(request, team_link):
     team = get_object_or_404(Team, link=team_link)

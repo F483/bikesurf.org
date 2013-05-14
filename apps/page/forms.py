@@ -32,7 +32,7 @@ class CreatePageForm(forms.Form):
                                  max_length=50000, allowed_tags=SANITIZER_ALLOWED_TAGS,
                                  allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, 
                                  strip=False)
-    order = forms.IntegerField(label=_("ORDER"))
+    order = forms.IntegerField(label=_("ORDER"), required=False)
 
     def __init__(self, *args, **kwargs):
         self.team = kwargs.pop("team")
@@ -60,7 +60,7 @@ class EditPageForm(forms.Form):
                                  max_length=50000, allowed_tags=SANITIZER_ALLOWED_TAGS,
                                  allowed_attributes=SANITIZER_ALLOWED_ATTRIBUTES, 
                                  strip=False)
-    order = forms.IntegerField(label=_("ORDER"))
+    order = forms.IntegerField(label=_("ORDER"), required=False)
 
     def __init__(self, *args, **kwargs):
         self.page = kwargs.pop("page")

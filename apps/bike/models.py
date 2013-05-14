@@ -30,7 +30,7 @@ class Bike(Model):
     reserve = BooleanField(default=False) # not requestable
     station = ForeignKey('station.Station', blank=True, null=True, related_name="bikes")
     lockcode = CharField(max_length=1024)
-    size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM') # TODO add height in cm
+    size = CharField(max_length=64, choices=SIZE_CHOICES, default='MEDIUM')
     lights = BooleanField(default=False) # to cycle when dark
     
     # metadata
