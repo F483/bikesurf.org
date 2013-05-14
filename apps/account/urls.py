@@ -7,6 +7,7 @@ from django.conf.urls import patterns, include, url
 
 
 urlpatterns = patterns('apps.account.views',
-    url(r'^accounts/profile/$', 'profile'),
+    url(r'^accounts/profile/$',     'view'), # use this url because of allauth
+    url(r'^account/edit$',          'edit'),
 )
 

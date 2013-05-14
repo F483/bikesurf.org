@@ -35,7 +35,7 @@ class Create(Form):
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
-    description = CharField(label=_("description"), widget=Textarea)
+    description = CharField(label=_("DESCRIPTION"), widget=Textarea)
 
     def __init__(self, *args, **kwargs):
         team = kwargs.pop("team")

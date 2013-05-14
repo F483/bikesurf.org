@@ -38,7 +38,8 @@ def draw_bool(value):
 
 
 @register.simple_tag
-def draw_action(image, label, *args):
+def draw_action(image, label, *args): 
+    # TODO change to draw_action(image, label, format_url, *url_format_args)
     url = reduce(lambda a, b: str(a) + str(b), args)
     return """
         <a href="%(url)s"> 

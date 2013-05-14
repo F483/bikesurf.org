@@ -21,25 +21,26 @@ from allauth.account.signals import user_signed_up
 def signed_up_callback(sender, **kwargs):
     account = Account()
     account.user = kwargs["user"]
+    # TODO preset account.source based on HTTP_REFERER
     account.save()
+
+
+SOURCE_CHOICES = [
+    ('OTHER', _('OTHER')),
+    ('COUCHSURFING', _('COUCHSURFING')),
+    ('FACEBOOK', _('FACEBOOK')),
+    ('FRIENDS', _('FRIENDS')),
+    ('GOOGLE', _('GOOGLE')),
+    ('TWITTER', _('TWITTER')),
+]
 
 
 class Account(Model):
 
-    SOURCES_CHOICES = [
-        ('OTHER', _('OTHER')),
-        ('COUCHSURFING', _('COUCHSURFING')),
-        ('FACEBOOK', _('FACEBOOK')),
-        ('FRIENDS', _('FRIENDS')),
-        ('GOOGLE', _('GOOGLE')),
-        ('TWITTER', _('TWITTER')),
-    ]
-
     # main data
     user = ForeignKey('auth.User', unique=True, related_name="accounts")
     description = TextField(blank=True)
-    source = CharField(max_length=64, choices=SOURCES_CHOICES, default='OTHER')
-    feedback = TextField(blank=True)
+    source = CharField(max_length=64, choices=SOURCE_CHOICES, default='OTHER')
     mobile = CharField(max_length=1024, blank=True)
 
     # meta
@@ -87,8 +88,8 @@ class Site(Model): # TODO do something with it or delete it
         args = (self.id, self.account.id, self.site, self.confirmed)
         return u"id: %s; account_id: %s; site: %s; confirmed: %s" % args
 
-    class Meta:                                                                                                 
-                                                                                                                
+    class Meta:                                                             
+                                                                             
         unique_together = (('account', 'site'),) 
 
 
