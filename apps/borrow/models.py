@@ -51,8 +51,8 @@ class Borrow(Model):
 class Log(Model):
 
     ACTION_CHOICES = [
-        ("RATE_TEAM",_("RATE_TEAM")),
-        ("RATE_MY",_("RATE_MY")),
+        ("LENDER_RATE",_("LENDER_RATE")),
+        ("BORROWER_RATE",_("BORROWER_RATE")),
         ("CREATE",_("CREATE")),
         ("RESPOND",_("RESPOND")),
         ("CANCEL",_("CANCEL")),
@@ -65,6 +65,8 @@ class Log(Model):
     note = TextField(blank=True) # by initiator
 
     # meta
+    # created_by = initiator
+    # never updated
     created_on  = DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
@@ -75,15 +77,23 @@ class Log(Model):
         ordering = ["-created_on"]
 
 
+ORIGINATOR_CHOICES = [
+    ("BORROWER",_("BORROWER")),
+    ("LENDER",_("LENDER")),
+]
+
+
+RATING_CHOICES = [
+    ("THUMBS_UP", _("THUMBS_UP")),
+    ("NEUTRAL", _("NEUTRAL")),
+    ("THUMBS_DOWN", _("THUMBS_DOWN")),
+]
+
+
 class Rating(Model): # only borrower rates ...
 
-    ORIGINATOR_CHOICES = [
-        ("BORROWER",_("BORROWER")),
-        ("LENDER",_("LENDER")),
-    ]
-
     borrow = ForeignKey('borrow.Borrow')
-    rating = IntegerField() # 0 - 5 'Stars' # TODO only (thumbs up|meh|thumbs down)
+    rating = CharField(max_length=64, choices=RATING_CHOICES)
     account = ForeignKey('account.Account') # borrower or lender
     originator = CharField(max_length=64, choices=ORIGINATOR_CHOICES)
 

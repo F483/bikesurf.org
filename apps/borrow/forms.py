@@ -17,16 +17,16 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
 
 from apps.borrow.models import Borrow
+from apps.borrow.models import RATING_CHOICES
 from apps.borrow import control
 from apps.team import control as team_control
 
 
-RESPONSES = [
-    "ACCEPTED",
-    "MEETUP",
-    "REJECTED",
+RESPONSE_CHOICES = [
+    ("ACCEPTED", _("ACCEPTED")),
+    ("MEETUP",   _("MEETUP")),
+    ("REJECTED", _("REJECTED")),
 ]
-RESPONSE_CHOICES = [(response, _(response)) for response in RESPONSES]
 
 
 class Respond(Form):
@@ -41,24 +41,23 @@ class Respond(Form):
 
     def clean(self):
         cleaned_data = super(Respond, self).clean()
-
-        # sanity check
-        if not team_control.is_member(self.account, self.borrow.bike.team):
-            raise PermissionDenied
-        if self.borrow.state != "REQUEST":
-            raise PermissionDenied
-        if self.borrow.active:
-            raise Exception("This should NEVER be possable!")
-        # TODO check for accepted borrows in overlaping timeframes
-
-        # check request is still valid
+        bike = self.borrow.bike
+        start = self.borrow.start
+        finish = self.borrow.finish
         if cleaned_data.get("response") != "REJECTED":
             today = datetime.datetime.now().date()
-            if self.borrow.start <= today:
-                raise ValidationError(_("START_TIME_PASSED"))
+            if self.borrow.finish <= today:
+                raise ValidationError(_("TO_LATE_TO_ACCEPT"))
             if not self.borrow.bike.active:
                 raise ValidationError(_("BIKE_NOT_ACTIVE"))
-
+            if self.borrow.bike.reserve:
+                raise ValidationError(_("IS_RESERVE_BIKE"))
+            if not self.borrow.bike.station:
+                raise ValidationError(_("BIKE_STATION_UNKNOWN"))
+            if not self.borrow.bike.station.active:
+                raise ValidationError(_("BIKE_STATION_INACTIVE"))
+            if control.active_borrows_in_timeframe(bike, start, finish):
+                raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
         return cleaned_data
 
 
@@ -71,8 +70,8 @@ class Create(Form):
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
         super(Create, self).__init__(*args, **kwargs)
-        self.fields["start"].initial = datetime.datetime.now()
-        self.fields["finish"].initial = datetime.datetime.now()
+        self.fields["start"].initial = datetime.datetime.now() # TODO add a day
+        self.fields["finish"].initial = datetime.datetime.now() # TODO add 8 days
 
     def clean(self):
         cleaned_data = super(Create, self).clean()
@@ -80,31 +79,14 @@ class Create(Form):
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
 
-        # check bike
-        if not self.bike.active:
-            raise PermissionDenied
-        if self.bike.reserve:
-            raise PermissionDenied
-        if not self.bike.station:
-            raise PermissionDenied
-
         # check timeframe
         if start <= today:
             raise ValidationError(_("START_NOT_IN_FUTURE"))
         if finish < start:
             raise ValidationError(_("FINISH_BEFORE_START"))
+        if len(control.active_borrows_in_timeframe(self.bike, start, finish)):
+            raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
         # TODO check for borrows from the same person in overlaping timeframes
-        
-        # other borrows starting in timeframe
-        if len(Borrow.objects.filter(bike=self.bike, active=True, 
-                                     start__gte=start, start__lte=finish)):
-            raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
-
-        # other borrows finishing in timeframe
-        if len(Borrow.objects.filter(bike=self.bike, active=True,
-                                     finish__gte=start, finish__lte=finish)):
-            raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
-
         return cleaned_data
 
 
@@ -117,23 +99,8 @@ class Cancel(Form):
         self.account = kwargs.pop("account")
         super(Cancel, self).__init__(*args, **kwargs)
 
-    def clean(self):
-        cleaned_data = super(Cancel, self).clean()
-        if not control.can_cancel(self.account, self.borrow):
-            raise PermissionDenied
-        return cleaned_data
 
-
-RATING_CHOICES = [
-    (0, _("0")),
-    (1, _("1")),
-    (2, _("2")),
-    (3, _("3")),
-    (4, _("4")),
-    (5, _("5")),
-]
-
-class RateTeam(Form):
+class Rate(Form):
 
     note = CharField(label=_("NOTE"), widget=Textarea)
     rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
@@ -141,29 +108,5 @@ class RateTeam(Form):
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
         self.account = kwargs.pop("account")
-        super(RateTeam, self).__init__(*args, **kwargs)
-
-    def clean(self):
-        cleaned_data = super(RateTeam, self).clean()
-        if not control.can_rate_team(self.account, self.borrow): # TODO test it
-            raise PermissionDenied
-        return cleaned_data
-
-
-class RateMy(Form):
-
-    note = CharField(label=_("NOTE"), widget=Textarea)
-    rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
-
-    def __init__(self, *args, **kwargs):
-        self.borrow = kwargs.pop("borrow")
-        self.account = kwargs.pop("account")
-        super(RateMy, self).__init__(*args, **kwargs)
-
-    def clean(self):
-        cleaned_data = super(RateMy, self).clean()
-        if not control.can_rate_my(self.account, self.borrow): # TODO test it
-            raise PermissionDenied
-        return cleaned_data
-
+        super(Rate, self).__init__(*args, **kwargs)
 
