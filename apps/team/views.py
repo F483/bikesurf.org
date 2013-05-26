@@ -33,7 +33,7 @@ def create(request):
             country = form.cleaned_data["country"]
             logo = form.cleaned_data["logo"]
             team = control.create(account, name, country, logo)
-            return HttpResponseRedirect("/%s" % team.link)
+            return HttpResponseRedirect("/%s/created" % team.link)
     else:
         form = forms.CreateTeam()
     args = { 
@@ -45,8 +45,16 @@ def create(request):
 
 @login_required
 @require_http_methods(["GET"])
+def created(request, team_link):
+    account = get_object_or_404(Account, user=request.user)
+    team = get_object_or_404(Team, link=team_link, active=False)
+    return render_response(request, "team/created.html", { "team" : team })
+
+
+@login_required
+@require_http_methods(["GET"])
 def members(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     args = { "members" : team.members.all() }
     return rtr(team, "members", request, "team/members.html", args)
 
@@ -59,7 +67,7 @@ def members(request, team_link):
 @login_required
 @require_http_methods(["GET"])
 def join_request_list(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     template = "team/join_request/list.html"
@@ -70,7 +78,7 @@ def join_request_list(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def join_request_create(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
         form = forms.CreateJoinRequest(request.POST)
@@ -90,7 +98,7 @@ def join_request_create(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def join_request_process(request, team_link, join_request_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     jr = get_object_or_404(JoinRequest, id=join_request_id)
     if request.method == "POST":
@@ -112,7 +120,7 @@ def join_request_process(request, team_link, join_request_id):
 @login_required
 @require_http_methods(["GET"])
 def join_request_created(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     template = "team/join_request/created.html"
     return rtr(team, "join_request/list", request, template, {})
 
@@ -125,7 +133,7 @@ def join_request_created(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def remove_request_create(request, team_link, concerned_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     concerned = get_object_or_404(Account, id=concerned_id)
     if request.method == "POST":
@@ -147,7 +155,7 @@ def remove_request_create(request, team_link, concerned_id):
 @login_required
 @require_http_methods(["GET"])
 def remove_request_created(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     template = "team/remove_request/created.html"
     return rtr(team, "remove_request/list", request, template, {})
 
@@ -155,7 +163,7 @@ def remove_request_created(request, team_link):
 @login_required
 @require_http_methods(["GET"])
 def remove_request_list(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     template = "team/remove_request/list.html"
@@ -166,7 +174,7 @@ def remove_request_list(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def remove_request_process(request, team_link, remove_request_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     remove_request = get_object_or_404(RemoveRequest, id=remove_request_id)
     if request.method == "POST":

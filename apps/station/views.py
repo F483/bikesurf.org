@@ -12,6 +12,7 @@ from django.forms import Form
 
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
+from apps.team.control import control as team_control
 from apps.team.models import Team
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
@@ -65,7 +66,7 @@ def view(request, **kwargs):
     station_id = kwargs["station_id"]
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
-    team = team_link and get_object_or_404(Team, link=team_link)
+    team = team_link and team_control.get_or_404(team_link)
     if team:
         assert_member(account, team)
         station = get_object_or_404(Station, id=station_id, team=team) 
@@ -101,7 +102,7 @@ def list(request, **kwargs):
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
     if team_link:
-        team = get_object_or_404(Team, link=team_link)
+        team = team_control.get_or_404(team_link)
         assert_member(account, team)
         args = { "stations" : Station.objects.filter(team=team) }
         return rtr(team, "stations", request, "station/list.html", args)
@@ -113,7 +114,7 @@ def list(request, **kwargs):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
@@ -142,7 +143,7 @@ def create(request, team_link):
 @require_http_methods(["GET", "POST"])
 def edit(request, team_link, station_id):
     account = get_object_or_404(Account, user=request.user)
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     assert_member(account, team)
     station = get_object_or_404(Station, team=team, id=station_id)
     if request.method == "POST":
@@ -171,7 +172,7 @@ def edit(request, team_link, station_id):
 @require_http_methods(["GET", "POST"])
 def delete(request, team_link, station_id):
     account = get_object_or_404(Account, user=request.user)
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     assert_member(account, team)
     station = get_object_or_404(Station, team=team, id=station_id)
     if request.method == "POST":

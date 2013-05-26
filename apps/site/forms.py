@@ -14,7 +14,7 @@ class TeamSelectForm(Form):
 
     team = ModelChoiceField(
             label='', empty_label=_("WHERE?"), 
-            queryset=Team.objects.all()
+            queryset=Team.objects.filter(active=True)
     ) 
 
 

@@ -17,6 +17,7 @@ RR = "(?P<remove_request_id>[0-9]+)" # Remove Request Link
 urlpatterns = patterns("apps.team.views",
 
     url(r"^team/create$",                            "create"),
+    url(r"^%s/created$" % T,                         "created"),
     url(r"^%s/members$" % T,                         "members"),
 
     url(r"^%s/join_request/create$" % T,             "join_request_create"),

@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 
+from apps.team import control as team_control
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
@@ -22,7 +23,7 @@ from apps.borrow import control
 
 
 def _get_team_models(request, team_link, borrow_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     borrow = get_object_or_404(Borrow, id=borrow_id)
@@ -32,7 +33,7 @@ def _get_team_models(request, team_link, borrow_id):
 @login_required
 @require_http_methods(["GET"])
 def lender_list(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     args = { "borrows" : Borrow.objects.filter(team=team) }
@@ -50,7 +51,7 @@ def borrower_list(request):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link, bike_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":

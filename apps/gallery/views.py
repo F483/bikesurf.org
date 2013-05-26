@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.forms import Form
+from apps.team import control as team_control
 from apps.account.models import Account
 from apps.gallery.models import Gallery
 from apps.gallery.models import Picture
@@ -27,7 +28,7 @@ def add(request, **kwargs):
     gallery_id = kwargs["gallery_id"]
     account = get_object_or_404(Account, user=request.user)
     gallery = get_object_or_404(Gallery, id=gallery_id)
-    team = team_link and get_object_or_404(Team, link=team_link) or None
+    team = team_link and team_control.get_or_404(team_link) or None
     if team:
         assert_member(account, team)
     if request.method == "POST":
@@ -55,7 +56,7 @@ def setprimary(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
     account = get_object_or_404(Account, user=request.user)
-    team = team_link and get_object_or_404(Team, link=team_link) or None
+    team = team_link and team_control.get_or_404(team_link) or None
     picture = get_object_or_404(Picture, id=picture_id)
     prefix = team_link and "/%s" % team_link or ""
     url = "%s/gallery/list/%s" % (prefix, picture.gallery.id)
@@ -84,7 +85,7 @@ def setprimary(request, **kwargs):
 def remove(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
-    team = team_link and get_object_or_404(Team, link=team_link) or None
+    team = team_link and team_control.get_or_404(team_link) or None
     picture = get_object_or_404(Picture, id=picture_id)
     gallery = picture.gallery
     account = get_object_or_404(Account, user=request.user)
@@ -111,7 +112,7 @@ def remove(request, **kwargs):
 def list(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
-    team = team_link and get_object_or_404(Team, link=team_link) or None
+    team = team_link and team_control.get_or_404(team_link) or None
     gallery = get_object_or_404(Gallery, id=gallery_id)
     pictures = gallery.pictures.all()
     args = { "gallery" : gallery, "pictures" : pictures }
@@ -125,7 +126,7 @@ def list(request, **kwargs):
 def view(request, **kwargs):
     team_link = kwargs.get("team_link")
     picture_id = kwargs["picture_id"]
-    team = team_link and get_object_or_404(Team, link=team_link) or None
+    team = team_link and team_control.get_or_404(team_link) or None
     picture = get_object_or_404(Picture, id=picture_id)
     args = { "picture" : picture }
     if team:

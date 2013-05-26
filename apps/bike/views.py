@@ -62,7 +62,7 @@ def _get_bike_filters(request, form, team):
 
 @require_http_methods(["GET"])
 def view(request, team_link, bike_id, tab):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     requires_login = tab != "OVERVIEW"
     requires_membership = tab != "OVERVIEW"
     logged_in = request.user.is_authenticated()
@@ -88,7 +88,7 @@ def view(request, team_link, bike_id, tab):
 
 @require_http_methods(["GET"])
 def list(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     filters = _get_bike_filters(request, None, team)
     args = { "bikes" :  team.bikes.filter(**filters) }
     return rtr(team, "bikes", request, "bike/list.html", args)
@@ -97,7 +97,7 @@ def list(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
@@ -126,7 +126,7 @@ def create(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def edit(request, team_link, bike_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     bike = get_object_or_404(Bike, id=bike_id, team=team)
@@ -155,7 +155,7 @@ def edit(request, team_link, bike_id):
 @login_required
 @require_http_methods(["GET", "POST"])
 def delete(request, team_link, bike_id):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id, team=team)
 

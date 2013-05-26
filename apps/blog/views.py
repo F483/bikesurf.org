@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from apps.team.models import Team
 from apps.blog.models import Blog
 from apps.blog import control
+from apps.team import control as team_control
 from apps.account.models import Account
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
@@ -21,7 +22,7 @@ from django.forms import Form
 
 @require_http_methods(["GET"])
 def list(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     blogs = Blog.objects.filter(team=team)
     return rtr(team, "blog", request, "blog/list.html", { "blogs" : blogs })
 
@@ -29,7 +30,7 @@ def list(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
@@ -53,7 +54,7 @@ def create(request, team_link):
 def edit(request, team_link, blog_id):
 
     # get data
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     blog = get_object_or_404(Blog, team=team, id=blog_id)
     assert_member(account, team)
@@ -79,7 +80,7 @@ def edit(request, team_link, blog_id):
 def delete(request, team_link, blog_id):
 
     # get data
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     blog = get_object_or_404(Blog, team=team, id=blog_id)
     assert_member(account, team)

@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from apps.account.models import Account
+from apps.team import control as team_control
 from apps.team.models import Team
 from apps.page.models import Page
 from apps.page.forms import CreatePageForm, EditPageForm
@@ -20,7 +21,7 @@ from django.forms import Form
 
 @require_http_methods(["GET"])
 def view(request, team_link, page_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     page = get_object_or_404(Page, link=page_link, team=team)
     return rtr(team, page.link, request, "page/view.html", { "page" : page })
 
@@ -28,7 +29,7 @@ def view(request, team_link, page_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     if request.method == "POST":
@@ -51,7 +52,7 @@ def create(request, team_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def edit(request, team_link, page_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     page = get_object_or_404(Page, link=page_link, team=team)
@@ -75,7 +76,7 @@ def edit(request, team_link, page_link):
 @login_required
 @require_http_methods(["GET", "POST"])
 def delete(request, team_link, page_link):
-    team = get_object_or_404(Team, link=team_link)
+    team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
     page = get_object_or_404(Page, link=page_link, team=team)

@@ -3,7 +3,14 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.db import models
+from django.db.models import Model
+from django.db.models import SlugField
+from django.db.models import CharField
+from django.db.models import BooleanField
+from django.db.models import ManyToManyField
+from django.db.models import ForeignKey
+from django.db.models import DateTimeField
+from django.db.models import TextField
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 from imagekit.models.fields import ProcessedImageField
@@ -22,21 +29,22 @@ def _upload_to(instance, filename, **kwargs):
     return "team/%s.%s" % (instance.link, 'jpeg')
 
 
-class Team(models.Model):
+class Team(Model):
 
-    link        = models.SlugField(unique=True)
-    name        = models.CharField(max_length=1024, unique=True)
+    link        = SlugField(unique=True)
+    name        = CharField(max_length=1024, unique=True)
     country     = CountryField()
-    members     = models.ManyToManyField('account.Account', null=True, blank=True) 
+    members     = ManyToManyField('account.Account', null=True, blank=True) 
     logo        = ProcessedImageField(upload_to=_upload_to, 
                                       processors=[ResizeToFill(270, 100)],
                                       format='JPEG', options={'quality': 90})
+    active      = BooleanField(default=False)
 
     # meta
-    created_by  = models.ForeignKey('account.Account', related_name='team_created')
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey('account.Account', related_name='team_updated')
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_by  = ForeignKey('account.Account', related_name='team_created')
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_by  = ForeignKey('account.Account', related_name='team_updated')
+    updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -46,19 +54,19 @@ class Team(models.Model):
         ordering = ['name']
 
 
-class JoinRequest(models.Model):
+class JoinRequest(Model):
 
     # main data
-    team        = models.ForeignKey('team.Team', related_name='join_requests') # team user wants to join
-    requester   = models.ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
-    processor   = models.ForeignKey('account.Account', related_name='join_requests_processed', null=True, blank=True) # user who answerd the request
-    status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
-    application = models.TextField() # reason given by user to join
-    response    = models.TextField(blank=True) # reason given by processor
+    team        = ForeignKey('team.Team', related_name='join_requests') # team user wants to join
+    requester   = ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
+    processor   = ForeignKey('account.Account', related_name='join_requests_processed', null=True, blank=True) # user who answerd the request
+    status      = CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
+    application = TextField() # reason given by user to join
+    response    = TextField(blank=True) # reason given by processor
 
     # meta
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u"%s > %s (%s)" % (self.requester, self.team, self.status)
@@ -68,22 +76,22 @@ class JoinRequest(models.Model):
         ordering = ['-status', 'updated_on']
 
 
-class RemoveRequest(models.Model):
+class RemoveRequest(Model):
 
     # main data
-    team        = models.ForeignKey('team.Team', related_name='remove_requests') # team to remove user from
-    concerned   = models.ForeignKey('account.Account', related_name='remove_requests_concerned') # user to be removed
-    requester   = models.ForeignKey('account.Account', related_name='remove_requests_made') # user who is requesting the removel
-    processor   = models.ForeignKey('account.Account', related_name='remove_requests_processed', null=True, blank=True) # user who processed the request
-    status      = models.CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
-    reason      = models.TextField() # reason given by by the requester
-    response    = models.TextField(blank=True) # reason given by processor
+    team        = ForeignKey('team.Team', related_name='remove_requests') # team to remove user from
+    concerned   = ForeignKey('account.Account', related_name='remove_requests_concerned') # user to be removed
+    requester   = ForeignKey('account.Account', related_name='remove_requests_made') # user who is requesting the removel
+    processor   = ForeignKey('account.Account', related_name='remove_requests_processed', null=True, blank=True) # user who processed the request
+    status      = CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
+    reason      = TextField() # reason given by by the requester
+    response    = TextField(blank=True) # reason given by processor
 
     # meta
     # created_by = requester
     # updated_by = processor
-    created_on  = models.DateTimeField(auto_now_add=True)
-    updated_on  = models.DateTimeField(auto_now=True)
+    created_on  = DateTimeField(auto_now_add=True)
+    updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u"%s < %s (%s)" % (self.concerned, self.team, self.status)

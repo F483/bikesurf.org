@@ -3,11 +3,16 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from django.shortcuts import get_object_or_404
 from apps.team.models import Team
 from apps.team.models import JoinRequest
 from django.core.exceptions import PermissionDenied
 from apps.common.shortcuts import uslugify
 from apps.team.models import RemoveRequest
+
+
+def get_or_404(link):
+    return get_object_or_404(Team, link=link, active=True)
 
 
 def is_member(account, team):
