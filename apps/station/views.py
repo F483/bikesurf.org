@@ -12,7 +12,7 @@ from django.forms import Form
 
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
-from apps.team.control import control as team_control
+from apps.team import control as team_control
 from apps.team.models import Team
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
