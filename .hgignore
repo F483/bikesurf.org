@@ -10,6 +10,6 @@ syntax: glob
 *.bak
 *.lock
 under_construction
-config/live_settings.py
+config/local_settings.py
 uploads/*
 
