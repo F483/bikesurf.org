@@ -27,15 +27,19 @@ from apps.team import control
 def create(request):
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
-        form = forms.CreateTeam(request.POST)
+        form = forms.CreateTeam(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data["name"].strip()
             country = form.cleaned_data["country"]
-            team = control.create(account, name, country)
+            logo = form.cleaned_data["logo"]
+            team = control.create(account, name, country, logo)
             return HttpResponseRedirect("/%s" % team.link)
     else:
         form = forms.CreateTeam()
-    args = { "form" : form, "form_title" : _("CREATE_TEAM") }
+    args = { 
+        "form" : form, "form_title" : _("CREATE_TEAM"), 
+        "multipart_form" : True 
+    }
     return render_response(request, "common/form.html", args)
 
 

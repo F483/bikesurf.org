@@ -6,6 +6,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
+from imagekit.models.fields import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 STATUSES = [
@@ -16,12 +18,19 @@ STATUSES = [
 STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 
+def _upload_to(instance, filename, **kwargs):
+    return "team/%s.%s" % (instance.link, 'jpeg')
+
+
 class Team(models.Model):
 
     link        = models.SlugField(unique=True)
     name        = models.CharField(max_length=1024, unique=True)
-    members     = models.ManyToManyField('account.Account', null=True, blank=True) 
     country     = CountryField()
+    members     = models.ManyToManyField('account.Account', null=True, blank=True) 
+    logo        = ProcessedImageField(upload_to=_upload_to, 
+                                      processors=[ResizeToFill(270, 100)],
+                                      format='JPEG', options={'quality': 90})
 
     # meta
     created_by  = models.ForeignKey('account.Account', related_name='team_created')

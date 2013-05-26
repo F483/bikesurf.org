@@ -14,16 +14,16 @@ def is_member(account, team):
     return account in team.members.all()
 
 
-def create(account, name, country):
+def create(account, name, country, logo):
     team = Team()
     team.name = name
     team.link = uslugify(name)
     team.country = country
+    team.logo = logo
     team.created_by = account
     team.updated_by = account
     team.save()
     team.members.add(account)
-    # TODO require activation by site admin
     return team
 
 

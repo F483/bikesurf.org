@@ -3,9 +3,14 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
+from django.forms import Form
+from django.forms import ImageField
+from django.forms import ChoiceField
+from django.forms import CharField
+from django.forms import Textarea
+
 from apps.common.shortcuts import uslugify
 from apps.team.models import STATUS_CHOICES
 from apps.team.models import Team
@@ -29,31 +34,32 @@ def _validate_name(value):
         raise ValidationError(_("NAME_USED"))
 
 
-class CreateTeam(forms.Form):
+class CreateTeam(Form):
 
-    name = forms.CharField(label=_('TEAM_NAME'), validators=[_validate_name])
-    country = forms.ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
-
-
-class CreateJoinRequest(forms.Form):
-
-    application = forms.CharField(label=_('JOIN_REQUEST_REASON'), widget=forms.Textarea)
+    name    = CharField(label=_('TEAM_NAME'), validators=[_validate_name])
+    country = ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
+    logo   = ImageField(label=_("LOGO"))
 
 
-class ProcessJoinRequest(forms.Form):
+class CreateJoinRequest(Form):
 
-    response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
-    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
-
-
-class CreateRemoveRequest(forms.Form):
-
-    reason = forms.CharField(label=_('REASON'), widget=forms.Textarea)
+    application = CharField(label=_('JOIN_REQUEST_REASON'), widget=Textarea)
 
 
-class ProcessRemoveRequest(forms.Form):
+class ProcessJoinRequest(Form):
 
-    response = forms.CharField(label=_('RESPONSE'), widget=forms.Textarea)
-    status = forms.ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
+    response = CharField(label=_('RESPONSE'), widget=Textarea)
+    status   = ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
+
+
+class CreateRemoveRequest(Form):
+
+    reason = CharField(label=_('REASON'), widget=Textarea)
+
+
+class ProcessRemoveRequest(Form):
+
+    response = CharField(label=_('RESPONSE'), widget=Textarea)
+    status = ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
 
 
