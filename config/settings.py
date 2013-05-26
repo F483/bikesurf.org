@@ -298,12 +298,12 @@ SANITIZER_ALLOWED_TAGS = [
 SANITIZER_ALLOWED_ATTRIBUTES = [ 'href', 'src', 'style']
 SANITIZER_ALLOWED_STYLES = []
 
-###################
-# server settings #
-###################
+##################
+# local settings #
+##################
 
 try:
-    from config.live_settings import *
+    from config.local_settings import *
 except ImportError:
     pass
 
