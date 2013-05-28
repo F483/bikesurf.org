@@ -12,9 +12,14 @@
     WSGIProcessGroup bikesurf
     WSGIScriptAlias / /home/bikesurf/www/config/wsgi.py
  
+
+    # Temp redirect to blog
+    Redirect 302 / http://bikesurfberlin.blogspot.de/
+
+
     # static media aliases
     Alias /static/ /home/bikesurf/www/static/
-    Alias / /home/bikesurf/www/apps/site/templates/site/maintenance.html
+    Alias / /home/bikesurf/www/apps/site/templates/site/construction.html
  
     # static permissions
     <Directory /home/bikesurf/www/static>
