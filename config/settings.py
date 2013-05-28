@@ -293,7 +293,8 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 ######################
 
 SANITIZER_ALLOWED_TAGS = [
-    'a', 'p', 'b', 'i', 'h1', 'h2', 'h3', 'img', 'br', 'table', 'tbody', 'tr', 'td', 'span'
+    'a', 'p', 'b', 'i', 'h1', 'h2', 'h3', 'img', 'br', 'table', 'tbody', 
+    'tr', 'td', 'span', 'li', 'ul'
 ]
 SANITIZER_ALLOWED_ATTRIBUTES = [ 'href', 'src', 'style']
 SANITIZER_ALLOWED_STYLES = []
