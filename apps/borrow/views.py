@@ -3,6 +3,8 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import datetime
+
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_http_methods
@@ -36,7 +38,10 @@ def lender_list(request, team_link):
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
-    args = { "borrows" : Borrow.objects.filter(team=team) }
+    args = { 
+        "borrows" : Borrow.objects.filter(team=team), 
+        "page_title" : _("TEAM_BORROWS")
+    }
     return rtr(team, "borrows", request, "borrow/list.html", args)
 
 
@@ -44,7 +49,34 @@ def lender_list(request, team_link):
 @require_http_methods(["GET"])
 def borrower_list(request):
     account = get_object_or_404(Account, user=request.user)
-    args = { "borrows" : Borrow.objects.filter(borrower=account) }
+    args = { 
+        "borrows" : Borrow.objects.filter(borrower=account),
+        "page_title" : _("YOUR_BORROWS")
+    }
+    return render_response(request, "borrow/list.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def incoming_list(request):
+    today = datetime.datetime.now().date()
+    account = get_object_or_404(Account, user=request.user)
+    args = { 
+        "borrows" : control.incoming_list(account),
+        "page_title" : _("INCOMING_BORROWS")
+    }
+    return render_response(request, "borrow/list.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def outgoing_list(request):
+    today = datetime.datetime.now().date()
+    account = get_object_or_404(Account, user=request.user)
+    args = {
+        "borrows" : control.outgoing_list(account),
+        "page_title" : _("OUTGOING_BORROWS")
+    }
     return render_response(request, "borrow/list.html", args)
 
 

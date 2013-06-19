@@ -3,15 +3,23 @@
 {% if current_user.is_authenticated %}
 
     {% if borrow_count %}
-        <a href="/borrows">{% trans "MY_BORROWS" %} 
-                ({{ borrow_count }})
+        <a href="/borrows">{% trans "YOUR_BORROWS" %}({{ borrow_count }})</a>
+    {% endif %}
+
+    {% if incoming_count %}
+        <a href="/borrows/incoming">
+            {% trans "INCOMING_BORROWS" %}({{ incoming_count }})
+        </a>
+    {% endif %}
+
+    {% if outgoing_count %}
+        <a href="/borrows/outgoing">
+            {% trans "OUTGOING_BORROWS" %}({{ outgoing_count }})
         </a>
     {% endif %}
 
     {% if station_count %}
-        <a href="/stations">{% trans "MY_STATIONS" %}
-                ({{ station_count }})
-        </a>
+        <a href="/stations">{% trans "STATIONS" %}({{ station_count }})</a>
     {% endif %}
 
     <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>

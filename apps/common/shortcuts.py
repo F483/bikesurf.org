@@ -25,6 +25,7 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
+    from apps.borrow import control as borrow_control # circular import ...
     args.update({ 
         "current_user" : request.user,
         "current_path" : request.path,
@@ -36,7 +37,9 @@ def render_response(request, template, args):
         args.update({ 
             "current_account" : account,
             "borrow_count" : len(borrows),
-            "station_count" : len(Station.objects.filter(responsable=account))
+            "station_count" : len(Station.objects.filter(responsable=account)),
+            "outgoing_count" : len(borrow_control.outgoing_list(account)),
+            "incoming_count" : len(borrow_control.incoming_list(account)),
         })
     args.update(csrf(request))
     # TODO check for mobile browser and use mobile template if it exists

@@ -6,11 +6,22 @@
 import datetime
 from django.core.exceptions import PermissionDenied
 
-from apps.team import control as team_control
 from apps.borrow.models import Borrow
 from apps.borrow.models import Rating
 from apps.borrow.models import Log
 from apps.team import control as team_control
+
+
+def incoming_list(account):
+    today = datetime.datetime.now().date()
+    return Borrow.objects.filter(active=True, finish__gte=today, 
+                                 dest__responsable=account)
+
+
+def outgoing_list(account):
+    today = datetime.datetime.now().date()
+    return Borrow.objects.filter(active=True, start__gte=today, 
+                                 src__responsable=account)
 
 
 def _log(account, borrow, note, action):

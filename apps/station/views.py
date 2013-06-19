@@ -3,6 +3,8 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import datetime
+
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
@@ -75,14 +77,17 @@ def view(request, **kwargs):
         station = get_object_or_404(Station, id=station_id, responsable=account)
 
     # load tab data
+    today = datetime.datetime.now().date()
     bikes = []
     borrows = []
     if tab == "BIKES":
         bikes = station.bikes.all()
     elif tab == "OUTGOING":
-        borrows = station.borrows_outgoing.all()
+        borrows = station.borrows_outgoing.filter(active=True, 
+                                                  start__gte=today)
     elif tab == "INCOMING":
-        borrows = station.borrows_incoming.all()
+        borrows = station.borrows_incoming.filter(active=True, 
+                                                  finish__gte=today)
 
     template_args = { 
         "station" : station, "bikes" : bikes, "borrows" : borrows,
@@ -104,10 +109,16 @@ def list(request, **kwargs):
     if team_link:
         team = team_control.get_or_404(team_link)
         assert_member(account, team)
-        args = { "stations" : Station.objects.filter(team=team) }
+        args = { 
+            "stations" : Station.objects.filter(team=team),
+            "page_title" : _("STATIONS")
+        }
         return rtr(team, "stations", request, "station/list.html", args)
     else:
-        args = { "stations" : Station.objects.filter(responsable=account) }
+        args = { 
+            "stations" : Station.objects.filter(responsable=account), 
+            "page_title" : _("STATIONS")
+        }
         return render_response(request, "station/list.html", args)
 
 

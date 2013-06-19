@@ -55,7 +55,10 @@ def created(request, team_link):
 @require_http_methods(["GET"])
 def members(request, team_link):
     team = control.get_or_404(team_link)
-    args = { "members" : team.members.all() }
+    args = { 
+        "members" : team.members.all(),
+        "page_title" : _("MEMBERS")
+    }
     return rtr(team, "members", request, "team/members.html", args)
 
 

@@ -90,7 +90,10 @@ def view(request, team_link, bike_id, tab):
 def list(request, team_link):
     team = team_control.get_or_404(team_link)
     filters = _get_bike_filters(request, None, team)
-    args = { "bikes" :  team.bikes.filter(**filters) }
+    args = { 
+        "bikes" :  team.bikes.filter(**filters),
+        "page_title" : _("BIKES")
+    }
     return rtr(team, "bikes", request, "bike/list.html", args)
 
 

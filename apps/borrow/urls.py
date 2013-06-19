@@ -19,6 +19,8 @@ p = {
 
 urlpatterns = patterns("apps.borrow.views",
     url(r"^borrows$",                                "borrower_list"),
+    url(r"^borrows/incoming$",                       "incoming_list"),
+    url(r"^borrows/outgoing$",                       "outgoing_list"),
     url(r"^borrow/view/%(borrow)s$" % p,             "borrower_view"),
     url(r"^borrow/cancel/%(borrow)s$" % p,           "borrower_cancel"),
     url(r"^borrow/rate/%(borrow)s$" % p,             "borrower_rate"),

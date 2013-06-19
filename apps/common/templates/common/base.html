@@ -68,9 +68,17 @@
                             {% if current_team %}
                                 {% include "team/header.html" %}
                             {% endif %}
+
                             {% if tabs %}
                                 {% include "common/tabs.html" %}
                             {% endif %}
+
+                            {% if page_title %}
+                                <div id="page_title">
+                                    <h2>{{ page_title }}</h2>
+                                </div>
+                            {% endif %}
+
                             {% block content_wrapper %}
                                 {% block content %}
                                 {% endblock %}
