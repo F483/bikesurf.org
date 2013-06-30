@@ -15,11 +15,7 @@ from django.forms import ImageField
 
 from apps.bike.models import SIZE_CHOICES
 from apps.bike import control
-
-
-def _validate_station_active(station):
-    if not station.active:
-        raise ValidationError(_("STATION_MUST_BE_ACTIVE"))
+from apps.station.forms import validate_station_active
 
 
 class Create(Form):
@@ -29,8 +25,8 @@ class Create(Form):
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=False, 
-            validators=[_validate_station_active]
+            label=_("STATION"), queryset=None, required=True, 
+            validators=[validate_station_active]
     )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
@@ -41,7 +37,7 @@ class Create(Form):
         team = kwargs.pop("team")
         account = kwargs.pop("account")
         super(Create, self).__init__(*args, **kwargs)
-        self.fields["station"].queryset = team.stations.all()
+        self.fields["station"].queryset = team.stations.filter(active=True)
 
 
 class Edit(Form):
@@ -50,8 +46,8 @@ class Edit(Form):
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
     station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=False,
-            validators=[_validate_station_active]
+            label=_("STATION"), queryset=None, required=True,
+            validators=[validate_station_active]
     )
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")

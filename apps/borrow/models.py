@@ -36,8 +36,10 @@ class Borrow(Model):
     finish = DateField() # inclusive
     active = BooleanField() # if the borrow blocks a timeslot
     state = CharField(max_length=64, choices=STATE_CHOICES)
-    src = ForeignKey('station.Station', related_name='borrows_outgoing')
-    dest = ForeignKey('station.Station', related_name='borrows_incoming')
+    src = ForeignKey('station.Station', related_name='borrows_outgoing',
+                     blank=True, null=True)
+    dest = ForeignKey('station.Station', related_name='borrows_incoming',
+                      blank=True, null=True)
 
     # meta
     created_on  = DateTimeField(auto_now_add=True)
@@ -57,6 +59,7 @@ class Log(Model):
         ("RESPOND",_("RESPOND")),
         ("CANCEL",_("CANCEL")),
         ("FINISHED",_("FINISHED")),
+        ("EDIT", _("EDIT")),
     ]
 
     borrow = ForeignKey('borrow.Borrow', related_name="logs")

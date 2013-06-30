@@ -7,7 +7,7 @@
     <div class="content">
         <h2>
             {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
-            ({% trans borrow.state %} {% draw_status borrow %})
+            ({% trans borrow.state %} {% borrow_draw_status borrow %})
         </h2>
 
         {% trans "DATE FROM" %} {{ borrow.start }} 
@@ -17,9 +17,12 @@
         {% trans "TO" %} {{ borrow.dest.street }}<br />
 
         <div>
-            {% draw_respond current_account borrow %}
-            {% draw_cancel current_account borrow current_team %}
-            {% draw_rate current_account borrow current_team %}
+            {% borrow_draw_respond current_account borrow %}
+            {% borrow_draw_borrower_edit current_account borrow %}
+            {% borrow_draw_lender_edit_dest current_account borrow %}
+            {% borrow_draw_lender_edit_bike current_account borrow %}
+            {% borrow_draw_cancel current_account borrow current_team %}
+            {% borrow_draw_rate current_account borrow current_team %}
         </div>
     </div>
 

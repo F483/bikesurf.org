@@ -80,7 +80,7 @@
                             {% else %}
                                 <a href="/borrow/view/{{ borrow.id }}">
                             {% endif %}
-                            {% trans borrow.state %} {% draw_status borrow %}
+                            {% trans borrow.state %} {% borrow_draw_status borrow %}
                             </a>
                         </td>
                         </tr>

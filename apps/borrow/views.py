@@ -102,6 +102,75 @@ def create(request, team_link, bike_id):
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def borrower_edit(request, borrow_id):
+    account = get_object_or_404(Account, user=request.user)
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    if request.method == "POST":
+        form = forms.BorrowerEdit(request.POST, account=account, borrow=borrow)
+        if form.is_valid():
+            control.borrower_edit(
+                    account, borrow,
+                    form.cleaned_data["start"],
+                    form.cleaned_data["finish"],
+                    form.cleaned_data["bike"],
+                    form.cleaned_data["note"].strip()
+            )
+            return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
+    else:
+        form = forms.BorrowerEdit(account=account, borrow=borrow)
+    args = { 
+        "form" : form, "form_title" : _("BORROW_EDIT"),
+        "cancle_url" : "/borrow/view/%s" % borrow.id
+    }
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def lender_edit_bike(request, team_link, borrow_id):
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
+    if request.method == "POST":
+        form = forms.LenderEditBike(request.POST, borrow=borrow)
+        if form.is_valid():
+            control.lender_edit_bike(
+                    account, borrow,
+                    form.cleaned_data["bike"],
+                    form.cleaned_data["note"].strip()
+            )
+            url = "/%s/borrow/view/%s" % (team.link, borrow.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.LenderEditBike(borrow=borrow)
+    args = { "form" : form, "form_title" : _("BORROW_EDIT"),
+        "cancle_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
+    }
+    return rtr(team, "borrows", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def lender_edit_dest(request, team_link, borrow_id):
+    team, account, borrow = _get_team_models(request, team_link, borrow_id)
+    if request.method == "POST":
+        form = forms.LenderEditDest(request.POST, borrow=borrow)
+        if form.is_valid():
+            control.lender_edit_dest(
+                    account, borrow,
+                    form.cleaned_data["dest"],
+                    form.cleaned_data["note"].strip()
+            )
+            url = "/%s/borrow/view/%s" % (team.link, borrow.id)
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.LenderEditDest(borrow=borrow)
+    args = { "form" : form, "form_title" : _("BORROW_EDIT"),
+        "cancle_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
+    }
+    return rtr(team, "borrows", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def respond(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":

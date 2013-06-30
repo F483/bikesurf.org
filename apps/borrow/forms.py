@@ -4,6 +4,7 @@
 
 
 import datetime
+
 from django.utils.translation import ugettext_lazy as _
 from django.forms import Form
 from django.forms import DateField
@@ -15,11 +16,13 @@ from django.forms import TypedChoiceField
 from django.forms import RadioSelect
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
+from django.forms import ModelChoiceField
 
 from apps.borrow.models import Borrow
 from apps.borrow.models import RATING_CHOICES
 from apps.borrow import control
 from apps.team import control as team_control
+from apps.station.forms import validate_station_active
 
 
 RESPONSE_CHOICES = [
@@ -70,8 +73,11 @@ class Create(Form):
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
         super(Create, self).__init__(*args, **kwargs)
-        self.fields["start"].initial = datetime.datetime.now() # TODO add a day
-        self.fields["finish"].initial = datetime.datetime.now() # TODO add 8 days
+        today = datetime.datetime.now()
+        tomorrow = today + datetime.timedelta(days=1)
+        eightdays = today + datetime.timedelta(days=8)
+        self.fields["start"].initial = tomorrow
+        self.fields["finish"].initial = eightdays
 
     def clean(self):
         cleaned_data = super(Create, self).clean()
@@ -86,7 +92,6 @@ class Create(Form):
             raise ValidationError(_("FINISH_BEFORE_START"))
         if len(control.active_borrows_in_timeframe(self.bike, start, finish)):
             raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
-        # TODO check for borrows from the same person in overlaping timeframes
         return cleaned_data
 
 
@@ -109,4 +114,57 @@ class Rate(Form):
         self.borrow = kwargs.pop("borrow")
         self.account = kwargs.pop("account")
         super(Rate, self).__init__(*args, **kwargs)
+
+
+class BorrowerEdit(Form):
+
+    start = DateField(label=_("START"), widget=SelectDateWidget()) # TODO validate like create 
+    finish = DateField(label=_("FINISH"), widget=SelectDateWidget()) # TODO validate like create 
+    bike = ModelChoiceField( # TODO filter only available bikes
+            label=_("BIKE"), queryset=None, required=True, empty_label=None
+    )
+    note = CharField(label=_("NOTE"), widget=Textarea)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        self.account = kwargs.pop("account")
+        super(BorrowerEdit, self).__init__(*args, **kwargs)
+        bikes = self.borrow.team.bikes.filter(active=True)
+        self.fields["start"].initial = self.borrow.start
+        self.fields["finish"].initial = self.borrow.finish
+        self.fields["bike"].queryset = bikes
+        self.fields["bike"].initial = self.borrow.bike
+
+
+class LenderEditBike(Form):
+
+    bike = ModelChoiceField(
+            label=_("BIKE"), queryset=None, required=True, empty_label=None
+    )
+    note = CharField(label=_("NOTE"), widget=Textarea)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        super(LenderEditBike, self).__init__(*args, **kwargs)
+        bikes = self.borrow.team.bikes.filter(active=True)
+        # TODO filter only available bikes
+        self.fields["bike"].queryset = bikes
+        self.fields["bike"].initial = self.borrow.bike
+
+
+class LenderEditDest(Form):
+
+    dest = ModelChoiceField(
+            label=_("DESTINATION_STATION"), queryset=None, required=True, 
+            validators=[validate_station_active], empty_label=None
+    )
+    note = CharField(label=_("NOTE"), widget=Textarea)
+
+    def __init__(self, *args, **kwargs):
+        self.borrow = kwargs.pop("borrow")
+        super(LenderEditDest, self).__init__(*args, **kwargs)
+        stations = self.borrow.team.stations.filter(active=True)
+        self.fields["dest"].queryset = stations
+        self.fields["dest"].initial = self.borrow.dest
+
 

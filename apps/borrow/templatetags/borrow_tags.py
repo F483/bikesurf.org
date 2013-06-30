@@ -7,6 +7,7 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.common.templatetags.common_tags import draw_action
+from apps.common.templatetags.common_tags import draw_edit
 from apps.borrow import control
 from apps.team import control as team_control
 
@@ -15,7 +16,32 @@ register = template.Library()
 
 
 @register.simple_tag
-def draw_borrow(bike):
+def borrow_draw_borrower_edit(account, borrow):
+    if control.borrower_can_edit(account, borrow):
+        return draw_edit("/borrow/edit/%i" % borrow.id)
+    return ""
+
+
+@register.simple_tag
+def borrow_draw_lender_edit_dest(account, borrow):
+    if control.lender_can_edit_dest(account, borrow):
+        url = "/%s/borrow/edit_dest/%i" % (borrow.team.link, borrow.id)
+        image = "/static/famfamfam/pencil.png"
+        return draw_action(image, "CHANGE_DEST", url)
+    return ""
+
+
+@register.simple_tag
+def borrow_draw_lender_edit_bike(account, borrow):
+    if control.lender_can_edit(account, borrow):
+        url = "/%s/borrow/edit_bike/%i" % (borrow.team.link, borrow.id)
+        image = "/static/famfamfam/pencil.png"
+        return draw_action(image, "CHANGE_BIKE", url)
+    return ""
+
+
+@register.simple_tag
+def borrow_draw(bike):
     if control.can_borrow(bike):
         image = "/static/famfamfam/arrow_rotate_clockwise.png"
         url = "/%s/borrow/create/%i" % (bike.team.link, bike.id)
@@ -24,7 +50,7 @@ def draw_borrow(bike):
 
 
 @register.simple_tag
-def draw_respond(account, borrow):
+def borrow_draw_respond(account, borrow):
     if control.can_respond(account, borrow):
         image = "/static/famfamfam/bullet_go.png"
         url = "/%s/borrow/respond/%i" % (borrow.team.link, borrow.id)
@@ -33,7 +59,7 @@ def draw_respond(account, borrow):
 
 
 @register.simple_tag
-def draw_cancel(account, borrow, team):
+def borrow_draw_cancel(account, borrow, team):
     if control.can_cancel(account, borrow):
         image = "/static/famfamfam/cancel.png"
         if team:
@@ -45,7 +71,7 @@ def draw_cancel(account, borrow, team):
 
 
 @register.simple_tag
-def draw_rate(account, borrow, team):
+def borrow_draw_rate(account, borrow, team):
     if team and control.lender_can_rate(account, borrow):
         image = "/static/famfamfam/star.png"
         url = "/%s/borrow/rate/%i" % (borrow.team.link, borrow.id)
@@ -58,7 +84,7 @@ def draw_rate(account, borrow, team):
 
 
 @register.simple_tag
-def draw_status(borrow):
+def borrow_draw_status(borrow):
     images = {
         "REQUEST" : "/static/famfamfam/arrow_rotate_clockwise.png",
         "MEETUP" : "/static/famfamfam/cup.png",

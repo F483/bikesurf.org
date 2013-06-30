@@ -12,6 +12,11 @@ from apps.common.shortcuts import COUNTRIES
 from apps.station import control
 
 
+def validate_station_active(station):
+    if not station.active:
+        raise ValidationError(_("STATION_MUST_BE_ACTIVE"))
+
+
 class Create(forms.Form):
 
     responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
