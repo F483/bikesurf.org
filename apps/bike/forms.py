@@ -70,9 +70,17 @@ class Edit(Form):
 
     def clean(self):
         cleaned_data = super(Edit, self).clean()
-        if (not cleaned_data.get("active") and self.bike.active and
+        station = cleaned_data.get("station")
+        active = cleaned_data.get("active")
+
+        if (not active and self.bike.active and
                 not control.can_deactivate(self.account, self.bike)):
             raise ValidationError(_("CANNOT_DEACTIVATE_BIKE_IN_USE"))
+
+        if (station != self.bike.station and
+                not control.can_change_station(self.account, self.bike, station)):
+            raise ValidationError(_("CANNOT_CHANGE_STATION_BIKE_IN_USE"))
+
         return cleaned_data
 
 

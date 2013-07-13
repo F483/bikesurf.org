@@ -13,10 +13,12 @@
         {% trans "DATE FROM" %} {{ borrow.start }} 
         {% trans "TO" %} {{ borrow.finish }}<br />
 
-        {% trans "STATION FROM" %} {{ borrow.src.street }} 
-        {% trans "TO" %} {{ borrow.dest.street }}<br />
+        {% if borrow.active %}
+            {% trans "STATION FROM" %} {{ borrow.src.street }} 
+            {% trans "TO" %} {{ borrow.dest.street }}<br />
+        {% endif %}
 
-        <div>
+        <div class="actions">
             {% borrow_draw_respond current_account borrow %}
             {% borrow_draw_borrower_edit current_account borrow %}
             {% borrow_draw_lender_edit_dest current_account borrow %}

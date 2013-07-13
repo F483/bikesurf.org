@@ -172,3 +172,10 @@ a:hover {
     margin-top: 8px;
     box-shadow: -5px 5px 5px #CCC;
 }
+
+.actions {
+    margin-top: 8px;
+    padding: 5px;
+    box-shadow: -3px 3px 3px #CCC;
+}
+

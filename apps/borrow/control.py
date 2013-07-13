@@ -15,44 +15,71 @@ from apps.team import control as team_control
 def active_borrows_in_timeframe(bike, start, finish, exclude=None):
     """ Returns borrows in the given timeframe. finish is inclusive! """
     qs = Borrow.objects.filter(bike=bike, active=True)
-    qs = qs.exclude(finish__lt=start, start__gt=finish)
+    qs = qs.exclude(start__gt=finish)
+    qs = qs.exclude(finish__lt=start)
     if exclude:
         qs = qs.exclude(id=exclude.id)
-    borrows = list(qs)
-    return borrows
+    return list(qs)
 
 
-def _tie_chain(borrow): # TODO give proper name
+def _remove_from_borrow_chain(borrow):
     """ Pass the borrow being removed from the chain.
-        Updates previous and next borrows src and dest to match each other. """
-    prev_borrow = _prev_borrow(borrow.bike, borrow.start)
-    next_borrow = _next_borrow(borrow.bike, borrow.finish)
-    if prev_borrow and next_borrow and prev_borrow.dest != next_borrow.src:
-        next_borrow.src = prev_borrow.dest
-        next_borrow.save()
-        _log(None, borrow, "", "EDIT")
+        Ensure that borrow chain src and dest stations always match. 
+
+        Before                      After
+          x>1 - 1>B>2 - 2>x           x>1 -   -   - 1>x
+        1>b>2 - 2>B>3 - 3>x         1>b>2 -   -   - 2>x
+          x>1 - 1>B>2 - 2>b>3         x>1 -   -   - 1>b>3
+        1>b>2 - 2>B>3 - 3>b>4       1>b>2 -   -   - 2>b>4
+    """
+    next_borrow = get_next_borrow(borrow.bike, borrow.finish)
+    if next_borrow and next_borrow.src != borrow.src:
+         next_borrow.src = borrow.src
+         next_borrow.save()
+         log(None, next_borrow, "", "EDIT")
 
 
-def _next_borrow(bike, finish):
-    qs = Borrow.objects.filter(active=True, start__gt=finish)
+def _insert_into_borrow_chain(borrow, bike, note=""):
+    """ Pass the borrow being inserted into the chain.
+        Ensure that borrow chain src and dest stations always match. 
+
+         jul     aug     sep         jul     aug     sep
+        Before                      After
+          x>1 -   -   - 1>x           x>1 - 1>B>1 - 1>x                         
+        1>b>2 -   -   - 2>x         1>b>2 - 2>B>2 - 2>x                         
+          x>1 -   -   - 1>b>3         x>1 - 1>B>1 - 1>b>3                       
+        1>b>2 -   -   - 2>b>4       1>b>2 - 2>B>2 - 2>b>4 
+    """
+    if borrow.active: # fix borrow chains
+        _remove_from_borrow_chain(borrow) # remove from previous chain
+        prev_borrow = get_prev_borrow(bike, borrow.start)
+        borrow.src = prev_borrow and prev_borrow.dest or bike.station
+        borrow.dest = borrow.src
+    borrow.bike = bike
+    borrow.save()
+    log(None, borrow, note, "EDIT")
+
+
+def get_next_borrow(bike, finish):
+    qs = Borrow.objects.filter(active=True, bike=bike, start__gt=finish)
     borrows = list(qs.order_by("start")[:1]) # order and limit
     return borrows and borrows[0] or None                  
 
 
-def _prev_borrow(bike, start):
-    qs = Borrow.objects.filter(active=True, finish__lt=start)
+def get_prev_borrow(bike, start):
+    qs = Borrow.objects.filter(active=True, bike=bike, finish__lt=start)
     borrows = list(qs.order_by("-finish")[:1]) # order and limit
     return borrows and borrows[0] or None                  
 
 
-def _log(account, borrow, note, action):
-    log = Log()
-    log.borrow = borrow
-    log.initiator = account
-    log.action = action
-    log.note = note
-    log.save()
-    return log
+def log(account, borrow, note, action):
+    l = Log()
+    l.borrow = borrow
+    l.initiator = account
+    l.action = action
+    l.note = note
+    l.save()
+    return l
 
 
 #########
@@ -106,12 +133,11 @@ def respond(account, borrow, state, note):
     borrow.state = state
     borrow.active = state != "REJECTED"
     if state != "REJECTED": # set stations
-        prev_borrow = _prev_borrow(borrow.bike, borrow.start)
-        next_borrow = _next_borrow(borrow.bike, borrow.finish)
+        prev_borrow = get_prev_borrow(borrow.bike, borrow.start)
         borrow.src = prev_borrow and prev_borrow.dest or borrow.bike.station
-        borrow.dest = next_borrow and next_borrow.src or borrow.bike.station
+        borrow.dest = borrow.src
     borrow.save()
-    log = _log(account, borrow, note, "RESPOND")
+    log(account, borrow, note, "RESPOND")
     return borrow
 
 
@@ -135,12 +161,12 @@ def cancel(account, borrow, note):
         raise PermissionDenied
     borrow.state = "CANCELED"
     if borrow.active: # ensure borrow chain unbroken
-        _tie_chain(borrow)
+        _remove_from_borrow_chain(borrow)
         borrow.src = None
         borrow.dest = None
     borrow.active = False
     borrow.save()
-    log = _log(account, borrow, note, "CANCLE")
+    log(account, borrow, note, "CANCLE")
     return borrow
 
 
@@ -180,7 +206,7 @@ def create(account, bike, start, finish, note):
     borrow.active = False
     borrow.state = "REQUEST"
     borrow.save()
-    log = _log(account, borrow, note, "CREATE")
+    log(account, borrow, note, "CREATE")
     return borrow
 
 
@@ -194,7 +220,7 @@ def _finish(borrow):
         return borrow # only finish when borrower and lender have rated
     borrow.state = "FINISHED"
     borrow.save()
-    _log(None, borrow, "", "FINISHED")
+    log(None, borrow, "", "FINISHED")
     return borrow
 
 
@@ -233,7 +259,7 @@ def lender_rate(account, borrow, rating_value, note):
     rating.account = account
     rating.originator = "LENDER"
     rating.save()
-    log = _log(account, borrow, note, "LENDER_RATE")
+    log(account, borrow, note, "LENDER_RATE")
     return _finish(borrow)
 
 
@@ -246,7 +272,7 @@ def borrower_rate(account, borrow, rating_value, note):
     rating.account = account
     rating.originator = "BORROWER"
     rating.save()
-    log = _log(account, borrow, note, "BORROWER_RATE")
+    log(account, borrow, note, "BORROWER_RATE")
     return _finish(borrow)
 
 
@@ -300,6 +326,8 @@ def lender_edit_bike_is_allowed(account, borrow, bike):
         return False
     if bike.team != borrow.team or not bike.active:
         return False
+    if active_borrows_in_timeframe(bike, borrow.start, borrow.finish):
+        return False
     return True
 
 
@@ -311,51 +339,43 @@ def lender_edit_dest_is_allowed(account, borrow, dest):
     return True
 
 
-def borrower_edit(account, borrow, start, finish, bike, note):
+def borrower_edit(account, borrow, start, finish, bike, note): # TODO test it
     if (borrow.start == start and borrow.finish == finish 
             and borrow.bike == bike):
-        return # nothing changed
+        return # nothing changed TODO throw error here, should never get this far!
     if not borrower_edit_is_allowed(account, borrow, start, finish, bike):
         raise PermissionDenied
     if borrow.active: # ensure borrow chain unbroken
-        _tie_chain(borrow)
+        _remove_from_borrow_chain(borrow)
     borrow.start = start
     borrow.finish = finish
     borrow.bike = bike
     borrow.state = "REQUEST" # borrower edits require confirmation
     borrow.active = False
     borrow.save()
-    _log(account, borrow, note, "EDIT")
+    log(account, borrow, note, "EDIT")
 
 
-def lender_edit_dest(account, borrow, dest, note):
+def lender_edit_dest(account, borrow, dest, note): # TODO test it
     if borrow.dest == dest:
-        return # nothing changed
+        return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_dest_is_allowed(account, borrow, dest):
         raise PermissionDenied
-    next_borrow = _next_borrow(borrow.bike, borrow.finish)
+    next_borrow = get_next_borrow(borrow.bike, borrow.finish)
     if next_borrow:
         next_borrow.src = dest
         next_borrow.save()
-        _log(None, borrow, "", "EDIT")
+        log(None, borrow, "", "EDIT")
     borrow.dest = dest
     borrow.save()
-    _log(account, borrow, note, "EDIT")
+    log(account, borrow, note, "EDIT")
 
 
 def lender_edit_bike(account, borrow, bike, note):
     if borrow.bike == bike:
-        return # nothing changed
+        return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_bike_is_allowed(account, borrow, bike):
         raise PermissionDenied
-    if borrow.active: # fix borrow chains
-        _tie_chain(borrow)
-        prev_borrow = _prev_borrow(bike, borrow.start)
-        next_borrow = _next_borrow(bike, borrow.finish)
-        borrow.src = prev_borrow and prev_borrow.dest or bike.station
-        borrow.dest = prev_borrow and prev_borrow.dest or bike.station
-    borrow.bike = bike
-    borrow.save()
-    _log(account, borrow, note, "EDIT")
+    _insert_into_borrow_chain(borrow, bike, note)
 
 
