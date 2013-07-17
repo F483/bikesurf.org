@@ -17,11 +17,7 @@
 
             <td>
                 <div id="bike_list_entrie" class="content">
-                    {% if current_team %}
-                        <a href="/{{ current_team.link }}/bike/view/{{ bike.id }}">
-                    {% else %}
-                        <a href="/bike/view/{{ bike.id }}">
-                    {% endif %} 
+                    <a href="/{{ bike.team.link }}/bike/view/{{ bike.id }}">
                         <table>
                             <tr>
                                 <td class="td_bike_image">
