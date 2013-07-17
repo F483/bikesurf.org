@@ -32,7 +32,8 @@ def create(request):
             name = form.cleaned_data["name"].strip()
             country = form.cleaned_data["country"]
             logo = form.cleaned_data["logo"]
-            team = control.create(account, name, country, logo)
+            application = form.cleaned_data["application"]
+            team = control.create(account, name, country, logo, application)
             return HttpResponseRedirect("/%s/created" % team.link)
     else:
         form = forms.CreateTeam()

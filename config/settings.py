@@ -123,7 +123,6 @@ INSTALLED_APPS = (
     'apps.common',
     'apps.bike',
     'apps.borrow',
-    'apps.message',
     'apps.account',
     'apps.gallery',
     'apps.team',
@@ -177,10 +176,10 @@ _ = lambda s : s
 LANGUAGES = (
     ('de', _("German")),
     ('en', _("English")),
-    ('fr', _("French")),
-    ('es', _("Spanish")),
-    ('it', _("Italian")),
-    ('zh-tw', _("Traditional Chinese")),
+#    ('fr', _("French")),
+#    ('es', _("Spanish")),
+#    ('it', _("Italian")),
+#    ('zh-tw', _("Traditional Chinese")),
 )
 
 ROSETTA_WSGI_AUTO_RELOAD = True
@@ -197,7 +196,6 @@ ROSETTA_EXCLUDED_APPLICATIONS = (
     #'apps.common',
     #'apps.bike',
     #'apps.borrow',
-    #'apps.message',
     #'apps.account',
     #'apps.gallery',
     #'apps.team',

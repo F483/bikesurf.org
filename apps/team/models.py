@@ -39,6 +39,7 @@ class Team(Model):
                                       processors=[ResizeToFill(270, 100)],
                                       format='JPEG', options={'quality': 90})
     active      = BooleanField(default=False)
+    application = TextField() 
 
     # meta
     created_by  = ForeignKey('account.Account', related_name='team_created')

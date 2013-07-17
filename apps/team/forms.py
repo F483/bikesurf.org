@@ -36,9 +36,10 @@ def _validate_name(value):
 
 class CreateTeam(Form):
 
-    name    = CharField(label=_('TEAM_NAME'), validators=[_validate_name])
-    country = ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
-    logo   = ImageField(label=_("LOGO"))
+    name        = CharField(label=_('TEAM_NAME'), validators=[_validate_name])
+    country     = ChoiceField(choices=COUNTRIES, label=_('COUNTRY'))
+    logo        = ImageField(label=_("LOGO"))
+    application = CharField(label=_('APPLICATION'), widget=Textarea)
 
 
 class CreateJoinRequest(Form):
