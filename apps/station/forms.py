@@ -14,7 +14,7 @@ from apps.station import control
 
 def validate_station_active(station):
     if not station.active:
-        raise ValidationError(_("STATION_MUST_BE_ACTIVE"))
+        raise ValidationError(_("ERROR_STATION_MUST_BE_ACTIVE"))
 
 
 class Create(forms.Form):
@@ -57,7 +57,7 @@ class Edit(forms.Form):
         cleaned_data = super(Edit, self).clean()
         if (not cleaned_data.get("active") and 
                 not control.can_deactivate(self.account, self.station)):
-            raise ValidationError(_("CANNOT_DEACTIVATE_STATION_IN_USE"))
+            raise ValidationError(_("ERROR_CANNOT_DEACTIVATE_STATION_IN_USE"))
         return cleaned_data
 
 
@@ -71,7 +71,7 @@ class Delete(forms.Form):
     def clean(self):
         cleaned_data = super(Delete, self).clean()
         if not control.can_delete(self.account, self.station):
-            raise ValidationError(_("CANNOT_DELETE_STATION_IN_USE"))
+            raise ValidationError(_("ERROR_CANNOT_DELETE_STATION_IN_USE"))
         return cleaned_data
 
 

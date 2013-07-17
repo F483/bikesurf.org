@@ -35,11 +35,11 @@ RESPONSE_CHOICES = [
 def _validate_borrow_timeframe(bike, start, finish):
     today = datetime.datetime.now().date()
     if start <= today:
-        raise ValidationError(_("START_NOT_IN_FUTURE"))
+        raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
     if finish < start:
-        raise ValidationError(_("FINISH_BEFORE_START"))
+        raise ValidationError(_("ERROR_FINISH_BEFORE_START"))
     if len(control.active_borrows_in_timeframe(bike, start, finish)):
-        raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
+        raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
 
 
 class Respond(Form):
@@ -60,17 +60,17 @@ class Respond(Form):
         if cleaned_data.get("response") != "REJECTED":
             today = datetime.datetime.now().date()
             if self.borrow.finish <= today:
-                raise ValidationError(_("TO_LATE_TO_ACCEPT"))
+                raise ValidationError(_("ERROR_TO_LATE_TO_ACCEPT"))
             if not self.borrow.bike.active:
-                raise ValidationError(_("BIKE_NOT_ACTIVE"))
+                raise ValidationError(_("ERROR_BIKE_NOT_ACTIVE"))
             if self.borrow.bike.reserve:
-                raise ValidationError(_("IS_RESERVE_BIKE"))
+                raise ValidationError(_("ERROR_IS_RESERVE_BIKE"))
             if not self.borrow.bike.station:
-                raise ValidationError(_("BIKE_STATION_UNKNOWN"))
+                raise ValidationError(_("ERROR_BIKE_STATION_UNKNOWN"))
             if not self.borrow.bike.station.active:
-                raise ValidationError(_("BIKE_STATION_INACTIVE"))
+                raise ValidationError(_("ERROR_BIKE_STATION_INACTIVE"))
             if control.active_borrows_in_timeframe(bike, start, finish):
-                raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
+                raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
         return cleaned_data
 
 
@@ -166,7 +166,7 @@ class LenderEditBike(Form):
         start = self.borrow.start
         finish = self.borrow.finish
         if len(control.active_borrows_in_timeframe(bike, start, finish)):
-            raise ValidationError(_("OTHER_BORROW_IN_TIMEFRAME"))
+            raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
         return cleaned_data
 
 

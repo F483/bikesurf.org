@@ -11,6 +11,8 @@ help:
 	@echo "  db_sync                          "
 	@echo "  db_sql             APP           "
 	@echo "  clean                            "
+	@echo "  makemessages                     "
+	@echo "  compilemessages                  "
 
 runserver:
 	python manage.py runserver

@@ -75,11 +75,11 @@ class Edit(Form):
 
         if (not active and self.bike.active and
                 not control.can_deactivate(self.account, self.bike)):
-            raise ValidationError(_("CANNOT_DEACTIVATE_BIKE_IN_USE"))
+            raise ValidationError(_("ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"))
 
         if (station != self.bike.station and
                 not control.can_change_station(self.account, self.bike, station)):
-            raise ValidationError(_("CANNOT_CHANGE_STATION_BIKE_IN_USE"))
+            raise ValidationError(_("ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"))
 
         return cleaned_data
 
@@ -94,7 +94,7 @@ class Delete(Form):
     def clean(self):
         cleaned_data = super(Delete, self).clean()
         if not control.can_delete(self.account, self.bike):
-            raise ValidationError(_("CANNOT_DELETE_BIKE_IN_USE"))
+            raise ValidationError(_("ERROR_CANNOT_DELETE_BIKE_IN_USE"))
         return cleaned_data
 
 

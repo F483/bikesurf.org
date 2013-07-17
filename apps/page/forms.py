@@ -43,13 +43,13 @@ class CreatePageForm(forms.Form):
         name = cleaned_data.get("name").strip()
         link = uslugify(name)
         if len(link) < 3:
-            raise forms.ValidationError(_("NAME_TO_SHORT"))
+            raise forms.ValidationError(_("ERROR_NAME_TO_SHORT"))
         if link in _RESERVED_NAMES:
-            raise forms.ValidationError(_("NAME_RESERVED"))
+            raise forms.ValidationError(_("ERROR_NAME_RESERVED"))
         if bool(len(Page.objects.filter(name=name, team=self.team))):
-            raise forms.ValidationError(_("NAME_USED"))
+            raise forms.ValidationError(_("ERROR_NAME_USED"))
         if bool(len(Page.objects.filter(link=link, team=self.team))):
-            raise forms.ValidationError(_("NAME_USED"))
+            raise forms.ValidationError(_("ERROR_NAME_USED"))
         return cleaned_data
 
 
@@ -74,13 +74,13 @@ class EditPageForm(forms.Form):
         name = cleaned_data.get("name").strip()
         link = uslugify(name)
         if len(link) < 3:
-            raise forms.ValidationError(_("NAME_TO_SHORT"))
+            raise forms.ValidationError(_("ERROR_NAME_TO_SHORT"))
         if link in _RESERVED_NAMES:
-            raise forms.ValidationError(_("NAME_RESERVED"))
+            raise forms.ValidationError(_("ERROR_NAME_RESERVED"))
         if len(Page.objects.filter(name=name, team=self.page.team)) > 1:
-            raise forms.ValidationError(_("NAME_USED"))
+            raise forms.ValidationError(_("ERROR_NAME_USED"))
         if len(Page.objects.filter(link=link, team=self.page.team)) > 1:
-            raise forms.ValidationError(_("NAME_USED"))
+            raise forms.ValidationError(_("ERROR_NAME_USED"))
         return cleaned_data
 
 

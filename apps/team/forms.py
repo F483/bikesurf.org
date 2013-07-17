@@ -25,13 +25,13 @@ def _validate_name(value):
     name = value.strip()
     link = uslugify(name)
     if len(link) < 3:
-        raise ValidationError(_("NAME_TO_SHORT"))
+        raise ValidationError(_("ERROR_NAME_TO_SHORT"))
     if link in _RESERVED_NAMES:
-        raise ValidationError(_("NAME_RESERVED"))
+        raise ValidationError(_("ERROR_NAME_RESERVED"))
     if bool(len(Team.objects.filter(link=link))):
-        raise ValidationError(_("NAME_USED"))
+        raise ValidationError(_("ERROR_NAME_USED"))
     if bool(len(Team.objects.filter(name=name))):
-        raise ValidationError(_("NAME_USED"))
+        raise ValidationError(_("ERROR_NAME_USED"))
 
 
 class CreateTeam(Form):

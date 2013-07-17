@@ -44,13 +44,11 @@ class Edit(Form):
         # copied from /usr/local/lib/python2.7/dist-packages/allauth/account/forms.py
         value = self.cleaned_data["username"]
         if not USERNAME_REGEX.match(value):
-            raise ValidationError(_("Usernames can only contain "
-                                    "letters, digits and @/./+/-/_."))
+            raise ValidationError(_("ERROR_BAD_USERNAME_FORMAT")) # can only contain letters digits and @/./+/-/_.
         try:
             User.objects.get(username__iexact=value)
         except User.DoesNotExist:
             return value
-        raise ValidationError(_("This username is already taken. Please "
-                                "choose another."))
+        raise ValidationError(_("ERROR_USERNAME_TAKEN"))
 
 
