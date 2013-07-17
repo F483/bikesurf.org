@@ -3,7 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django import forms
 from django.forms import ValidationError
 

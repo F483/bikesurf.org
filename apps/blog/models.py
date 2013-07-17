@@ -3,7 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.db.models import Model
 from django.db.models import ForeignKey
 from django.db.models import CharField

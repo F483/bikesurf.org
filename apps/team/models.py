@@ -11,7 +11,7 @@ from django.db.models import ManyToManyField
 from django.db.models import ForeignKey
 from django.db.models import DateTimeField
 from django.db.models import TextField
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django_countries import CountryField
 from imagekit.models.fields import ProcessedImageField
 from imagekit.processors import ResizeToFill

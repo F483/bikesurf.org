@@ -4,7 +4,7 @@
 
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from sanitizer.forms import SanitizedCharField
 from config.settings import SANITIZER_ALLOWED_TAGS, SANITIZER_ALLOWED_ATTRIBUTES
 

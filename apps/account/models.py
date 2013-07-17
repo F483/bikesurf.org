@@ -11,7 +11,7 @@ from django.db.models import TextField
 from django.db.models import DateField
 from django.db.models import DateTimeField
 from django.db.models import URLField
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django_countries import CountryField
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up

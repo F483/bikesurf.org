@@ -5,7 +5,7 @@
 
 import datetime
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
