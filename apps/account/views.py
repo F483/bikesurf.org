@@ -43,7 +43,7 @@ def edit(request):
     else:
         form = forms.Edit(account=account)
     args = { 
-        "form" : form, "cancle_url" : "/accounts/profile/", 
+        "form" : form, "cancel_url" : "/accounts/profile/", 
         "form_title" :  account, 
     }
     return render_response(request, "common/form.html", args)

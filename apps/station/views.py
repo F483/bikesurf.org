@@ -145,7 +145,7 @@ def create(request, team_link):
         form = forms.Create(team=team, account=account)
     args = { 
         "form" : form, "form_title" : _("ADD_STATION"),
-        "cancle_url" : "/%s" % team.link
+        "cancel_url" : "/%s" % team.link
     }
     return rtr(team, "stations", request, "common/form.html", args)
 
@@ -174,7 +174,7 @@ def edit(request, team_link, station_id):
         form = forms.Edit(station=station, account=account)
     args = { 
         "form" : form, "form_title" : _("ADD_STATION"),
-        "cancle_url" : "/%s/station/view/%s" % (team.link, station.id)
+        "cancel_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
     return rtr(team, "stations", request, "common/form.html", args)
 
@@ -196,7 +196,7 @@ def delete(request, team_link, station_id):
     args = { 
         "form" : form, "form_title" : _("STATION_DELETE?"), 
         "form_subtitle" : str(station), 
-        "cancle_url" : "/%s/station/view/%s" % (team.link, station.id)
+        "cancel_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
     return rtr(team, "stations", request, "common/form.html", args)
 

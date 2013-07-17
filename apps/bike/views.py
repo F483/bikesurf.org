@@ -121,7 +121,7 @@ def create(request, team_link):
         form = forms.Create(team=team, account=account)
     args = { 
         "form" : form, "form_title" : _("BIKE_CREATE"), "multipart_form" : True, 
-        "cancle_url" : "/%s/bikes" % team.link
+        "cancel_url" : "/%s/bikes" % team.link
     }
     return rtr(team, "bikes", request, "common/form.html", args)
 
@@ -150,7 +150,7 @@ def edit(request, team_link, bike_id):
         form = forms.Edit(bike=bike, account=account)
     args = { 
         "form" : form, "form_title" : _("BIKE_EDIT"),
-        "cancle_url" : "/%s/bike/view/%s" % (team.link, bike.id)
+        "cancel_url" : "/%s/bike/view/%s" % (team.link, bike.id)
     }
     return rtr(team, "bikes", request, "common/form.html", args)
 
@@ -172,7 +172,7 @@ def delete(request, team_link, bike_id):
     args = { 
         "form" : form, "form_title" : _("BIKE_DELETE?"), 
         "form_subtitle" : bike.name, 
-        "cancle_url" : "/%s/bike/view/%s" % (team.link, bike.id)
+        "cancel_url" : "/%s/bike/view/%s" % (team.link, bike.id)
     }
     return rtr(team, "bikes", request, "common/form.html", args)
 

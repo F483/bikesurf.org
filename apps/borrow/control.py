@@ -147,13 +147,15 @@ def respond(account, borrow, state, note):
 
 
 def can_cancel(account, borrow):
+    today = datetime.datetime.now().date()
     borrow_started = borrow.start <= datetime.datetime.now().date()
+    borrow_ended = borrow.finish  < today
     is_lender = team_control.is_member(account, borrow.team)
     is_borrower = account == borrow.borrower
-    lender_cancel_allowed = borrow.state in ["MEETUP", "ACCEPTED"]
-    borrower_cancel_allowed = borrow.state in ["REQUEST", "MEETUP", "ACCEPTED"] 
-    return (is_borrower and borrower_cancel_allowed or 
-            is_lender and lender_cancel_allowed and not borrow_started)
+    lender_state = borrow.state in ["MEETUP", "ACCEPTED"]
+    borrower_state = borrow.state in ["REQUEST", "MEETUP", "ACCEPTED"] 
+    return (is_borrower and borrower_state and not borrow_ended or 
+            is_lender and lender_state and not borrow_started)
 
 
 def cancel(account, borrow, note):
@@ -166,7 +168,7 @@ def cancel(account, borrow, note):
         borrow.dest = None
     borrow.active = False
     borrow.save()
-    log(account, borrow, note, "CANCLE")
+    log(account, borrow, note, "CANCEL")
     return borrow
 
 

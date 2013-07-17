@@ -96,7 +96,10 @@ def create(request, team_link, bike_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Create(bike=bike)
-    args = { "form" : form, "form_title" : _("BORROW_CREATE") }
+    args = { 
+        "form" : form, "form_title" : _("BORROW_CREATE"),
+        "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id)
+    }
     return rtr(team, "borrows", request, "common/form.html", args)
 
 
@@ -120,7 +123,7 @@ def borrower_edit(request, borrow_id):
         form = forms.BorrowerEdit(account=account, borrow=borrow)
     args = { 
         "form" : form, "form_title" : _("BORROW_EDIT"),
-        "cancle_url" : "/borrow/view/%s" % borrow.id
+        "cancel_url" : "/borrow/view/%s" % borrow.id
     }
     return render_response(request, "common/form.html", args)
 
@@ -142,7 +145,7 @@ def lender_edit_bike(request, team_link, borrow_id):
     else:
         form = forms.LenderEditBike(borrow=borrow)
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
-        "cancle_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
+        "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }
     return rtr(team, "borrows", request, "common/form.html", args)
 
@@ -164,7 +167,7 @@ def lender_edit_dest(request, team_link, borrow_id):
     else:
         form = forms.LenderEditDest(borrow=borrow)
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
-        "cancle_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
+        "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }
     return rtr(team, "borrows", request, "common/form.html", args)
 
@@ -182,7 +185,10 @@ def respond(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.Respond(borrow=borrow, account=account)
-    args = { "form" : form, "form_title" : _("BORROW_RESPOND") }
+    args = { 
+        "form" : form, "form_title" : _("BORROW_RESPOND"), 
+        "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
+    }
     return rtr(team, "borrows", request, "common/form.html", args)
 
 
@@ -198,7 +204,10 @@ def lender_cancel(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.Cancel(borrow=borrow, account=account)
-    args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
+    args = { 
+        "form" : form, "form_title" : _("BORROW_CANCEL"), 
+        "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
+    }
     return rtr(team, "borrows", request, "common/form.html", args)
 
 
@@ -217,7 +226,10 @@ def lender_rate(request, team_link, borrow_id):
     else:
         form = forms.Rate(borrow=borrow, account=account)
     form_title = u"%s %s" % (_("RATE"), borrow)
-    args = { "form" : form, "form_title" : form_title }
+    args = { 
+        "form" : form, "form_title" : form_title, 
+        "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
+    }
     return rtr(team, "borrows", request, "common/form.html", args)
 
 
@@ -238,7 +250,10 @@ def borrower_rate(request, borrow_id):
     else:
         form = forms.Rate(borrow=borrow, account=account)
     form_title = u"%s %s" % (_("RATE"), borrow)
-    args = { "form" : form, "form_title" : form_title }
+    args = { 
+        "form" : form, "form_title" : form_title, 
+        "cancel_url" : "/borrow/view/%s" % borrow_id
+    }
     return render_response(request, "common/form.html", args)
 
 
@@ -267,7 +282,10 @@ def borrower_cancel(request, borrow_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Cancel(borrow=borrow, account=account)
-    args = { "form" : form, "form_title" : _("BORROW_CANCEL") }
+    args = { 
+        "form" : form, "form_title" : _("BORROW_CANCEL"), 
+        "cancel_url" : "/borrow/view/%s" % borrow_id
+    }
     return render_response(request, "common/form.html", args)
 
 

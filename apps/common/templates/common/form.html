@@ -14,8 +14,8 @@
             <table class="input_form">
                 {{ form.as_table }}
             </table>
-            {% if cancle_url %}
-                <input type="button" onclick="window.location.href = '{{ cancle_url }}';" value="CANCEL">
+            {% if cancel_url %}
+                <input type="button" onclick="window.location.href = '{{ cancel_url }}';" value="CANCEL">
             {% endif %}
             <input type="submit" value="{% trans "SUBMIT" %}" />
         </form>

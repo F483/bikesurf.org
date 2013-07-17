@@ -38,7 +38,7 @@ def create(request):
         form = forms.CreateTeam()
     args = { 
         "form" : form, "form_title" : _("CREATE_TEAM"), 
-        "multipart_form" : True 
+        "multipart_form" : True, "cancel_url" : "/"
     }
     return render_response(request, "common/form.html", args)
 
@@ -93,7 +93,7 @@ def join_request_create(request, team_link):
         form = forms.CreateJoinRequest()
     args = { 
         "form" : form, "form_title" : _("JOIN_REQUEST"),
-        "cancle_url" : "/%s" % team.link
+        "cancel_url" : "/%s" % team.link
     }
     return rtr(team, "join_request/list", request, "common/form.html", args)
 
@@ -115,7 +115,7 @@ def join_request_process(request, team_link, join_request_id):
         form = forms.ProcessJoinRequest()
     args = { 
         "form" : form, "form_title" : "PROCESS_JOIN_REQUEST",
-        "cancle_url" : "/%s/join_request/list" % team.link
+        "cancel_url" : "/%s/join_request/list" % team.link
     }
     return rtr(team, "join_request/list", request, "common/form.html", args)
 
@@ -150,7 +150,7 @@ def remove_request_create(request, team_link, concerned_id):
     args = { 
         "form" : form, "form_title" : _("REMOVE_REQUEST"),
         "form_subtitle" : concerned,
-        "cancle_url" : "/%s/members" % team.link
+        "cancel_url" : "/%s/members" % team.link
     }
     return rtr(team, "remove_request/list", request, "common/form.html", args)
 
@@ -192,7 +192,7 @@ def remove_request_process(request, team_link, remove_request_id):
         form = forms.ProcessRemoveRequest()
     args = { 
         "form" : form, "form_title" : "PROCESS_REMOVE_REQUEST", 
-        "cancle_url" : "/%s/remove_request/list" % team.link
+        "cancel_url" : "/%s/remove_request/list" % team.link
     }
     return rtr(team, "remove_request/list", request, "common/form.html", args)
 

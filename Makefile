@@ -27,8 +27,17 @@ db_sync: clean
 py_shell:
 	python manage.py shell
 
+makemessages:
+	scripts/messages.sh makemessages
+
+compilemessages:
+	scripts/messages.sh compilemessages
+
 clean:
 	test -f $(SQLITE_FILE) && rm $(SQLITE_FILE) || echo ""
 	find | grep -i ".*\.pyc$$" | xargs -r -L1 rm
 	find | grep -i ".*\.orig$$" | xargs -r -L1 rm
 	find | grep -i "uploads/.*\.jpeg$$" | xargs -r -L1 rm
+	find | grep -i ".*\.po$$" | xargs -r -L1 rm
+	find | grep -i ".*\.mo$$" | xargs -r -L1 rm
+

@@ -44,7 +44,7 @@ def create(request, team_link):
         form = CreatePageForm(team=team)
     args = { 
         "form" : form, "form_title" : _("ADD_PAGE"),
-        "cancle_url" : "/%s" % team.link
+        "cancel_url" : "/%s" % team.link
     }
     return rtr(team, None, request, "common/form.html", args)
 
@@ -68,7 +68,7 @@ def edit(request, team_link, page_link):
         form = EditPageForm(page=page)
     args = { 
         "form" : form, "form_title" : _("PAGE_EDIT"),
-        "cancle_url" : "/%s/%s" % (team.link, page.link)
+        "cancel_url" : "/%s/%s" % (team.link, page.link)
     }
     return rtr(team, page.link, request, "common/form.html", args)
 
@@ -88,10 +88,10 @@ def delete(request, team_link, page_link):
             return HttpResponseRedirect("/%s" % team.link)
     else:
         form = Form()
-    cancle_url = "/%s/%s" % (team.link, page.link)
+    cancel_url = "/%s/%s" % (team.link, page.link)
     args = { 
         "form" : form, "form_title" : _("PAGE_DELETE?"), 
-        "form_subtitle" : page.name, "cancle_url" : cancle_url
+        "form_subtitle" : page.name, "cancel_url" : cancel_url
     }
     return rtr(team, page.link, request, "common/form.html", args)
 

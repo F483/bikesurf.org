@@ -44,7 +44,7 @@ def create(request, team_link):
         form = forms.Create()
     args = { 
         "form" : form, "form_title" : _("ADD_BLOG"), 
-        "cancle_url" : "/%s" % team.link
+        "cancel_url" : "/%s" % team.link
     }
     return rtr(team, "blog", request, "common/form.html", args)
 
@@ -70,7 +70,7 @@ def edit(request, team_link, blog_id):
         form = forms.Edit(blog=blog)
     args = { 
         "form" : form, "form_title" : _("BLOG_EDIT"), 
-        "cancle_url" : "/%s" % team.link
+        "cancel_url" : "/%s" % team.link
     }
     return rtr(team, "blog", request, "common/form.html", args)
 
@@ -94,7 +94,7 @@ def delete(request, team_link, blog_id):
         form = Form()
     args = { 
         "form" : form, "form_title" : _("BLOG_DELETE?"), 
-        "form_subtitle" : blog.name, "cancle_url" : "/%s/blog" % team.link
+        "form_subtitle" : blog.name, "cancel_url" : "/%s/blog" % team.link
     }
     return rtr(team, "blog", request, "common/form.html", args)
 
