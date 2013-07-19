@@ -341,7 +341,7 @@ def lender_edit_dest_is_allowed(account, borrow, dest):
     return True
 
 
-def borrower_edit(account, borrow, start, finish, bike, note): # TODO test it
+def borrower_edit(account, borrow, start, finish, bike, note):
     if (borrow.start == start and borrow.finish == finish 
             and borrow.bike == bike):
         return # nothing changed TODO throw error here, should never get this far!
@@ -358,7 +358,7 @@ def borrower_edit(account, borrow, start, finish, bike, note): # TODO test it
     log(account, borrow, note, "EDIT")
 
 
-def lender_edit_dest(account, borrow, dest, note): # TODO test it
+def lender_edit_dest(account, borrow, dest, note):
     if borrow.dest == dest:
         return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_dest_is_allowed(account, borrow, dest):

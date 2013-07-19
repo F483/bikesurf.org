@@ -28,12 +28,12 @@ def currently_borrowed(bike):
     return bool(len(qs))
 
 
-def can_change_station(account, bike, station): # TODO test it
+def can_change_station(account, bike, station):
     """ Check if an account can change the bike station.
     Account must be a team member, bike not currently borrowed and
     station must be active.
     """
-    return (station.active and bike.team == station.team and 
+    return (station and station.active and bike.team == station.team and 
             team_control.is_member(account, bike.team) and 
             not currently_borrowed(bike))
 
@@ -92,19 +92,18 @@ def edit( account, bike, name, description, active, reserve, station, lockcode,
     if not edit_is_allowed(account, bike, name, description, active, reserve, 
                            station, lockcode, size, lights):
         raise PermissionDenied
-    if bike.station != station: # TODO test it
-        # TODO move to borrow control?
+    if bike.station != station:
         today = datetime.datetime.now().date()
         prev_borrow = borrow_control.get_prev_borrow(bike, today)
         if prev_borrow:
             prev_borrow.dest = station
             prev_borrow.save()
-            borrow_control.log(None, prev_borrow, "", "EDIT")
+            borrow_control.log(account, prev_borrow, "", "EDIT")
         next_borrow = borrow_control.get_next_borrow(bike, today)
         if next_borrow:
             next_borrow.src = station
             next_borrow.save()
-            borrow_control.log(None, next_borrow, "", "EDIT")
+            borrow_control.log(account, next_borrow, "", "EDIT")
     bike.name = name
     bike.description = description
     bike.active = active

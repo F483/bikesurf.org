@@ -6,6 +6,9 @@
     <div class="content">
         <h2> {{ current_account }} </h2>
         <p>
+            {% trans "USER_PRIVECY_INFORMATION" %}
+        </p>
+        <p>
             {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
             {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
             {% trans "MOBILE" %}: {{ current_account.mobile }} </br>

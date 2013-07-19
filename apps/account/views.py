@@ -44,7 +44,7 @@ def edit(request):
         form = forms.Edit(account=account)
     args = { 
         "form" : form, "cancel_url" : "/accounts/profile/", 
-        "form_title" :  account, 
+        "form_title" :  account, "form_subtitle" : _("USER_PRIVECY_INFORMATION")
     }
     return render_response(request, "common/form.html", args)
 

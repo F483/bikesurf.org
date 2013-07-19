@@ -15,7 +15,6 @@ from django.forms import ImageField
 
 from apps.bike.models import SIZE_CHOICES
 from apps.bike import control
-from apps.station.forms import validate_station_active
 
 
 class Create(Form):
@@ -24,10 +23,7 @@ class Create(Form):
     image = ImageField(label=_("IMAGE"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
-    station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=True, 
-            validators=[validate_station_active]
-    )
+    station = ModelChoiceField(label=_("STATION"), queryset=None, required=True)
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
@@ -45,10 +41,7 @@ class Edit(Form):
     name = CharField(label=_("NAME"))
     active = BooleanField(label=_("ACTIVE"), initial=True, required=False)
     reserve = BooleanField(label=_("RESERVE"), initial=False, required=False)
-    station = ModelChoiceField(
-            label=_("STATION"), queryset=None, required=True,
-            validators=[validate_station_active]
-    )
+    station = ModelChoiceField(label=_("STATION"), queryset=None, required=True)
     lockcode = CharField(label=_("LOCKCODE"))
     size = ChoiceField(choices=SIZE_CHOICES, label=_("SIZE"), initial="MEDIUM")
     lights = BooleanField(label=_("LIGHTS"), initial=False, required=False)
@@ -61,7 +54,7 @@ class Edit(Form):
         self.fields["name"].initial = self.bike.name
         self.fields["active"].initial = self.bike.active
         self.fields["reserve"].initial = self.bike.reserve
-        self.fields["station"].queryset = self.bike.team.stations.all()
+        self.fields["station"].queryset = self.bike.team.stations.filter(active=True)
         self.fields["station"].initial = self.bike.station
         self.fields["lockcode"].initial = self.bike.lockcode
         self.fields["size"].initial = self.bike.size
@@ -77,7 +70,7 @@ class Edit(Form):
                 not control.can_deactivate(self.account, self.bike)):
             raise ValidationError(_("ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"))
 
-        if (station != self.bike.station and
+        if (station and station != self.bike.station and
                 not control.can_change_station(self.account, self.bike, station)):
             raise ValidationError(_("ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"))
 

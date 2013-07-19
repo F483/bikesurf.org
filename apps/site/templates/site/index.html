@@ -9,36 +9,38 @@
 {% endblock %}
 
 {% block body %}
-    <table id="index_table">
-        <tr>
-            <td>
-            </td>
-            <td id="index_cell_logo" class="index_column_select">
-                <img src="/static/logo.png" alt="BikeSurf">
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td id="index_cell_subtitle" class="index_column_select">
-                WHERE DO YOU WANT TO SURF TODAY?
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="index_button_create_team">
-                    <span>
-                        <a href="/team/create">{% trans "CREATE_TEAM" %}</a>
-                    </span>
-                </div>
-            </td>
-            <td id="index_cell_select" class="index_column_select">
-                <form name="TeamSelectForm" action="/" method="post">
-                    {% csrf_token %}
-                    {{ form.team }}
-                    <input type="submit" value="{% trans "SELECT" %}" />
-                </form>
-            </td>
-        </tr>
-    </table>
+    <div id="index_wrapper">
+        <table id="index_table">
+            <tr>
+                <td>
+                </td>
+                <td id="index_cell_logo" class="index_column_select">
+                    <img src="/static/logo.png" alt="BikeSurf">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td id="index_cell_subtitle" class="index_column_select">
+                    WHERE DO YOU WANT TO SURF TODAY?
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="index_button_create_team">
+                        <span>
+                            <a href="/team/create">{% trans "CREATE_TEAM" %}</a>
+                        </span>
+                    </div>
+                </td>
+                <td id="index_cell_select" class="index_column_select">
+                    <form name="TeamSelectForm" action="/" method="post">
+                        {% csrf_token %}
+                        {{ form.team }}
+                        <input type="submit" value="{% trans "SELECT" %}" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
