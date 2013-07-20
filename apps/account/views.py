@@ -18,9 +18,33 @@ PROFILE_UPDATED = _("PROFILE_UPDATED")
 
 
 @login_required
+@require_http_methods(["GET", "POST"])
+def addlink(request):
+    account = get_object_or_404(Account, user=request.user)
+    if request.method == "POST":
+        form = forms.AddLink(request.POST, account=account)
+        if form.is_valid():
+            control.addlink(
+                account, 
+                form.cleaned_data["site"], 
+                form.cleaned_data["profile"].strip(), 
+            )
+            return HttpResponseRedirect("/accounts/profile/")
+    else:
+        form = forms.AddLink(account=account)
+    args = { 
+        "form" : form, "cancel_url" : "/accounts/profile/", 
+        "form_title" :  account, "form_subtitle" : _("ADD_LINK_SUBTITLE")
+    }
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
 @require_http_methods(["GET"])
 def view(request):
-    return render_response(request, "account/view.html", {})
+    account = get_object_or_404(Account, user=request.user)
+    args = { "links" : account.links.all() }
+    return render_response(request, "account/view.html", args)
 
 
 @login_required

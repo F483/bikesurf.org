@@ -3,6 +3,9 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from apps.link import control as link_control
+
+
 def edit(account, username, first_name, last_name, mobile, source, description):
     account.user.username = username
     account.user.first_name = first_name
@@ -12,5 +15,10 @@ def edit(account, username, first_name, last_name, mobile, source, description):
     account.source = source
     account.description = description
     account.save()
+
+
+def addlink(account, site, profile):
+    link = link_control.create(account, site, profile)
+    account.links.add(link)
 
 

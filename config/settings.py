@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'apps.page',
     'apps.site',
     'apps.station',
+    'apps.link',
 
     # auth
     'allauth',

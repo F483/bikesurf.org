@@ -11,6 +11,7 @@ from django.db.models import TextField
 from django.db.models import DateField
 from django.db.models import DateTimeField
 from django.db.models import URLField
+from django.db.models import ManyToManyField
 from django.utils.translation import ugettext as _
 from django_countries import CountryField
 from django.dispatch import receiver
@@ -42,6 +43,7 @@ class Account(Model):
     description = TextField(blank=True)
     source = CharField(max_length=64, choices=SOURCE_CHOICES, default='OTHER')
     mobile = CharField(max_length=1024, blank=True)
+    links = ManyToManyField('link.Link') 
 
     # meta
     # created_by = self

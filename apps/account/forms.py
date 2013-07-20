@@ -12,6 +12,7 @@ from django.forms import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.account.models import SOURCE_CHOICES
+from apps.link.models import SITE_CHOICES
 
 
 USERNAME_REGEX = UserCreationForm().fields['username'].regex
@@ -28,8 +29,6 @@ class Edit(Form):
     description = CharField(label=_("DESCRIPTION"), widget=Textarea, 
                             required=False)
 
-    # TODO show help text (name and mobile private)
-
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop("account")
         super(Edit, self).__init__(*args, **kwargs)
@@ -41,14 +40,24 @@ class Edit(Form):
         self.fields["description"].initial = self.account.description
 
     def clean_username(self):
-        # copied from /usr/local/lib/python2.7/dist-packages/allauth/account/forms.py
+        # XXX copied from /usr/local/lib/python2.7/dist-packages/allauth/account/forms.py
         value = self.cleaned_data["username"]
         if not USERNAME_REGEX.match(value):
-            raise ValidationError(_("ERROR_BAD_USERNAME_FORMAT")) # can only contain letters digits and @/./+/-/_.
+            raise ValidationError(_("ERROR_BAD_USERNAME_FORMAT"))
         try:
             User.objects.get(username__iexact=value)
         except User.DoesNotExist:
             return value
         raise ValidationError(_("ERROR_USERNAME_TAKEN"))
+
+
+class AddLink(Form):
+
+    site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
+    profile = CharField(max_length=1024, label=_("PROFILE"), required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop("account")
+        super(AddLink, self).__init__(*args, **kwargs)
 
 

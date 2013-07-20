@@ -4,10 +4,11 @@
 
 {% block content %}
     <div class="content">
+
         <h2> {{ current_account }} </h2>
-        <p>
-            {% trans "USER_PRIVECY_INFORMATION" %}
-        </p>
+
+        <p> {% trans "USER_PRIVECY_INFORMATION" %} </p>
+
         <p>
             {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
             {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
@@ -16,10 +17,20 @@
             {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
         </p>
 
+        <p> {% trans "LINKS" %} </p>
+
+        <p>
+            {% for link in links %}
+                Site: {{ link.site }} Profile: {{ link.profile }} </br>
+            {% endfor %}
+        </p>
+
         <div class="actions">
             {% draw_edit "/account/edit" %}
+            {% draw_create "ADD_LINK" "/account/addlink" %}
             TODO add change password, manage social accounts and email
         </div>
+
     </div>
 {% endblock %}
 

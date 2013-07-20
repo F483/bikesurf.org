@@ -26,6 +26,7 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "SET_AS_PRIMARY_PICTURE" : _("SET_AS_PRIMARY_PICTURE"),
         "CHANGE_DEST" : _("CHANGE_DEST"),
         "CHANGE_BIKE" : _("CHANGE_BIKE"),
+        "ADD_LINK" : _("ADD_LINK"),
 }
 
 
