@@ -1,6 +1,7 @@
 {% extends "common/base.html" %}
 {% load i18n %}
 {% load common_tags %}
+{% load link_tags %}
 
 {% block content %}
     <div class="content">
@@ -21,7 +22,7 @@
 
         <p>
             {% for link in links %}
-                Site: {{ link.site }} Profile: {{ link.profile }} </br>
+                {% link_draw link %}</br>
             {% endfor %}
         </p>
 
