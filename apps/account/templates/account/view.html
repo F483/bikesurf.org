@@ -22,13 +22,13 @@
 
         <p>
             {% for link in links %}
-                {% link_draw link %}</br>
+                {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
             {% endfor %}
         </p>
 
         <div class="actions">
             {% draw_edit "/account/edit" %}
-            {% draw_create "ADD_LINK" "/account/addlink" %}
+            {% draw_create "ADD_LINK" "/account/link/create" %}
             TODO add change password, manage social accounts and email
         </div>
 

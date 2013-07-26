@@ -13,8 +13,9 @@ from django.forms import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.account.models import SOURCE_CHOICES
+from apps.account import control
 from apps.link.models import SITE_CHOICES
-from apps.link.models import PROFILE_PATTERN
+from apps.link import control as link_control
 
 
 USERNAME_REGEX = UserCreationForm().fields['username'].regex
@@ -42,29 +43,50 @@ class Edit(Form):
         self.fields["description"].initial = self.account.description
 
     def clean_username(self):
-        # XXX copied from /usr/local/lib/python2.7/dist-packages/allauth/account/forms.py
-        value = self.cleaned_data["username"]
+        value = self.cleaned_data["username"].strip()
         if not USERNAME_REGEX.match(value):
             raise ValidationError(_("ERROR_BAD_USERNAME_FORMAT"))
         try:
             User.objects.get(username__iexact=value)
         except User.DoesNotExist:
             return value
-        raise ValidationError(_("ERROR_USERNAME_TAKEN"))
+        if value != self.account.user.username:
+            raise ValidationError(_("ERROR_USERNAME_TAKEN"))
+        return value
 
 
-class AddLink(Form):
+class LinkCreate(Form):
 
     site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
     profile = CharField(max_length=1024, label=_("PROFILE"), required=True)
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop("account")
-        super(AddLink, self).__init__(*args, **kwargs)
+        super(LinkCreate, self).__init__(*args, **kwargs)
 
-    def clean_profile(self):
-        value = self.cleaned_data["profile"]
-        if not re.match(PROFILE_PATTERN, value):
+    def clean(self):
+        cleaned_data = super(LinkCreate, self).clean()
+        profile = self.cleaned_data["profile"]
+        site = self.cleaned_data["site"]
+        if control.site_link_exists(self.account, site):
+            raise ValidationError(_("ERROR_LINK_PROFILE_FOR_SITE_EXISTS"))
+        if not link_control.valid_profile_format(profile):
             raise ValidationError(_("ERROR_BAD_PROFILE_FORMAT"))
-        return value
+        if not control.can_create_link(self.account, site, profile):
+            raise ValidationError(_("ERROR_CANNOT_CREATE_LINK"))
+        return cleaned_data
+
+
+class LinkDelete(Form):
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop("account")
+        self.link = kwargs.pop("link")
+        super(LinkDelete, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(LinkDelete, self).clean()
+        if not control.can_delete_link(self.account, self.link):
+            raise ValidationError(_("ERROR_CANNOT_DELETE_LINK"))
+        return cleaned_data
 

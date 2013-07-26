@@ -12,6 +12,7 @@ from apps.account.models import Account
 from apps.common.shortcuts import render_response
 from apps.account import forms
 from apps.account import control
+from apps.link.models import Link
 
 
 PROFILE_UPDATED = _("PROFILE_UPDATED")
@@ -19,19 +20,39 @@ PROFILE_UPDATED = _("PROFILE_UPDATED")
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def addlink(request):
+def link_delete(request, link_id):
+    account = get_object_or_404(Account, user=request.user)
+    link = get_object_or_404(Link, id=link_id)
+    if request.method == "POST":
+        form = forms.LinkDelete(request.POST, link=link, account=account)
+        if form.is_valid():
+            control.link_delete(account, link)
+            return HttpResponseRedirect("/accounts/profile/")
+    else:
+        form = forms.LinkDelete(link=link, account=account)
+    args = { 
+        "form" : form, "form_title" : _("LINK_DELETE?"), 
+        "form_subtitle" : link.get_label(), 
+        "cancel_url" : "/accounts/profile/"
+    }
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def link_create(request):
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
-        form = forms.AddLink(request.POST, account=account)
+        form = forms.LinkCreate(request.POST, account=account)
         if form.is_valid():
-            control.addlink(
+            control.link_create(
                 account, 
                 form.cleaned_data["site"], 
                 form.cleaned_data["profile"].strip(), 
             )
             return HttpResponseRedirect("/accounts/profile/")
     else:
-        form = forms.AddLink(account=account)
+        form = forms.LinkCreate(account=account)
     args = { 
         "form" : form, "cancel_url" : "/accounts/profile/", 
         "form_title" :  account, "form_subtitle" : _("ADD_LINK_SUBTITLE")

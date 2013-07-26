@@ -10,10 +10,13 @@ from apps.link.models import Link
 from apps.link.models import PROFILE_PATTERN
 
 
+def valid_profile_format(profile):
+    return bool(re.match(PROFILE_PATTERN, profile))
+
+
 def can_create(account, site, profile):
-    return (account and site and profile and 
-            bool(re.match(PROFILE_PATTERN, profile)) and
-            site in [x[0] for x in SITE_CHOICES])
+    return (account and site and profile and valid_profile_format(profile) 
+            and site in [x[0] for x in SITE_CHOICES])
 
 
 def create(account, site, profile):
