@@ -10,6 +10,9 @@ from django.db.models import DateTimeField
 from django.utils.translation import ugettext as _
 
 
+PROFILE_PATTERN = r"^[\w.@+-]+$"
+
+
 SITE_CHOICES = [
     ("FACEBOOK", _("FACEBOOK")),
     ("TWITTER", _("TWITTER")),
@@ -17,16 +20,16 @@ SITE_CHOICES = [
     ("BEWELCOME", _("BEWELCOME")),
 ]
 
-SITE_IMAGES = { # TODO correct images hosted localy
-    "FACEBOOK" : "http://icons.iconarchive.com/icons/yootheme/social-bookmark/16/social-facebook-box-blue-icon.png",
-    "TWITTER" : "http://icons.iconarchive.com/icons/yootheme/social-bookmark/16/social-facebook-box-blue-icon.png",
-    "COUCHSURFING" : "http://icons.iconarchive.com/icons/yootheme/social-bookmark/16/social-facebook-box-blue-icon.png",
-    "BEWELCOME" : "http://icons.iconarchive.com/icons/yootheme/social-bookmark/16/social-facebook-box-blue-icon.png",
+SITE_IMAGES = { 
+    "FACEBOOK" : "/static/link/facebook.png",
+    "TWITTER" : "/static/link/twitter.png",
+    "COUCHSURFING" : "/static/link/couchsurfing.png",
+    "BEWELCOME" : "/static/link/bewelcome.png",
 }
 
 SITE_URLS = {
     "FACEBOOK" : "https://www.facebook.com/%s",
-    "TWITTER" : "https://twitter.com/%s"
+    "TWITTER" : "https://twitter.com/%s",
     "BEWELCOME" : "https://www.bewelcome.org/members/%s",
     "COUCHSURFING" : "https://www.couchsurfing.org/profile.html?id=%s",
 }
@@ -45,7 +48,7 @@ class Link(Model):
     updated_on = DateTimeField(auto_now=True)
 
     def get_url(self):
-        return SITE_URLS[self.site] % self.profile # TODO protect against cross site scripting and js injection
+        return SITE_URLS[self.site] % self.profile
 
     def get_label(self):
         for site_choice in SITE_CHOICES:

@@ -3,6 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import re
 from django.utils.translation import ugettext as _
 from django.forms import Form
 from django.forms import CharField
@@ -13,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from apps.account.models import SOURCE_CHOICES
 from apps.link.models import SITE_CHOICES
+from apps.link.models import PROFILE_PATTERN
 
 
 USERNAME_REGEX = UserCreationForm().fields['username'].regex
@@ -60,4 +62,9 @@ class AddLink(Form):
         self.account = kwargs.pop("account")
         super(AddLink, self).__init__(*args, **kwargs)
 
+    def clean_profile(self):
+        value = self.cleaned_data["profile"]
+        if not re.match(PROFILE_PATTERN, value):
+            raise ValidationError(_("ERROR_BAD_PROFILE_FORMAT"))
+        return value
 
