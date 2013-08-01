@@ -5,6 +5,16 @@
 
 from django.core.exceptions import PermissionDenied
 from apps.link import control as link_control
+from apps.borrow.models import Borrow
+
+
+def can_view_account(current_account, view_account):
+    if current_account == view_account:
+        return True # user can view own account
+    if bool(Borrow.objects.filter(team__members=current_account, 
+                                  borrower=view_account)):
+        return True # user can view if account has borrow from one of there teams
+    return True
 
 
 def edit(account, username, first_name, last_name, mobile, source, description):

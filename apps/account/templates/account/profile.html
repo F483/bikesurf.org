@@ -1,0 +1,39 @@
+{% extends "common/base.html" %}
+{% load i18n %}
+{% load common_tags %}
+{% load link_tags %}
+
+{% block content %}
+    <div class="content">
+
+        <h2> {{ current_account }} </h2>
+
+        <p> {% trans "USER_PRIVECY_INFORMATION" %} </p>
+
+        <p>
+            {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
+            {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
+            {% trans "MOBILE" %}: {{ current_account.mobile }} </br>
+            {% trans "SOURCE" %}: {{ current_account.source }} </br>
+            {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
+        </p>
+
+        <p> {% trans "LINKS" %} </p>
+
+        <p>
+            {% for link in links %}
+                {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
+            {% endfor %}
+        </p>
+
+        <div class="actions">
+            {% draw_edit "/account/edit" %}
+            {% draw_create "ADD_LINK" "/account/link/create" %}
+            TODO add change password, manage social accounts and email
+        </div>
+
+    </div>
+{% endblock %}
+
+
+

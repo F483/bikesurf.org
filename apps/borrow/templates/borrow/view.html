@@ -2,11 +2,21 @@
 {% load i18n %}
 {% load common_tags %}
 {% load borrow_tags %}
+{% load account_tags %}
 
 {% block content %}
     <div class="content">
         <h2>
-            {{ borrow.borrower }} {% trans "BORROWING" %} {{ borrow.bike }} 
+
+            {% if_can_view_account current_account borrow.borrower %} 
+                <a href="/account/view/{{ borrow.borrower.user.username }}">
+                    {{ borrow.borrower }}
+                </a>
+            {% else %}
+                {{ borrow.borrower }}
+            {% endif_can_view_account %}
+
+            {% trans "BORROWING" %} {{ borrow.bike }} 
             ({% trans borrow.state %} {% borrow_draw_status borrow %})
         </h2>
 

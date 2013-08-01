@@ -7,6 +7,7 @@ from django.views.decorators.http import require_http_methods
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from apps.account.models import Account
 from apps.common.shortcuts import render_response
@@ -62,9 +63,20 @@ def link_create(request):
 
 @login_required
 @require_http_methods(["GET"])
-def view(request):
+def profile(request):
     account = get_object_or_404(Account, user=request.user)
     args = { "links" : account.links.all() }
+    return render_response(request, "account/profile.html", args)
+
+
+@login_required
+@require_http_methods(["GET"])
+def view(request, username):
+    current_account = get_object_or_404(Account, user=request.user)
+    view_account = get_object_or_404(Account, user__username=username)
+    if not control.can_view_account(current_account, view_account):
+        raise PermissionDenied
+    args = { "view_account" : view_account, "links" : view_account.links.all() }
     return render_response(request, "account/view.html", args)
 
 
