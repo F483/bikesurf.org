@@ -127,3 +127,13 @@ def delete(account, bike):
     bike.delete()
 
 
+def update_stations():
+    today = datetime.datetime.now().date()
+    bikes = Bike.objects.filter(active=True)
+    for bike in bikes:
+        last_borrow = borrow_control.get_prev_borrow(bike, today)
+        if last_borrow and last_borrow.dest != bike.station:
+            bike.station = last_borrow.dest
+            bike.save()
+
+
