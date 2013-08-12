@@ -3,6 +3,7 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import os
 from django.shortcuts import get_object_or_404
 from apps.team.models import Team
 from apps.team.models import JoinRequest
@@ -17,6 +18,19 @@ def get_or_404(link):
 
 def is_member(account, team):
     return account in team.members.all()
+
+
+def can_replace_logo(account, team):
+    return is_member(account, team) and team.active == True
+
+
+def replace_logo(account, team, logo):
+    if not can_replace_logo(account, team):
+        raise PermissionDenied
+    os.remove(team.logo.path)
+    team.logo = logo
+    team.save()
+    return team
 
 
 def create(account, name, country, logo, application):

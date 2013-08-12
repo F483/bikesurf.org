@@ -34,6 +34,11 @@ def _validate_name(value):
         raise ValidationError(_("ERROR_NAME_USED"))
 
 
+class ReplaceLogo(Form):
+
+    logo        = ImageField(label=_("LOGO"))
+
+
 class CreateTeam(Form):
 
     name        = CharField(label=_('TEAM_NAME'), validators=[_validate_name])

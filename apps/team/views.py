@@ -24,6 +24,27 @@ from apps.team import control
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def replace_logo(request, team_link):
+    account = get_object_or_404(Account, user=request.user)
+    team = control.get_or_404(team_link)
+    assert_member(account, team)
+    if request.method == "POST":
+        form = forms.ReplaceLogo(request.POST, request.FILES)
+        if form.is_valid():
+            logo = form.cleaned_data["logo"]
+            control.replace_logo(account, team, logo)
+            return HttpResponseRedirect("/%s" % team.link)
+    else:
+        form = forms.ReplaceLogo()
+    args = { 
+        "form" : form, "form_title" : _("REPLACE_LOGO"), 
+        "multipart_form" : True, "cancel_url" : "/%s" % team.link
+    }
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def create(request):
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
@@ -41,7 +62,7 @@ def create(request):
         "form" : form, "form_title" : _("CREATE_TEAM"), 
         "multipart_form" : True, "cancel_url" : "/"
     }
-    return render_response(request, "common/form.html", args)
+    return rtr(team, "", request, "common/form.html", args)
 
 
 @login_required

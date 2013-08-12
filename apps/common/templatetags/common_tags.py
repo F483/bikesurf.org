@@ -27,6 +27,7 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "CHANGE_DEST" : _("CHANGE_DEST"),
         "CHANGE_BIKE" : _("CHANGE_BIKE"),
         "ADD_LINK" : _("ADD_LINK"),
+        "REPLACE_LOGO" : _("REPLACE_LOGO"),
 }
 
 

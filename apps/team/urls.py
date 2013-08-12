@@ -5,6 +5,7 @@
 
 from django.conf.urls import patterns, include, url
 
+
 SLUG = r"[a-z0-9\-]+"
 
 T = "(?P<team_link>%s)" % SLUG # Team Link
@@ -19,6 +20,7 @@ urlpatterns = patterns("apps.team.views",
     url(r"^team/create$",                            "create"),
     url(r"^%s/created$" % T,                         "created"),
     url(r"^%s/members$" % T,                         "members"),
+    url(r"^%s/replace_logo$" % T,                    "replace_logo"),
 
     url(r"^%s/join_request/create$" % T,             "join_request_create"),
     url(r"^%s/join_request/created$" % T,            "join_request_created"),
