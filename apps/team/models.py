@@ -34,7 +34,8 @@ class Team(Model):
     link        = SlugField(unique=True)
     name        = CharField(max_length=1024, unique=True)
     country     = CountryField()
-    members     = ManyToManyField('account.Account', null=True, blank=True) 
+    members     = ManyToManyField('account.Account', null=True, blank=True, 
+                                  related_name="teams") 
     logo        = ProcessedImageField(upload_to=_upload_to, 
                                       processors=[ResizeToFill(270, 100)],
                                       format='JPEG', options={'quality': 90})
