@@ -21,6 +21,25 @@ PROFILE_UPDATED = _("PROFILE_UPDATED")
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def set_passport(request):
+    account = get_object_or_404(Account, user=request.user)
+    if request.method == "POST":
+        form = forms.SetPassport(request.POST, request.FILES)
+        if form.is_valid():
+            passport = form.cleaned_data["passport"]
+            control.set_passport(account, passport)
+            return HttpResponseRedirect("/accounts/profile/")
+    else:
+        form = forms.SetPassport()
+    args = { 
+        "form" : form, "form_title" : _("SET_PASSPORT"), 
+        "cancel_url" : "/accounts/profile/", "multipart_form" : True
+    }
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def link_delete(request, link_id):
     account = get_object_or_404(Account, user=request.user)
     link = get_object_or_404(Link, id=link_id)

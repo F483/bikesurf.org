@@ -3,9 +3,18 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import os
 from django.core.exceptions import PermissionDenied
 from apps.link import control as link_control
 from apps.borrow.models import Borrow
+
+
+def set_passport(account, passport):
+    if account.passport:
+        os.remove(account.passport.path)
+    account.passport = passport
+    account.save()
+    return account
 
 
 def can_view_account(current_account, view_account):

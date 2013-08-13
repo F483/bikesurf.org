@@ -16,6 +16,8 @@ from django.utils.translation import ugettext as _
 from django_countries import CountryField
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up
+from imagekit.models.fields import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 @receiver(user_signed_up)
@@ -36,6 +38,10 @@ SOURCE_CHOICES = [
 ]
 
 
+def _upload_to(instance, filename, **kwargs):
+    return "account/passport/%s.%s" % (instance.id, 'jpeg')
+
+
 class Account(Model):
 
     # main data
@@ -44,6 +50,9 @@ class Account(Model):
     source = CharField(max_length=64, choices=SOURCE_CHOICES, default='OTHER')
     mobile = CharField(max_length=1024, blank=True)
     links = ManyToManyField('link.Link') 
+    passport = ProcessedImageField(upload_to=_upload_to, 
+                                   processors=[ResizeToFill(1024, 768)],
+                                   format='JPEG', options={'quality': 90})
 
     # meta
     # created_by = self

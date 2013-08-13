@@ -18,6 +18,18 @@
             {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
         </p>
 
+        <p>
+            {% if current_account.passport %}
+                {% trans "PASSPORT" %}: 
+                <a href="{{ current_account.passport.url }}">
+                    {% trans "IMAGE" %}
+                </a>
+            {% else %}
+                {% trans "PASSPORT" %}: {% trans "NONE" %}
+            {% endif %}
+        </p>
+
+
         <p> {% trans "LINKS" %} </p>
 
         <p>
@@ -29,6 +41,8 @@
         <div class="actions">
             {% draw_edit "/account/edit" %}
             {% draw_create "ADD_LINK" "/account/link/create" %}
+            {% draw_create "SET_PASSPORT" "/account/set_passport" %}
+
             TODO add change password, manage social accounts and email
         </div>
 
