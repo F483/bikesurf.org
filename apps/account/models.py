@@ -49,8 +49,8 @@ class Account(Model):
     description = TextField(blank=True)
     source = CharField(max_length=64, choices=SOURCE_CHOICES, default='OTHER')
     mobile = CharField(max_length=1024, blank=True)
-    links = ManyToManyField('link.Link') 
-    passport = ProcessedImageField(upload_to=_upload_to, 
+    links = ManyToManyField('link.Link', null=True, blank=True) 
+    passport = ProcessedImageField(upload_to=_upload_to, null=True, blank=True, 
                                    processors=[ResizeToFill(1024, 768)],
                                    format='JPEG', options={'quality': 90})
 

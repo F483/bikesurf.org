@@ -10,6 +10,7 @@ from apps.team.models import JoinRequest
 from django.core.exceptions import PermissionDenied
 from apps.common.shortcuts import uslugify
 from apps.team.models import RemoveRequest
+from apps.link import control as link_control
 
 
 def get_or_404(link):
@@ -18,6 +19,25 @@ def get_or_404(link):
 
 def is_member(account, team):
     return account in team.members.all()
+
+
+def create(account, name, country, logo, application):
+    team = Team()
+    team.name = name
+    team.link = uslugify(name)
+    team.country = country
+    team.logo = logo
+    team.application = application
+    team.created_by = account
+    team.updated_by = account
+    team.save()
+    team.members.add(account)
+    return team
+
+
+########
+# LOGO #
+########
 
 
 def can_replace_logo(account, team):
@@ -33,18 +53,9 @@ def replace_logo(account, team, logo):
     return team
 
 
-def create(account, name, country, logo, application):
-    team = Team()
-    team.name = name
-    team.link = uslugify(name)
-    team.country = country
-    team.logo = logo
-    team.application = application
-    team.created_by = account
-    team.updated_by = account
-    team.save()
-    team.members.add(account)
-    return team
+################
+# JOIN REQUEST #
+################
 
 
 def can_join(account, team):
@@ -81,6 +92,11 @@ def process_join_request(account, join_request, response, status):
     join_request.save()
     if join_request.status == 'ACCEPTED':
         join_request.team.members.add(join_request.requester)
+
+
+##################
+# REMOVE REQUEST #
+##################
 
 
 def has_remove_request(concerned, team):
@@ -131,5 +147,38 @@ def process_remove_request(account, remove_request, response, status):
     remove_request.save()
     if status == "ACCEPTED":
         remove_request.team.members.remove(remove_request.concerned)
+
+
+#########
+# LINKS #
+#########
+
+
+def site_link_exists(team, site):
+    return bool(list(team.links.filter(site=site)))
+
+
+def can_create_link(account, team, site, profile):
+    return (link_control.valid_profile_format(profile) and 
+            not site_link_exists(team, site) and is_member(account, team))
+
+
+def can_delete_link(account, team, link):
+    return link in team.links.all() and is_member(account, team)
+
+
+def link_create(account, team, site, profile):
+    if not can_create_link(account, team, site, profile):
+        raise PermissionDenied
+    link = link_control.create(account, site, profile)
+    team.links.add(link)
+
+
+def link_delete(account, team, link):
+    if not can_delete_link(account, team, link):
+        raise PermissionDenied
+    team.links.remove(link)
+    link.delete()
+
 
 

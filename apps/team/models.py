@@ -31,7 +31,8 @@ def _upload_to(instance, filename, **kwargs):
 
 class Team(Model):
 
-    link        = SlugField(unique=True)
+    link        = SlugField(unique=True) # team url name 
+    links       = ManyToManyField('link.Link', null=True, blank=True) # team social media links
     name        = CharField(max_length=1024, unique=True)
     country     = CountryField()
     members     = ManyToManyField('account.Account', null=True, blank=True, 

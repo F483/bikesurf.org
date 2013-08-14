@@ -15,6 +15,9 @@ from apps.common.shortcuts import uslugify
 from apps.team.models import STATUS_CHOICES
 from apps.team.models import Team
 from apps.common.shortcuts import COUNTRIES
+from apps.link.models import SITE_CHOICES
+from apps.team import control
+from apps.link import control as link_control
 
 
 _RESERVED_NAMES = [
@@ -68,4 +71,41 @@ class ProcessRemoveRequest(Form):
     response = CharField(label=_('RESPONSE'), widget=Textarea)
     status = ChoiceField(choices=STATUS_CHOICES[1:], label=_('STATUS'))
 
+
+class LinkCreate(Form):
+
+    site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
+    profile = CharField(max_length=1024, label=_("PROFILE"), required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop("account")
+        self.team = kwargs.pop("team")
+        super(LinkCreate, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(LinkCreate, self).clean()
+        profile = self.cleaned_data["profile"]
+        site = self.cleaned_data["site"]
+        if control.site_link_exists(self.team, site):
+            raise ValidationError(_("ERROR_LINK_PROFILE_FOR_SITE_EXISTS"))
+        if not link_control.valid_profile_format(profile):
+            raise ValidationError(_("ERROR_BAD_PROFILE_FORMAT"))
+        if not control.can_create_link(self.account, self.team, site, profile):
+            raise ValidationError(_("ERROR_CANNOT_CREATE_LINK"))
+        return cleaned_data
+
+
+class LinkDelete(Form):
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop("account")
+        self.link = kwargs.pop("link")
+        self.team = kwargs.pop("team")
+        super(LinkDelete, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(LinkDelete, self).clean()
+        if not control.can_delete_link(self.account, self.team, self.link):
+            raise ValidationError(_("ERROR_CANNOT_DELETE_LINK"))
+        return cleaned_data
 

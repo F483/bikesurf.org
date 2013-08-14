@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load common_tags %}
 {% load team_tags %}
+{% load link_tags %}
 
 <div class="menu"> 
     <ul>
@@ -16,6 +17,31 @@
             </li>
         {% endfor %}
     </ul>
+</div>
+
+<div class="menu"> 
+    <h2>{% trans "TEAM_INFO" %}</h2> 
+    <ul>
+        <li>
+            {% trans "COUNTRY" %}: {{ current_team.country.name }}
+        </li>
+
+        {% for link in current_team_links %}
+            <li>
+                {% link_draw link %} 
+                {% if_member current_account current_team %}
+                    {% draw_delete "/" current_team.link "/link/delete/" link.id %}
+                {% endif_member %}
+            </li>
+        {% endfor %}
+
+    </ul>
+
+    {% if_can_join current_account current_team %}
+        <div class="actions">
+            <a href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
+        </div>
+    {% endif_can_join %}
 </div>
 
 {% if_member current_account current_team %}
@@ -56,16 +82,12 @@
             <li>
                 {% draw_create "REPLACE_LOGO" "/" current_team.link "/replace_logo" %}
             </li>
+
+            <li>
+                {% draw_create "ADD_LINK" "/" current_team.link "/link/create" %}
+            </li>
+
         </ul>
     </div>
 {% endif_member %}
 
-<div class="menu"> 
-    <h2>{% trans "TEAM_INFO" %}</h2> 
-    {% trans "COUNTRY" %}: {{ current_team.country.name }}<br />
-
-    {% if_can_join current_account current_team %}
-        <a href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
-    {% endif_can_join %}
-
-</div>

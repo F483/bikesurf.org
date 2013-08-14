@@ -37,6 +37,11 @@ def edit(account, username, first_name, last_name, mobile, source, description):
     account.save()
 
 
+#########
+# LINKS #
+#########
+
+
 def site_link_exists(account, site):
     return bool(list(account.links.filter(site=site)))
 

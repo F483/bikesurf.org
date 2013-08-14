@@ -20,6 +20,51 @@ from apps.team import forms
 from apps.team.utils import render_team_response as rtr
 from apps.team.utils import assert_member
 from apps.team import control
+from apps.link.models import Link
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def link_delete(request, team_link, link_id):
+    account = get_object_or_404(Account, user=request.user)
+    team = control.get_or_404(team_link)
+    link = get_object_or_404(Link, id=link_id)
+    if request.method == "POST":
+        form = forms.LinkDelete(request.POST, team=team, link=link, account=account)
+        if form.is_valid():
+            control.link_delete(account, team, link)
+            return HttpResponseRedirect("/%s" % team.link)
+    else:
+        form = forms.LinkDelete(team=team, link=link, account=account)
+    args = { 
+        "form" : form, "form_title" : _("LINK_DELETE?"), 
+        "form_subtitle" : link.get_label(), 
+        "cancel_url" : "/%s" % team.link
+    }
+    return rtr(team, "", request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def link_create(request, team_link):
+    account = get_object_or_404(Account, user=request.user)
+    team = control.get_or_404(team_link)
+    if request.method == "POST":
+        form = forms.LinkCreate(request.POST, team=team, account=account)
+        if form.is_valid():
+            control.link_create(
+                account, team,
+                form.cleaned_data["site"], 
+                form.cleaned_data["profile"].strip(), 
+            )
+            return HttpResponseRedirect("/%s" % team.link)
+    else:
+        form = forms.LinkCreate(team=team, account=account)
+    args = { 
+        "form" : form, "cancel_url" : "/%s" % team.link, 
+        "form_title" :  account, "form_subtitle" : _("ADD_LINK_SUBTITLE")
+    }
+    return rtr(team, "", request, "common/form.html", args)
 
 
 @login_required
@@ -62,7 +107,7 @@ def create(request):
         "form" : form, "form_title" : _("CREATE_TEAM"), 
         "multipart_form" : True, "cancel_url" : "/"
     }
-    return rtr(team, "", request, "common/form.html", args)
+    return render_response(request, "common/form.html", args)
 
 
 @login_required
