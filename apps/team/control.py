@@ -13,6 +13,10 @@ from apps.team.models import RemoveRequest
 from apps.link import control as link_control
 
 
+def get_teams(account):
+    return account.teams.filter(active=True),
+
+
 def get_or_404(link):
     return get_object_or_404(Team, link=link, active=True)
 

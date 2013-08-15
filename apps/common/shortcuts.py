@@ -25,6 +25,7 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
+    from apps.team import control as team_control # circular import ...
     from apps.borrow import control as borrow_control # circular import ...
     args.update({ 
         "current_user" : request.user,
@@ -37,7 +38,7 @@ def render_response(request, template, args):
         args.update({ 
             "current_account" : account,
             "borrow_count" : len(borrows),
-            "current_account_teams" : account.teams.all(),
+            "current_account_teams" : team_control.get_teams(account),
             "station_count" : len(Station.objects.filter(responsable=account)),
             "outgoing_count" : len(borrow_control.outgoing_list(account)),
             "incoming_count" : len(borrow_control.incoming_list(account)),
