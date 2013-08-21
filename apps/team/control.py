@@ -14,7 +14,7 @@ from apps.link import control as link_control
 
 
 def get_teams(account):
-    return account.teams.filter(active=True),
+    return list(account.teams.filter(active=True))
 
 
 def get_or_404(link):
