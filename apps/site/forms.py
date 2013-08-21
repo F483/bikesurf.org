@@ -4,7 +4,7 @@
 
 
 from django.utils.translation import ugettext as _
-from django import forms
+from django.forms import Select
 from django.forms import Form
 from django.forms import ModelChoiceField
 from apps.team.models import Team
@@ -13,8 +13,9 @@ from apps.team.models import Team
 class TeamSelectForm(Form):
 
     team = ModelChoiceField(
-            label='', empty_label=_("WHERE?"), 
-            queryset=Team.objects.filter(active=True)
+            label='', empty_label=_("PICK_A_LOCATION"), 
+            queryset=Team.objects.filter(active=True),
+            widget=Select(attrs={'style':'WIDTH: 350px;'})
     ) 
 
 

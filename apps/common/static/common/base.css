@@ -46,7 +46,7 @@ body>.base_wrapper {
 }
 
 body {
-    background-color: #FFF;
+    background-color: #D1EDF3;
     font-family: helvetica, arial, sans-serif;
     font-size: 10pt;
     color: #000;
@@ -80,6 +80,10 @@ a {
 a:hover {
     color: #FF9536;
     text-shadow: #F47920 0px 0px 2px;
+}
+
+#site_background {
+    text-align: center;
 }
 
 #base_statusbar {
@@ -164,13 +168,35 @@ a:hover {
     font-weight: bold;
 }
 
+
+.content_title {
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16pt;
+    background-color: rgb(215,223,35);
+    background-image: url(/static/common/content_title_background.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    margin-left: 10px;
+    height: 25px;
+    padding-left: 5px;
+    -moz-box-shadow:    -5px 5px 0px #CCC;
+    -webkit-box-shadow: -5px 5px 0px #CCC;
+    box-shadow:         -5px 5px 0px #CCC;
+}
+
 .content {
+    padding: 5px;
+    margin-left: 25px;
+    margin-right: 5px;
+    margin-bottom: 10px;
     background-color: #FFFFFF;
-    padding: 10px;
-    border: 1px;
-    border-color: #000000;
-    margin-top: 8px;
-    box-shadow: -5px 5px 5px #CCC;
+    text-align: left;
+    -moz-box-shadow:    -5px 5px 0px #CCC;
+    -webkit-box-shadow: -5px 5px 0px #CCC;
+    box-shadow:         -5px 5px 0px #CCC;
 }
 
 .actions {
