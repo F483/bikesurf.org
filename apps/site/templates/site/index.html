@@ -1,5 +1,6 @@
 {% extends "common/base.html" %}
 {% load i18n %}
+{% load common_tags %}
 
 {% block styles %}
     <link rel="stylesheet" href="/static/site/index.css" type="text/css" charset="utf-8" >
@@ -14,7 +15,7 @@
             <img src="/static/site/logo.png" alt="BikeSurf">
         </div>
         <div id="index_slogan">
-            {% trans "TWO_WHEELS_GOOD_FREE_WHEELS_BETTER" %}
+            {% trans "TWO_LEGS_GOOD_FREE_WHEELS_BETTER" %}
         </div>
         <div>
             <table id="index_table">
@@ -41,10 +42,8 @@
                         </div>
                         <div class="content">
                             {% trans "TEAM_DESCRIPTION_TEXT" %}
-                            <div id="index_button_create_team">
-                                <form method="get" action="/team/create" name="TeamCreateForm">
-                                    <input value="{% trans "CREATE_TEAM" %}" type="submit">
-                                </form>
+                            <div class="actions">
+                                {% draw_create "CREATE_TEAM" "/team/create" %}
                             </div>
                         </div>
                     </td>

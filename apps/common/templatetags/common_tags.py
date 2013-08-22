@@ -29,10 +29,18 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "ADD_LINK" : _("ADD_LINK"),
         "REPLACE_LOGO" : _("REPLACE_LOGO"),
         "SET_PASSPORT" : _("SET_PASSPORT"),
+        "CREATE_TEAM" : _("CREATE_TEAM"),
 }
 
 
 register = template.Library()
+
+
+@register.simple_tag
+def draw_list_label(obj):
+    if type(obj) == type(True):
+        return draw_bool(obj)
+    return obj
 
 
 @register.simple_tag
@@ -46,9 +54,10 @@ def draw_bool(value):
 def draw_action(image, label, *args): 
     # TODO change to draw_action(image, label, format_url, *url_format_args)
     url = reduce(lambda a, b: str(a) + str(b), args)
+    # TODO put this in teamplate instead
     return """
-        <a href="%(url)s"> 
-            %(label)s <img src="%(image)s" alt="%(label)s"> 
+        <a href="%(url)s" class="action">
+            <img src="%(image)s" alt="%(label)s"> %(label)s
         </a>
     """ % { "label" : ACTION_LABELS[label], "image" : image, "url" : url }
 

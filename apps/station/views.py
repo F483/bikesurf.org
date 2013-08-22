@@ -106,20 +106,43 @@ def view(request, **kwargs):
 def list(request, **kwargs):
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
+    columns = [
+        _("RESPONSABLE"),
+        _("POSTALCODE"),
+        _("CITY"),
+        _("STREET"),
+        _("ACTIVE"),
+    ]
     if team_link:
         team = team_control.get_or_404(team_link)
         assert_member(account, team)
+        def station2entrie(s):
+            return {
+                "labels" : [ 
+                    s.responsable, s.postalcode, s.city, s.street, s.active
+                ], "url" : "/%s/station/view/%s" % (team.link, s.id)
+            }
+        stations = Station.objects.filter(team=team)
+        entries = map(station2entrie, stations)
         args = { 
-            "stations" : Station.objects.filter(team=team),
-            "page_title" : _("STATIONS")
+            "page_title" : _("STATIONS"),
+            "list_data" : { "columns" : columns, "entries" : entries }
         }
-        return rtr(team, "stations", request, "station/list.html", args)
+        return rtr(team, "stations", request, "common/list.html", args)
     else:
+        def station2entrie(s):
+            return {
+                "labels" : [ 
+                    s.responsable, s.postalcode, s.city, s.street, s.active
+                ], "url" : "/station/view/%s" % s.id
+            }
+        stations = Station.objects.filter(responsable=account)
+        entries = map(station2entrie, stations)
         args = { 
-            "stations" : Station.objects.filter(responsable=account), 
-            "page_title" : _("STATIONS")
+            "page_title" : _("STATIONS"),
+            "list_data" : { "columns" : columns, "entries" : entries }
         }
-        return render_response(request, "station/list.html", args)
+        return render_response(request, "common/list.html", args)
 
 
 @login_required

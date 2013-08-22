@@ -55,40 +55,21 @@
             <div id="base_main" class="base_row base_expand">
                 <div id="base_inside" class="base_wrapper">
                     {% block body %}
-                        <div id="base_menu" class="base_column">
-                            {% if current_team %}
+                        {% if current_team %}
+                            <div id="base_menu" class="base_column">
                                 {% include "team/menu.html" %}
-                            {% endif %}
-                            {% block menu %}
-                            {% endblock %}
-                        </div>
-                        <div id="base_separator" class="base_column">
-                        </div>
+                                {% block menu %}
+                                {% endblock %}
+                            </div>
+                        {% endif %}
                         <div id="base_content" class="base_column base_expand">
-                            {% if current_team %}
-                                {% include "team/header.html" %}
-                            {% endif %}
-
                             {% if tabs %}
                                 {% include "common/tabs.html" %}
-                            {% endif %}
-
-                            {% if page_title %}
-                                <div id="page_title">
-                                    <h2>{{ page_title }}</h2>
-                                </div>
                             {% endif %}
 
                             {% block content_wrapper %}
                                 {% block content %}
                                 {% endblock %}
-                            {% endblock %}
-                        </div>
-                        <div id="base_info" class="base_column">
-                            {% if current_team %}
-                                {% include "team/info.html" %}
-                            {% endif %}
-                            {% block info %}
                             {% endblock %}
                         </div>
                     {% endblock %}

@@ -50,7 +50,7 @@ class Team(Model):
     updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return u"%s" % self.name
+        return u"%s (%s)" % (self.name, self.country.name)
 
     class Meta:                                                                                                 
                                                                                                                 
