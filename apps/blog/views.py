@@ -21,7 +21,7 @@ from django.forms import Form
 
 
 @require_http_methods(["GET"])
-def list(request, team_link):
+def listing(request, team_link):
     team = team_control.get_or_404(team_link)
     blogs = Blog.objects.filter(team=team)
     return rtr(team, "blog", request, "blog/list.html", { "blogs" : blogs })

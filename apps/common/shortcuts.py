@@ -19,6 +19,13 @@ from apps.station.models import Station
 COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
 
 
+def chunks(l, n):
+    """ Yield successive n-sized chunks from l.
+    """
+    for i in xrange(0, len(l), n):
+        yield l[i:i+n]
+
+
 def uslugify(ustr):
     """ because slugify is shit with unicode """
     return slugify(unidecode(ustr))

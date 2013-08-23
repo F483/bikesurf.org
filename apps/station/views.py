@@ -103,7 +103,7 @@ def view(request, **kwargs):
 
 @login_required
 @require_http_methods(["GET"])
-def list(request, **kwargs):
+def listing(request, **kwargs):
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
     columns = [

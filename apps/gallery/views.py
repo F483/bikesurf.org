@@ -110,7 +110,7 @@ def remove(request, **kwargs):
 
 
 @require_http_methods(["GET"])
-def list(request, **kwargs):
+def listing(request, **kwargs):
     team_link = kwargs.get("team_link")
     gallery_id = kwargs["gallery_id"]
     team = team_link and team_control.get_or_404(team_link) or None

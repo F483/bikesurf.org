@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from apps.borrow import control as borrow_control
 from apps.team import control as team_control
 from apps.common.shortcuts import render_response
+from apps.common.shortcuts import chunks
 from apps.account.models import Account
 from apps.team.models import Team
 from apps.bike.models import Bike
@@ -90,12 +91,13 @@ def view(request, team_link, bike_id, tab):
 
 
 @require_http_methods(["GET"])
-def list(request, team_link):
+def listing(request, team_link):
     team = team_control.get_or_404(team_link)
     filters = _get_bike_filters(request, None, team)
+    bikes = list(team.bikes.filter(**filters))
     args = { 
-        "bikes" :  team.bikes.filter(**filters),
-        "page_title" : _("BIKES")
+        "page_title" : _("BIKES"),
+        "bike_pairs" : list(chunks(bikes, 2))
     }
     return rtr(team, "bikes", request, "bike/list.html", args)
 

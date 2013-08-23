@@ -1,13 +1,9 @@
 
-#bike_list_layout_table tr {
-    height: 100px; /* TODO why does this not work? */
-}
-
 #bike_list_entrie a {
     color: #000;
 }
 
-.td_bike_image {
+#td_bike_image {
 }
 
 #td_bike_info {
@@ -15,4 +11,7 @@
     width: 100%;
 }
 
+#bike_list_table {
+    height: auto;
+}
 

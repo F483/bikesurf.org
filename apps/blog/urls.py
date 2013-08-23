@@ -15,9 +15,9 @@ B = "(?P<blog_id>%s)" % ID
 
 
 urlpatterns = patterns("apps.blog.views",
-    url(r"^%s$" % T,                     "list"),
-    url(r"^%s/$" % T,                    "list"),
-    url(r"^%s/blog$" % T,                "list"),
+    url(r"^%s$" % T,                     "listing"),
+    url(r"^%s/$" % T,                    "listing"),
+    url(r"^%s/blog$" % T,                "listing"),
     url(r"^%s/blog/create$" % T,         "create"),
     url(r"^%s/blog/edit/%s$" % (T, B),   "edit"),
     url(r"^%s/blog/delete/%s$" % (T, B), "delete"),

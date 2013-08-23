@@ -10,49 +10,53 @@
 {% endblock %}
 
 {% block content %}
-        <table id="bike_list_layout_table">
-        {% for bike in bikes %}
 
-            {% cycle '<tr>' '' %}
-
-            <td>
-                <div id="bike_list_entrie" class="content">
-                    <a href="/{{ bike.team.link }}/bike/view/{{ bike.id }}">
-                        <table>
-                            <tr>
-                                <td class="td_bike_image">
-                                    {% if bike.gallery.primary %}
-                                        <img src="{{ bike.gallery.primary.thumbnail.url }}">
-                                    {% else %}
-                                        TODO show default empty bike image
-                                    {% endif %}
-
-                                </td>
-                                <td class="td_bike_props">
-                                    {% trans "NAME" %}: {{ bike.name }} <br />
-                                    {% trans "SIZE" %}: {% trans bike.size %}<br />
-                                    {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
-                                    {% if_member current_account bike.team %}
-                                        {% trans "STATION" %}: 
-                                        {% if bike.station %}
-                                            {{ bike.station.street }}<br />
+    <table id="bike_list_table">
+        {% for bikes in bike_pairs %}
+            <tr>
+            {% for bike in bikes %}
+                <td>
+                    <div class="content_title">
+                        {{ bike.name }}
+                    </div>
+                    <div id="bike_list_entrie" class="content">
+                        <a href="/{{ bike.team.link }}/bike/view/{{ bike.id }}">
+                            <table>
+                                <tr>
+                                    <td id="td_bike_image">
+                                        {% if bike.gallery.primary %}
+                                            <img src="{{ bike.gallery.primary.thumbnail.url }}">
                                         {% else %}
-                                            {% trans "UNKNOWN" %}<br />
+                                            TODO show default empty bike image
                                         {% endif %}
-                                    {% endif_member %}
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
-                </div>
-            </td>
 
-            {% cycle '' '</tr>' %} <!-- TODO what when uneven count? -->
-        {% empty %}
+                                    </td>
+                                    <td id="td_bike_info">
+                                        {% trans "SIZE" %}: {% trans bike.size %}<br />
+                                        {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
+                                        {% if_member current_account bike.team %}
+                                            {% trans "STATION" %}: 
+                                            {% if bike.station %}
+                                                {{ bike.station.street }}<br />
+                                            {% else %}
+                                                {% trans "UNKNOWN" %}<br />
+                                            {% endif %}
+                                        {% endif_member %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                </td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+
+        {% if not bikes %}
             <div class="content">
                 {% trans "NO_BIKES" %}
             </div>
-        {% endfor %}
+        {% endif %}
     </table>
 {% endblock %}
 

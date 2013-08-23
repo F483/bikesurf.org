@@ -18,13 +18,13 @@ urlpatterns = patterns("apps.gallery.views",
     url(r"^gallery/setprimary/%s$" % P,         "setprimary"), # update primary picture
     url(r"^gallery/add/%s$" % G,                "add"),        # add picture to gallery
     url(r"^gallery/remove/%s$" % P,             "remove"),     # remove gallery picture
-    url(r"^gallery/list/%s$" % G,               "list"),       # view gallery
+    url(r"^gallery/list/%s$" % G,               "listing"),    # view gallery
     url(r"^gallery/view/%s$" % P,               "view"),       # view picture
 
     url(r"^%s/gallery/setprimary/%s$" % (T, P), "setprimary"), # update primary picture
     url(r"^%s/gallery/add/%s$" % (T, G),        "add"),        # add picture to gallery
     url(r"^%s/gallery/remove/%s$" % (T, P),     "remove"),     # remove gallery picture
-    url(r"^%s/gallery/list/%s$" % (T, G),       "list"),       # view gallery
+    url(r"^%s/gallery/list/%s$" % (T, G),       "listing"),    # view gallery
     url(r"^%s/gallery/view/%s$" % (T, P),       "view"),       # view picture
 )
 
