@@ -8,14 +8,11 @@
 }
 
 .td_bike_image {
-    width: 110px;
 }
 
 #td_bike_info {
     padding-left: 10px;
+    width: 100%;
 }
 
-.td_bike_props {
-    text-align: left;
-}
 

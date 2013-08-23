@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 
+from apps.borrow import control as borrow_control
 from apps.team import control as team_control
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
@@ -24,13 +25,11 @@ from apps.bike import forms
 _VIEW = {
     "OVERVIEW" : {
         "template" : "bike/view.html",
-        "description_title" : "",
-        "description_content" : "",
+        "page_title" : "",
     },
     "BORROWS" :    {
-        "template" : "borrow/list.html",
-        "description_title" : _("BIKE_BORROWS_DESCRIPTION_TITLE"),
-        "description_content" : _("BIKE_BORROWS_DESCRIPTION_CONTENT"),
+        "template" : "common/list.html",
+        "page_title" : _("BIKE_BORROWS"),
     },
 }
 
@@ -63,24 +62,28 @@ def _get_bike_filters(request, form, team):
 @require_http_methods(["GET"])
 def view(request, team_link, bike_id, tab):
     team = team_control.get_or_404(team_link)
+
+    # check user permissions
     requires_login = tab != "OVERVIEW"
     requires_membership = tab != "OVERVIEW"
     logged_in = request.user.is_authenticated()
-
     if not logged_in and requires_login:
         return HttpResponseRedirect("/accounts/login/?next=%s" % request.path)
     account = logged_in and get_object_or_404(Account, user=request.user)
     if requires_membership and not team_control.is_member(account, team):
         raise PermissionDenied
 
+    # get data
     bike = get_object_or_404(Bike, id=bike_id, team=team)
     authorized = (account and team_control.is_member(account, team))
     template = _VIEW[tab]["template"]
+    list_data = None
+    if tab == "BORROWS":
+        list_data = borrow_control.to_list_data(bike.borrows.all(), team=team)
+
     args = { 
-        "bike" : bike, 
-        "borrows" : bike.borrows.all(),
-        "description_title" : _VIEW[tab]["description_title"],
-        "description_content" : _VIEW[tab]["description_content"],
+        "bike" : bike, "list_data" : list_data,
+        "page_title" : _VIEW[tab]["page_title"],
         "tabs" : _tabs(bike, team, tab, authorized), 
     }
     return rtr(team, "bikes", request, template, args)

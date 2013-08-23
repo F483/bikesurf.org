@@ -38,22 +38,24 @@ def lender_list(request, team_link):
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
+    borrows = Borrow.objects.filter(team=team) 
     args = { 
-        "borrows" : Borrow.objects.filter(team=team), 
-        "page_title" : _("TEAM_BORROWS")
+        "page_title" : _("TEAM_BORROWS"),
+        "list_data" : control.to_list_data(borrows, team=team) 
     }
-    return rtr(team, "borrows", request, "borrow/list.html", args)
+    return rtr(team, "borrows", request, "common/list.html", args)
 
 
 @login_required
 @require_http_methods(["GET"])
 def borrower_list(request):
     account = get_object_or_404(Account, user=request.user)
+    borrows = Borrow.objects.filter(borrower=account)
     args = { 
-        "borrows" : Borrow.objects.filter(borrower=account),
-        "page_title" : _("YOUR_BORROWS")
+        "page_title" : _("YOUR_BORROWS"),
+        "list_data" :  control.to_list_data(borrows) 
     }
-    return render_response(request, "borrow/list.html", args)
+    return render_response(request, "common/list.html", args)
 
 
 @login_required
@@ -61,11 +63,12 @@ def borrower_list(request):
 def incoming_list(request):
     today = datetime.datetime.now().date()
     account = get_object_or_404(Account, user=request.user)
+    borrows = control.incoming_list(account)
     args = { 
-        "borrows" : control.incoming_list(account),
-        "page_title" : _("INCOMING_BORROWS")
+        "page_title" : _("INCOMING_BORROWS"),
+        "list_data" : control.to_list_data(borrows)
     }
-    return render_response(request, "borrow/list.html", args)
+    return render_response(request, "common/list.html", args)
 
 
 @login_required
@@ -73,11 +76,12 @@ def incoming_list(request):
 def outgoing_list(request):
     today = datetime.datetime.now().date()
     account = get_object_or_404(Account, user=request.user)
+    borrows = control.outgoing_list(account)
     args = {
-        "borrows" : control.outgoing_list(account),
-        "page_title" : _("OUTGOING_BORROWS")
+        "page_title" : _("OUTGOING_BORROWS"),
+        "list_data" : control.to_list_data(borrows)
     }
-    return render_response(request, "borrow/list.html", args)
+    return render_response(request, "common/list.html", args)
 
 
 @login_required

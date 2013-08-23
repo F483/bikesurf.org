@@ -95,7 +95,7 @@ a:hover {
 
 #base_header {
     height: 100px;
-    padding-left: 65px;
+    padding-left: 10px;
 }
 
 #base_main {
@@ -122,7 +122,6 @@ a:hover {
 
 #base_content {
     padding-top: 5px;
-    background-color: #D1F9E1;
 }
 
 #base_info {

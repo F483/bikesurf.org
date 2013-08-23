@@ -5,11 +5,30 @@
 
 import datetime
 from django.core.exceptions import PermissionDenied
+from django.utils.translation import ugettext as _
 
 from apps.borrow.models import Borrow
 from apps.borrow.models import Rating
 from apps.borrow.models import Log
 from apps.team import control as team_control
+
+
+def to_list_data(borrows, team=None):
+    base_url = team and ("/%s" % team.link) or ""
+    def borrow2entrie(borrow):
+        return {
+            "labels" : [ 
+                borrow.borrower, borrow.bike.name, borrow.start, borrow.finish, 
+                borrow.src.street, borrow.dest.street, borrow.state
+            ], "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+        }
+    return { 
+        "columns" : [
+            _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("DATE_TO"),
+            _("STATION_FROM"), _("STATION_TO"), _("BORROW_STATE"),
+        ], 
+        "entries" : map(borrow2entrie, borrows) 
+    }
 
 
 def active_borrows_in_timeframe(bike, start, finish, exclude=None):

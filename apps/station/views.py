@@ -107,11 +107,7 @@ def list(request, **kwargs):
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
     columns = [
-        _("RESPONSABLE"),
-        _("POSTALCODE"),
-        _("CITY"),
-        _("STREET"),
-        _("ACTIVE"),
+        _("RESPONSABLE"), _("POSTALCODE"), _("CITY"), _("STREET"), _("ACTIVE"),
     ]
     if team_link:
         team = team_control.get_or_404(team_link)
