@@ -97,25 +97,20 @@ class Create(Form):
         return cleaned_data
 
 
-class Cancel(Form):
+class Comment(Form):
 
     note = CharField(label=_("NOTE"), widget=Textarea)
 
-    def __init__(self, *args, **kwargs):
-        self.borrow = kwargs.pop("borrow")
-        self.account = kwargs.pop("account")
-        super(Cancel, self).__init__(*args, **kwargs)
+
+class Cancel(Form):
+
+    note = CharField(label=_("NOTE"), widget=Textarea)
 
 
 class Rate(Form):
 
     note = CharField(label=_("NOTE"), widget=Textarea)
     rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
-
-    def __init__(self, *args, **kwargs):
-        self.borrow = kwargs.pop("borrow")
-        self.account = kwargs.pop("account")
-        super(Rate, self).__init__(*args, **kwargs)
 
 
 class BorrowerEdit(Form):

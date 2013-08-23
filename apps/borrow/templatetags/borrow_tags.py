@@ -7,12 +7,22 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.common.templatetags.common_tags import draw_action
+from apps.common.templatetags.common_tags import draw_comment
 from apps.common.templatetags.common_tags import draw_edit
 from apps.borrow import control
 from apps.team import control as team_control
 
 
 register = template.Library()
+
+
+@register.simple_tag
+def borrow_draw_comment(account, borrow, team):
+    if control.can_comment(account, borrow):
+        url_prefix = team and "/%s" % team.link or ""
+        url = "%s/borrow/comment/%s" % (url_prefix, borrow.id)
+        return draw_comment(url)
+    return ""
 
 
 @register.simple_tag

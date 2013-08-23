@@ -30,6 +30,7 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "REPLACE_LOGO" : _("REPLACE_LOGO"),
         "SET_PASSPORT" : _("SET_PASSPORT"),
         "CREATE_TEAM" : _("CREATE_TEAM"),
+        "COMMENT" : _("COMMENT"),
 }
 
 
@@ -70,6 +71,11 @@ def draw_delete(*args):
 @register.simple_tag
 def draw_edit(*args):
     return draw_action("/static/famfamfam/pencil.png", "EDIT", *args)
+
+
+@register.simple_tag
+def draw_comment(*args):
+    return draw_action("/static/famfamfam/comment_add.png", "COMMENT", *args)
 
 
 @register.simple_tag

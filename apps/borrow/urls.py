@@ -25,6 +25,8 @@ urlpatterns = patterns("apps.borrow.views",
     url(r"^borrow/edit/%(borrow)s$" % p,                "borrower_edit"),
     url(r"^borrow/cancel/%(borrow)s$" % p,              "borrower_cancel"),
     url(r"^borrow/rate/%(borrow)s$" % p,                "borrower_rate"),
+    url(r"^borrow/comment/%(borrow)s$" % p,             "comment"),
+
     url(r"^%(team)s/borrows$" % p,                      "lender_list"),
     url(r"^%(team)s/borrow/view/%(borrow)s$" % p,       "lender_view"),
     url(r"^%(team)s/borrow/edit_bike/%(borrow)s$" % p,  "lender_edit_bike"),
@@ -33,6 +35,7 @@ urlpatterns = patterns("apps.borrow.views",
     url(r"^%(team)s/borrow/create/%(bike)s$" % p,       "create"),
     url(r"^%(team)s/borrow/cancel/%(borrow)s$" % p,     "lender_cancel"),
     url(r"^%(team)s/borrow/rate/%(borrow)s$" % p,       "lender_rate"),
+    url(r"^%(team)s/borrow/comment/%(borrow)s$" % p,    "comment"),
 )
 
 

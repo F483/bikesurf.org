@@ -5,30 +5,40 @@
 {% load account_tags %}
 
 {% block content %}
-    <div class="content">
-        <h2>
-
-            {% if_can_view_account current_account borrow.borrower %} 
-                <a href="/account/view/{{ borrow.borrower.user.username }}">
-                    {{ borrow.borrower }}
-                </a>
-            {% else %}
+    <div class="content_title">
+        {% if_can_view_account current_account borrow.borrower %} 
+            <a href="/account/view/{{ borrow.borrower.user.username }}">
                 {{ borrow.borrower }}
-            {% endif_can_view_account %}
+            </a>
+        {% else %}
+            {{ borrow.borrower }}
+        {% endif_can_view_account %}
 
-            {% trans "BORROWING" %} {{ borrow.bike }} 
-            ({% trans borrow.state %} {% borrow_draw_status borrow %})
-        </h2>
+        {% trans "BORROWING" %} {{ borrow.bike }} 
+        ({% trans borrow.state %})
+    </div>
+    <div class="content">
+        {% trans "BORROWER" %}:
+        {% if_can_view_account current_account borrow.borrower %} 
+            <a href="/account/view/{{ borrow.borrower.user.username }}">
+                {{ borrow.borrower }}
+            </a>
+        {% else %}
+            {{ borrow.borrower }}
+        {% endif_can_view_account %}
+        <br />
 
-        {% trans "DATE FROM" %} {{ borrow.start }} 
-        {% trans "TO" %} {{ borrow.finish }}<br />
+        {% trans "BIKE" %}: {{ borrow.bike }}<br />
+        {% trans "DATE_FROM" %}: {{ borrow.start }}<br />
+        {% trans "DATE_TO" %}: {{ borrow.finish }}<br />
 
         {% if borrow.active %}
-            {% trans "STATION FROM" %} {{ borrow.src.street }} 
-            {% trans "TO" %} {{ borrow.dest.street }}<br />
+            {% trans "STATION_FROM" %}: {{ borrow.src.street }}<br />
+            {% trans "STATION_TO" %}: {{ borrow.dest.street }}<br />
         {% endif %}
 
         <div class="actions">
+            {% borrow_draw_comment current_account borrow current_team %}
             {% borrow_draw_respond current_account borrow %}
             {% borrow_draw_borrower_edit current_account borrow %}
             {% borrow_draw_lender_edit_dest current_account borrow %}
@@ -40,14 +50,16 @@
 
     {% for log in logs %}
         <div class="content">
-            <h2> 
+            <h3> 
+                {{ log.created_on }} - 
                 {% if log.initiator %}
-                    {{ log.initiator }}: 
+                    {{ log.initiator }}
                 {% else %}
-                    {% trans "SYSTEM" %}:
+                    {% trans "SYSTEM" %}
                 {% endif %}
+                -
                 {% trans log.action %}
-            </h2>
+            </h3>
             {{ log.note }}
         </div>
     {% endfor %}

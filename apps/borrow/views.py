@@ -201,13 +201,13 @@ def respond(request, team_link, borrow_id):
 def lender_cancel(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
-        form = forms.Cancel(request.POST, borrow=borrow, account=account)
+        form = forms.Cancel(request.POST)
         if form.is_valid():
             control.cancel(account, borrow, form.cleaned_data["note"].strip())
             url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
-        form = forms.Cancel(borrow=borrow, account=account)
+        form = forms.Cancel()
     args = { 
         "form" : form, "form_title" : _("BORROW_CANCEL"), 
         "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
@@ -220,7 +220,7 @@ def lender_cancel(request, team_link, borrow_id):
 def lender_rate(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
-        form = forms.Rate(request.POST, borrow=borrow, account=account)
+        form = forms.Rate(request.POST)
         if form.is_valid():
             rating = form.cleaned_data["rating"]
             note = form.cleaned_data["note"].strip()
@@ -228,7 +228,7 @@ def lender_rate(request, team_link, borrow_id):
             url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
-        form = forms.Rate(borrow=borrow, account=account)
+        form = forms.Rate()
     form_title = u"%s %s" % (_("RATE"), borrow)
     args = { 
         "form" : form, "form_title" : form_title, 
@@ -245,14 +245,14 @@ def borrower_rate(request, borrow_id):
     if account != borrow.borrower:
         raise PermissionDenied
     if request.method == "POST":
-        form = forms.Rate(request.POST, borrow=borrow, account=account)
+        form = forms.Rate(request.POST)
         if form.is_valid():
             rating = form.cleaned_data["rating"]
             note = form.cleaned_data["note"].strip()
             control.borrower_rate(account, borrow, rating, note)
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.Rate(borrow=borrow, account=account)
+        form = forms.Rate()
     form_title = u"%s %s" % (_("RATE"), borrow)
     args = { 
         "form" : form, "form_title" : form_title, 
@@ -274,18 +274,46 @@ def borrower_view(request, borrow_id):
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def comment(request, **kwargs):
+    borrow_id = kwargs["borrow_id"]
+    team_link = kwargs.get("team_link")
+    account = get_object_or_404(Account, user=request.user)
+    team = team_link and team_control.get_or_404(team_link) or None
+    borrow = get_object_or_404(Borrow, id=borrow_id)
+    url_prefix = team and "/%s" % team.link or ""
+    url = "%s/borrow/view/%s" % (url_prefix, borrow_id)
+    if request.method == "POST":
+        form = forms.Comment(request.POST)
+        if form.is_valid():
+            control.comment(account, borrow, form.cleaned_data["note"].strip()
+            )
+            return HttpResponseRedirect(url)
+    else:
+        form = forms.Comment()
+
+    args = { 
+        "form" : form, "form_title" : _("BORROW_COMMENT"), 
+        "cancel_url" : url
+    }
+    if team:
+        return rtr(team, "borrows", request, "common/form.html", args)
+    return render_response(request, "common/form.html", args)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def borrower_cancel(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
     if account != borrow.borrower:
         raise PermissionDenied
     if request.method == "POST":
-        form = forms.Cancel(request.POST, borrow=borrow, account=account)
+        form = forms.Cancel(request.POST)
         if form.is_valid():
             control.cancel(account, borrow, form.cleaned_data["note"].strip())
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.Cancel(borrow=borrow, account=account)
+        form = forms.Cancel()
     args = { 
         "form" : form, "form_title" : _("BORROW_CANCEL"), 
         "cancel_url" : "/borrow/view/%s" % borrow_id

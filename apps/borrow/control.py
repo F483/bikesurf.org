@@ -13,34 +13,6 @@ from apps.borrow.models import Log
 from apps.team import control as team_control
 
 
-def to_list_data(borrows, team=None):
-    base_url = team and ("/%s" % team.link) or ""
-    def borrow2entrie(borrow):
-        return {
-            "labels" : [ 
-                borrow.borrower, borrow.bike.name, borrow.start, borrow.finish, 
-                borrow.src.street, borrow.dest.street, borrow.state
-            ], "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
-        }
-    return { 
-        "columns" : [
-            _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("DATE_TO"),
-            _("STATION_FROM"), _("STATION_TO"), _("BORROW_STATE"),
-        ], 
-        "entries" : map(borrow2entrie, borrows) 
-    }
-
-
-def active_borrows_in_timeframe(bike, start, finish, exclude=None):
-    """ Returns borrows in the given timeframe. finish is inclusive! """
-    qs = Borrow.objects.filter(bike=bike, active=True)
-    qs = qs.exclude(start__gt=finish)
-    qs = qs.exclude(finish__lt=start)
-    if exclude:
-        qs = qs.exclude(id=exclude.id)
-    return list(qs)
-
-
 def _remove_from_borrow_chain(borrow):
     """ Pass the borrow being removed from the chain.
         Ensure that borrow chain src and dest stations always match. 
@@ -58,7 +30,7 @@ def _remove_from_borrow_chain(borrow):
          log(None, next_borrow, "", "EDIT")
 
 
-def _insert_into_borrow_chain(borrow, bike, note=""):
+def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
     """ Pass the borrow being inserted into the chain.
         Ensure that borrow chain src and dest stations always match. 
 
@@ -76,7 +48,36 @@ def _insert_into_borrow_chain(borrow, bike, note=""):
         borrow.dest = borrow.src
     borrow.bike = bike
     borrow.save()
-    log(None, borrow, note, "EDIT")
+    log(account, borrow, note, "EDIT")
+
+
+def log(account, borrow, note, action):
+    l = Log()
+    l.borrow = borrow
+    l.initiator = account
+    l.action = action
+    l.note = note
+    l.save()
+    return l
+
+
+def can_comment(account, borrow):
+    if account == borrow.borrower:
+        return True
+    if team_control.is_member(account, borrow.team):
+        return True
+    return False
+
+
+def comment(account, borrow, note):
+    if not can_comment(account, borrow):
+        raise PermissionDenied
+    log(account, borrow, note, "COMMENT")
+
+
+##########
+# QUERRY #
+##########
 
 
 def get_next_borrow(bike, finish):
@@ -91,19 +92,35 @@ def get_prev_borrow(bike, start):
     return borrows and borrows[0] or None                  
 
 
-def log(account, borrow, note, action):
-    l = Log()
-    l.borrow = borrow
-    l.initiator = account
-    l.action = action
-    l.note = note
-    l.save()
-    return l
+def active_borrows_in_timeframe(bike, start, finish, exclude=None):
+    """ Returns borrows in the given timeframe. finish is inclusive! """
+    qs = Borrow.objects.filter(bike=bike, active=True)
+    qs = qs.exclude(start__gt=finish)
+    qs = qs.exclude(finish__lt=start)
+    if exclude:
+        qs = qs.exclude(id=exclude.id)
+    return list(qs)
 
 
-#########
-# LISTS #
-#########
+def to_list_data(borrows, team=None):
+    base_url = team and ("/%s" % team.link) or ""
+    def borrow2entrie(borrow):
+        src = borrow.src and borrow.src.street or None
+        dest = borrow.dest and borrow.dest.street or None
+        return {
+            "labels" : [ 
+                borrow.borrower, borrow.bike.name, borrow.start, borrow.finish, 
+                src, dest, borrow.state
+            ], 
+            "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+        }
+    return { 
+        "columns" : [
+            _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("DATE_TO"),
+            _("STATION_FROM"), _("STATION_TO"), _("BORROW_STATE"),
+        ], 
+        "entries" : map(borrow2entrie, borrows) 
+    }
 
 
 def incoming_list(account):
@@ -397,6 +414,6 @@ def lender_edit_bike(account, borrow, bike, note):
         return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_bike_is_allowed(account, borrow, bike):
         raise PermissionDenied
-    _insert_into_borrow_chain(borrow, bike, note)
+    _insert_into_borrow_chain(borrow, bike, account=account, note=note)
 
 
