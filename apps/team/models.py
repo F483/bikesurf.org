@@ -76,7 +76,7 @@ class JoinRequest(Model):
 
     class Meta:                                                                                                 
                                                                                                                 
-        ordering = ['-status', 'updated_on']
+        ordering = ['-status', 'created_on']
 
 
 class RemoveRequest(Model):
@@ -101,6 +101,6 @@ class RemoveRequest(Model):
 
     class Meta:
 
-        ordering = ['-status', 'updated_on']
+        ordering = ['-status', 'created_on']
 
 

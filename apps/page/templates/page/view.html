@@ -5,8 +5,10 @@
 {% load common_tags %}
 
 {% block content %}
+    <div class="content_title">
+        {{ page.name }}
+    </div>
     <div class="content">
-        <h2>{{ page.name }}</h2>
         {{ page.content|escape_html|safe }}
 
         {% if_member current_account page.team %}
