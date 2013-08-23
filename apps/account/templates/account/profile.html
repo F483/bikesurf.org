@@ -16,9 +16,6 @@
             {% trans "MOBILE" %}: {{ current_account.mobile }} </br>
             {% trans "SOURCE" %}: {{ current_account.source }} </br>
             {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
-        </p>
-
-        <p>
             {% if current_account.passport %}
                 {% trans "PASSPORT" %}: 
                 <a href="{{ current_account.passport.url }}">
@@ -30,13 +27,14 @@
         </p>
 
 
-        <p> {% trans "LINKS" %} </p>
-
-        <p>
-            {% for link in links %}
-                {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
-            {% endfor %}
-        </p>
+        {% if links %}
+            <h3> {% trans "LINKS" %} </h3>
+            <p>
+                {% for link in links %}
+                    {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
+                {% endfor %}
+            </p>
+        {% endif %}
 
         <div class="actions">
             {% draw_edit "/account/edit" %}

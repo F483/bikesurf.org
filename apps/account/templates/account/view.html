@@ -4,9 +4,10 @@
 {% load link_tags %}
 
 {% block content %}
+    <div class="content_title">
+        {{ view_account }}
+    </div>
     <div class="content">
-
-        <h2> {{ view_account }} </h2>
 
         <p>
             {% trans "FIRST_NAME" %}: {{ view_account.user.first_name }} </br>
@@ -14,15 +15,24 @@
             {% trans "MOBILE" %}: {{ view_account.mobile }} </br>
             {% trans "SOURCE" %}: {{ view_account.source }} </br>
             {% trans "DESCRIPTION" %}: {{ view_account.description }} </br>
+            {% if current_account.passport %}
+                {% trans "PASSPORT" %}: 
+                <a href="{{ current_account.passport.url }}">
+                    {% trans "IMAGE" %}
+                </a>
+            {% else %}
+                {% trans "PASSPORT" %}: {% trans "NONE" %}
+            {% endif %}
         </p>
 
-        <p> {% trans "LINKS" %} </p>
-
-        <p>
-            {% for link in links %}
-                {% link_draw link %} </br>
-            {% endfor %}
-        </p>
+        {% if links %}
+            <h3> {% trans "LINKS" %} </h3>
+            <p>
+                {% for link in links %}
+                    {% link_draw link %} </br>
+                {% endfor %}
+            </p>
+        {% endif %}
 
     </div>
 {% endblock %}
