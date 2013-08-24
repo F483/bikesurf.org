@@ -1,11 +1,11 @@
 {% load team_tags %}
 
-<div id="tabs" class="content">
+<div id="tabs">
     {% for link, label, selected in tabs %}
         {% if selected %}
-            <a id="selected" href="{{ link }}">{{ label }}</a>
+            <a class="tab_selected" href="{{ link }}">{{ label }}</a>
         {% else %}
-            <a href="{{ link }}">{{ label }}</a>
+            <a class="tab" href="{{ link }}">{{ label }}</a>
         {% endif %}
     {% endfor %}
 </div>

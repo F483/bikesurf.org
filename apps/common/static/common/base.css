@@ -165,6 +165,50 @@ a:hover {
     font-weight: bold;
 }
 
+#tabs {
+    margin-right: 5px;
+    margin-left: 10px;
+    padding-left: 5px;
+}
+
+.tab_selected {
+    padding: 0px 4px 0px 4px;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: rgb(215,223,35);
+    color: #000000;
+
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    cursor: pointer;
+}
+
+.tab_selected:hover {
+    background-color: rgb(215,223,35);
+    color: #000000;
+}
+
+.tab {
+    padding: 0px 4px 0px 4px;
+    font-size: 15px;
+    font-weight: bold;
+
+    background: #000000;
+    color: #FFFFFF;
+
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background-color: rgb(215,223,35);
+    color: #000000;
+}
+
 
 .content_title {
     text-align: left;
@@ -197,7 +241,7 @@ a:hover {
 }
 
 .actions {
-    text-align: right;
+    text-align: left;
 }
 
 .action {

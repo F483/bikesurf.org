@@ -60,12 +60,12 @@ def borrower_list(request):
 
 @login_required
 @require_http_methods(["GET"])
-def incoming_list(request):
+def arrivals(request):
     today = datetime.datetime.now().date()
     account = get_object_or_404(Account, user=request.user)
-    borrows = control.incoming_list(account)
+    borrows = control.arrivals(account)
     args = { 
-        "page_title" : _("INCOMING_BORROWS"),
+        "page_title" : _("ARRIVALS"),
         "list_data" : control.to_list_data(borrows)
     }
     return render_response(request, "common/list.html", args)
@@ -73,12 +73,12 @@ def incoming_list(request):
 
 @login_required
 @require_http_methods(["GET"])
-def outgoing_list(request):
+def departures(request):
     today = datetime.datetime.now().date()
     account = get_object_or_404(Account, user=request.user)
-    borrows = control.outgoing_list(account)
+    borrows = control.departures(account)
     args = {
-        "page_title" : _("OUTGOING_BORROWS"),
+        "page_title" : _("DEPARTURES"),
         "list_data" : control.to_list_data(borrows)
     }
     return render_response(request, "common/list.html", args)

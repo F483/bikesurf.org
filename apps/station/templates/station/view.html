@@ -3,8 +3,17 @@
 {% load common_tags %}
 
 {% block content %}
+    <div class="content_title"> 
+        {{ station.postalcode }} 
+        {{ station.city }} -
+        {{ station.street }} 
+    </div>
     <div class="content">
-        <h2> {{ station }} </h2>
+
+        {% trans "POSTALCODE" %}: {{ station.postalcode }} <br />
+        {% trans "CITY" %}: {{ station.city }} <br />
+        {% trans "STREET" %}: {{ station.street }} <br />
+        {% trans "RESPONSABLE" %}: {{ station.responsable }} <br />
         {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
 
         <div class="actions">

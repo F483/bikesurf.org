@@ -16,7 +16,7 @@
         {{ page_title }}
     </div>
     <div class="content">
-        {% if list_data %}
+        {% if list_data.entries %}
             <table class="list">
                 <tr>
                     {% for label in list_data.columns %}
@@ -29,7 +29,11 @@
                         {% for label in entrie.labels %}
                             <td>
                                 <a href="{{ entrie.url }}">
-                                    {% draw_list_label label %}
+                                    {% if label %}
+                                        {% draw_list_label label %}
+                                    {% else %}
+                                        -
+                                    {% endif %}
                                 </a>
                             </td>
                         {% endfor %}

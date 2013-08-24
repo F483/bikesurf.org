@@ -10,15 +10,15 @@
         <a href="/borrows">{% trans "YOUR_BORROWS" %}({{ borrow_count }})</a>
     {% endif %}
 
-    {% if incoming_count %}
-        <a href="/borrows/incoming">
-            {% trans "INCOMING_BORROWS" %}({{ incoming_count }})
+    {% if arrival_count %}
+        <a href="/borrow/arrivals">
+            {% trans "ARRIVALS" %}({{ arrival_count }})
         </a>
     {% endif %}
 
-    {% if outgoing_count %}
-        <a href="/borrows/outgoing">
-            {% trans "OUTGOING_BORROWS" %}({{ outgoing_count }})
+    {% if departure_count %}
+        <a href="/borrow/departures">
+            {% trans "DEPARTURES" %}({{ departure_count }})
         </a>
     {% endif %}
 

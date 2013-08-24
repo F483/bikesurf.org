@@ -12,8 +12,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.forms import Form
 
+from apps.common.shortcuts import chunks
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
+from apps.borrow import control as borrow_control
 from apps.team import control as team_control
 from apps.team.models import Team
 from apps.team.utils import render_team_response as rtr
@@ -26,23 +28,19 @@ from apps.station import control
 _VIEW = {
     "OVERVIEW" : {
         "template" : "station/view.html",
-        "description_title" : "",
-        "description_content" : "",
+        "page_title" : "",
     },
     "BIKES" :    {
         "template" : "bike/list.html",
-        "description_title" : _("STATION_BIKES_DESCRIPTION_TITLE"),
-        "description_content" : _("STATION_BIKES_DESCRIPTION_CONTENT"),
+        "page_title" : _("STATION_BIKES"),
     },
-    "OUTGOING" : {
-        "template" : "borrow/list.html",
-        "description_title" : _("STATION_OUTGOING_DESCRIPTION_TITLE"),
-        "description_content" : _("STATION_OUTGOING_DESCRIPTION_CONTENT"),
+    "ARRIVALS" : {
+        "template" : "common/list.html",
+        "page_title" : _("ARRIVALS"),
     },
-    "INCOMING" : {
-        "template" : "borrow/list.html",
-        "description_title" : _("STATION_INCOMING_DESCRIPTION_TITLE"),
-        "description_content" : _("STATION_INCOMING_DESCRIPTION_CONTENT"),
+    "DEPARTURES" : {
+        "template" : "common/list.html",
+        "page_title" : _("DEPARTURES"),
     },
 }
 
@@ -55,8 +53,8 @@ def _tabs(station, team, selected):
     menu = [
         (base_link,              _("OVERVIEW"), selected == "OVERVIEW"),
         (base_link + "/bikes",   _("BIKES"),    selected == "BIKES"),
-        (base_link + "/outgoing", _("OUTGOING"),  selected == "OUTGOING"),
-        (base_link + "/incoming", _("INCOMING"),  selected == "INCOMING"),
+        (base_link + "/arrivals", _("ARRIVALS"),  selected == "ARRIVALS"),
+        (base_link + "/departures", _("DEPARTURES"),  selected == "DEPARTURES"),
     ]
     return menu
 
@@ -68,12 +66,11 @@ def view(request, **kwargs):
     station_id = kwargs["station_id"]
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
-    team = team_link and team_control.get_or_404(team_link)
+    team = team_link and team_control.get_or_404(team_link) or None
     if team:
         assert_member(account, team)
         station = get_object_or_404(Station, id=station_id, team=team) 
     else:
-        team = None
         station = get_object_or_404(Station, id=station_id, responsable=account)
 
     # load tab data
@@ -82,17 +79,16 @@ def view(request, **kwargs):
     borrows = []
     if tab == "BIKES":
         bikes = station.bikes.all()
-    elif tab == "OUTGOING":
-        borrows = station.borrows_outgoing.filter(active=True, 
-                                                  start__gte=today)
-    elif tab == "INCOMING":
-        borrows = station.borrows_incoming.filter(active=True, 
-                                                  finish__gte=today)
+    elif tab == "DEPARTURES":
+        borrows = station.departures.filter(active=True, start__gte=today)
+    elif tab == "ARRIVALS":
+        borrows = station.arrivals.filter(active=True, finish__gte=today)
 
+    list_data = borrow_control.to_list_data(borrows, team)
     template_args = { 
-        "station" : station, "bikes" : bikes, "borrows" : borrows,
-        "description_title" : _VIEW[tab]["description_title"],
-        "description_content" : _VIEW[tab]["description_content"],
+        "bike_pairs" : list(chunks(bikes, 2)),
+        "station" : station, "list_data" : list_data,
+        "page_title" : _VIEW[tab]["page_title"],
         "tabs" : _tabs(station, team, tab),
     }
     template = _VIEW[tab]["template"]
@@ -192,7 +188,7 @@ def edit(request, team_link, station_id):
     else:
         form = forms.Edit(station=station, account=account)
     args = { 
-        "form" : form, "form_title" : _("ADD_STATION"),
+        "form" : form, "form_title" : _("EDIT_STATION"),
         "cancel_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
     return rtr(team, "stations", request, "common/form.html", args)

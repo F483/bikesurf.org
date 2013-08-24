@@ -47,8 +47,8 @@ def render_response(request, template, args):
             "borrow_count" : len(borrows),
             "current_account_teams" : team_control.get_teams(account),
             "station_count" : len(Station.objects.filter(responsable=account)),
-            "outgoing_count" : len(borrow_control.outgoing_list(account)),
-            "incoming_count" : len(borrow_control.incoming_list(account)),
+            "departure_count" : len(borrow_control.departures(account)),
+            "arrival_count" : len(borrow_control.arrivals(account)),
         })
     args.update(csrf(request))
     # TODO check for mobile browser and use mobile template if it exists
