@@ -4,6 +4,7 @@
 
 
 import datetime
+from random import shuffle
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -126,6 +127,8 @@ def listing(request, team_link):
     else:
         form = forms.FilterListing()
         bikes = _get_listing_bikes(request, team, None)
+
+    shuffle(bikes) # to avoid a borrowing bias towards the first listed bikes
 
     args = { 
         "page_title" : _("BIKES"), "filters" : form,
