@@ -3,6 +3,8 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+import datetime
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
@@ -44,20 +46,41 @@ def _tabs(bike, team, selected, authorized):
     return [overview]
 
 
-def _get_bike_filters(request, form, team):
-    filters = {}
+def _get_listing_bikes(request, team, form):
+    qs = team.bikes.all()
+
+    # hide reserve and inactive for non team members and non logged in users
     logged_in = request.user.is_authenticated()
     account = logged_in and get_object_or_404(Account, user=request.user) or 0
     if not logged_in or not team_control.is_member(account, team):
-        filters.update({ "reserve" : False, "active" : True })
+        qs = qs.filter(reserve=False, active=True)
 
-    # filters 
-    #  date from and to
-    #  active (only members)
-    #  reserve (only members)
-    #  size (default all)
-    #  lights (default all)
-    return filters
+    if not form:
+        return list(qs)
+
+    # lights 
+    lights = form.cleaned_data["lights"]
+    if lights:
+        qs = qs.filter(lights=True)
+
+    # size
+    size = form.cleaned_data["size"]
+    if size:
+        qs = qs.filter(size=size)
+
+    # filter timeframe
+    start = form.cleaned_data["start"]
+    finish = form.cleaned_data["finish"]
+    if finish and not start:
+        today = datetime.datetime.now().date()
+        start = today + datetime.timedelta(days=1)
+    if start and not finish:
+        finish = start + datetime.timedelta(days=7)
+    if start and finish:
+        qs = qs.exclude(borrows__active=True, borrows__start__range=(start, finish))
+        qs = qs.exclude(borrows__active=True, borrows__finish__range=(start, finish))
+
+    return list(qs)
 
 
 @require_http_methods(["GET"])
@@ -90,13 +113,22 @@ def view(request, team_link, bike_id, tab):
     return rtr(team, "bikes", request, template, args)
 
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def listing(request, team_link):
     team = team_control.get_or_404(team_link)
-    filters = _get_bike_filters(request, None, team)
-    bikes = list(team.bikes.filter(**filters))
+
+    if request.method == "POST":
+        form = forms.FilterListing(request.POST)
+        if form.is_valid():
+            bikes = _get_listing_bikes(request, team, form)
+        else:
+            bikes = _get_listing_bikes(request, team, None)
+    else:
+        form = forms.FilterListing()
+        bikes = _get_listing_bikes(request, team, None)
+
     args = { 
-        "page_title" : _("BIKES"),
+        "page_title" : _("BIKES"), "filters" : form,
         "bike_pairs" : list(chunks(bikes, 2))
     }
     return rtr(team, "bikes", request, "bike/list.html", args)

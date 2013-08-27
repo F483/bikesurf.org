@@ -6,14 +6,7 @@
 
 {% block content %}
     <div class="content_title">
-        {% if_can_view_account current_account borrow.borrower %} 
-            <a href="/account/view/{{ borrow.borrower.user.username }}">
-                {{ borrow.borrower }}
-            </a>
-        {% else %}
-            {{ borrow.borrower }}
-        {% endif_can_view_account %}
-
+        {{ borrow.borrower }}
         {% trans "BORROWING" %} {{ borrow.bike }} 
         ({% trans borrow.state %})
     </div>
