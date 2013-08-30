@@ -1,3 +1,7 @@
+/**********/
+/* LAYOUT */
+/**********/
+
 /* INFO Essential CSS for the grid layout */
 
 /* NOTE IE7 and older explorers don't know anything about CSS-tables,
@@ -46,7 +50,7 @@ body>.base_wrapper {
 }
 
 body {
-    background-color: #D1EDF3;
+    background-color: #CDCDCD;
     font-family: helvetica, arial, sans-serif;
     font-size: 10pt;
     color: #000;
@@ -73,13 +77,12 @@ table td {
 }
 
 a {
-    color: #F47920;
     text-decoration: none;
+    color: #000000;
 }
 
 a:hover {
-    color: #FF9536;
-    text-shadow: #F47920 0px 0px 2px;
+    text-shadow: #000000 0px 0px 2px;
 }
 
 #site_background {
@@ -91,6 +94,15 @@ a:hover {
     color: #F47920;
     text-align: right;
     padding: 2px;
+}
+
+#base_statusbar a {
+    text-decoration: none;
+    color: rgb(215,223,35);
+}
+
+#base_statusbar a:hover {
+    text-shadow: rgb(215,223,35) 0px 0px 2px;
 }
 
 #base_header {
@@ -111,13 +123,7 @@ a:hover {
 #base_menu {
     width: 200px;
     min-width: 200px;
-    padding-left: 24px;
-}
-
-#base_separator {
-    width: 24px;
-    min-width: 24px;
-    background-image: url(/static/chain_link.png);
+    padding-top: 5px;
 }
 
 #base_content {
@@ -135,35 +141,59 @@ a:hover {
     float: left;
 }
 
-.menu {
-    font-size: 10pt;
-    padding: 10px;
-    border: 1px;
-    border-color: #000000;
-    text-align: right;
-    margin-bottom: 5px;
-    box-shadow: -5px 5px 5px #E0E0E0;
-}
 
-.menu a {
-    text-decoration: none;
+/*****************/
+/* PAGE ELEMENTS */
+/*****************/
+
+
+/***** NAVIGATION *****/
+
+
+.navigation_title {
+    text-align: left;
     text-transform: uppercase;
-    color: #000;
+    font-weight: bold;
+    font-size: 16pt;
+    background-color: rgb(208,236,242);
+    background-image: url(/static/common/navigation_title_background.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    margin-left: 10px;
+    height: 25px;
+    padding-left: 5px;
+    -moz-box-shadow:    -5px 5px 0px #AAA;
+    -webkit-box-shadow: -5px 5px 0px #AAA;
+    box-shadow:         -5px 5px 0px #AAA;
 }
 
-.menu a:hover {
+.navigation {
+    padding: 5px;
+    margin-left: 25px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    text-align: left;
+    -moz-box-shadow:    -5px 5px 0px #AAA;
+    -webkit-box-shadow: -5px 5px 0px #AAA;
+    box-shadow:         -5px 5px 0px #AAA;
 }
 
-.menu ul {
+.navigation ul {
     list-style: none outside none;
     margin: 0;
     padding: 0;
 }
 
-.menu #selected {
+.navigation #selected {
     color: #000;
     font-weight: bold;
 }
+
+
+/***** TABS *****/
+
 
 #tabs {
     margin-right: 5px;
@@ -210,6 +240,9 @@ a:hover {
 }
 
 
+/***** CONTENT *****/
+
+
 .content_title {
     text-align: left;
     text-transform: uppercase;
@@ -223,9 +256,9 @@ a:hover {
     margin-left: 10px;
     height: 25px;
     padding-left: 5px;
-    -moz-box-shadow:    -5px 5px 0px #CCC;
-    -webkit-box-shadow: -5px 5px 0px #CCC;
-    box-shadow:         -5px 5px 0px #CCC;
+    -moz-box-shadow:    -5px 5px 0px #AAA;
+    -webkit-box-shadow: -5px 5px 0px #AAA;
+    box-shadow:         -5px 5px 0px #AAA;
 }
 
 .content {
@@ -235,10 +268,14 @@ a:hover {
     margin-bottom: 10px;
     background-color: #FFFFFF;
     text-align: left;
-    -moz-box-shadow:    -5px 5px 0px #CCC;
-    -webkit-box-shadow: -5px 5px 0px #CCC;
-    box-shadow:         -5px 5px 0px #CCC;
+    -moz-box-shadow:    -5px 5px 0px #AAA;
+    -webkit-box-shadow: -5px 5px 0px #AAA;
+    box-shadow:         -5px 5px 0px #AAA;
 }
+
+
+/***** ACTIONS *****/
+
 
 .actions {
     text-align: left;

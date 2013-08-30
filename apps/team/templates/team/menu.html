@@ -3,7 +3,11 @@
 {% load team_tags %}
 {% load link_tags %}
 
-<div class="menu"> 
+
+<div class="navigation_title">
+    {{ current_team.name }} 
+</div>
+<div class="navigation"> 
     <ul>
         {% for link, label, selected in team_menu_public %}
             <li>
@@ -16,21 +20,14 @@
                 {% endif %}
             </li>
         {% endfor %}
-    </ul>
-</div>
-
-<div class="menu"> 
-    <h2>{% trans "TEAM_INFO" %}</h2> 
-    <ul>
-        <li>
-            {% trans "COUNTRY" %}: {{ current_team.country.name }}
-        </li>
 
         {% for link in current_team_links %}
             <li>
                 {% link_draw link %} 
                 {% if_member current_account current_team %}
-                    {% draw_delete "/" current_team.link "/link/delete/" link.id %}
+                    <a href="/{{ current_team.link }}/link/delete/{{ link.id }}">
+                        <img src="/static/famfamfam/delete.png" alt="DELETE">
+                    </a>
                 {% endif_member %}
             </li>
         {% endfor %}
@@ -39,14 +36,14 @@
 
     {% if_can_join current_account current_team %}
         <div class="actions">
-            <a href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
+            <a class="action" href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
         </div>
     {% endif_can_join %}
 </div>
 
 {% if_member current_account current_team %}
-    <div class="menu"> 
-        <h2>{% trans "TEAM_INTERN" %}</h2>
+    <div class="navigation_title">{% trans "TEAM" %}</div> 
+    <div class="navigation"> 
         <ul>
             {% for link, label, selected in team_menu_intern %}
                 <li>
@@ -61,11 +58,8 @@
             {% endfor %}
         </ul>
     </div>
-{% endif_member %}
-
-{% if_member current_account current_team %}
-    <div class="menu"> 
-        <h2>{% trans "TEAM_ACTIONS" %}</h2>
+    <div class="navigation_title">{% trans "ACTIONS" %}</div> 
+    <div class="navigation"> 
         <ul>
             <li>
                 {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}
