@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-05 06:37-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: control.py:119 models.py:84 templates/borrow/view.html:14
+msgid "BORROWER"
+msgstr ""
+
+#: control.py:119 forms.py:121 forms.py:147 templates/borrow/view.html:24
+msgid "BIKE"
+msgstr ""
+
+#: control.py:119 templates/borrow/view.html:25
+msgid "DATE_FROM"
+msgstr ""
+
+#: control.py:119 templates/borrow/view.html:26
+msgid "DATE_TO"
+msgstr ""
+
+#: control.py:120 templates/borrow/view.html:29
+msgid "STATION_FROM"
+msgstr ""
+
+#: control.py:120 templates/borrow/view.html:30
+msgid "STATION_TO"
+msgstr ""
+
+#: control.py:120
+msgid "BORROW_STATE"
+msgstr ""
+
+#: forms.py:29 models.py:20
+msgid "ACCEPTED"
+msgstr ""
+
+#: forms.py:30 models.py:19
+msgid "MEETUP"
+msgstr ""
+
+#: forms.py:31 models.py:21
+msgid "REJECTED"
+msgstr ""
+
+#: forms.py:38
+msgid "ERROR_START_NOT_IN_FUTURE"
+msgstr ""
+
+#: forms.py:40
+msgid "ERROR_FINISH_BEFORE_START"
+msgstr ""
+
+#: forms.py:42 forms.py:73 forms.py:164
+msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
+msgstr ""
+
+#: forms.py:47
+msgid "RESPONSE"
+msgstr ""
+
+#: forms.py:48 forms.py:81 forms.py:102 forms.py:107 forms.py:112 forms.py:123
+#: forms.py:149 forms.py:174
+msgid "NOTE"
+msgstr ""
+
+#: forms.py:63
+msgid "ERROR_TO_LATE_TO_ACCEPT"
+msgstr ""
+
+#: forms.py:65
+msgid "ERROR_BIKE_NOT_ACTIVE"
+msgstr ""
+
+#: forms.py:67
+msgid "ERROR_IS_RESERVE_BIKE"
+msgstr ""
+
+#: forms.py:69
+msgid "ERROR_BIKE_STATION_UNKNOWN"
+msgstr ""
+
+#: forms.py:71
+msgid "ERROR_BIKE_STATION_INACTIVE"
+msgstr ""
+
+#: forms.py:79 forms.py:118
+msgid "START"
+msgstr ""
+
+#: forms.py:80 forms.py:119
+msgid "FINISH"
+msgstr ""
+
+#: forms.py:171
+msgid "DESTINATION_STATION"
+msgstr ""
+
+#: models.py:18
+msgid "REQUEST"
+msgstr ""
+
+#: models.py:22
+msgid "CANCELED"
+msgstr ""
+
+#: models.py:23 models.py:61
+msgid "FINISHED"
+msgstr ""
+
+#: models.py:56
+msgid "LENDER_RATE"
+msgstr ""
+
+#: models.py:57
+msgid "BORROWER_RATE"
+msgstr ""
+
+#: models.py:58
+msgid "CREATE"
+msgstr ""
+
+#: models.py:59
+msgid "RESPOND"
+msgstr ""
+
+#: models.py:60
+msgid "CANCEL"
+msgstr ""
+
+#: models.py:62
+msgid "EDIT"
+msgstr ""
+
+#: models.py:85
+msgid "LENDER"
+msgstr ""
+
+#: models.py:90
+msgid "THUMBS_UP"
+msgstr ""
+
+#: models.py:91
+msgid "NEUTRAL"
+msgstr ""
+
+#: models.py:92
+msgid "THUMBS_DOWN"
+msgstr ""
+
+#: views.py:43
+msgid "TEAM_BORROWS"
+msgstr ""
+
+#: views.py:55
+msgid "YOUR_BORROWS"
+msgstr ""
+
+#: views.py:68
+msgid "ARRIVALS"
+msgstr ""
+
+#: views.py:81
+msgid "DEPARTURES"
+msgstr ""
+
+#: views.py:104
+msgid "BORROW_CREATE"
+msgstr ""
+
+#: views.py:129 views.py:151 views.py:173
+msgid "BORROW_EDIT"
+msgstr ""
+
+#: views.py:193
+msgid "BORROW_RESPOND"
+msgstr ""
+
+#: views.py:212 views.py:318
+msgid "BORROW_CANCEL"
+msgstr ""
+
+#: views.py:232 views.py:256
+msgid "RATE"
+msgstr ""
+
+#: views.py:295
+msgid "BORROW_COMMENT"
+msgstr ""
+
+#: templates/borrow/view.html:10
+msgid "BORROWING"
+msgstr ""
+
+#: templates/borrow/view.html:51
+msgid "SYSTEM"
+msgstr ""

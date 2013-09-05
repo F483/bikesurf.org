@@ -126,13 +126,13 @@ def to_list_data(borrows, team=None):
 def arrivals(account):
     today = datetime.datetime.now().date()
     return Borrow.objects.filter(active=True, finish__gte=today, 
-                                 dest__responsable=account)
+                                 dest__responsible=account)
 
 
 def departures(account):
     today = datetime.datetime.now().date()
     return Borrow.objects.filter(active=True, start__gte=today, 
-                                 src__responsable=account)
+                                 src__responsible=account)
 
 
 ##############

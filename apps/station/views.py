@@ -71,7 +71,7 @@ def view(request, **kwargs):
         assert_member(account, team)
         station = get_object_or_404(Station, id=station_id, team=team) 
     else:
-        station = get_object_or_404(Station, id=station_id, responsable=account)
+        station = get_object_or_404(Station, id=station_id, responsible=account)
 
     # load tab data
     today = datetime.datetime.now().date()
@@ -103,7 +103,7 @@ def listing(request, **kwargs):
     team_link = kwargs.get("team_link")
     account = get_object_or_404(Account, user=request.user)
     columns = [
-        _("RESPONSABLE"), _("POSTALCODE"), _("CITY"), _("STREET"), _("ACTIVE"),
+        _("RESPONSIBLE"), _("POSTALCODE"), _("CITY"), _("STREET"), _("ACTIVE"),
     ]
     if team_link:
         team = team_control.get_or_404(team_link)
@@ -111,7 +111,7 @@ def listing(request, **kwargs):
         def station2entrie(s):
             return {
                 "labels" : [ 
-                    s.responsable, s.postalcode, s.city, s.street, s.active
+                    s.responsible, s.postalcode, s.city, s.street, s.active
                 ], "url" : "/%s/station/view/%s" % (team.link, s.id)
             }
         stations = Station.objects.filter(team=team)
@@ -125,10 +125,10 @@ def listing(request, **kwargs):
         def station2entrie(s):
             return {
                 "labels" : [ 
-                    s.responsable, s.postalcode, s.city, s.street, s.active
+                    s.responsible, s.postalcode, s.city, s.street, s.active
                 ], "url" : "/station/view/%s" % s.id
             }
-        stations = Station.objects.filter(responsable=account)
+        stations = Station.objects.filter(responsible=account)
         entries = map(station2entrie, stations)
         args = { 
             "page_title" : _("STATIONS"),
@@ -148,7 +148,7 @@ def create(request, team_link):
         if form.is_valid():
             station = control.create(
                     account, team,
-                    form.cleaned_data["responsable"],
+                    form.cleaned_data["responsible"],
                     form.cleaned_data["active"],
                     form.cleaned_data["street"].strip(),
                     form.cleaned_data["city"].strip(),
@@ -177,7 +177,7 @@ def edit(request, team_link, station_id):
         if form.is_valid():
             station = control.edit( 
                     account, station,
-                    form.cleaned_data["responsable"],
+                    form.cleaned_data["responsible"],
                     form.cleaned_data["active"],
                     form.cleaned_data["street"].strip(),
                     form.cleaned_data["city"].strip(),

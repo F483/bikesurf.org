@@ -175,7 +175,7 @@ LANGUAGE_CODE = 'en-us'
 
 _ = lambda s : s
 LANGUAGES = (
-    ('de', _("German")),
+#    ('de', _("German")),
     ('en', _("English")),
 #    ('fr', _("French")),
 #    ('es', _("Spanish")),

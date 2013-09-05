@@ -33,13 +33,13 @@ def can_deactivate(account, station):
     return can_edit(account, station) and not in_use(station)
 
 
-def create( account, team, responsable, 
+def create( account, team, responsible, 
             active, street, city, postalcode ):
     station = Station()
     station.created_by = account
     station.updated_by = account
     station.team = team
-    station.responsable = responsable
+    station.responsible = responsible
     station.active = active
     station.street = street
     station.city = city
@@ -48,12 +48,12 @@ def create( account, team, responsable,
     return station
 
 
-def edit( account, station, responsable, 
+def edit( account, station, responsible, 
           active, street, city, postalcode ):
     if not active and not can_deactivate(account, station):
         raise PermissionDenied
     station.updated_by = account
-    station.responsable = responsable
+    station.responsible = responsible
     station.active = active
     station.street = street
     station.city = city

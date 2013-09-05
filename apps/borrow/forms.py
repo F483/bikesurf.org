@@ -44,7 +44,7 @@ def _validate_borrow_timeframe(bike, start, finish):
 
 class Respond(Form):
     
-    response = ChoiceField(choices=RESPONSE_CHOICES, label=_('RESPONES'))
+    response = ChoiceField(choices=RESPONSE_CHOICES, label=_('RESPONSE'))
     note = CharField(label=_("NOTE"), widget=Textarea)
 
     def __init__(self, *args, **kwargs):

@@ -19,7 +19,7 @@ def validate_station_active(station):
 
 class Create(forms.Form):
 
-    responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
+    responsible = forms.ModelChoiceField(label=_("RESPONSIBLE"), queryset=None)
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
@@ -29,14 +29,14 @@ class Create(forms.Form):
         team = kwargs.pop("team")
         account = kwargs.pop("account")
         super(Create, self).__init__(*args, **kwargs)
-        self.fields["responsable"].queryset = team.members.all()
-        self.fields["responsable"].initial = account
+        self.fields["responsible"].queryset = team.members.all()
+        self.fields["responsible"].initial = account
         self.fields["city"].initial = team.name
 
 
 class Edit(forms.Form):
 
-    responsable = forms.ModelChoiceField(label=_("RESPONSABLE"), queryset=None)
+    responsible = forms.ModelChoiceField(label=_("RESPONSIBLE"), queryset=None)
     postalcode = forms.CharField(label=_('POSTALCODE'))
     city = forms.CharField(label=_('CITY'))
     street = forms.CharField(label=_('STREET'))
@@ -46,8 +46,8 @@ class Edit(forms.Form):
         self.station = kwargs.pop("station")
         self.account = kwargs.pop("account")
         super(Edit, self).__init__(*args, **kwargs)
-        self.fields["responsable"].queryset = self.station.team.members.all()
-        self.fields["responsable"].initial = self.station.responsable
+        self.fields["responsible"].queryset = self.station.team.members.all()
+        self.fields["responsible"].initial = self.station.responsible
         self.fields["postalcode"].initial = self.station.postalcode
         self.fields["city"].initial = self.station.city
         self.fields["street"].initial = self.station.street

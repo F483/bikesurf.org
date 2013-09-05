@@ -14,7 +14,7 @@
             {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
             {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
             {% trans "MOBILE" %}: {{ current_account.mobile }} </br>
-            {% trans "SOURCE" %}: {{ current_account.source }} </br>
+            {% trans "SOURCE" %}: {% trans current_account.source %} </br>
             {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
             {% if current_account.passport %}
                 {% trans "PASSPORT" %}: 

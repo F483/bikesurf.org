@@ -120,6 +120,15 @@ a:hover {
     padding: 2px;
 }
 
+#base_footer a {
+    text-decoration: none;
+    color: rgb(215,223,35);
+}
+
+#base_footer a:hover {
+    text-shadow: rgb(215,223,35) 0px 0px 2px;
+}
+
 #base_menu {
     width: 200px;
     min-width: 200px;

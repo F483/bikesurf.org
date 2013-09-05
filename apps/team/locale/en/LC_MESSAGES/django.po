@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-05 06:37-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:31
+msgid "ERROR_NAME_TO_SHORT"
+msgstr ""
+
+#: forms.py:33
+msgid "ERROR_NAME_RESERVED"
+msgstr ""
+
+#: forms.py:35 forms.py:37
+msgid "ERROR_NAME_USED"
+msgstr ""
+
+#: forms.py:42 forms.py:49
+msgid "LOGO"
+msgstr ""
+
+#: forms.py:47
+msgid "TEAM_NAME"
+msgstr ""
+
+#: forms.py:48
+msgid "COUNTRY"
+msgstr ""
+
+#: forms.py:50
+msgid "APPLICATION"
+msgstr ""
+
+#: forms.py:55
+msgid "JOIN_REQUEST_REASON"
+msgstr ""
+
+#: forms.py:60 forms.py:71 templates/team/join_request/list.html:14
+#: templates/team/remove_request/list.html:17
+msgid "RESPONSE"
+msgstr ""
+
+#: forms.py:61 forms.py:72
+msgid "STATUS"
+msgstr ""
+
+#: forms.py:66 templates/team/remove_request/list.html:14
+msgid "REASON"
+msgstr ""
+
+#: forms.py:77
+msgid "SITE"
+msgstr ""
+
+#: forms.py:78
+msgid "PROFILE"
+msgstr ""
+
+#: forms.py:90
+msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
+msgstr ""
+
+#: forms.py:92
+msgid "ERROR_BAD_PROFILE_FORMAT"
+msgstr ""
+
+#: forms.py:94
+msgid "ERROR_CANNOT_CREATE_LINK"
+msgstr ""
+
+#: forms.py:109
+msgid "ERROR_CANNOT_DELETE_LINK"
+msgstr ""
+
+#: utils.py:15
+msgid "BLOG"
+msgstr ""
+
+#: utils.py:16
+msgid "BIKES"
+msgstr ""
+
+#: utils.py:17 views.py:127
+msgid "MEMBERS"
+msgstr ""
+
+#: utils.py:18
+msgid "BORROWS"
+msgstr ""
+
+#: utils.py:19
+msgid "STATIONS"
+msgstr ""
+
+#: utils.py:20
+msgid "JOIN_REQUESTS"
+msgstr ""
+
+#: utils.py:21
+msgid "REMOVE_REQUESTS"
+msgstr ""
+
+#: views.py:40
+msgid "LINK_DELETE?"
+msgstr ""
+
+#: views.py:65
+msgid "ADD_LINK_SUBTITLE"
+msgstr ""
+
+#: views.py:85
+msgid "REPLACE_LOGO"
+msgstr ""
+
+#: views.py:107
+msgid "CREATE_TEAM"
+msgstr ""
+
+#: views.py:162 templates/team/menu.html:39
+msgid "JOIN_REQUEST"
+msgstr ""
+
+#: views.py:218
+msgid "REMOVE_REQUEST"
+msgstr ""
+
+#: templates/team/created.html:8
+msgid "TEAM_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/created.html:9
+msgid "TEAM_CREATED_DESCRIPTION"
+msgstr ""
+
+#: templates/team/menu.html:45
+msgid "TEAM"
+msgstr ""
+
+#: templates/team/menu.html:61
+msgid "ACTIONS"
+msgstr ""
+
+#: templates/team/join_request/created.html:6
+msgid "JOIN_REQUEST_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/join_request/created.html:7
+msgid "JOIN_REQUEST_CREATED_SUBTITLE"
+msgstr ""
+
+#: templates/team/join_request/list.html:26
+msgid "NO_JOIN_REQUESTS"
+msgstr ""
+
+#: templates/team/remove_request/created.html:6
+msgid "REMOVE_REQUESTED"
+msgstr ""
+
+#: templates/team/remove_request/created.html:7
+msgid "REMOVE_REQUEST_MADE"
+msgstr ""
+
+#: templates/team/remove_request/list.html:12
+msgid "REQUESTER"
+msgstr ""
+
+#: templates/team/remove_request/list.html:13
+msgid "CONCERNED"
+msgstr ""
+
+#: templates/team/remove_request/list.html:30
+msgid "NO_REMOVE_REQUESTS"
+msgstr ""

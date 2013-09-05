@@ -16,7 +16,7 @@ from django_countries import CountryField
 class Station(Model):
 
     team        = ForeignKey("team.Team", related_name="stations")
-    responsable = ForeignKey("account.Account")
+    responsible = ForeignKey("account.Account")
     active      = BooleanField(default=True)
     street      = CharField(max_length=1024)
     city        = CharField(max_length=1024)
@@ -33,7 +33,7 @@ class Station(Model):
             self.postalcode, 
             self.city, 
             self.street, 
-            self.responsable
+            self.responsible
         )
         return u"%s %s / %s (%s)" % args
 

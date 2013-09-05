@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-05 06:37-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:23
+msgid "ALL"
+msgstr ""
+
+#: forms.py:28
+msgid "BIKE_FILTER_SIZE"
+msgstr ""
+
+#: forms.py:29
+msgid "BIKE_FILTER_LIGHTS"
+msgstr ""
+
+#: forms.py:30
+msgid "BIKE_FILTER_START"
+msgstr ""
+
+#: forms.py:31
+msgid "BIKE_FILTER_FINISH"
+msgstr ""
+
+#: forms.py:39
+msgid "ERROR_START_NOT_IN_FUTURE"
+msgstr ""
+
+#: forms.py:41
+msgid "ERROR_FINISH_NOT_IN_FUTURE"
+msgstr ""
+
+#: forms.py:43
+msgid "ERROR_FINISH_BEFORE_START"
+msgstr ""
+
+#: forms.py:49 forms.py:68
+msgid "NAME"
+msgstr ""
+
+#: forms.py:50
+msgid "IMAGE"
+msgstr ""
+
+#: forms.py:51 forms.py:69 templates/bike/view.html:31
+msgid "ACTIVE"
+msgstr ""
+
+#: forms.py:52 forms.py:70 templates/bike/view.html:32
+msgid "RESERVE"
+msgstr ""
+
+#: forms.py:53 forms.py:71 templates/bike/list.html:38
+#: templates/bike/view.html:34
+msgid "STATION"
+msgstr ""
+
+#: forms.py:54 forms.py:72
+msgid "LOCKCODE"
+msgstr ""
+
+#: forms.py:55 forms.py:73 templates/bike/list.html:35
+#: templates/bike/view.html:29
+msgid "SIZE"
+msgstr ""
+
+#: forms.py:56 forms.py:74 templates/bike/list.html:36
+#: templates/bike/view.html:30
+msgid "LIGHTS"
+msgstr ""
+
+#: forms.py:57 forms.py:75 templates/bike/view.html:41
+msgid "DESCRIPTION"
+msgstr ""
+
+#: forms.py:98
+msgid "ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"
+msgstr ""
+
+#: forms.py:102
+msgid "ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"
+msgstr ""
+
+#: forms.py:117
+msgid "ERROR_CANNOT_DELETE_BIKE_IN_USE"
+msgstr ""
+
+#: models.py:16
+msgid "SMALL"
+msgstr ""
+
+#: models.py:17
+msgid "MEDIUM"
+msgstr ""
+
+#: models.py:18
+msgid "LARGE"
+msgstr ""
+
+#: views.py:36
+msgid "BIKE_BORROWS"
+msgstr ""
+
+#: views.py:43
+msgid "OVERVIEW"
+msgstr ""
+
+#: views.py:44
+msgid "BORROWS"
+msgstr ""
+
+#: views.py:134
+msgid "BIKES"
+msgstr ""
+
+#: views.py:163
+msgid "BIKE_CREATE"
+msgstr ""
+
+#: views.py:192
+msgid "BIKE_EDIT"
+msgstr ""
+
+#: views.py:213
+msgid "BIKE_DELETE?"
+msgstr ""
+
+#: templates/bike/list.html:42 templates/bike/view.html:38
+msgid "UNKNOWN"
+msgstr ""
+
+#: templates/bike/list.html:57
+msgid "NO_BIKES"
+msgstr ""

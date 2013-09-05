@@ -46,7 +46,7 @@ def render_response(request, template, args):
             "current_account" : account,
             "borrow_count" : len(borrows),
             "current_account_teams" : team_control.get_teams(account),
-            "station_count" : len(Station.objects.filter(responsable=account)),
+            "station_count" : len(Station.objects.filter(responsible=account)),
             "departure_count" : len(borrow_control.departures(account)),
             "arrival_count" : len(borrow_control.arrivals(account)),
         })
