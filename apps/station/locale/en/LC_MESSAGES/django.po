@@ -8,79 +8,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 07:17-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:17
 msgid "ERROR_STATION_MUST_BE_ACTIVE"
-msgstr ""
+msgstr "Error: Station must be active!"
 
 #: forms.py:22 forms.py:39 views.py:106 templates/station/view.html:16
 msgid "RESPONSIBLE"
-msgstr ""
+msgstr "Responsible"
 
 #: forms.py:23 forms.py:40 views.py:106 templates/station/view.html:13
 msgid "POSTALCODE"
-msgstr ""
+msgstr "Postal code"
 
 #: forms.py:24 forms.py:41 views.py:106 templates/station/view.html:14
 msgid "CITY"
-msgstr ""
+msgstr "City"
 
 #: forms.py:25 forms.py:42 views.py:106 templates/station/view.html:15
 msgid "STREET"
-msgstr ""
+msgstr "Street"
 
 #: forms.py:26 forms.py:43 views.py:106 templates/station/view.html:17
 msgid "ACTIVE"
-msgstr ""
+msgstr "Active"
 
 #: forms.py:60
 msgid "ERROR_CANNOT_DEACTIVATE_STATION_IN_USE"
-msgstr ""
+msgstr "Error: Cannot deactivate, station in use!"
 
 #: forms.py:74
 msgid "ERROR_CANNOT_DELETE_STATION_IN_USE"
-msgstr ""
+msgstr "Error: Cannot delete, station in use!"
 
 #: views.py:35
 msgid "STATION_BIKES"
-msgstr ""
+msgstr "Station bikes"
 
 #: views.py:39 views.py:56
 msgid "ARRIVALS"
-msgstr ""
+msgstr "Arrivals"
 
 #: views.py:43 views.py:57
 msgid "DEPARTURES"
-msgstr ""
+msgstr "Departures"
 
 #: views.py:54
 msgid "OVERVIEW"
-msgstr ""
+msgstr "Overview"
 
 #: views.py:55
 msgid "BIKES"
-msgstr ""
+msgstr "Bikes"
 
 #: views.py:120 views.py:134
 msgid "STATIONS"
-msgstr ""
+msgstr "Stations"
 
 #: views.py:162
 msgid "ADD_STATION"
-msgstr ""
+msgstr "Add station"
 
 #: views.py:191
 msgid "EDIT_STATION"
-msgstr ""
+msgstr "Edit station"
 
 #: views.py:212
 msgid "STATION_DELETE?"
-msgstr ""
+msgstr "Delete station?"

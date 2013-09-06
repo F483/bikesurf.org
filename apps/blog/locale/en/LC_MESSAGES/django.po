@@ -8,35 +8,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 07:06-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:14 forms.py:23
 msgid "TITLE"
-msgstr ""
+msgstr "Title"
 
 #: forms.py:15 forms.py:24
 msgid "CONTENT"
-msgstr ""
+msgstr "Content"
 
 #: views.py:46
 msgid "ADD_BLOG"
-msgstr ""
+msgstr "Add blog"
 
 #: views.py:72
 msgid "BLOG_EDIT"
-msgstr ""
+msgstr "Edit Blog"
 
 #: views.py:96
 msgid "BLOG_DELETE?"
-msgstr ""
+msgstr "Delete Blog"
 
 #: templates/blog/list.html:23
 msgid "NO_BLOG_ENTRIES"
-msgstr ""
+msgstr "No blog entries."

@@ -8,43 +8,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 07:15-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:16
 msgid "PICK_A_LOCATION"
-msgstr ""
+msgstr "Pick a location"
 
 #: templates/site/index.html:20
 msgid "TWO_LEGS_GOOD_FREE_WHEELS_BETTER"
-msgstr ""
+msgstr "Two legs good, free wheels better."
 
 #: templates/site/index.html:26
 msgid "WHAT_WERE_ABOUT"
-msgstr ""
+msgstr "What were about"
 
 #: templates/site/index.html:28
 msgid "SITE_DESCRIPTION_TEXT"
 msgstr ""
+"Anyone can borrow a bike from us for free. Request a bike and as soon as a "
+"team member approves your borrow request you will be sent an email with the "
+"lock combination and where you can pick up the bike."
 
 #: templates/site/index.html:33
 msgid "BORROW_A_BIKE"
-msgstr ""
+msgstr "Borrow a bike"
 
 #: templates/site/index.html:39
 msgid "SELECT"
-msgstr ""
+msgstr "Select"
 
 #: templates/site/index.html:43
 msgid "START_A_TEAM"
-msgstr ""
+msgstr "Start a team"
 
 #: templates/site/index.html:46
 msgid "TEAM_DESCRIPTION_TEXT"
 msgstr ""
+"Start a team in your city. Just fill out the form and the team will be "
+"available as soon as an administrator approves."

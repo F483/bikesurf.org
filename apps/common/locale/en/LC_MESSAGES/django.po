@@ -2,169 +2,174 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 08:10-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: templates/base.html:6
-msgid "Signup"
-msgstr ""
+msgid "SIGNUP"
+msgstr "Signup"
+
+#: templates/common/base.html:22
+msgid "META_KEYWORDS"
+msgstr "Free, Bike, Surfing, Borrowing, Lending"
 
 #: templates/common/base.html:23
 msgid "META_DESCRIPTION"
-msgstr ""
+msgstr "Borrow bikes for free."
 
 #: templates/common/filters.html:4
 msgid "SEARCH_FILTERS"
-msgstr ""
+msgstr "Search filters"
 
 #: templates/common/filters.html:9
 msgid "FILTER"
-msgstr ""
+msgstr "Filter"
 
 #: templates/common/footer.html:4
 msgid "ADMIN"
-msgstr ""
+msgstr "Administration"
 
 #: templates/common/footer.html:10
 msgid "INTERNATIONALISATION"
-msgstr ""
+msgstr "Internationalisation"
 
 #: templates/common/footer.html:16
 msgid "REPOSITORY"
-msgstr ""
+msgstr "Repository"
 
 #: templates/common/form.html:23
 msgid "SUBMIT"
-msgstr ""
+msgstr "Submit"
 
 #: templates/common/list.html:44
 msgid "NO_ENTRIES"
-msgstr ""
+msgstr "No entries"
 
 #: templates/common/statusbar.html:10
 msgid "BORROWS"
-msgstr ""
+msgstr "Borrows"
 
 #: templates/common/statusbar.html:15
 msgid "ARRIVALS"
-msgstr ""
+msgstr "Arrivals"
 
 #: templates/common/statusbar.html:21
 msgid "DEPARTURES"
-msgstr ""
+msgstr "Departures"
 
 #: templates/common/statusbar.html:26
 msgid "STATIONS"
-msgstr ""
+msgstr "Stations"
 
 #: templates/common/statusbar.html:29
 msgid "LOGOUT"
-msgstr ""
+msgstr "Logout"
 
 #: templates/common/statusbar.html:34
 msgid "LOGIN"
-msgstr ""
+msgstr "Login"
 
 #: templates/common/statusbar.html:35
 msgid "SIGN UP"
-msgstr ""
+msgstr "Signup"
 
 #: templatetags/common_tags.py:14
 msgid "BORROW"
-msgstr ""
+msgstr "Borrow"
 
 #: templatetags/common_tags.py:15
 msgid "PROCESS_REQUEST"
-msgstr ""
+msgstr "Process request"
 
 #: templatetags/common_tags.py:16
 msgid "RESPOND"
-msgstr ""
+msgstr "Respond"
 
 #: templatetags/common_tags.py:17
 msgid "CANCEL"
-msgstr ""
+msgstr "Cancel"
 
 #: templatetags/common_tags.py:18
 msgid "RATE"
-msgstr ""
+msgstr "Rate"
 
 #: templatetags/common_tags.py:19
 msgid "DELETE"
-msgstr ""
+msgstr "Delete"
 
 #: templatetags/common_tags.py:20
 msgid "EDIT"
-msgstr ""
+msgstr "Edit"
 
 #: templatetags/common_tags.py:21
 msgid "ADD_BLOG"
-msgstr ""
+msgstr "Add blog"
 
 #: templatetags/common_tags.py:22
 msgid "ADD_PAGE"
-msgstr ""
+msgstr "Add page"
 
 #: templatetags/common_tags.py:23
 msgid "BIKE_CREATE"
-msgstr ""
+msgstr "Add bike"
 
 #: templatetags/common_tags.py:24
 msgid "ADD_STATION"
-msgstr ""
+msgstr "Add station"
 
 #: templatetags/common_tags.py:25
 msgid "ADD_PICTURE"
-msgstr ""
+msgstr "Add picture"
 
 #: templatetags/common_tags.py:26
 msgid "SET_AS_PRIMARY_PICTURE"
-msgstr ""
+msgstr "Set as primary picture"
 
 #: templatetags/common_tags.py:27
 msgid "CHANGE_DEST"
-msgstr ""
+msgstr "Change destination"
 
 #: templatetags/common_tags.py:28
 msgid "CHANGE_BIKE"
-msgstr ""
+msgstr "Change bike"
 
 #: templatetags/common_tags.py:29
 msgid "ADD_LINK"
-msgstr ""
+msgstr "Add link"
 
 #: templatetags/common_tags.py:30
 msgid "REPLACE_LOGO"
-msgstr ""
+msgstr "Replace logo"
 
 #: templatetags/common_tags.py:31
 msgid "SET_PASSPORT"
-msgstr ""
+msgstr "Set passport"
 
 #: templatetags/common_tags.py:32
 msgid "CREATE_TEAM"
-msgstr ""
+msgstr "Create team"
 
 #: templatetags/common_tags.py:33
 msgid "COMMENT"
-msgstr ""
+msgstr "Comment"
 
 #: templatetags/common_tags.py:50
 msgid "TRUE"
-msgstr ""
+msgstr "True"
 
 #: templatetags/common_tags.py:51
 msgid "FALSE"
-msgstr ""
+msgstr "False"

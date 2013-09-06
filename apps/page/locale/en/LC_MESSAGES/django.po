@@ -2,53 +2,54 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 08:11-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:30 forms.py:58
 msgid "PAGE_NAME"
-msgstr ""
+msgstr "Name"
 
 #: forms.py:31 forms.py:59
 msgid "CONTENT"
-msgstr ""
+msgstr "Content"
 
 #: forms.py:35 forms.py:63
 msgid "ORDER"
-msgstr ""
+msgstr "Order"
 
 #: forms.py:46 forms.py:77
 msgid "ERROR_NAME_TO_SHORT"
-msgstr ""
+msgstr "Error: Page name must be three or more characters long."
 
 #: forms.py:48 forms.py:79
 msgid "ERROR_NAME_RESERVED"
-msgstr ""
+msgstr "Error: Name reserved!"
 
 #: forms.py:50 forms.py:52 forms.py:81 forms.py:83
 msgid "ERROR_NAME_USED"
-msgstr ""
+msgstr "Error: Name in use!"
 
 #: views.py:46
 msgid "ADD_PAGE"
-msgstr ""
+msgstr "Add page"
 
 #: views.py:70
 msgid "PAGE_EDIT"
-msgstr ""
+msgstr "Edit page"
 
 #: views.py:93
 msgid "PAGE_DELETE?"
-msgstr ""
+msgstr "Delete page?"

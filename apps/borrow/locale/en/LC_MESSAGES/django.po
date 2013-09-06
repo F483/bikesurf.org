@@ -8,204 +8,205 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 08:07-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: control.py:119 models.py:84 templates/borrow/view.html:14
 msgid "BORROWER"
-msgstr ""
+msgstr "Borrower"
 
 #: control.py:119 forms.py:121 forms.py:147 templates/borrow/view.html:24
 msgid "BIKE"
-msgstr ""
+msgstr "Bike"
 
 #: control.py:119 templates/borrow/view.html:25
 msgid "DATE_FROM"
-msgstr ""
+msgstr "From date"
 
 #: control.py:119 templates/borrow/view.html:26
 msgid "DATE_TO"
-msgstr ""
+msgstr "To date"
 
 #: control.py:120 templates/borrow/view.html:29
 msgid "STATION_FROM"
-msgstr ""
+msgstr "From station"
 
 #: control.py:120 templates/borrow/view.html:30
 msgid "STATION_TO"
-msgstr ""
+msgstr "To station"
 
 #: control.py:120
 msgid "BORROW_STATE"
-msgstr ""
+msgstr "State"
 
 #: forms.py:29 models.py:20
 msgid "ACCEPTED"
-msgstr ""
+msgstr "Accepted"
 
 #: forms.py:30 models.py:19
 msgid "MEETUP"
-msgstr ""
+msgstr "Meetup"
 
 #: forms.py:31 models.py:21
 msgid "REJECTED"
-msgstr ""
+msgstr "Rejected"
 
 #: forms.py:38
 msgid "ERROR_START_NOT_IN_FUTURE"
-msgstr ""
+msgstr "Error: Start not in future!"
 
 #: forms.py:40
 msgid "ERROR_FINISH_BEFORE_START"
-msgstr ""
+msgstr "Error: Finish before start!"
 
 #: forms.py:42 forms.py:73 forms.py:164
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
-msgstr ""
+msgstr "Error: Other borrow in time frame!"
 
 #: forms.py:47
 msgid "RESPONSE"
-msgstr ""
+msgstr "Response"
 
 #: forms.py:48 forms.py:81 forms.py:102 forms.py:107 forms.py:112 forms.py:123
 #: forms.py:149 forms.py:174
 msgid "NOTE"
-msgstr ""
+msgstr "Note"
 
 #: forms.py:63
 msgid "ERROR_TO_LATE_TO_ACCEPT"
-msgstr ""
+msgstr "Error: To late to accept!"
 
 #: forms.py:65
 msgid "ERROR_BIKE_NOT_ACTIVE"
-msgstr ""
+msgstr "Error: Bike not active!"
 
 #: forms.py:67
 msgid "ERROR_IS_RESERVE_BIKE"
-msgstr ""
+msgstr "Error: Bike is a reserve bike!"
 
 #: forms.py:69
 msgid "ERROR_BIKE_STATION_UNKNOWN"
-msgstr ""
+msgstr "Error: Bike station unknown!"
 
 #: forms.py:71
 msgid "ERROR_BIKE_STATION_INACTIVE"
-msgstr ""
+msgstr "Error: Bike station inactive!"
 
 #: forms.py:79 forms.py:118
 msgid "START"
-msgstr ""
+msgstr "From"
 
 #: forms.py:80 forms.py:119
 msgid "FINISH"
-msgstr ""
+msgstr "To"
 
 #: forms.py:171
 msgid "DESTINATION_STATION"
-msgstr ""
+msgstr "Destination"
 
 #: models.py:18
 msgid "REQUEST"
-msgstr ""
+msgstr "Request"
 
 #: models.py:22
 msgid "CANCELED"
-msgstr ""
+msgstr "Canceled"
 
 #: models.py:23 models.py:61
 msgid "FINISHED"
-msgstr ""
+msgstr "Finished"
 
 #: models.py:56
 msgid "LENDER_RATE"
-msgstr ""
+msgstr "Rate"
 
 #: models.py:57
 msgid "BORROWER_RATE"
-msgstr ""
+msgstr "Rate"
 
 #: models.py:58
 msgid "CREATE"
-msgstr ""
+msgstr "Create"
 
 #: models.py:59
 msgid "RESPOND"
-msgstr ""
+msgstr "Respond"
 
 #: models.py:60
 msgid "CANCEL"
-msgstr ""
+msgstr "Cancel"
 
 #: models.py:62
 msgid "EDIT"
-msgstr ""
+msgstr "Edit"
 
 #: models.py:85
 msgid "LENDER"
-msgstr ""
+msgstr "Lender"
 
 #: models.py:90
 msgid "THUMBS_UP"
-msgstr ""
+msgstr "Positive"
 
 #: models.py:91
 msgid "NEUTRAL"
-msgstr ""
+msgstr "Neutral"
 
 #: models.py:92
 msgid "THUMBS_DOWN"
-msgstr ""
+msgstr "Negative"
 
 #: views.py:43
 msgid "TEAM_BORROWS"
-msgstr ""
+msgstr "Team borrows"
 
 #: views.py:55
 msgid "YOUR_BORROWS"
-msgstr ""
+msgstr "Your borrows"
 
 #: views.py:68
 msgid "ARRIVALS"
-msgstr ""
+msgstr "Arrivals"
 
 #: views.py:81
 msgid "DEPARTURES"
-msgstr ""
+msgstr "Departures"
 
 #: views.py:104
 msgid "BORROW_CREATE"
-msgstr ""
+msgstr "Create borrow"
 
 #: views.py:129 views.py:151 views.py:173
 msgid "BORROW_EDIT"
-msgstr ""
+msgstr "Edit borrow"
 
 #: views.py:193
 msgid "BORROW_RESPOND"
-msgstr ""
+msgstr "Respond to borrow request."
 
 #: views.py:212 views.py:318
 msgid "BORROW_CANCEL"
-msgstr ""
+msgstr "Cancel borrow"
 
 #: views.py:232 views.py:256
 msgid "RATE"
-msgstr ""
+msgstr "Rate"
 
 #: views.py:295
 msgid "BORROW_COMMENT"
-msgstr ""
+msgstr "Comment"
 
 #: templates/borrow/view.html:10
 msgid "BORROWING"
-msgstr ""
+msgstr "borrowing"
 
 #: templates/borrow/view.html:51
 msgid "SYSTEM"
-msgstr ""
+msgstr "bikesurf.org"

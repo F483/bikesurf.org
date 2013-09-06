@@ -8,137 +8,142 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 08:06-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:27 templates/account/profile.html:20
 #: templates/account/profile.html.py:25 templates/account/view.html:19
 #: templates/account/view.html.py:24
 msgid "PASSPORT"
-msgstr ""
+msgstr "Passport"
 
 #: forms.py:32
 msgid "USERNAME"
-msgstr ""
+msgstr "Username"
 
 #: forms.py:33 templates/account/profile.html:14
 #: templates/account/view.html:13
 msgid "FIRST_NAME"
-msgstr ""
+msgstr "First name"
 
 #: forms.py:34
 msgid "LAST_NAME"
-msgstr ""
+msgstr "Last name"
 
 #: forms.py:35 templates/account/profile.html:16
 #: templates/account/view.html:15
 msgid "MOBILE"
-msgstr ""
+msgstr "Mobile"
 
 #: forms.py:36 templates/account/profile.html:17
 #: templates/account/view.html:16
 msgid "SOURCE"
-msgstr ""
+msgstr "Source"
 
 #: forms.py:38 templates/account/profile.html:18
 #: templates/account/view.html:17
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Description"
 
 #: forms.py:54
 msgid "ERROR_BAD_USERNAME_FORMAT"
 msgstr ""
+"Error: Username may only have the following characters \"a-zA-Z0-9_.@+-\"!"
 
 #: forms.py:60
 msgid "ERROR_USERNAME_TAKEN"
-msgstr ""
+msgstr "Error: Username taken!"
 
 #: forms.py:66
 msgid "SITE"
-msgstr ""
+msgstr "Site"
 
 #: forms.py:67
 msgid "PROFILE"
-msgstr ""
+msgstr "Profile"
 
 #: forms.py:78
 msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
-msgstr ""
+msgstr "Error: Profile for Site already exists!"
 
 #: forms.py:80
 msgid "ERROR_BAD_PROFILE_FORMAT"
 msgstr ""
+"Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
 
 #: forms.py:82
 msgid "ERROR_CANNOT_CREATE_LINK"
-msgstr ""
+msgstr "Error: Cannot create link!"
 
 #: forms.py:96
 msgid "ERROR_CANNOT_DELETE_LINK"
-msgstr ""
+msgstr "Error: Cannot delete link!"
 
 #: models.py:32
 msgid "OTHER"
-msgstr ""
+msgstr "Other"
 
 #: models.py:33
 msgid "COUCHSURFING"
-msgstr ""
+msgstr "Couchsurfing"
 
 #: models.py:34
 msgid "FACEBOOK"
-msgstr ""
+msgstr "Facebook"
 
 #: models.py:35
 msgid "FRIENDS"
-msgstr ""
+msgstr "Friends"
 
 #: models.py:36
 msgid "GOOGLE"
-msgstr ""
+msgstr "Google"
 
 #: models.py:37
 msgid "TWITTER"
-msgstr ""
+msgstr "Twitter"
 
 #: views.py:19
 msgid "PROFILE_UPDATED"
-msgstr ""
+msgstr "Profile updated"
 
 #: views.py:35
 msgid "SET_PASSPORT"
-msgstr ""
+msgstr "Set passport image"
 
 #: views.py:54
 msgid "LINK_DELETE?"
-msgstr ""
+msgstr "Delete link?"
 
 #: views.py:78
 msgid "ADD_LINK_SUBTITLE"
-msgstr ""
+msgstr "Add social link to account."
 
 #: views.py:123 templates/account/profile.html:11
 msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
+"This information can only be seen by bikesurf.org administrators and members "
+"of teams where you are borrowing a bike."
 
 #: templates/account/profile.html:15 templates/account/view.html:14
 msgid "LIST_NAME"
-msgstr ""
+msgstr "Last name"
 
 #: templates/account/profile.html:22 templates/account/view.html:21
 msgid "IMAGE"
-msgstr ""
+msgstr "Image"
 
 #: templates/account/profile.html:25 templates/account/view.html:24
 msgid "NONE"
-msgstr ""
+msgstr "None"
 
 #: templates/account/profile.html:31 templates/account/view.html:29
 msgid "LINKS"
-msgstr ""
+msgstr "Links"

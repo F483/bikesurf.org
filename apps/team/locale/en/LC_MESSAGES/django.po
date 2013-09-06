@@ -2,186 +2,194 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-05 06:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"PO-Revision-Date: 2013-09-06 08:13-0500\n"
+"Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:31
 msgid "ERROR_NAME_TO_SHORT"
-msgstr ""
+msgstr "Error: Team name must be three or more characters long."
 
 #: forms.py:33
 msgid "ERROR_NAME_RESERVED"
-msgstr ""
+msgstr "Error: Name reserved!"
 
 #: forms.py:35 forms.py:37
 msgid "ERROR_NAME_USED"
-msgstr ""
+msgstr "Error: Name in use!"
 
 #: forms.py:42 forms.py:49
 msgid "LOGO"
-msgstr ""
+msgstr "Logo"
 
 #: forms.py:47
 msgid "TEAM_NAME"
-msgstr ""
+msgstr "Name"
 
 #: forms.py:48
 msgid "COUNTRY"
-msgstr ""
+msgstr "Country"
 
 #: forms.py:50
 msgid "APPLICATION"
-msgstr ""
+msgstr "Application"
 
 #: forms.py:55
 msgid "JOIN_REQUEST_REASON"
-msgstr ""
+msgstr "Application"
 
 #: forms.py:60 forms.py:71 templates/team/join_request/list.html:14
 #: templates/team/remove_request/list.html:17
 msgid "RESPONSE"
-msgstr ""
+msgstr "Response"
 
 #: forms.py:61 forms.py:72
 msgid "STATUS"
-msgstr ""
+msgstr "Status"
 
 #: forms.py:66 templates/team/remove_request/list.html:14
 msgid "REASON"
-msgstr ""
+msgstr "Reason"
 
 #: forms.py:77
 msgid "SITE"
-msgstr ""
+msgstr "Site"
 
 #: forms.py:78
 msgid "PROFILE"
-msgstr ""
+msgstr "Profile"
 
 #: forms.py:90
 msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
-msgstr ""
+msgstr "Error: Profile for site already exists!"
 
 #: forms.py:92
 msgid "ERROR_BAD_PROFILE_FORMAT"
-msgstr ""
+msgstr "Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
 
 #: forms.py:94
 msgid "ERROR_CANNOT_CREATE_LINK"
-msgstr ""
+msgstr "Error: Cannot create link!"
 
 #: forms.py:109
 msgid "ERROR_CANNOT_DELETE_LINK"
-msgstr ""
+msgstr "Error: Cannot delete link!"
 
 #: utils.py:15
 msgid "BLOG"
-msgstr ""
+msgstr "Blog"
 
 #: utils.py:16
 msgid "BIKES"
-msgstr ""
+msgstr "Bikes"
 
 #: utils.py:17 views.py:127
 msgid "MEMBERS"
-msgstr ""
+msgstr "Members"
 
 #: utils.py:18
 msgid "BORROWS"
-msgstr ""
+msgstr "Borrows"
 
 #: utils.py:19
 msgid "STATIONS"
-msgstr ""
+msgstr "Stations"
 
 #: utils.py:20
 msgid "JOIN_REQUESTS"
-msgstr ""
+msgstr "Join requests"
 
 #: utils.py:21
 msgid "REMOVE_REQUESTS"
-msgstr ""
+msgstr "Remove requests"
 
 #: views.py:40
 msgid "LINK_DELETE?"
-msgstr ""
+msgstr "Delete link?"
 
 #: views.py:65
 msgid "ADD_LINK_SUBTITLE"
-msgstr ""
+msgstr "Add social link."
 
 #: views.py:85
 msgid "REPLACE_LOGO"
-msgstr ""
+msgstr "Replace logo"
 
 #: views.py:107
 msgid "CREATE_TEAM"
-msgstr ""
+msgstr "Create team"
 
 #: views.py:162 templates/team/menu.html:39
 msgid "JOIN_REQUEST"
-msgstr ""
+msgstr "Join team"
 
 #: views.py:218
-msgid "REMOVE_REQUEST"
-msgstr ""
+msgid "REMOVE_REQUEST_CREATE"
+msgstr "Request member be removed from team."
 
 #: templates/team/created.html:8
 msgid "TEAM_CREATED_TITLE"
-msgstr ""
+msgstr "Team created"
 
 #: templates/team/created.html:9
 msgid "TEAM_CREATED_DESCRIPTION"
 msgstr ""
+"The team has been created. It will be available as soon as an administrator "
+"approves."
 
 #: templates/team/menu.html:45
 msgid "TEAM"
-msgstr ""
+msgstr "Team"
 
 #: templates/team/menu.html:61
 msgid "ACTIONS"
-msgstr ""
+msgstr "Actions"
 
 #: templates/team/join_request/created.html:6
 msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr ""
+msgstr "Join request made"
 
 #: templates/team/join_request/created.html:7
 msgid "JOIN_REQUEST_CREATED_SUBTITLE"
 msgstr ""
+"As soon as a team member approves your join request you will become a member"
+" of the team."
 
 #: templates/team/join_request/list.html:26
 msgid "NO_JOIN_REQUESTS"
-msgstr ""
+msgstr "No join requests"
 
 #: templates/team/remove_request/created.html:6
 msgid "REMOVE_REQUESTED"
-msgstr ""
+msgstr "Remove request made"
 
 #: templates/team/remove_request/created.html:7
 msgid "REMOVE_REQUEST_MADE"
 msgstr ""
+"As soon as another team member approves your remove request, the concerned "
+"member will be removed from the team. If the team only has two members the "
+"concerned member will be remove immediately."
 
 #: templates/team/remove_request/list.html:12
 msgid "REQUESTER"
-msgstr ""
+msgstr "Requester"
 
 #: templates/team/remove_request/list.html:13
 msgid "CONCERNED"
-msgstr ""
+msgstr "Concerned"
 
 #: templates/team/remove_request/list.html:30
 msgid "NO_REMOVE_REQUESTS"
-msgstr ""
+msgstr "No remove requests"

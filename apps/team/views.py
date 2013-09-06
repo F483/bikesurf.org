@@ -215,7 +215,7 @@ def remove_request_create(request, team_link, concerned_id):
     else:
         form = forms.CreateRemoveRequest()
     args = { 
-        "form" : form, "form_title" : _("REMOVE_REQUEST"),
+        "form" : form, "form_title" : _("REMOVE_REQUEST_CREATE"),
         "form_subtitle" : concerned,
         "cancel_url" : "/%s/members" % team.link
     }
