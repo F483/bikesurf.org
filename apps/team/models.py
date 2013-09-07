@@ -26,7 +26,7 @@ STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 
 def _upload_to(instance, filename, **kwargs):
-    return "team/%s.%s" % (instance.link, 'jpeg')
+    return "team/%s.%s" % (instance.link, 'png')
 
 
 class Team(Model):
@@ -38,8 +38,8 @@ class Team(Model):
     members     = ManyToManyField('account.Account', null=True, blank=True, 
                                   related_name="teams") 
     logo        = ProcessedImageField(upload_to=_upload_to, 
-                                      processors=[ResizeToFill(270, 100)],
-                                      format='JPEG', options={'quality': 90})
+                                      processors=[ResizeToFill(525, 100)],
+                                      format='PNG', options={'quality': 90})
     active      = BooleanField(default=False)
     application = TextField() 
 
