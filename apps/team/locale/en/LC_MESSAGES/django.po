@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"POT-Creation-Date: 2013-09-09 11:36-0500\n"
 "PO-Revision-Date: 2013-09-06 08:13-0500\n"
 "Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:31
@@ -77,7 +77,8 @@ msgstr "Error: Profile for site already exists!"
 
 #: forms.py:92
 msgid "ERROR_BAD_PROFILE_FORMAT"
-msgstr "Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
+msgstr ""
+"Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
 
 #: forms.py:94
 msgid "ERROR_CANNOT_CREATE_LINK"
@@ -164,8 +165,8 @@ msgstr "Join request made"
 #: templates/team/join_request/created.html:7
 msgid "JOIN_REQUEST_CREATED_SUBTITLE"
 msgstr ""
-"As soon as a team member approves your join request you will become a member"
-" of the team."
+"As soon as a team member approves your join request you will become a member "
+"of the team."
 
 #: templates/team/join_request/list.html:26
 msgid "NO_JOIN_REQUESTS"

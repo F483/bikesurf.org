@@ -21,13 +21,19 @@
         {% endif_can_view_account %}
         <br />
 
-        {% trans "BIKE" %}: {{ borrow.bike }}<br />
+        {% trans "BIKE" %}: 
+        <a href="/{{ borrow.team.link }}/bike/view/{{ borrow.bike.id }}">
+            {{ borrow.bike }}
+        </a>
+        <br />
+
         {% trans "DATE_FROM" %}: {{ borrow.start }}<br />
         {% trans "DATE_TO" %}: {{ borrow.finish }}<br />
 
         {% if borrow.active %}
             {% trans "STATION_FROM" %}: {{ borrow.src.street }}<br />
             {% trans "STATION_TO" %}: {{ borrow.dest.street }}<br />
+            {% trans "LOCKCODE" %}: {{ borrow.bike.lockcode }}<br /> <!-- TODO think this through !!! -->
         {% endif %}
 
         <div class="actions">

@@ -13,8 +13,8 @@
             {% trans "FIRST_NAME" %}: {{ view_account.user.first_name }} </br>
             {% trans "LIST_NAME" %}: {{ view_account.user.last_name }} </br>
             {% trans "MOBILE" %}: {{ view_account.mobile }} </br>
-            {% trans "SOURCE" %}: {{ view_account.source }} </br>
-            {% trans "DESCRIPTION" %}: {{ view_account.description }} </br>
+            {% trans "EMAIL" %}: {{ primary_email }}</br>
+
             {% if current_account.passport %}
                 {% trans "PASSPORT" %}: 
                 <a href="{{ current_account.passport.url }}">
@@ -23,6 +23,10 @@
             {% else %}
                 {% trans "PASSPORT" %}: {% trans "NONE" %}
             {% endif %}
+            </br>
+
+            {% trans "SOURCE" %}: {{ view_account.source }} </br>
+            {% trans "DESCRIPTION" %}: {{ view_account.description }} </br>
         </p>
 
         {% if links %}
