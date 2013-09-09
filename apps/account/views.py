@@ -95,9 +95,13 @@ def profile(request):
 def view(request, username):
     current_account = get_object_or_404(Account, user=request.user)
     view_account = get_object_or_404(Account, user__username=username)
+    primary = get_object_or_404(EmailAddress, user=request.user, primary=True)
     if not control.can_view_account(current_account, view_account):
         raise PermissionDenied
-    args = { "view_account" : view_account, "links" : view_account.links.all() }
+    args = { 
+        "view_account" : view_account, "links" : view_account.links.all(),
+        "primary_email" : primary.email 
+    }
     return render_response(request, "account/view.html", args)
 
 
