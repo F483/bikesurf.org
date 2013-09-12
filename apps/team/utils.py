@@ -54,13 +54,11 @@ def _get_team_menue_intern(team, current):
 
 
 def render_team_response(team, current, request, template, args):
-    donate_page = get_object_or_none(Page, team=team, link="donate")
     args.update({
         "team_menu_public" : _get_team_menue_public(team, current),
         "team_menu_intern" : _get_team_menue_intern(team, current),
         "current_team" : team,
         "current_team_links" : team.links.all(),
-        "donation_page" : donate_page,
     })
     return render_response(request, template, args)
 

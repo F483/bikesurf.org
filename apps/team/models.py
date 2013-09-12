@@ -52,8 +52,8 @@ class Team(Model):
     def __unicode__(self):
         return u"%s (%s)" % (self.name, self.country.name)
 
-    class Meta:                                                                                                 
-                                                                                                                
+    class Meta:
+        
         ordering = ['name']
 
 

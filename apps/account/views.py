@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from allauth.account.models import EmailAddress
 from apps.account.models import Account
 from apps.common.shortcuts import render_response
 from apps.account import forms
@@ -85,8 +84,8 @@ def link_create(request):
 @require_http_methods(["GET"])
 def profile(request):
     account = get_object_or_404(Account, user=request.user)
-    primary = get_object_or_404(EmailAddress, user=request.user, primary=True)
-    args = { "links" : account.links.all(), "primary_email" : primary.email }
+    email = control.get_email_or_404(account)
+    args = { "links" : account.links.all(), "email" : email }
     return render_response(request, "account/profile.html", args)
 
 
@@ -95,12 +94,12 @@ def profile(request):
 def view(request, username):
     current_account = get_object_or_404(Account, user=request.user)
     view_account = get_object_or_404(Account, user__username=username)
-    primary = get_object_or_404(EmailAddress, user=request.user, primary=True)
+    email = control.get_email_or_404(account)
     if not control.can_view_account(current_account, view_account):
         raise PermissionDenied
     args = { 
         "view_account" : view_account, "links" : view_account.links.all(),
-        "primary_email" : primary.email 
+        "email" : email 
     }
     return render_response(request, "account/view.html", args)
 

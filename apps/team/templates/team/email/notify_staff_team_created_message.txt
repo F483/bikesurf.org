@@ -1,0 +1,9 @@
+{{ creator.user.username }} created a new team.
+
+Name: {{ team.name }}
+Country: {{ team.country.name }} 
+Link: http://{{ site.domain }}/{{ team.link }}
+Admin: http://{{ site.domain }}/admin/team/team/{{ team.id }}/
+
+Application
+{{ team.application }}

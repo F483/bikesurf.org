@@ -5,12 +5,45 @@
 
 import os
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
+from django.dispatch import receiver
+from allauth.account.models import EmailAddress
 from apps.team.models import Team
 from apps.team.models import JoinRequest
-from django.core.exceptions import PermissionDenied
 from apps.common.shortcuts import uslugify
 from apps.team.models import RemoveRequest
 from apps.link import control as link_control
+from apps.team import signals
+from apps.common.shortcuts import send_mail
+from apps.account import control as account_control
+
+
+@receiver(signals.team_created)
+def notify_staff_team_created(sender, **kwargs):
+    superuser_emails = account_control.get_superuser_emails()
+    subject = "team/email/notify_staff_team_created_subject.txt"
+    message = "team/email/notify_staff_team_created_message.txt"
+    send_mail(superuser_emails, subject, message, kwargs)
+
+
+@receiver(signals.join_request_created)
+def notify_team_join_request_created(sender, **kwargs):
+    join_request = kwargs["join_request"]
+    if join_request.status != "PENDING":
+        return # requester autojoined an empty team
+    team_emails = get_team_emails(join_request.team)
+    subject = "team/email/notify_team_join_request_created_subject.txt"
+    message = "team/email/notify_team_join_request_created_message.txt"
+    send_mail(team_emails, subject, message, kwargs)
+
+
+def get_team_emails(team):
+    addresses = EmailAddress.objects.filter(
+            primary=True, 
+            user__accounts__teams=team
+    )
+    return [address.email for address in list(addresses)]
 
 
 def get_teams(account):
@@ -26,16 +59,19 @@ def is_member(account, team):
 
 
 def create(account, name, country, logo, application):
-    team = Team()
-    team.name = name
-    team.link = uslugify(name)
-    team.country = country
-    team.logo = logo
-    team.application = application
-    team.created_by = account
-    team.updated_by = account
-    team.save()
-    team.members.add(account)
+    team = None
+    with transaction.commit_on_success():
+        team = Team()
+        team.name = name
+        team.link = uslugify(name)
+        team.country = country
+        team.logo = logo
+        team.application = application
+        team.created_by = account
+        team.updated_by = account
+        team.save()
+        team.members.add(account)
+    signals.team_created.send(sender=create, team=team, creator=account)
     return team
 
 
@@ -51,10 +87,11 @@ def can_replace_logo(account, team):
 def replace_logo(account, team, logo):
     if not can_replace_logo(account, team):
         raise PermissionDenied
-    os.remove(team.logo.path)
-    team.logo = logo
-    team.save()
-    return team
+    with transaction.commit_on_success():
+        os.remove(team.logo.path)
+        team.logo = logo
+        team.save()
+        return team
 
 
 ################
@@ -71,14 +108,18 @@ def can_join(account, team):
 def create_join_request(account, team, application):
     if not can_join(account, team):
         raise PermissionDenied
-    join_request = JoinRequest()
-    join_request.team = team
-    join_request.requester = account
-    join_request.application = application
-    if len(team.members.all()) == 0: # auto join empty teams
-        join_request.status = "ACCEPTED"
-        team.members.add(account)
-    join_request.save()
+    join_request = None
+    with transaction.commit_on_success():
+        join_request = JoinRequest()
+        join_request.team = team
+        join_request.requester = account
+        join_request.application = application
+        if len(team.members.all()) == 0: # auto join empty teams
+            join_request.status = "ACCEPTED"
+            team.members.add(account)
+        join_request.save()
+    signals.join_request_created.send(sender=create_join_request, 
+                                      join_request=join_request)
     return join_request
 
 
@@ -90,12 +131,13 @@ def can_process_join_request(account, join_request):
 def process_join_request(account, join_request, response, status):
     if not can_process_join_request(account, join_request):
         raise PermissionDenied
-    join_request.processor = account
-    join_request.response = response
-    join_request.status = status
-    join_request.save()
-    if join_request.status == 'ACCEPTED':
-        join_request.team.members.add(join_request.requester)
+    with transaction.commit_on_success():
+        join_request.processor = account
+        join_request.response = response
+        join_request.status = status
+        join_request.save()
+        if join_request.status == 'ACCEPTED':
+            join_request.team.members.add(join_request.requester)
 
 
 ##################
@@ -130,27 +172,29 @@ def can_process_remove_request(account, remove_request):
 def create_remove_request(requester, concerned, team, reason):
     if not can_create_remove_request(requester, concerned, team):
         raise PermissionDenied
-    remove_request = RemoveRequest()
-    remove_request.team = team
-    remove_request.requester = requester
-    remove_request.concerned = concerned
-    remove_request.reason = reason
-    if len(team.members.all()) == 1: # auto remove last member
-        remove_request.status = "ACCEPTED"
-        remove_request.team.members.remove(remove_request.concerned)
-    remove_request.save()
-    return remove_request
+    with transaction.commit_on_success():
+        remove_request = RemoveRequest()
+        remove_request.team = team
+        remove_request.requester = requester
+        remove_request.concerned = concerned
+        remove_request.reason = reason
+        if len(team.members.all()) == 1: # auto remove last member
+            remove_request.status = "ACCEPTED"
+            remove_request.team.members.remove(remove_request.concerned)
+        remove_request.save()
+        return remove_request
 
 
 def process_remove_request(account, remove_request, response, status):
     if not can_process_remove_request(account, remove_request):
         raise PermissionDenied
-    remove_request.processor = account
-    remove_request.response = response
-    remove_request.status = status
-    remove_request.save()
-    if status == "ACCEPTED":
-        remove_request.team.members.remove(remove_request.concerned)
+    with transaction.commit_on_success():
+        remove_request.processor = account
+        remove_request.response = response
+        remove_request.status = status
+        remove_request.save()
+        if status == "ACCEPTED":
+            remove_request.team.members.remove(remove_request.concerned)
 
 
 #########

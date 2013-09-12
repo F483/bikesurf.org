@@ -1,0 +1,1 @@
+New team "{{ team.name }} ({{ team.country.name }})" created by "{{ creator.user.username }}".

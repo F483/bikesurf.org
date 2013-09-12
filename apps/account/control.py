@@ -7,6 +7,23 @@ import os
 from django.core.exceptions import PermissionDenied
 from apps.link import control as link_control
 from apps.borrow.models import Borrow
+from allauth.account.models import EmailAddress
+from django.shortcuts import get_object_or_404
+
+
+def get_email_or_404(account):
+    address = get_object_or_404(EmailAddress, user=account.user, primary=True)
+    return address.email
+
+
+def get_staff_emails():
+    addresses = EmailAddress.objects.filter(primary=True, user__is_staff=True)
+    return [address.email for address in list(addresses)]
+
+
+def get_superuser_emails():
+    addresses = EmailAddress.objects.filter(primary=True, user__is_superuser=True)
+    return [address.email for address in list(addresses)]
 
 
 def set_passport(account, passport):
