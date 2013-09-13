@@ -17,12 +17,11 @@ from imagekit.models.fields import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 
-STATUSES = [
-    'PENDING',
-    'ACCEPTED',
-    'DECLINED',
+STATUS_CHOICES = [
+    ("PENDING", _("PENDING")),
+    ("ACCEPTED", _("ACCEPTED")),
+    ("DECLINED", _("DECLINED"))
 ]
-STATUS_CHOICES = [(request, _(request)) for request in STATUSES]
 
 
 def _upload_to(instance, filename, **kwargs):
