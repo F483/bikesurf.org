@@ -1,1 +1,1 @@
-"{{ remove_request.requester.user.username }}" wishes that "{{ remove_request.concerned.user.username }}" be removed from team "{{ remove_request.team.name }}".
+{{ remove_request.requester.user.username }} wishes that {{ remove_request.concerned.user.username }} be removed from team {{ remove_request.team.name }}.

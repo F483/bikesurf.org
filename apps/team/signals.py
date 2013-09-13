@@ -8,7 +8,7 @@ from django.dispatch import Signal
 
 team_created = Signal(providing_args=["team", "creator"])
 join_request_created = Signal(providing_args=["join_request"])
-join_request_processed = Signal(providing_args=["join_request"]) # TODO
+join_request_processed = Signal(providing_args=["join_request"])
 remove_request_created = Signal(providing_args=["remove_request"])
 remove_request_processed = Signal(providing_args=["remove_request"]) # TODO
 

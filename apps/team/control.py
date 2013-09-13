@@ -19,47 +19,6 @@ from apps.common.shortcuts import send_mail
 from apps.account import control as account_control
 
 
-@receiver(signals.team_created)
-def notify_staff_team_created(sender, **kwargs):
-    emails = account_control.get_superuser_emails()
-    subject = "team/email/notify_staff_team_created_subject.txt"
-    message = "team/email/notify_staff_team_created_message.txt"
-    send_mail(emails, subject, message, kwargs)
-
-
-@receiver(signals.join_request_created)
-def notify_team_join_request_created(sender, **kwargs):
-    join_request = kwargs["join_request"]
-    if join_request.status != "PENDING":
-        return # requester autojoined an empty team
-    emails = get_team_emails(join_request.team)
-    subject = "team/email/notify_team_join_request_created_subject.txt"
-    message = "team/email/notify_team_join_request_created_message.txt"
-    send_mail(emails, subject, message, kwargs)
-
-
-@receiver(signals.remove_request_created)
-def notify_concerned_remove_request_created(sender, **kwargs):
-    rr = kwargs["remove_request"]
-    if rr.status != "PENDING":
-        return # last member was autoremoved
-    email = account_control.get_email_or_404(rr.concerned)
-    subject = "team/email/notify_concerned_remove_request_created_subject.txt"
-    message = "team/email/notify_concerned_remove_request_created_message.txt"
-    send_mail([email], subject, message, kwargs)
-
-
-@receiver(signals.remove_request_created)
-def notify_team_remove_request_created(sender, **kwargs):
-    rr = kwargs["remove_request"]
-    if rr.status != "PENDING":
-        return # last member was autoremoved
-    emails = get_team_emails(rr.team, excludes=[rr.concerned])
-    subject = "team/email/notify_team_remove_request_created_subject.txt"
-    message = "team/email/notify_team_remove_request_created_message.txt"
-    send_mail(emails, subject, message, kwargs)
-
-
 def get_team_emails(team, excludes=None):
     qs = EmailAddress.objects.filter(
             primary=True, 
@@ -98,6 +57,63 @@ def create(account, name, country, logo, application):
         team.members.add(account)
     signals.team_created.send(sender=create, team=team, creator=account)
     return team
+
+
+##########
+# EMAILS #
+##########
+
+
+@receiver(signals.team_created)
+def notify_staff_team_created(sender, **kwargs):
+    emails = account_control.get_superuser_emails()
+    subject = "team/email/notify_staff_team_created_subject.txt"
+    message = "team/email/notify_staff_team_created_message.txt"
+    send_mail(emails, subject, message, kwargs)
+
+
+@receiver(signals.join_request_created)
+def notify_team_join_request_created(sender, **kwargs):
+    join_request = kwargs["join_request"]
+    if join_request.status != "PENDING":
+        return
+    emails = get_team_emails(join_request.team)
+    subject = "team/email/notify_team_join_request_created_subject.txt"
+    message = "team/email/notify_team_join_request_created_message.txt"
+    send_mail(emails, subject, message, kwargs)
+
+
+@receiver(signals.join_request_processed)
+def notify_team_join_request_processed(sender, **kwargs):
+    join_request = kwargs["join_request"]
+    if join_request.status == "PENDING":
+        return
+    emails = get_team_emails(join_request.team)
+    subject = "team/email/notify_team_join_request_processed_subject.txt"
+    message = "team/email/notify_team_join_request_processed_message.txt"
+    send_mail(emails, subject, message, kwargs)
+
+
+@receiver(signals.remove_request_created)
+def notify_concerned_remove_request_created(sender, **kwargs):
+    rr = kwargs["remove_request"]
+    if rr.status != "PENDING":
+        return
+    email = account_control.get_email_or_404(rr.concerned)
+    subject = "team/email/notify_concerned_remove_request_created_subject.txt"
+    message = "team/email/notify_concerned_remove_request_created_message.txt"
+    send_mail([email], subject, message, kwargs)
+
+
+@receiver(signals.remove_request_created)
+def notify_team_remove_request_created(sender, **kwargs):
+    rr = kwargs["remove_request"]
+    if rr.status != "PENDING":
+        return
+    emails = get_team_emails(rr.team, excludes=[rr.concerned])
+    subject = "team/email/notify_team_remove_request_created_subject.txt"
+    message = "team/email/notify_team_remove_request_created_message.txt"
+    send_mail(emails, subject, message, kwargs)
 
 
 ########
@@ -163,6 +179,8 @@ def process_join_request(account, join_request, response, status):
         join_request.save()
         if join_request.status == 'ACCEPTED':
             join_request.team.members.add(join_request.requester)
+    signals.join_request_processed.send(sender=process_join_request, 
+                                        join_request=join_request)
 
 
 ##################
