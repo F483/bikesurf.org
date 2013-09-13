@@ -74,10 +74,10 @@ def notify_staff_team_created(sender, **kwargs):
 
 @receiver(signals.join_request_created)
 def notify_team_join_request_created(sender, **kwargs):
-    join_request = kwargs["join_request"]
-    if join_request.status != "PENDING":
+    jr = kwargs["join_request"]
+    if jr.status != "PENDING":
         return
-    emails = get_team_emails(join_request.team)
+    emails = get_team_emails(jr.team)
     subject = "team/email/notify_team_join_request_created_subject.txt"
     message = "team/email/notify_team_join_request_created_message.txt"
     send_mail(emails, subject, message, kwargs)
@@ -85,10 +85,10 @@ def notify_team_join_request_created(sender, **kwargs):
 
 @receiver(signals.join_request_processed)
 def notify_team_join_request_processed(sender, **kwargs):
-    join_request = kwargs["join_request"]
-    if join_request.status == "PENDING":
+    jr = kwargs["join_request"]
+    if jr.status == "PENDING":
         return
-    emails = get_team_emails(join_request.team)
+    emails = get_team_emails(jr.team)
     subject = "team/email/notify_team_join_request_processed_subject.txt"
     message = "team/email/notify_team_join_request_processed_message.txt"
     send_mail(emails, subject, message, kwargs)
@@ -113,6 +113,19 @@ def notify_team_remove_request_created(sender, **kwargs):
     emails = get_team_emails(rr.team, excludes=[rr.concerned])
     subject = "team/email/notify_team_remove_request_created_subject.txt"
     message = "team/email/notify_team_remove_request_created_message.txt"
+    send_mail(emails, subject, message, kwargs)
+
+
+@receiver(signals.remove_request_processed)
+def notify_team_remove_request_processed(sender, **kwargs):
+    rr = kwargs["remove_request"]
+    if rr.status == "PENDING":
+        return
+    emails = get_team_emails(rr.team)
+    if rr.status == "ACCEPTED":
+        emails.append(account_control.get_email_or_404(rr.concerned))
+    subject = "team/email/notify_team_remove_request_processed_subject.txt"
+    message = "team/email/notify_team_remove_request_processed_message.txt"
     send_mail(emails, subject, message, kwargs)
 
 
@@ -241,6 +254,9 @@ def process_remove_request(account, remove_request, response, status):
         remove_request.save()
         if status == "ACCEPTED":
             remove_request.team.members.remove(remove_request.concerned)
+    signals.remove_request_processed.send(sender=process_remove_request, 
+                                          remove_request=remove_request)
+    return remove_request
 
 
 #########
