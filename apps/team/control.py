@@ -21,10 +21,10 @@ from apps.account import control as account_control
 
 @receiver(signals.team_created)
 def notify_staff_team_created(sender, **kwargs):
-    superuser_emails = account_control.get_superuser_emails()
+    emails = account_control.get_superuser_emails()
     subject = "team/email/notify_staff_team_created_subject.txt"
     message = "team/email/notify_staff_team_created_message.txt"
-    send_mail(superuser_emails, subject, message, kwargs)
+    send_mail(emails, subject, message, kwargs)
 
 
 @receiver(signals.join_request_created)
@@ -32,18 +32,43 @@ def notify_team_join_request_created(sender, **kwargs):
     join_request = kwargs["join_request"]
     if join_request.status != "PENDING":
         return # requester autojoined an empty team
-    team_emails = get_team_emails(join_request.team)
+    emails = get_team_emails(join_request.team)
     subject = "team/email/notify_team_join_request_created_subject.txt"
     message = "team/email/notify_team_join_request_created_message.txt"
-    send_mail(team_emails, subject, message, kwargs)
+    send_mail(emails, subject, message, kwargs)
 
 
-def get_team_emails(team):
-    addresses = EmailAddress.objects.filter(
+@receiver(signals.remove_request_created)
+def notify_concerned_remove_request_created(sender, **kwargs):
+    rr = kwargs["remove_request"]
+    if rr.status != "PENDING":
+        return # last member was autoremoved
+    email = account_control.get_email_or_404(rr.concerned)
+    subject = "team/email/notify_concerned_remove_request_created_subject.txt"
+    message = "team/email/notify_concerned_remove_request_created_message.txt"
+    send_mail([email], subject, message, kwargs)
+
+
+@receiver(signals.remove_request_created)
+def notify_team_remove_request_created(sender, **kwargs):
+    rr = kwargs["remove_request"]
+    if rr.status != "PENDING":
+        return # last member was autoremoved
+    emails = get_team_emails(rr.team, excludes=[rr.concerned])
+    subject = "team/email/notify_team_remove_request_created_subject.txt"
+    message = "team/email/notify_team_remove_request_created_message.txt"
+    send_mail(emails, subject, message, kwargs)
+
+
+def get_team_emails(team, excludes=None):
+    qs = EmailAddress.objects.filter(
             primary=True, 
             user__accounts__teams=team
     )
-    return [address.email for address in list(addresses)]
+    if excludes:
+        for exclude in excludes:
+            qs = qs.exclude(user__accounts=exclude)
+    return [address.email for address in list(qs)]
 
 
 def get_teams(account):
@@ -172,6 +197,7 @@ def can_process_remove_request(account, remove_request):
 def create_remove_request(requester, concerned, team, reason):
     if not can_create_remove_request(requester, concerned, team):
         raise PermissionDenied
+    remove_request = None
     with transaction.commit_on_success():
         remove_request = RemoveRequest()
         remove_request.team = team
@@ -182,7 +208,9 @@ def create_remove_request(requester, concerned, team, reason):
             remove_request.status = "ACCEPTED"
             remove_request.team.members.remove(remove_request.concerned)
         remove_request.save()
-        return remove_request
+    signals.remove_request_created.send(sender=create_remove_request, 
+                                        remove_request=remove_request)
+    return remove_request
 
 
 def process_remove_request(account, remove_request, response, status):

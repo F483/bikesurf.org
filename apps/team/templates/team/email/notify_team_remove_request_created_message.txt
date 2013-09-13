@@ -1,0 +1,7 @@
+"{{ remove_request.requester.user.username }}" wishes that "{{ remove_request.concerned.user.username }}" be removed from team "{{ remove_request.team.name }}".
+
+{{ remove_request.requester.user.username }}'s reason:
+{{ remove_request.reason }}
+
+To allow or refuse {{ remove_request.concerned.user.username }} membership, visit the following link.
+http://{{ site.domain }}/{{ remove_request.team.link }}/remove_request/process/{{ remove_request.id }}

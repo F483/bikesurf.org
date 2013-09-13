@@ -60,41 +60,64 @@ class Team(Model):
 class JoinRequest(Model):
 
     # main data
-    team        = ForeignKey('team.Team', related_name='join_requests') # team user wants to join
-    requester   = ForeignKey('account.Account', related_name='join_requests_made') # user who is requesting to join
-    processor   = ForeignKey('account.Account', related_name='join_requests_processed', null=True, blank=True) # user who answerd the request
-    status      = CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
+    team = ForeignKey( # team user wants to join
+        'team.Team', related_name='join_requests'
+    )
+    requester = ForeignKey( # user who is requesting to join
+        'account.Account', related_name='join_requests_made'
+    ) 
+    processor = ForeignKey( # user who answerd the request
+        'account.Account', related_name='join_requests_processed', 
+        null=True, blank=True
+    )
+    status = CharField(
+        max_length=256, choices=STATUS_CHOICES, default='PENDING'
+    )
     application = TextField() # reason given by user to join
-    response    = TextField(blank=True) # reason given by processor
+    response = TextField(blank=True) # reason given by processor
 
     # meta
-    created_on  = DateTimeField(auto_now_add=True)
-    updated_on  = DateTimeField(auto_now=True)
+    # created_by = requester
+    # updated_by = processor
+    created_on = DateTimeField(auto_now_add=True)
+    updated_on = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u"%s > %s (%s)" % (self.requester, self.team, self.status)
 
-    class Meta:                                                                                                 
-                                                                                                                
+    class Meta:
+        
         ordering = ['-status', 'created_on']
 
 
 class RemoveRequest(Model):
 
     # main data
-    team        = ForeignKey('team.Team', related_name='remove_requests') # team to remove user from
-    concerned   = ForeignKey('account.Account', related_name='remove_requests_concerned') # user to be removed
-    requester   = ForeignKey('account.Account', related_name='remove_requests_made') # user who is requesting the removel
-    processor   = ForeignKey('account.Account', related_name='remove_requests_processed', null=True, blank=True) # user who processed the request
-    status      = CharField(max_length=256, choices=STATUS_CHOICES, default='PENDING')
-    reason      = TextField() # reason given by by the requester
-    response    = TextField(blank=True) # reason given by processor
+    team = ForeignKey( # team to remove user from
+        'team.Team', 
+        related_name='remove_requests'
+    )
+    concerned = ForeignKey( # user to be removed
+        'account.Account', related_name='remove_requests_concerned'
+    )
+    requester = ForeignKey( # user who is requesting the removel
+        'account.Account', related_name='remove_requests_made'
+    )
+    processor = ForeignKey( # user who processed the request
+        'account.Account', related_name='remove_requests_processed', 
+        null=True, blank=True
+    )
+    status = CharField(
+        max_length=256, choices=STATUS_CHOICES, default='PENDING'
+    )
+    reason = TextField() # reason given by by the requester
+    response = TextField(blank=True) # reason given by processor
 
     # meta
     # created_by = requester
     # updated_by = processor
-    created_on  = DateTimeField(auto_now_add=True)
-    updated_on  = DateTimeField(auto_now=True)
+    created_on = DateTimeField(auto_now_add=True)
+    updated_on = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return u"%s < %s (%s)" % (self.concerned, self.team, self.status)

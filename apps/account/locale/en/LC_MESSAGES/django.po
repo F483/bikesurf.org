@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 11:36-0500\n"
+"POT-Creation-Date: 2013-09-13 01:58-0500\n"
 "PO-Revision-Date: 2013-09-09 11:42-0500\n"
 "Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:27 templates/account/profile.html:25
@@ -75,7 +75,8 @@ msgstr "Error: Profile for Site already exists!"
 
 #: forms.py:80
 msgid "ERROR_BAD_PROFILE_FORMAT"
-msgstr "Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
+msgstr ""
+"Error: Profile may only have the following characters \"a-zA-Z0-9_.@+-\"!"
 
 #: forms.py:82
 msgid "ERROR_CANNOT_CREATE_LINK"
@@ -109,27 +110,27 @@ msgstr "Google"
 msgid "TWITTER"
 msgstr "Twitter"
 
-#: views.py:20
+#: views.py:19
 msgid "PROFILE_UPDATED"
 msgstr "Profile updated"
 
-#: views.py:36 templates/account/profile.html:33
+#: views.py:35 templates/account/profile.html:33
 msgid "SET_PASSPORT"
 msgstr "Set passport image"
 
-#: views.py:55
+#: views.py:54
 msgid "LINK_DELETE?"
 msgstr "Delete link?"
 
-#: views.py:79
+#: views.py:78
 msgid "ADD_LINK_SUBTITLE"
 msgstr "Add social link to account."
 
-#: views.py:125 templates/account/profile.html:11
+#: views.py:128 templates/account/profile.html:11
 msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
-"This information can only be seen by bikesurf.org administrators and members"
-" of teams where you are borrowing a bike."
+"This information can only be seen by bikesurf.org administrators and members "
+"of teams where you are borrowing a bike."
 
 #: templates/account/profile.html:15 templates/account/view.html:14
 msgid "LIST_NAME"
