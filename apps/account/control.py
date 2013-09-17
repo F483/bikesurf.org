@@ -5,10 +5,17 @@
 
 import os
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+from django.contrib.sites.models import Site
+from allauth.account.models import EmailAddress
 from apps.link import control as link_control
 from apps.borrow.models import Borrow
-from allauth.account.models import EmailAddress
-from django.shortcuts import get_object_or_404
+from apps.account.models import Account
+
+
+def get_site_account():
+    site = Site.objects.get_current()
+    return get_object_or_none(Account, user__username=site.name)
 
 
 def get_email_or_404(account):

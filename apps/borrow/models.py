@@ -12,6 +12,7 @@ from django.db.models import TextField
 from django.db.models import DateField
 from django.db.models import DateTimeField
 from django.db.models import IntegerField
+from apps.common.shortcuts import get_object_or_none
 
 
 STATE_CHOICES = [
@@ -41,13 +42,35 @@ class Borrow(Model):
     dest = ForeignKey('station.Station', related_name='arrivals',
                       blank=True, null=True)
 
+    @property
+    def borrower_rating(self):
+        if self._borrower_rating:
+            return self._borrower_rating
+        self._borrower_rating = get_object_or_none(
+            Rating, borrow=self, originator="BORROWER"
+        )
+        return self._borrower_rating
+
+    @property
+    def lender_rating(self):
+        if self._lender_rating:
+            return self._lender_rating
+        self._lender_rating = get_object_or_none(
+            Rating, borrow=self, originator="LENDER"
+        )
+        return self._lender_rating
+
     # meta
-    created_on  = DateTimeField(auto_now_add=True)
-    updated_on  = DateTimeField(auto_now=True)
+    created_on = DateTimeField(auto_now_add=True)
+    updated_on = DateTimeField(auto_now=True)
 
     def __unicode__(self):
         args = (self.id, self.bike.id, self.state, self.start, self.finish)
         return u"id: %s; bike_id: %s; state: %s; start: %s; finish %s" % args
+
+    class Meta:
+        
+        ordering = ["start"]
 
 
 class Log(Model):
@@ -93,7 +116,7 @@ RATING_CHOICES = [
 ]
 
 
-class Rating(Model): # only borrower rates ...
+class Rating(Model):
 
     borrow = ForeignKey('borrow.Borrow')
     rating = CharField(max_length=64, choices=RATING_CHOICES)
@@ -107,7 +130,7 @@ class Rating(Model): # only borrower rates ...
         args = (self.id, self.borrow.id, self.rating)
         return u"id: %s; borrow_id: %s; rating: %s" % args
 
-    class Meta:                                                                                                 
-                                                                                                                
+    class Meta:
+        
         unique_together = (("borrow", "account", "originator"),) 
 

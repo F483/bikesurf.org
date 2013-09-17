@@ -1,0 +1,24 @@
+{% if log.borrow.state == "ACCEPTED" %}
+Your borrow request has been accepted.
+{% elif log.borrow.state == "MEETUP" %}
+Meeting a team member is required for your borrow request to be accepted.
+{% elif log.borrow.state == "REJECTED" %}
+Your borrow request has been rejected.
+{% else %}
+ERROR: BORROW IN IMPOSSIBLE STATE!
+{% endif %}
+
+Reason given by {{ log.initiator.user.username }}:
+{{ log.note }}
+
+{% if log.borrow.state == "ACCEPTED" %}
+Borrow information
+Bike: {{ log.borrow.bike.name }}
+From date: {{ log.borrow.start }}
+From station: {{ log.borrow.src }}
+To date: {{ log.borrow.finish }}
+To station: {{ log.borrow.dest }}
+Lock code: {{ log.borrow.bike.lockcode }}
+{% endif %}
+
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}

@@ -1,0 +1,1 @@
+Borrow #{{ log.borrow.id }} rated {{ log.borrow.lender_rating.rating }} for {{ log.borrow.bike.name }}.

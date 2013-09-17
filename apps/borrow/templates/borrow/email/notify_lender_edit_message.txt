@@ -1,0 +1,14 @@
+Borrow #{{ log.borrow.id }} edited.
+
+Reason given by {{ log.initiator.user.username }}:
+{{ log.note }}
+
+Updated information
+Bike: {{ log.borrow.bike.name }}
+State: {{ log.borrow.state }}
+From date: {{ log.borrow.start }}
+From station: {{ log.borrow.src }}
+To date: {{ log.borrow.finish }}
+To station: {{ log.borrow.dest }}
+
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}

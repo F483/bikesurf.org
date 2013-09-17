@@ -3,18 +3,14 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from unidecode import unidecode
 from django.db import models
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
-from unidecode import unidecode
 from django_countries import countries
 from django.shortcuts import _get_queryset
-
-from apps.borrow.models import Borrow
-from apps.bike.models import Bike
-from apps.station.models import Station
 from django.template.loader import render_to_string
 from django.core.mail import send_mail as _send_mail
 from django.conf import settings
@@ -36,8 +32,12 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
-    from apps.team import control as team_control # circular import ...
-    from apps.borrow import control as borrow_control # circular import ...
+    # avoid circular imports ...
+    from apps.team import control as team_control 
+    from apps.borrow import control as borrow_control
+    from apps.borrow.models import Borrow
+    from apps.station.models import Station
+
     args.update({ 
         "current_user" : request.user,
         "current_path" : request.path,
