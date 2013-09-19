@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 03:09-0500\n"
+"POT-Creation-Date: 2013-09-19 04:50-0500\n"
 "PO-Revision-Date: 2013-09-09 11:43-0500\n"
 "Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
-#: control.py:119 models.py:84 templates/borrow/view.html:14
+#: control.py:168 models.py:107 templates/borrow/view.html:14
 msgid "BORROWER"
 msgstr "Borrower"
 
-#: control.py:119 forms.py:121 forms.py:147 templates/borrow/view.html:24
+#: control.py:168 forms.py:121 forms.py:147 templates/borrow/view.html:24
 msgid "BIKE"
 msgstr "Bike"
 
-#: control.py:119 templates/borrow/view.html:30
+#: control.py:168 templates/borrow/view.html:30
 msgid "DATE_FROM"
 msgstr "From date"
 
-#: control.py:119 templates/borrow/view.html:31
+#: control.py:168 templates/borrow/view.html:31
 msgid "DATE_TO"
 msgstr "To date"
 
-#: control.py:120 templates/borrow/view.html:34
+#: control.py:169 templates/borrow/view.html:34
 msgid "STATION_FROM"
 msgstr "From station"
 
-#: control.py:120 templates/borrow/view.html:35
+#: control.py:169 templates/borrow/view.html:35
 msgid "STATION_TO"
 msgstr "To station"
 
-#: control.py:120
+#: control.py:169
 msgid "BORROW_STATE"
 msgstr "State"
 
-#: forms.py:29 models.py:20
+#: forms.py:29 models.py:21
 msgid "ACCEPTED"
 msgstr "Accepted"
 
-#: forms.py:30 models.py:19
+#: forms.py:30 models.py:20
 msgid "MEETUP"
 msgstr "Meetup"
 
-#: forms.py:31 models.py:21
+#: forms.py:31 models.py:22
 msgid "REJECTED"
 msgstr "Rejected"
 
@@ -111,55 +111,55 @@ msgstr "To"
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 
-#: models.py:18
+#: models.py:19
 msgid "REQUEST"
 msgstr "Request"
 
-#: models.py:22
+#: models.py:23
 msgid "CANCELED"
 msgstr "Canceled"
 
-#: models.py:23 models.py:61
+#: models.py:24 models.py:84
 msgid "FINISHED"
 msgstr "Finished"
 
-#: models.py:56
+#: models.py:79
 msgid "LENDER_RATE"
 msgstr "Rate"
 
-#: models.py:57
+#: models.py:80
 msgid "BORROWER_RATE"
 msgstr "Rate"
 
-#: models.py:58
+#: models.py:81
 msgid "CREATE"
 msgstr "Create"
 
-#: models.py:59
+#: models.py:82
 msgid "RESPOND"
 msgstr "Respond"
 
-#: models.py:60
+#: models.py:83
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: models.py:62
+#: models.py:85
 msgid "EDIT"
 msgstr "Edit"
 
-#: models.py:85
+#: models.py:108
 msgid "LENDER"
 msgstr "Lender"
 
-#: models.py:90
+#: models.py:113
 msgid "THUMBS_UP"
 msgstr "Positive"
 
-#: models.py:91
+#: models.py:114
 msgid "NEUTRAL"
 msgstr "Neutral"
 
-#: models.py:92
+#: models.py:115
 msgid "THUMBS_DOWN"
 msgstr "Negative"
 
