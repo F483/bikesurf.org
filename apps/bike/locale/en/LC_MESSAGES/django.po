@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-06 08:10-0500\n"
-"PO-Revision-Date: 2013-09-06 06:56-0500\n"
-"Last-Translator:   <test@user.one>\n"
+"PO-Revision-Date: 2013-09-07 04:48\n"
+"Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.7.2\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:23
 msgid "ALL"
@@ -103,15 +103,15 @@ msgstr "Error: Cannot delete, bike in use!"
 
 #: models.py:16
 msgid "SMALL"
-msgstr "Small"
+msgstr "Small ~140-155cm"
 
 #: models.py:17
 msgid "MEDIUM"
-msgstr "Medium"
+msgstr "Medium ~155-175cm"
 
 #: models.py:18
 msgid "LARGE"
-msgstr "Large"
+msgstr "Large ~175cm-190cm"
 
 #: views.py:36
 msgid "BIKE_BORROWS"
