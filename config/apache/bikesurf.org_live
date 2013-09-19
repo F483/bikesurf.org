@@ -13,21 +13,27 @@
  
     # static media aliases
     Alias /static/admin/ /usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/admin/
-    Alias /static/ /home/bikesurf/www/static/
-    Alias /media/ /home/bikesurf/www/media/
+    Alias /static/bike/ /home/bikesurf/www/apps/bike/static/bike/
+    Alias /static/common/ /home/bikesurf/www/apps/common/static/common/
+    Alias /static/gallery/ /home/bikesurf/www/apps/gallery/static/gallery/
+    Alias /static/link/ /home/bikesurf/www/apps/link/static/link/
+    Alias /static/site/ /home/bikesurf/www/apps/site/static/site/
+    Alias /static/team/ /home/bikesurf/www/apps/team/static/team/
  
     # static permissions
+    Alias /static/ /home/bikesurf/www/static/
     <Directory /home/bikesurf/www/static>
         Order deny,allow
         Allow from all
     </Directory>
  
     # media permissions
-    <Directory /home/bikesurf/www/media>
+    Alias /uploads/ /home/bikesurf/www/uploads/
+    <Directory /home/bikesurf/www/uploads>
         Order deny,allow
         Allow from all
     </Directory>
- 
+
     # Project wsgi permissions
     # Used for serving django pages.
     <Directory /home/bikesurf/www/config>
