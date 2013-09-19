@@ -6,11 +6,14 @@
 import datetime
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext as _
-
+from django.dispatch import receiver
+from apps.common.shortcuts import send_mail
 from apps.borrow.models import Borrow
 from apps.borrow.models import Rating
 from apps.borrow.models import Log
+from apps.borrow import signals
 from apps.team import control as team_control
+from apps.account import control as account_control
 
 
 def _remove_from_borrow_chain(borrow):
@@ -52,13 +55,59 @@ def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
 
 
 def log(account, borrow, note, action):
+    if not account: # get site account if available
+        account = account_control.get_site_account()
     l = Log()
     l.borrow = borrow
     l.initiator = account
     l.action = action
     l.note = note
     l.save()
+    signals.borrow_log_created.send(sender=log, log=l)
     return l
+
+
+##########
+# EMAILS #
+##########
+
+def _get_email_templates(party, action):
+    action = action.lower()
+    party = party.lower()
+    template = "borrow/email/notify_{party}_{action}_{part}.txt"
+    return (
+        template.format(party=party, action=action, part="subject"),
+        template.format(party=party, action=action, part="message"),
+    )
+
+
+@receiver(signals.borrow_log_created)
+def borrow_log_created_borrower_callback(sender, **kwargs):
+    log = kwargs["log"]
+    if log.borrow.borrower == log.initiator:
+        return # no need to notify user of there own actions
+    if log.action in ["FINISHED"]:
+        return # no one cares, dont spam
+    email = account_control.get_email_or_404(log.borrow.borrower)
+    subject, message = _get_email_templates("borrower", log.action)
+    send_mail([email], subject, message, kwargs)
+
+
+@receiver(signals.borrow_log_created)
+def borrow_log_created_lender_callback(sender, **kwargs):
+    log = kwargs["log"]
+    if log.action in ["FINISHED"]:
+        return # no one cares, dont spam
+    if team_control.is_member(log.initiator, log.borrow.team):
+        return # not need to notify team of its own actions
+    emails = team_control.get_team_emails(log.borrow.team)
+    subject, message = _get_email_templates("lender", log.action)
+    send_mail(emails, subject, message, kwargs)
+
+
+###########
+# COMMENT #
+###########
 
 
 def can_comment(account, borrow):

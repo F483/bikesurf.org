@@ -1,0 +1,8 @@
+{% if remove_request.status == "ACCEPTED" %}
+    {{ remove_request.concerned.user.username }} has been removed from team {{ remove_request.team.name }}.
+{% else %}
+    {{ remove_request.concerned.user.username }} has not been removed from team {{ remove_request.team.name }}.
+{% endif %}
+
+{{ remove_request.processor.user.username }}'s response:
+{{ remove_request.response }}

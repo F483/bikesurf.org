@@ -84,7 +84,8 @@ def link_create(request):
 @require_http_methods(["GET"])
 def profile(request):
     account = get_object_or_404(Account, user=request.user)
-    args = { "links" : account.links.all() }
+    email = control.get_email_or_404(account)
+    args = { "links" : account.links.all(), "email" : email }
     return render_response(request, "account/profile.html", args)
 
 
@@ -93,9 +94,13 @@ def profile(request):
 def view(request, username):
     current_account = get_object_or_404(Account, user=request.user)
     view_account = get_object_or_404(Account, user__username=username)
+    email = control.get_email_or_404(account)
     if not control.can_view_account(current_account, view_account):
         raise PermissionDenied
-    args = { "view_account" : view_account, "links" : view_account.links.all() }
+    args = { 
+        "view_account" : view_account, "links" : view_account.links.all(),
+        "email" : email 
+    }
     return render_response(request, "account/view.html", args)
 
 

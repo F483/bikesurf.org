@@ -5,8 +5,32 @@
 
 import os
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+from django.contrib.sites.models import Site
+from allauth.account.models import EmailAddress
 from apps.link import control as link_control
 from apps.borrow.models import Borrow
+from apps.account.models import Account
+
+
+def get_site_account():
+    site = Site.objects.get_current()
+    return get_object_or_none(Account, user__username=site.name)
+
+
+def get_email_or_404(account):
+    address = get_object_or_404(EmailAddress, user=account.user, primary=True)
+    return address.email
+
+
+def get_staff_emails():
+    addresses = EmailAddress.objects.filter(primary=True, user__is_staff=True)
+    return [address.email for address in list(addresses)]
+
+
+def get_superuser_emails():
+    addresses = EmailAddress.objects.filter(primary=True, user__is_superuser=True)
+    return [address.email for address in list(addresses)]
 
 
 def set_passport(account, passport):
@@ -23,7 +47,8 @@ def can_view_account(current_account, view_account):
     if bool(Borrow.objects.filter(team__members=current_account, 
                                   borrower=view_account)):
         return True # user can view if account has borrow from one of there teams
-    return True
+    # TODO allow admins to view everyone
+    return False
 
 
 def edit(account, username, first_name, last_name, mobile, source, description):

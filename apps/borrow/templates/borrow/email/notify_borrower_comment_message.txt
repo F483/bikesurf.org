@@ -1,0 +1,6 @@
+Your borrow has been commented by {{ log.initiator.user.username }}.
+
+Comment given by {{ log.initiator.user.username }}:
+{{ log.note }}
+
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}

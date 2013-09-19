@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 08:10-0500\n"
-"PO-Revision-Date: 2013-09-06 08:46-0500\n"
-"Last-Translator:   <test@user.one>\n"
+"POT-Creation-Date: 2013-09-13 03:09-0500\n"
+"PO-Revision-Date: 2013-09-09 11:44-0500\n"
+"Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: templates/base.html:6
@@ -166,10 +166,18 @@ msgstr "Create team"
 msgid "COMMENT"
 msgstr "Comment"
 
-#: templatetags/common_tags.py:50
+#: templatetags/common_tags.py:34
+msgid "CHANGE_PASSWORD"
+msgstr "Change password"
+
+#: templatetags/common_tags.py:35
+msgid "CHANGE_EMAIL"
+msgstr "Change email"
+
+#: templatetags/common_tags.py:52
 msgid "TRUE"
 msgstr "True"
 
-#: templatetags/common_tags.py:51
+#: templatetags/common_tags.py:53
 msgid "FALSE"
 msgstr "False"

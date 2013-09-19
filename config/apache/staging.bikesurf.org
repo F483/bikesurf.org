@@ -19,7 +19,6 @@
     Alias /static/site/ /home/bikesurf_staging/www/apps/site/static/site/
     Alias /static/team/ /home/bikesurf_staging/www/apps/team/static/team/
 
- 
     # static permissions
     Alias /static/ /home/bikesurf_staging/www/static/
     <Directory /home/bikesurf_staging/www/static>

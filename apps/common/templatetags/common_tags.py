@@ -31,6 +31,8 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "SET_PASSPORT" : _("SET_PASSPORT"),
         "CREATE_TEAM" : _("CREATE_TEAM"),
         "COMMENT" : _("COMMENT"),
+        "CHANGE_PASSWORD" : _("CHANGE_PASSWORD"),
+        "CHANGE_EMAIL" : _("CHANGE_EMAIL"),
 }
 
 

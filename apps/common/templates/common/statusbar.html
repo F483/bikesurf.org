@@ -1,6 +1,6 @@
 {% load i18n %}
 
-{% if current_user.is_authenticated %}
+{% if current_user and current_user.is_authenticated %}
 
     {% for team in current_account_teams %}
         <a href="/{{ team.link }}">{{ team.name }}</a>
@@ -29,9 +29,11 @@
     <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
     <a href="/accounts/profile/">{{ current_user.username }}</a>
 
-{% else %}
+{% elif current_user %}
 
     <a href="/accounts/login/?next={{ current_path }}">{% trans "LOGIN" %}</a>
     <a href="/accounts/signup/">{% trans "SIGN UP" %}</a>
 
+{% else %}
+    &nbsp;
 {% endif %}

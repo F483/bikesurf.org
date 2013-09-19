@@ -1,0 +1,1 @@
+{{ join_request.requester.user.username }} wishes to join team {{ join_request.team.name }}.

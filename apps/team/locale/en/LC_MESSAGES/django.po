@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 08:10-0500\n"
-"PO-Revision-Date: 2013-09-06 08:13-0500\n"
-"Last-Translator:   <test@user.one>\n"
+"POT-Creation-Date: 2013-09-13 03:09-0500\n"
+"PO-Revision-Date: 2013-09-13 03:12-0500\n"
+"Last-Translator:   <fabian.barkhau@googlemail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,6 +86,18 @@ msgstr "Error: Cannot create link!"
 #: forms.py:109
 msgid "ERROR_CANNOT_DELETE_LINK"
 msgstr "Error: Cannot delete link!"
+
+#: models.py:21
+msgid "PENDING"
+msgstr "Pending"
+
+#: models.py:22
+msgid "ACCEPTED"
+msgstr "Accepted"
+
+#: models.py:23
+msgid "DECLINED"
+msgstr "Declined"
 
 #: utils.py:15
 msgid "BLOG"
@@ -178,9 +190,9 @@ msgstr "Remove request made"
 #: templates/team/remove_request/created.html:7
 msgid "REMOVE_REQUEST_MADE"
 msgstr ""
-"As soon as another team member approves your remove request, the concerned "
-"member will be removed from the team. If the team only has two members the "
-"concerned member will be remove immediately."
+"As soon as a team member approves your remove request, the concerned member "
+"will be removed from the team. If you are the only other member, you may do "
+"this yourself."
 
 #: templates/team/remove_request/list.html:12
 msgid "REQUESTER"

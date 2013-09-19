@@ -1,0 +1,5 @@
+{% if join_request.status == "ACCEPTED" %}
+    {{ join_request.requester.user.username }} has joined team {{ join_request.team.name }}.
+{% else %}
+    {{ join_request.requester.user.username }} has not been allowed to join team {{ join_request.team.name }}.
+{% endif %}

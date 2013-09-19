@@ -14,8 +14,13 @@
             {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
             {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
             {% trans "MOBILE" %}: {{ current_account.mobile }} </br>
-            {% trans "SOURCE" %}: {% trans current_account.source %} </br>
-            {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
+
+            {% trans "EMAIL" %}: {{ email }}
+            <a href="/accounts/email/">
+                <img alt="{% trans "CHANGE_EMAIL" %}" src="/static/famfamfam/pencil.png">
+            </a>
+            </br>
+
             {% if current_account.passport %}
                 {% trans "PASSPORT" %}: 
                 <a href="{{ current_account.passport.url }}">
@@ -24,6 +29,13 @@
             {% else %}
                 {% trans "PASSPORT" %}: {% trans "NONE" %}
             {% endif %}
+            <a href="/account/set_passport">
+                <img alt="{% trans "SET_PASSPORT" %}" src="/static/famfamfam/pencil.png">
+            </a>
+            </br>
+
+            {% trans "SOURCE" %}: {% trans current_account.source %} </br>
+            {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
         </p>
 
 
@@ -39,9 +51,7 @@
         <div class="actions">
             {% draw_edit "/account/edit" %}
             {% draw_create "ADD_LINK" "/account/link/create" %}
-            {% draw_create "SET_PASSPORT" "/account/set_passport" %}
-
-            TODO add change password, manage social accounts and email
+            {% draw_action "/static/famfamfam/pencil.png" "CHANGE_PASSWORD" "/accounts/password/change/" %}
         </div>
 
     </div>

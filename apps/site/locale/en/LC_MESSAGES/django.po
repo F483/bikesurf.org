@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 08:10-0500\n"
+"POT-Creation-Date: 2013-09-13 03:09-0500\n"
 "PO-Revision-Date: 2013-09-06 08:43-0500\n"
 "Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:16
@@ -34,8 +34,8 @@ msgstr "What were about"
 msgid "SITE_DESCRIPTION_TEXT"
 msgstr ""
 "Anyone can borrow a bike from us for free. Request a bike and as soon as a "
-"team member approves your borrow request, you will be sent an email with the"
-" lock combination and where you can pick up the bike."
+"team member approves your borrow request, you will be sent an email with the "
+"lock combination and where you can pick up the bike."
 
 #: templates/site/index.html:33
 msgid "BORROW_A_BIKE"

@@ -1,0 +1,7 @@
+{{ join_request.requester.user.username }} wishes to join team {{ join_request.team.name }}.
+
+{{ join_request.requester.user.username }}'s application:
+{{ join_request.application }}
+
+To allow or refuse {{ join_request.requester.user.username }} to become a member visit the following link.
+http://{{ site.domain }}/{{ join_request.team.link }}/join_request/process/{{ join_request.id }}

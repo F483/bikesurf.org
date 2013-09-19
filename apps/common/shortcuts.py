@@ -3,17 +3,17 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
+from unidecode import unidecode
 from django.db import models
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
+from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
-from unidecode import unidecode
 from django_countries import countries
 from django.shortcuts import _get_queryset
-
-from apps.borrow.models import Borrow
-from apps.bike.models import Bike
-from apps.station.models import Station
+from django.template.loader import render_to_string
+from django.core.mail import send_mail as _send_mail
+from django.conf import settings
 
 
 COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
@@ -32,8 +32,12 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
-    from apps.team import control as team_control # circular import ...
-    from apps.borrow import control as borrow_control # circular import ...
+    # avoid circular imports ...
+    from apps.team import control as team_control 
+    from apps.borrow import control as borrow_control
+    from apps.borrow.models import Borrow
+    from apps.station.models import Station
+
     args.update({ 
         "current_user" : request.user,
         "current_path" : request.path,
@@ -51,7 +55,6 @@ def render_response(request, template, args):
             "arrival_count" : len(borrow_control.arrivals(account)),
         })
     args.update(csrf(request))
-    # TODO check for mobile browser and use mobile template if it exists
     return render_to_response(template, args)
 
 
@@ -61,4 +64,17 @@ def get_object_or_none(klass, *args, **kwargs):
         return queryset.get(*args, **kwargs)
     except queryset.model.DoesNotExist:
         return None
+
+
+def send_mail(recipient_list, template_subject, template_message, context):
+    # TODO add i18n templates for users prefered language
+    # TODO use async mail queue
+    site = context["site"] = Site.objects.get_current()
+    sender = settings.EMAIL_HOST_USER
+    subject = render_to_string(template_subject, context) # render subject
+    subject = u" ".join(subject.splitlines()).strip() # remove newlines
+    subject = u"[{site}] {subject}".format(site=site.name, subject=subject) # add prefix
+    message = render_to_string(template_message, context).strip()
+    return _send_mail(subject, message, sender, recipient_list)
+
 

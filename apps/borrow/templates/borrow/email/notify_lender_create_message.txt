@@ -1,0 +1,11 @@
+Borrow #{{ log.borrow.id }} request created for {{ log.borrow.bike.name }}.
+
+Reason given by {{ log.initiator.user.username }}:
+{{ log.note }}
+
+Request information
+Bike: {{ log.borrow.bike.name }}
+From date: {{ log.borrow.start }}
+To date: {{ log.borrow.finish }}
+
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
