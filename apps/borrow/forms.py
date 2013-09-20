@@ -93,6 +93,10 @@ class Create(Form):
         cleaned_data = super(Create, self).clean()
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
+        if not start:
+            raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
+        if not finish:
+            raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
         _validate_borrow_timeframe(self.bike, start, finish)
         return cleaned_data
 
@@ -136,6 +140,10 @@ class BorrowerEdit(Form):
         cleaned_data = super(BorrowerEdit, self).clean()
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
+        if not start:
+            raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
+        if not finish:
+            raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
         bike = cleaned_data.get("bike")
         _validate_borrow_timeframe(bike, start, finish)
         return cleaned_data

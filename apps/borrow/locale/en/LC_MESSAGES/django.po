@@ -2,27 +2,27 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 04:50-0500\n"
-"PO-Revision-Date: 2013-09-09 11:43-0500\n"
-"Last-Translator:   <fabian.barkhau@gmail.com>\n"
+"POT-Creation-Date: 2013-09-20 04:30-0500\n"
+"PO-Revision-Date: 2013-09-20 04:36-0500\n"
+"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: control.py:168 models.py:107 templates/borrow/view.html:14
 msgid "BORROWER"
 msgstr "Borrower"
 
-#: control.py:168 forms.py:121 forms.py:147 templates/borrow/view.html:24
+#: control.py:168 forms.py:125 forms.py:155 templates/borrow/view.html:24
 msgid "BIKE"
 msgstr "Bike"
 
@@ -66,7 +66,7 @@ msgstr "Error: Start not in future!"
 msgid "ERROR_FINISH_BEFORE_START"
 msgstr "Error: Finish before start!"
 
-#: forms.py:42 forms.py:73 forms.py:164
+#: forms.py:42 forms.py:73 forms.py:172
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
 msgstr "Error: Other borrow in time frame!"
 
@@ -74,8 +74,8 @@ msgstr "Error: Other borrow in time frame!"
 msgid "RESPONSE"
 msgstr "Response"
 
-#: forms.py:48 forms.py:81 forms.py:102 forms.py:107 forms.py:112 forms.py:123
-#: forms.py:149 forms.py:174
+#: forms.py:48 forms.py:81 forms.py:106 forms.py:111 forms.py:116 forms.py:127
+#: forms.py:157 forms.py:182
 msgid "NOTE"
 msgstr "Note"
 
@@ -99,15 +99,23 @@ msgstr "Error: Bike station unknown!"
 msgid "ERROR_BIKE_STATION_INACTIVE"
 msgstr "Error: Bike station inactive!"
 
-#: forms.py:79 forms.py:118
+#: forms.py:79 forms.py:122
 msgid "START"
 msgstr "From"
 
-#: forms.py:80 forms.py:119
+#: forms.py:80 forms.py:123
 msgid "FINISH"
 msgstr "To"
 
-#: forms.py:171
+#: forms.py:97 forms.py:144
+msgid "ERROR_IMPOSSIBLE_START_DATE"
+msgstr "Error: Impossible start date!"
+
+#: forms.py:99 forms.py:146
+msgid "ERROR_IMPOSSIBLE_FINISH_DATE"
+msgstr "Error: Impossible finish date!"
+
+#: forms.py:179
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 
