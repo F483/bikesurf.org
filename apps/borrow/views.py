@@ -41,7 +41,7 @@ def lender_list(request, team_link):
     borrows = Borrow.objects.filter(team=team) 
     args = { 
         "page_title" : _("TEAM_BORROWS"),
-        "list_data" : control.to_list_data(borrows, team=team) 
+        "list_data" : control.to_list_data(borrows, team_link=True) 
     }
     return rtr(team, "borrows", request, "common/list.html", args)
 
@@ -66,7 +66,7 @@ def arrivals(request):
     borrows = control.arrivals(account)
     args = { 
         "page_title" : _("ARRIVALS"),
-        "list_data" : control.to_list_data(borrows)
+        "list_data" : control.to_list_data(borrows, team_link=True)
     }
     return render_response(request, "common/list.html", args)
 
@@ -79,7 +79,7 @@ def departures(request):
     borrows = control.departures(account)
     args = {
         "page_title" : _("DEPARTURES"),
-        "list_data" : control.to_list_data(borrows)
+        "list_data" : control.to_list_data(borrows, team_link=True)
     }
     return render_response(request, "common/list.html", args)
 

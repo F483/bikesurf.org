@@ -151,9 +151,9 @@ def active_borrows_in_timeframe(bike, start, finish, exclude=None):
     return list(qs)
 
 
-def to_list_data(borrows, team=None):
-    base_url = team and ("/%s" % team.link) or ""
+def to_list_data(borrows, team_link=False):
     def borrow2entrie(borrow):
+        base_url = team_link and ("/%s" % borrow.team.link) or ""
         src = borrow.src and borrow.src.street or None
         dest = borrow.dest and borrow.dest.street or None
         return {

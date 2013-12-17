@@ -84,7 +84,7 @@ def view(request, **kwargs):
     elif tab == "ARRIVALS":
         borrows = station.arrivals.filter(active=True, finish__gte=today)
 
-    list_data = borrow_control.to_list_data(borrows, team)
+    list_data = borrow_control.to_list_data(borrows, team_link=True)
     template_args = { 
         "bike_pairs" : list(chunks(bikes, 2)),
         "station" : station, "list_data" : list_data,

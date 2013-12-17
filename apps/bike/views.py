@@ -104,7 +104,8 @@ def view(request, team_link, bike_id, tab):
     template = _VIEW[tab]["template"]
     list_data = None
     if tab == "BORROWS":
-        list_data = borrow_control.to_list_data(bike.borrows.all(), team=team)
+        borrows = bike.borrows.all()
+        list_data = borrow_control.to_list_data(borrows, team_link=True)
 
     args = { 
         "bike" : bike, "list_data" : list_data,
