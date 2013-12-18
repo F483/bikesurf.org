@@ -15,7 +15,7 @@ class TeamSelectForm(Form):
     team = ModelChoiceField(
             label='', empty_label=_("PICK_A_LOCATION"), 
             queryset=Team.objects.filter(active=True),
-            widget=Select(attrs={'style':'WIDTH: 350px;'})
+            widget=Select(attrs={'style':'WIDTH: 235px;'})
     ) 
 
 
