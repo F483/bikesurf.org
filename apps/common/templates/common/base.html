@@ -73,6 +73,23 @@
                                 {% endblock %}
                             {% endblock %}
                         </div>
+                        {% if current_team %}
+                            <div id="base_info" class="base_column">
+                                <div>
+                                    <iframe frameborder="0" marginheight="0" marginwidth="0" src="http://www.betterplace.org/en/projects/10457-bikesurfberlin-free-bicycle-rental-in-berlin/widget" width="160" height="260" style="border: 0; padding:0; margin:0;">Ihr Browser unterstützt keine Iframes. &lt;a href='http://www.betterplace.org/projects'&gt;Online Spenden&lt;/a&gt; auf betterplace.org</iframe>
+                                </div>
+                                <div>
+                                    <img src="/static/common/bitcoin_donate.png">
+                                    <img src="/static/common/bitcoin_qrcode.png">
+                                    <div>
+                                        Bitcoin Address</br>
+                                        1LxGcVVcDCR</br>
+                                        SzNBoT5SDcj</br>
+                                        xNr1sAvfNSXi
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endblock %}
                 </div>
             </div>

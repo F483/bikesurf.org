@@ -140,11 +140,13 @@ a:hover {
 }
 
 #base_info {
-    padding-left: 12px;
-    padding-right: 24px;
-    width:250px;
-    min-width: 250px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width:160px;
+    min-width: 160px;
+    text-align: center;
 }
+
 
 #header_button_home {
     float: left;
@@ -199,7 +201,6 @@ a:hover {
     color: #000;
     font-weight: bold;
 }
-
 
 /***** TABS *****/
 
