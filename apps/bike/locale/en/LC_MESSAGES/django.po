@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-20 04:30-0500\n"
+"POT-Creation-Date: 2013-12-18 06:14-0600\n"
 "PO-Revision-Date: 2013-09-07 04:48\n"
 "Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,19 +125,19 @@ msgstr "Overview"
 msgid "BORROWS"
 msgstr "Bike borrows"
 
-#: views.py:134
+#: views.py:135
 msgid "BIKES"
 msgstr "Bikes"
 
-#: views.py:163
+#: views.py:164
 msgid "BIKE_CREATE"
 msgstr "Add bike"
 
-#: views.py:192
+#: views.py:193
 msgid "BIKE_EDIT"
 msgstr "Edit Bike"
 
-#: views.py:213
+#: views.py:214
 msgid "BIKE_DELETE?"
 msgstr "Delete bike?"
 

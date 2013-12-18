@@ -2,55 +2,101 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-20 04:30-0500\n"
-"PO-Revision-Date: 2013-09-06 08:43-0500\n"
-"Last-Translator:   <test@user.one>\n"
+"POT-Creation-Date: 2013-12-18 06:15-0600\n"
+"PO-Revision-Date: 2013-12-18 06:25-0600\n"
+"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: forms.py:16
 msgid "PICK_A_LOCATION"
 msgstr "Pick a location"
 
-#: templates/site/index.html:20
-msgid "TWO_LEGS_GOOD_FREE_WHEELS_BETTER"
-msgstr "Two legs good, free wheels better."
+#: templates/site/index.html:29
+msgid "SITE_SLOGAN"
+msgstr "Two Wheels Good, Free Wheels Better"
 
-#: templates/site/index.html:26
-msgid "WHAT_WERE_ABOUT"
-msgstr "What were about"
+#: templates/site/index.html:32
+msgid "PRESS"
+msgstr "Press"
 
-#: templates/site/index.html:28
-msgid "SITE_DESCRIPTION_TEXT"
-msgstr ""
-"Anyone can borrow a bike from us for free. Request a bike and as soon as a "
-"team member approves your borrow request, you will be sent an email with the "
-"lock combination and where you can pick up the bike."
+#: templates/site/index.html:35
+msgid "THE_STORY"
+msgstr "THE STORY"
 
-#: templates/site/index.html:33
+#: templates/site/index.html:38
+msgid "CONTACT"
+msgstr "CONTACT"
+
+#: templates/site/index.html:41
+msgid "BLOG"
+msgstr "BLOG"
+
+#: templates/site/index.html:46
+msgid "FREEDOM"
+msgstr "FREEDOM!"
+
+#: templates/site/index.html:51
 msgid "BORROW_A_BIKE"
 msgstr "Borrow a bike"
 
-#: templates/site/index.html:39
+#: templates/site/index.html:62
 msgid "SELECT"
 msgstr "Select"
 
-#: templates/site/index.html:43
-msgid "START_A_TEAM"
-msgstr "Start a team"
+#: templates/site/index.html:83
+msgid "WHAT_WERE_ABOUT"
+msgstr "What were about"
 
-#: templates/site/index.html:46
-msgid "TEAM_DESCRIPTION_TEXT"
+#: templates/site/index.html:86
+msgid "SITE_DESCRIPTION_TEXT"
 msgstr ""
-"Start a team in your city. Just fill out the form and the team will be "
-"available as soon as an administrator approves."
+"BikeSurf is a project to provide everyone with free, and ecological transportation in any city around the world.\n"
+"</br>\n"
+"</br>\n"
+"We believe that biking is one of the best things in the world and we want to share it with everyone and anyone. \n"
+"</br>\n"
+"</br>\n"
+"We started in Berlin, and will expand our bike fleet to many more cities in the future. If you’re interested in starting a BikeSurf in your city, check out the Start a Team link to apply...\n"
+"</br>\n"
+"</br>\n"
+"Watch our Kickstarter video and if you are a believer in our cause then consider donating a few euros to help fund the project."
+
+#: templates/site/index.html:104
+msgid "START_A_TEAM"
+msgstr "START A TEAM"
+
+#: templates/site/index.html:118
+msgid "BIKESURF_IN_THE_PRESS"
+msgstr "BIKESURF IN THE PRESS"
+
+#: templates/site/index.html:142
+msgid "THE_STORY_TITLE"
+msgstr "It all started en Berlin..."
+
+#: templates/site/index.html:146
+msgid "THE_STORY_CONTENT"
+msgstr ""
+"Where did BSB start? How did it come to be? What is the driving force behind"
+" it? Where does the passion lie? How has it progressed since conception? And"
+" finally, what does the future of the project look like- what do you hope "
+"for it to be? This is where all the copy should go, still need to write this"
+" up lalalalala."
+
+#~ msgid "TWO_LEGS_GOOD_FREE_WHEELS_BETTER"
+#~ msgstr "Two legs good, free wheels better."
+
+#~ msgid "TEAM_DESCRIPTION_TEXT"
+#~ msgstr ""
+#~ "Start a team in your city. Just fill out the form and the team will be "
+#~ "available as soon as an administrator approves."
