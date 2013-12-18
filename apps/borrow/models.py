@@ -65,7 +65,8 @@ class Borrow(Model):
     updated_on = DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        args = (self.id, self.bike.id, self.state, self.start, self.finish)
+        bike_id = self.bike and self.bike.id or None
+        args = (self.id, bike_id, self.state, self.start, self.finish)
         return u"id: %s; bike_id: %s; state: %s; start: %s; finish %s" % args
 
     class Meta:

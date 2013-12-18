@@ -130,12 +130,16 @@ def comment(account, borrow, note):
 
 
 def get_next_borrow(bike, finish):
+    if not bike:
+        return None
     qs = Borrow.objects.filter(active=True, bike=bike, start__gt=finish)
     borrows = list(qs.order_by("start")[:1]) # order and limit
     return borrows and borrows[0] or None                  
 
 
 def get_prev_borrow(bike, start):
+    if not bike:
+        return None
     qs = Borrow.objects.filter(active=True, bike=bike, finish__lt=start)
     borrows = list(qs.order_by("-finish")[:1]) # order and limit
     return borrows and borrows[0] or None                  
@@ -143,6 +147,8 @@ def get_prev_borrow(bike, start):
 
 def active_borrows_in_timeframe(bike, start, finish, exclude=None):
     """ Returns borrows in the given timeframe. finish is inclusive! """
+    if not bike:
+        raise Exception("BIKE REQUIRED!")
     qs = Borrow.objects.filter(bike=bike, active=True)
     qs = qs.exclude(start__gt=finish)
     qs = qs.exclude(finish__lt=start)
@@ -156,9 +162,10 @@ def to_list_data(borrows, team_link=False):
         base_url = team_link and ("/%s" % borrow.team.link) or ""
         src = borrow.src and borrow.src.street or None
         dest = borrow.dest and borrow.dest.street or None
+        bike_name = borrow.bike and borrow.bike.name or _("DELETED")
         return {
             "labels" : [ 
-                borrow.borrower, borrow.bike.name, borrow.start, borrow.finish, 
+                borrow.borrower, bike_name, borrow.start, borrow.finish, 
                 src, dest, borrow.state
             ], 
             "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
@@ -263,7 +270,7 @@ def cancel(account, borrow, note):
 
 
 def can_borrow(bike):
-    return (bike.active and not bike.reserve and 
+    return (bike and bike.active and not bike.reserve and 
             bike.station and bike.station.active)
 
 
