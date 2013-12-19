@@ -289,6 +289,8 @@ def creation_is_allowed(bike, start, finish, exclude=None):
 
 
 def create(account, bike, start, finish, note):
+    if not account_control.has_required_info(account):
+        raise PermissionDenied
     if not creation_is_allowed(bike, start, finish):
         raise PermissionDenied
     borrow = Borrow()

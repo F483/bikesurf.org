@@ -7,6 +7,7 @@ import datetime
 
 from django.utils.translation import ugettext as _
 from django.forms import Form
+from django.forms import BooleanField
 from django.forms import DateField
 from django.forms import ValidationError
 from django.forms import CharField
@@ -22,6 +23,7 @@ from apps.borrow.models import Borrow
 from apps.borrow.models import RATING_CHOICES
 from apps.borrow import control
 from apps.team import control as team_control
+from apps.account import control as account_control
 from apps.station.forms import validate_station_active
 
 
@@ -78,10 +80,17 @@ class Create(Form):
 
     start = DateField(label=_("START"), widget=SelectDateWidget())
     finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
-    note = CharField(label=_("NOTE"), widget=Textarea)
+    note = CharField(label=_("BORROW_NOTE"), widget=Textarea)
+    terms_accepted = BooleanField(label=_("ACCEPT_TERMS"), initial=False)
+    # TODO have you donated? (use note for this)
+    # TODO why do you want to bikesurf in xxx (use note for this)
+    # TODO feedback (use note for this)
+    # TODO receive newsletter (were spamming people?)
+
 
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
+        self.account = kwargs.pop("account")
         super(Create, self).__init__(*args, **kwargs)
         today = datetime.datetime.now()
         tomorrow = today + datetime.timedelta(days=1)
@@ -91,13 +100,32 @@ class Create(Form):
 
     def clean(self):
         cleaned_data = super(Create, self).clean()
+
+        # check timeframe
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
-        if not start:
-            raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
-        if not finish:
-            raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
         _validate_borrow_timeframe(self.bike, start, finish)
+
+        # must accept terms
+        if not cleaned_data.get("terms_accepted"):
+            raise ValidationError(_("ERROR_MUST_ACCEPT_TERMS"))
+
+        # must have full name
+        if not account_control.has_fullname(self.account):
+            raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_FULLNAME"))
+
+        # must have a mobile
+        if not account_control.has_mobile(self.account):
+            raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_MOBILE"))
+
+        # must have a passport
+        if not account_control.has_passport(self.account):
+            raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_PASSPORT"))
+
+        # must have a other references
+        if not account_control.has_other_references(self.account):
+            raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"))
+
         return cleaned_data
 
 
@@ -140,10 +168,6 @@ class BorrowerEdit(Form):
         cleaned_data = super(BorrowerEdit, self).clean()
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
-        if not start:
-            raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
-        if not finish:
-            raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
         bike = cleaned_data.get("bike")
         _validate_borrow_timeframe(bike, start, finish)
         return cleaned_data

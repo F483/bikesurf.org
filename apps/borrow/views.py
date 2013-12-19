@@ -91,7 +91,7 @@ def create(request, team_link, bike_id):
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":
-        form = forms.Create(request.POST, bike=bike)
+        form = forms.Create(request.POST, bike=bike, account=account)
         if form.is_valid():
             borrow = control.create(account, bike,
                                     form.cleaned_data["start"],
@@ -99,7 +99,7 @@ def create(request, team_link, bike_id):
                                     form.cleaned_data["note"].strip())
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.Create(bike=bike)
+        form = forms.Create(bike=bike, account=account)
     args = { 
         "form" : form, "form_title" : _("BORROW_CREATE"),
         "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id)
