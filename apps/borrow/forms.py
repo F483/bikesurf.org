@@ -87,6 +87,7 @@ class Create(Form):
     # TODO feedback (use note for this)
     # TODO receive newsletter (were spamming people?)
 
+    # TODO link to terms
 
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
