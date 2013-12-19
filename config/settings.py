@@ -298,6 +298,13 @@ SANITIZER_ALLOWED_TAGS = [
 SANITIZER_ALLOWED_ATTRIBUTES = [ 'href', 'src', 'style', 'width', 'height']
 SANITIZER_ALLOWED_STYLES = []
 
+####################
+# google analytics #
+####################
+
+GOOGLE_ANALYTICS_URL = None
+GOOGLE_ANALYTICS_ID = None
+
 ##################
 # local settings #
 ##################

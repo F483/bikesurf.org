@@ -14,6 +14,7 @@ from django.shortcuts import _get_queryset
 from django.template.loader import render_to_string
 from django.core.mail import send_mail as _send_mail
 from django.conf import settings
+from config.settings import GOOGLE_ANALYTICS_URL, GOOGLE_ANALYTICS_ID
 
 
 COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
@@ -41,6 +42,8 @@ def render_response(request, template, args):
     args.update({ 
         "current_user" : request.user,
         "current_path" : request.path,
+        "google_analytics_url" : GOOGLE_ANALYTICS_URL,
+        "google_analytics_id" : GOOGLE_ANALYTICS_ID,
     })
     if request.user.is_authenticated():
         account = request.user.accounts.all()[0]
