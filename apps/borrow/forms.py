@@ -18,6 +18,7 @@ from django.forms import RadioSelect
 from django.forms.extras.widgets import SelectDateWidget
 from django.core.exceptions import PermissionDenied
 from django.forms import ModelChoiceField
+from django.utils.safestring import mark_safe
 
 from apps.borrow.models import Borrow
 from apps.borrow.models import RATING_CHOICES
@@ -81,12 +82,13 @@ class Create(Form):
     start = DateField(label=_("START"), widget=SelectDateWidget())
     finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
     note = CharField(label=_("BORROW_NOTE"), widget=Textarea)
-    terms_accepted = BooleanField(label=_("ACCEPT_TERMS"), initial=False)
+    terms_accepted = BooleanField(label=mark_safe(_("ACCEPT_TERMS")), initial=False)
     # TODO have you donated? (use note for this)
     # TODO why do you want to bikesurf in xxx (use note for this)
     # TODO feedback (use note for this)
-    # TODO receive newsletter (were spamming people?)
+    #  \_ cat together with seperators and save in note
 
+    # TODO receive newsletter (were spamming people?)
     # TODO link to terms
 
     def __init__(self, *args, **kwargs):

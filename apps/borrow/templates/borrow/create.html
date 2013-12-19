@@ -1,0 +1,9 @@
+{% extends "common/form.html" %}
+{% load i18n %}
+
+{% block pre_form_content %}
+    {% if not has_required_info %}
+        <p> {% trans "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO" %}</p>
+    {% endif %}
+    <p> {% trans "BORROW_CREATE_HELP_TEXT" %} </p>
+{% endblock %}

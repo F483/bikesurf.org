@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-19 11:50-0600\n"
-"PO-Revision-Date: 2013-12-19 11:59-0600\n"
+"POT-Creation-Date: 2013-12-19 14:02-0600\n"
+"PO-Revision-Date: 2013-12-19 14:06-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Deleted"
 msgid "BORROWER"
 msgstr "Borrower"
 
-#: control.py:175 forms.py:154 forms.py:180 templates/borrow/view.html:24
+#: control.py:175 forms.py:156 forms.py:182 templates/borrow/view.html:24
 msgid "BIKE"
 msgstr "Bike"
 
@@ -50,98 +50,98 @@ msgstr "To station"
 msgid "BORROW_STATE"
 msgstr "State"
 
-#: forms.py:31 models.py:21
+#: forms.py:32 models.py:21
 msgid "ACCEPTED"
 msgstr "Accepted"
 
-#: forms.py:32 models.py:20
+#: forms.py:33 models.py:20
 msgid "MEETUP"
 msgstr "Meetup"
 
-#: forms.py:33 models.py:22
+#: forms.py:34 models.py:22
 msgid "REJECTED"
 msgstr "Rejected"
 
-#: forms.py:40
+#: forms.py:41
 msgid "ERROR_START_NOT_IN_FUTURE"
 msgstr "Error: Start not in future!"
 
-#: forms.py:42
+#: forms.py:43
 msgid "ERROR_FINISH_BEFORE_START"
 msgstr "Error: Finish before start!"
 
-#: forms.py:44 forms.py:75 forms.py:197
+#: forms.py:45 forms.py:76 forms.py:199
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
 msgstr "Error: Other borrow in time frame!"
 
-#: forms.py:49
+#: forms.py:50
 msgid "RESPONSE"
 msgstr "Response"
 
-#: forms.py:50 forms.py:135 forms.py:140 forms.py:145 forms.py:156
-#: forms.py:182 forms.py:207
+#: forms.py:51 forms.py:137 forms.py:142 forms.py:147 forms.py:158
+#: forms.py:184 forms.py:209
 msgid "NOTE"
 msgstr "Note"
 
-#: forms.py:65
+#: forms.py:66
 msgid "ERROR_TO_LATE_TO_ACCEPT"
 msgstr "Error: To late to accept!"
 
-#: forms.py:67
+#: forms.py:68
 msgid "ERROR_BIKE_NOT_ACTIVE"
 msgstr "Error: Bike not active!"
 
-#: forms.py:69
+#: forms.py:70
 msgid "ERROR_IS_RESERVE_BIKE"
 msgstr "Error: Bike is a reserve bike!"
 
-#: forms.py:71
+#: forms.py:72
 msgid "ERROR_BIKE_STATION_UNKNOWN"
 msgstr "Error: Bike station unknown!"
 
-#: forms.py:73
+#: forms.py:74
 msgid "ERROR_BIKE_STATION_INACTIVE"
 msgstr "Error: Bike station inactive!"
 
-#: forms.py:81 forms.py:151
+#: forms.py:82 forms.py:153
 msgid "START"
 msgstr "From"
 
-#: forms.py:82 forms.py:152
+#: forms.py:83 forms.py:154
 msgid "FINISH"
 msgstr "To"
 
-#: forms.py:83
+#: forms.py:84
 msgid "BORROW_NOTE"
 msgstr "State"
 
-#: forms.py:84
+#: forms.py:85
 msgid "ACCEPT_TERMS"
-msgstr "Accepted"
+msgstr "Accept terms and</br>conditions of use."
 
-#: forms.py:112
+#: forms.py:114
 msgid "ERROR_MUST_ACCEPT_TERMS"
-msgstr "Error: To late to accept!"
+msgstr "Please confirm you have read the terms and conditions of use."
 
-#: forms.py:116
+#: forms.py:118
 msgid "ERROR_ACCOUNT_REQUIRES_FULLNAME"
 msgstr "Profile incomplete: First and last name required to borrow a bike."
 
-#: forms.py:120
+#: forms.py:122
 msgid "ERROR_ACCOUNT_REQUIRES_MOBILE"
 msgstr "Error: Bike is a reserve bike!"
 
-#: forms.py:124
+#: forms.py:126
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
 msgstr "Profile incomplete: Passport copy required to borrow a bike."
 
-#: forms.py:128
+#: forms.py:130
 msgid "ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"
 msgstr ""
 "Profile incomplete: At least one like to a trusted site with references "
 "(couchsurfing.org or bewelcome.org) required to borrow a bike."
 
-#: forms.py:204
+#: forms.py:206
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 
@@ -197,45 +197,60 @@ msgstr "Neutral"
 msgid "THUMBS_DOWN"
 msgstr "Negative"
 
-#: views.py:43
+#: views.py:44
 msgid "TEAM_BORROWS"
 msgstr "Team borrows"
 
-#: views.py:55
+#: views.py:56
 msgid "YOUR_BORROWS"
 msgstr "Your borrows"
 
-#: views.py:68
+#: views.py:69
 msgid "ARRIVALS"
 msgstr "Arrivals"
 
-#: views.py:81
+#: views.py:82
 msgid "DEPARTURES"
 msgstr "Departures"
 
-#: views.py:104
+#: views.py:105
 msgid "BORROW_CREATE"
 msgstr "Create borrow"
 
-#: views.py:129 views.py:151 views.py:173
+#: views.py:131 views.py:153 views.py:175
 msgid "BORROW_EDIT"
 msgstr "Edit borrow"
 
-#: views.py:193
+#: views.py:195
 msgid "BORROW_RESPOND"
 msgstr "Respond to borrow request."
 
-#: views.py:212 views.py:318
+#: views.py:214 views.py:320
 msgid "BORROW_CANCEL"
 msgstr "Cancel borrow"
 
-#: views.py:232 views.py:256
+#: views.py:234 views.py:258
 msgid "RATE"
 msgstr "Rate"
 
-#: views.py:295
+#: views.py:297
 msgid "BORROW_COMMENT"
 msgstr "Comment"
+
+#: templates/borrow/create.html:5
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr ""
+"Please read and understand the <u><b><a "
+"href=\"/site/terms_and_conditions.html\">terms and conditions of "
+"use</a></b></u> before accepting them."
+
+#: templates/borrow/create.html:7
+msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
+msgstr ""
+"WARNING</br>Your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> "
+"doesn't have the information required to borrow a bike.</br>Please update "
+"your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> before "
+"requesting to borrow a bike."
 
 #: templates/borrow/view.html:10
 msgid "BORROWING"

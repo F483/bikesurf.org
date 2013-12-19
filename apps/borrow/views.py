@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 
 from apps.team import control as team_control
+from apps.account import control as account_control
 from apps.common.shortcuts import render_response
 from apps.account.models import Account
 from apps.team.models import Team
@@ -102,9 +103,10 @@ def create(request, team_link, bike_id):
         form = forms.Create(bike=bike, account=account)
     args = { 
         "form" : form, "form_title" : _("BORROW_CREATE"),
-        "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id)
+        "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id),
+        "has_required_info" : account_control.has_required_info(account)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "borrow/create.html", args)
 
 
 @login_required

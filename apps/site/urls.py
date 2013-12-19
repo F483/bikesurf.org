@@ -8,5 +8,6 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('apps.site.views',
     url(r'^$', 'index'),
+    url(r'^site/terms_and_conditions.html$', 'index'), # TODO generic view
 )
 
