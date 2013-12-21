@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-19 14:02-0600\n"
-"PO-Revision-Date: 2013-12-19 14:06-0600\n"
+"POT-Creation-Date: 2013-12-20 11:43-0600\n"
+"PO-Revision-Date: 2013-12-20 23:50-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "Profile incomplete: Passport copy required to borrow a bike."
 #: forms.py:130
 msgid "ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"
 msgstr ""
-"Profile incomplete: At least one like to a trusted site with references "
+"Profile incomplete: At least one link to a trusted site with references "
 "(couchsurfing.org or bewelcome.org) required to borrow a bike."
 
 #: forms.py:206
@@ -237,20 +237,25 @@ msgstr "Rate"
 msgid "BORROW_COMMENT"
 msgstr "Comment"
 
-#: templates/borrow/create.html:5
-msgid "BORROW_CREATE_HELP_TEXT"
-msgstr ""
-"Please read and understand the <u><b><a "
-"href=\"/site/terms_and_conditions.html\">terms and conditions of "
-"use</a></b></u> before accepting them."
-
-#: templates/borrow/create.html:7
+#: templates/borrow/create.html:6
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr ""
-"WARNING</br>Your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> "
+"WARNING!</br>Your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> "
 "doesn't have the information required to borrow a bike.</br>Please update "
 "your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> before "
 "requesting to borrow a bike."
+
+#: templates/borrow/create.html:8
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr ""
+"<p>\n"
+"We receive many requests per day, please attempt to book a bike at least 3 days before you intend to ride, if possible.</br>\n"
+"Please be patient, as it can take up to 72 hours for us to get back to you.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"Please read and understand the <u><b><a href=\"/site/terms_and_conditions.html\">terms and conditions of use</a></b></u> before accepting them.\n"
+"</p>"
 
 #: templates/borrow/view.html:10
 msgid "BORROWING"

@@ -85,7 +85,10 @@ def link_create(request):
 def profile(request):
     account = get_object_or_404(Account, user=request.user)
     email = control.get_email_or_404(account)
-    args = { "links" : account.links.all(), "email" : email }
+    args = { 
+        "links" : account.links.all(), "email" : email,
+        "has_required_info" : control.has_required_info(account)
+    }
     return render_response(request, "account/profile.html", args)
 
 

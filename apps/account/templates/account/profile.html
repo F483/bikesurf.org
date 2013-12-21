@@ -8,12 +8,17 @@
         {{ current_account }}
     </div>
     <div class="content">
+
+        {% if not has_required_info %}
+            <p> {% trans "ACCOUNT_ADD_REQUIRED_INFO" %}</p>
+        {% endif %}
+
         <p> {% trans "USER_PRIVECY_INFORMATION" %} </p>
 
         <p>
-            {% trans "FIRST_NAME" %}: {{ current_account.user.first_name }} </br>
-            {% trans "LIST_NAME" %}: {{ current_account.user.last_name }} </br>
-            {% trans "MOBILE" %}: {{ current_account.mobile }} </br>
+            {% trans "FIRST_NAME" %}*: {{ current_account.user.first_name }} </br>
+            {% trans "LIST_NAME" %}*: {{ current_account.user.last_name }} </br>
+            {% trans "MOBILE" %}*: {{ current_account.mobile }} </br>
 
             {% trans "EMAIL" %}: {{ email }}
             <a href="/accounts/email/">
@@ -22,7 +27,7 @@
             </br>
 
             {% if current_account.passport %}
-                {% trans "PASSPORT" %}: 
+                {% trans "PASSPORT" %}*: 
                 <a href="{{ current_account.passport.url }}">
                     {% trans "IMAGE" %}
                 </a>
