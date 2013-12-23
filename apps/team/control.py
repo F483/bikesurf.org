@@ -269,7 +269,7 @@ def site_link_exists(team, site):
 
 
 def can_create_link(account, team, site, profile):
-    return (link_control.valid_profile_format(profile) and 
+    return (link_control.valid_profile_format(profile, site) and 
             not site_link_exists(team, site) and is_member(account, team))
 
 

@@ -88,7 +88,7 @@ class LinkCreate(Form):
         site = self.cleaned_data["site"]
         if control.site_link_exists(self.team, site):
             raise ValidationError(_("ERROR_LINK_PROFILE_FOR_SITE_EXISTS"))
-        if not link_control.valid_profile_format(profile):
+        if not link_control.valid_profile_format(profile, site):
             raise ValidationError(_("ERROR_BAD_PROFILE_FORMAT"))
         if not control.can_create_link(self.account, self.team, site, profile):
             raise ValidationError(_("ERROR_CANNOT_CREATE_LINK"))

@@ -100,7 +100,7 @@ def site_link_exists(account, site):
 
 def can_create_link(account, site, profile):
     exists = site_link_exists(account, site)
-    return link_control.valid_profile_format(profile) and not exists
+    return link_control.valid_profile_format(profile, site) and not exists
 
 
 def can_delete_link(account, link):
