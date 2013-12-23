@@ -64,7 +64,7 @@ class Edit(Form):
 class LinkCreate(Form):
 
     site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
-    profile = CharField(max_length=1024, label=_("PROFILE"), required=True)
+    profile = CharField(max_length=1024, label=_("URL"), required=True)
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop("account")
