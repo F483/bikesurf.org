@@ -21,3 +21,6 @@ def index(request):
     return render_response(request, 'site/index.html', { 'form' : form })
 
 
+@require_http_methods(['GET'])
+def terms(request):
+    return render_response(request, 'site/terms.html', {})
