@@ -1,0 +1,76 @@
+Hello {{ log.borrow.borrower.user.username }},
+
+Your borrow request has been accepted! 
+{% if log.note %}Note given by {{ log.initiator.user.username }}:
+{{ log.note }}{% endif %}
+
+All the information you require for collecting and dropping off the bike is in this message.
+
+If you wish to cancel this request or pick it up on a later day, please contact us as soon as possible so that others can benefit from the bike.
+
+
+BORROW INFORMATION OVERVIEW
+Bike: {{ log.borrow.bike.name }}
+Available: {{ log.borrow.start }} to {{ log.borrow.finish }}
+Pick-up station: {{ log.borrow.src }}
+Drop-off station: {{ log.borrow.dest }}
+Lock combination (be descreet with this): {{ log.borrow.bike.lockcode }}
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
+{% if not log.borrow.bike.lights %}This bike has NO lights, please bring your own lights for your own safety!{% endif %}
+
+
+CONTACT DETAILS
+The best way to contact the team is to leave a comment at the borrow link above, all team members will see this message.
+For more urgent matters you may call the members responsible for the stations.
+{{ log.borrow.src.responsible.user.username }} (Pick-up): {{ log.borrow.src.responsible.mobile }} {% if log.borrow.src != log.borrow.dest %}
+{{ log.borrow.dest.responsible.user.username }} (Drop-off): {{ log.borrow.dest.responsible.mobile }} {% endif %}
+
+
+PICK-UP DETAILS
+The bike will be locked with a combination lock at: {{ log.borrow.src }}
+Please see the borrow link above for photos of the bike so you know what to look for.
+
+
+DROP-OFF DETAILS
+At the end of the booked period please return the bike to: {{ log.borrow.dest }}
+Please lock the bike securely (to something secure).
+
+
+BIKE SECURITY
+Just a few pointers to keep our bikes safe when in your care:
+ - ALWAYS lock the bike through the frame and the front wheel TO A SECURE railing or pole.
+ - Lock the bike in a well-lit area, preferably with plenty of pedestrian traffic during the day when biking about
+ - Do NOT lock the bike on the street overnight - lock it in the backyard of where you are staying
+Please help us keep the bikes available for all BikeSurfers.  Remember, this is a shared bike from a donation and volunteer-based project, so please take the best care of this bike that you can while you are using it. 
+
+
+BIKE SAFETY
+By borrowing a bike, you are taking responsibility for your own safety and choices.
+Not all the bikes have lights yet, which is a mandatory requirement in many places and safe way to bike in general. {% if not log.borrow.bike.lights %}This bike has NO lights, please bring your own lights for your own safety!{% endif %}
+We’re working on improving the quality of all the bikes as finances and time allow, but for now please be aware that this is an ongoing project and none of the bikes are perfect until we all help make and keep them perfect together.
+Please also consider a donation to help us improve the bikes if you haven’t made one yet.
+
+
+BIKE REPAIR
+However, if you do find a big problem with your bike, and it doesn’t function properly, has been damaged, or is unsafe to use (eg puncture, brake cable, broken chain, etc.), please contact us AS SOON AS POSSIBLE. We will be able to either repair the bike, swap the bike for another one, or offer advice on where/how to repair the bike. Please keep any replaced parts (eg. damaged tubes) and leave them with the bike upon return.
+
+
+HOW YOU CAN HELP US
+ - Any suggestions you may have to improve the project.
+ - Let us know if anything is wrong with the bike.
+ - Give us a “like” us on Facebook http://www.facebook.com/BikeSurf
+ - Donate online: http://bikesurf.org/#udonate-4 
+ - Donate a bike to a bikesurf team.
+ - Start your own bikesurf project in your area.
+Give any donation you can afford to help maintain this. It costs us approximately 0.50€ per day to maintain each bike. Unfortunately not everyone can afford to donate, so please be generous.
+
+
+We would like to thank you trying out our project here, and would love to encourage you to start you own bikesurf team in your hometown. Stay in touch if you’re working on a project, so we can all keep sharing with each other!
+
+
+"Two legs good, free wheels better".
+
+
+Sincerely,
+The Team at BikeSurf
+http://www.bikesurf.org
