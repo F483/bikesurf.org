@@ -1,1 +1,0 @@
-Your borrow has been rated {{ log.borrow.lender_rating.rating }}.

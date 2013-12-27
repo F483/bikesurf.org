@@ -86,7 +86,7 @@ def borrow_log_created_borrower_callback(sender, **kwargs):
     log = kwargs["log"]
     if log.borrow.borrower == log.initiator:
         return # no need to notify user of there own actions
-    if log.action in ["FINISHED"]:
+    if log.action in ["FINISHED", "LENDER_RATE"]:
         return # no one cares, dont spam
     email = account_control.get_email_or_404(log.borrow.borrower)
     subject, message = _get_email_templates("borrower", log.action)
@@ -96,7 +96,7 @@ def borrow_log_created_borrower_callback(sender, **kwargs):
 @receiver(signals.borrow_log_created)
 def borrow_log_created_lender_callback(sender, **kwargs):
     log = kwargs["log"]
-    if log.action in ["FINISHED"]:
+    if log.action in ["FINISHED", "BORROWER_RATE"]:
         return # no one cares, dont spam
     if team_control.is_member(log.initiator, log.borrow.team):
         return # not need to notify team of its own actions

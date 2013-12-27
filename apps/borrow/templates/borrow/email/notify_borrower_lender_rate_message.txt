@@ -1,6 +1,0 @@
-Your borrow has been rated {{ log.borrow.lender_rating.rating }}.
-
-Reason given by {{ log.initiator.user.username }}:
-{{ log.note }}
-
-Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
