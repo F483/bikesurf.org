@@ -24,7 +24,7 @@ SITE_IMAGES = {
     "BEWELCOME" : "/static/link/bewelcome.png",
 }
 
-VALID_SITE_URLS = {
+VALID_SITE_URLS = { # TODO better match for each site profile patterns
     "FACEBOOK" : [
         "^facebook\.com/",
         "^www\.facebook\.com/",

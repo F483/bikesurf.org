@@ -3,7 +3,6 @@
 # License: MIT (see LICENSE.TXT file) 
 
 
-import re
 from django.utils.translation import ugettext as _
 from django.forms import Form
 from django.forms import CharField

@@ -12,7 +12,7 @@ from apps.link.models import SITE_CHOICES, VALID_SITE_URLS
 def valid_profile_format(profile, site):
     patterns = VALID_SITE_URLS.get(site)
     if not patterns:
-        return False
+        raise Exception("INVALID SITE")
     for pattern in patterns:
         if bool(re.match(pattern, profile)):
             return True

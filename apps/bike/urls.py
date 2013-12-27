@@ -4,13 +4,11 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug
 
 
-SLUG = r"[a-z0-9\-]+"
-ID = r"[0-9]+"
-
-T = "(?P<team_link>%s)" % SLUG
-B = "(?P<bike_id>%s)" % ID
+T = arg_slug("team_link")
+B = arg_id("bike_id")
 
 
 urlpatterns = patterns("apps.bike.views",

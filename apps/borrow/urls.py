@@ -4,16 +4,13 @@
 
 
 from django.conf.urls import patterns, include, url
-
-
-SLUG = r"[a-z0-9\-]+"
-ID = r"[0-9]+"
+from apps.common.urls import arg_id, arg_slug
 
 
 p = {
-    "team" : "(?P<team_link>%s)" % SLUG,
-    "bike" : "(?P<bike_id>%s)" % ID,
-    "borrow" : "(?P<borrow_id>%s)" % ID,
+    "team" : arg_slug("team_link"),
+    "bike" : arg_id("bike_id"),
+    "borrow" : arg_id("borrow_id"),
 }
 
 

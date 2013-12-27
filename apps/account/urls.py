@@ -4,13 +4,11 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug, arg_username
 
 
-ID = r"[0-9]+"
-
-
-L = "(?P<link_id>%s)" % ID
-U = "(?P<username>[\w.@+-]+)"
+L = arg_id("link_id")
+U = arg_username("username")
 
 
 urlpatterns = patterns("apps.account.views",

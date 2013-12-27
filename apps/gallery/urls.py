@@ -4,14 +4,12 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug
 
 
-SLUG = r"[a-z0-9\-]+"
-ID = r"[0-9]+"
-
-P = "(?P<picture_id>%s)" % ID
-G = "(?P<gallery_id>%s)" % ID
-T = "(?P<team_link>%s)" % SLUG
+P = arg_id("picture_id")
+G = arg_id("gallery_id")
+T = arg_slug("team_link")
 
 
 urlpatterns = patterns("apps.gallery.views",

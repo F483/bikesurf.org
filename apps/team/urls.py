@@ -4,17 +4,15 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug
 
 
-ID = r"[0-9]+"
-SLUG = r"[a-z0-9\-]+"
-
-T = "(?P<team_link>%s)" % SLUG # Team Link
-P = "(?P<page_link>%s)" % SLUG # Page Link
-L = "(?P<link_id>%s)" % ID
-CA = "(?P<concerned_id>[0-9]+)" # Concerned Account Link
-JR = "(?P<join_request_id>[0-9]+)" # Join Request Link
-RR = "(?P<remove_request_id>[0-9]+)" # Remove Request Link
+T = arg_slug("team_link")
+P = arg_slug("page_link")
+L = arg_id("link_id")
+CA = arg_id("concerned_id")
+JR = arg_id("join_request_id")
+RR = arg_id("remove_request_id")
 
 
 urlpatterns = patterns("apps.team.views",

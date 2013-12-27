@@ -4,6 +4,7 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug
 
 
 urlpatterns = patterns('apps.site.views',

@@ -4,13 +4,11 @@
 
 
 from django.conf.urls import patterns, include, url
+from apps.common.urls import arg_id, arg_slug
 
 
-SLUG = r"[a-z0-9\-]+"
-
-
-T = "(?P<team_link>%s)" % SLUG # Team Link
-P = "(?P<page_link>%s)" % SLUG # Page Link
+T = arg_slug("team_link")
+P = arg_slug("page_link")
 
 
 urlpatterns = patterns("apps.page.views",
