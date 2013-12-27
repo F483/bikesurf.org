@@ -11,6 +11,7 @@ from allauth.account.models import EmailAddress
 from apps.link import control as link_control
 from apps.borrow.models import Borrow
 from apps.account.models import Account
+from apps.common.shortcuts import get_object_or_none
 
 
 def get_site_account():

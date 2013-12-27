@@ -47,7 +47,7 @@ def render_response(request, template, args):
     })
     if request.user.is_authenticated():
         account = request.user.accounts.all()[0]
-        borrows = Borrow.objects.filter(borrower=account)
+        borrows = Borrow.objects.filter(borrower=account, active=True)
         borrows = borrows.exclude(state="CANCELED").exclude(state="FINISHED")
         args.update({ 
             "current_account" : account,
