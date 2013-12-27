@@ -1,0 +1,52 @@
+Hello {{ log.borrow.borrower.user.username }},
+
+Your borrow request has been rejected.
+{% if log.note %}Reason given by {{ log.initiator.user.username }}:
+{{ log.note }}{% endif %}
+
+Thank you for sending us a BikeSurf request!
+
+Try to book a starting date that is at least 7 days from the date you complete the BikeSurf request form and keep in mind that this is an all-volunteer project and it may take a few days to process your request.
+
+We usually only lend bikes to CouchSurfers/BeWelcomers with complete profiles, many positive references and/or linked CouchSurfing/BeWelcome friends.  
+If you have one, send us a link to your profile on Airbnb, Couchsurfing, BeWelcome or other hospitality club with at least 10 references.
+
+Please contact us as soon as possible so that we can reserve your requested time.  We will then contact you with all the information on where and how to pick up the bike.
+
+If you are unable to provide this information, enjoy your time in Berlin anyway!
+
+Regards,
+
+The Team at BikeSurf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% if log.borrow.state == "ACCEPTED" %}
+Borrow information
+Bike: {{ log.borrow.bike.name }}
+From date: {{ log.borrow.start }}
+From station: {{ log.borrow.src }}
+To date: {{ log.borrow.finish }}
+To station: {{ log.borrow.dest }}
+Lock code: {{ log.borrow.bike.lockcode }}
+{% endif %}
+
+Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}

@@ -1,7 +1,7 @@
 {% if log.borrow.state == "ACCEPTED" %}
-{% include "borrow/email/notify_borrower_accepted_inc.txt" %}
+{% include "borrow/email/notify_borrower_accepted.txt" %}
 {% elif log.borrow.state == "REJECTED" %}
-{% include "borrow/email/notify_borrower_rejected_inc.txt" %}
+{% include "borrow/email/notify_borrower_rejected.txt" %}
 {% else %}
 ERROR: BORROW IN IMPOSSIBLE STATE!
 {% endif %}
