@@ -34,7 +34,7 @@ class Borrow(Model):
     borrower = ForeignKey('account.Account')
     start = DateField()
     finish = DateField() # inclusive
-    active = BooleanField() # TODO deprecate and use (state == "ACCEPTED")
+    active = BooleanField() # FIXME deprecate and use (state == "ACCEPTED")
     state = CharField(max_length=64, choices=STATE_CHOICES)
     src = ForeignKey('station.Station', related_name='departures',
                      blank=True, null=True)
