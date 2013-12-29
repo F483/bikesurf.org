@@ -15,13 +15,12 @@ from django.db.models import IntegerField
 from apps.common.shortcuts import get_object_or_none
 
 
-STATE_CHOICES = [
+STATE_CHOICES = [                # initiator
     ("REQUEST",_("REQUEST")),    # (B)                        
-    ("MEETUP",_("MEETUP")),      # (L)    
     ("ACCEPTED",_("ACCEPTED")),  # (L)    
     ("REJECTED",_("REJECTED")),  # (L)    
-    ("CANCELED",_("CANCELED")),  # (B|L)  Only Before Start   
-    ("FINISHED",_("FINISHED")),  # (B|L)  Both Rated
+    ("CANCELED",_("CANCELED")),  # (B||L)  Only Before Start   
+    ("FINISHED",_("FINISHED")),  # (B&&L)  Both Rated
 ]
 
 
@@ -35,7 +34,7 @@ class Borrow(Model):
     borrower = ForeignKey('account.Account')
     start = DateField()
     finish = DateField() # inclusive
-    active = BooleanField() # if the borrow blocks a timeslot
+    active = BooleanField() # TODO deprecate and use (state == "ACCEPTED")
     state = CharField(max_length=64, choices=STATE_CHOICES)
     src = ForeignKey('station.Station', related_name='departures',
                      blank=True, null=True)

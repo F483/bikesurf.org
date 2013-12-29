@@ -244,8 +244,8 @@ def can_cancel(account, borrow):
     borrow_ended = borrow.finish  < today
     is_lender = team_control.is_member(account, borrow.team)
     is_borrower = account == borrow.borrower
-    lender_state = borrow.state in ["MEETUP", "ACCEPTED"]
-    borrower_state = borrow.state in ["REQUEST", "MEETUP", "ACCEPTED"] 
+    lender_state = borrow.state in ["ACCEPTED"]
+    borrower_state = borrow.state in ["REQUEST", "ACCEPTED"] 
     return (is_borrower and borrower_state and not borrow_ended or 
             is_lender and lender_state and not borrow_started)
 
@@ -324,7 +324,7 @@ def lender_can_rate(account, borrow):
     today = datetime.datetime.now().date()
     if not today > borrow.finish:
         return False # to soon
-    if borrow.state not in ["MEETUP", "ACCEPTED"]:
+    if borrow.state not in ["ACCEPTED"]:
         return False # wrong state
     if not team_control.is_member(account, borrow.team):
         return False # only members
@@ -337,7 +337,7 @@ def borrower_can_rate(account, borrow):
     today = datetime.datetime.now().date()
     if not today >= borrow.start:
         return False # to soon
-    if borrow.state not in ["MEETUP", "ACCEPTED"]:
+    if borrow.state not in ["ACCEPTED"]:
         return False # wrong state
     if account != borrow.borrower:
         return False # only borrower
@@ -379,7 +379,7 @@ def borrower_rate(account, borrow, rating_value, note):
 
 def lender_can_edit(account, borrow):
     today = datetime.datetime.now().date()
-    if borrow.state not in ["REQUEST", "ACCEPTED", "MEETUP"]:
+    if borrow.state not in ["REQUEST", "ACCEPTED"]:
         return False
     if borrow.start <= today:
         return False
@@ -398,7 +398,7 @@ def lender_can_edit_dest(account, borrow):
 
 def borrower_can_edit(account, borrow):
     today = datetime.datetime.now().date()
-    if borrow.state not in ["REQUEST", "ACCEPTED", "MEETUP"]:
+    if borrow.state not in ["REQUEST", "ACCEPTED"]:
         return False
     if borrow.start <= today:
         return False

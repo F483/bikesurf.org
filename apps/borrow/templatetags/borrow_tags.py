@@ -97,7 +97,6 @@ def borrow_draw_rate(account, borrow, team):
 def borrow_draw_status(borrow):
     images = {
         "REQUEST" : "/static/famfamfam/arrow_rotate_clockwise.png",
-        "MEETUP" : "/static/famfamfam/cup.png",
         "ACCEPTED" : "/static/famfamfam/tick.png",
         "REJECTED" : "/static/famfamfam/cross.png",
         "CANCELED" : "/static/famfamfam/cancel.png",

@@ -30,13 +30,16 @@ from apps.station.forms import validate_station_active
 
 RESPONSE_CHOICES = [
     ("ACCEPTED", _("ACCEPTED")),
-    ("MEETUP",   _("MEETUP")),
     ("REJECTED", _("REJECTED")),
 ]
 
 
 def _validate_borrow_timeframe(bike, start, finish):
     today = datetime.datetime.now().date()
+    if not start:
+        raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
+    if not finish:
+        raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
     if start <= today:
         raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
     if finish < start:

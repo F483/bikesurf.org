@@ -1,7 +1,5 @@
 {% if log.borrow.state == "ACCEPTED" %}
     Your borrow request has been accepted.
-{% elif log.borrow.state == "MEETUP" %}
-    Meeting a team member is required for your borrow request to be accepted.
 {% elif log.borrow.state == "REJECTED" %}
     Your borrow request has been rejected.
 {% else %}
