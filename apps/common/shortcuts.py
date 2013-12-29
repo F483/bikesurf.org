@@ -14,6 +14,7 @@ from django.shortcuts import _get_queryset
 from django.template.loader import render_to_string
 from django.core.mail import send_mail as _send_mail
 from django.conf import settings
+from django.template import RequestContext
 from config.settings import GOOGLE_ANALYTICS_URL, GOOGLE_ANALYTICS_ID
 
 
@@ -39,8 +40,8 @@ def render_response(request, template, args):
     from apps.borrow.models import Borrow
     from apps.station.models import Station
 
+    # TODO load this automaticly to every template
     args.update({ 
-        "current_user" : request.user,
         "current_path" : request.path,
         "google_analytics_url" : GOOGLE_ANALYTICS_URL,
         "google_analytics_id" : GOOGLE_ANALYTICS_ID,
@@ -58,7 +59,9 @@ def render_response(request, template, args):
             "arrival_count" : len(borrow_control.arrivals(account)),
         })
     args.update(csrf(request))
-    return render_to_response(template, args)
+
+    rc = RequestContext(request)
+    return render_to_response(template, args, context_instance=rc)
 
 
 def get_object_or_none(klass, *args, **kwargs):
