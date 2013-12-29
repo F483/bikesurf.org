@@ -21,7 +21,7 @@ from django.forms import ModelChoiceField
 from django.utils.safestring import mark_safe
 
 from apps.borrow.models import Borrow
-from apps.borrow.models import RATING_CHOICES
+from apps.borrow.models import RATING_CHOICES, STATE_FILTER_CHOICES
 from apps.borrow import control
 from apps.team import control as team_control
 from apps.account import control as account_control
@@ -46,6 +46,45 @@ def _validate_borrow_timeframe(bike, start, finish):
         raise ValidationError(_("ERROR_FINISH_BEFORE_START"))
     if len(control.active_borrows_in_timeframe(bike, start, finish)):
         raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
+
+
+class FilterListing(Form): 
+
+    bike = ModelChoiceField(
+            label=_("BIKE"), queryset=None, required=False, empty_label=_("ALL")
+    )
+    state = ChoiceField(
+            label=_("STATE"), choices=STATE_FILTER_CHOICES, initial="", 
+            required=False
+    )
+    src = ModelChoiceField(
+            label=_("STATION_FROM"), queryset=None, 
+            required=False, empty_label=_("ALL")
+    )
+    dest = ModelChoiceField(
+            label=_("STATION_TO"), queryset=None, 
+            required=False, empty_label=_("ALL")
+    )
+    future = BooleanField(
+            label=_("FUTURE_BORROWS"), initial=True, required=False
+    )
+    ongoing = BooleanField(
+            label=_("ONGOING_BORROWS"), initial=True, required=False
+    )
+    past = BooleanField(
+            label=_("PAST_BORROWS"), initial=False, required=False
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.team = kwargs.pop("team")
+        super(FilterListing, self).__init__(*args, **kwargs)
+        self.fields["bike"].queryset = self.team.bikes.all()
+        #self.fields["bike"].initial = self.borrow.bike
+        stations = self.team.stations.all()
+        self.fields["dest"].queryset = stations
+        #self.fields["dest"].initial = self.borrow.dest
+        self.fields["src"].queryset = stations
+        #self.fields["src"].initial = self.borrow.dest
 
 
 class Respond(Form):

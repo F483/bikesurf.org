@@ -33,15 +33,61 @@ def _get_team_models(request, team_link, borrow_id):
     return team, account, borrow
 
 
+def _filter_lender_borrows(borrows, form):
+    today = datetime.datetime.now().date()
+    
+    # bike
+    bike = form.cleaned_data["bike"]
+    if bike:
+        borrows = borrows.filter(bike=bike)
+
+    # state
+    state = form.cleaned_data["state"]
+    if state:
+        borrows = borrows.filter(state=state)
+
+    # src
+    src = form.cleaned_data["src"]
+    if src:
+        borrows = borrows.filter(src=src)
+
+    # dest
+    dest = form.cleaned_data["dest"]
+    if dest:
+        borrows = borrows.filter(dest=dest)
+
+    # future
+    if not form.cleaned_data["future"]:
+        borrows = borrows.exclude(start__gt=today)
+
+    # ongoing
+    if not form.cleaned_data["ongoing"]:
+        borrows = borrows.exclude(start__lte=today, finish__gte=today)
+
+    # past
+    if not form.cleaned_data["past"]:
+        borrows = borrows.exclude(finish__lt=today)
+
+    return borrows
+
+
 @login_required
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def lender_list(request, team_link):
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
+    today = datetime.datetime.now().date()
     borrows = Borrow.objects.filter(team=team) 
+    if request.method == "POST":
+        form = forms.FilterListing(request.POST, team=team)
+        if form.is_valid():
+            borrows = _filter_lender_borrows(borrows, form)
+    else:
+        form = forms.FilterListing(team=team)
+        borrows = borrows.exclude(finish__lt=today) # filter out past
     args = { 
-        "page_title" : _("TEAM_BORROWS"),
+        "filters" : form, "page_title" : _("TEAM_BORROWS"),
         "list_data" : control.to_list_data(borrows, team_link=True) 
     }
     return rtr(team, "borrows", request, "common/list.html", args)

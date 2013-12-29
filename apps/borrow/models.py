@@ -23,6 +23,8 @@ STATE_CHOICES = [                # initiator
     ("FINISHED",_("FINISHED")),  # (B&&L)  Both Rated
 ]
 
+STATE_FILTER_CHOICES = [('', _("ALL"))] + list(STATE_CHOICES)
+
 
 class Borrow(Model):
 
@@ -70,7 +72,7 @@ class Borrow(Model):
 
     class Meta:
         
-        ordering = ["start"]
+        ordering = ["-start"]
 
 
 class Log(Model):
