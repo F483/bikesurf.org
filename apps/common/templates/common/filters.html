@@ -1,7 +1,6 @@
 {% load i18n %}
 
 {% if filters %}
-    <div class="navigation_title">{% trans "SEARCH_FILTERS" %}</div> 
     <div class="navigation">
         <form action="{{ current_path }}" method="post">
             {% csrf_token %}

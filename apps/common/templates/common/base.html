@@ -60,7 +60,6 @@
                                 {% include "team/menu.html" %}
                                 {% block menu %}
                                 {% endblock %}
-                                {% include "common/filters.html" %}
                             </div>
                         {% endif %}
                         <div id="base_content" class="base_column base_expand">
@@ -68,6 +67,7 @@
                                 {% include "common/tabs.html" %}
                             {% endif %}
 
+                            {% include "common/filters.html" %}
                             {% block content_wrapper %}
                                 {% block content %}
                                 {% endblock %}
