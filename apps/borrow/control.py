@@ -181,14 +181,20 @@ def to_list_data(borrows, team_link=False):
 
 def arrivals(account):
     today = datetime.datetime.now().date()
-    return Borrow.objects.filter(active=True, finish__gte=today, 
-                                 dest__responsible=account)
+    borrows = Borrow.objects.filter(
+            active=True, finish__gte=today, dest__responsible=account
+    )
+    borrows = borrows.order_by("finish")
+    return borrows
 
 
 def departures(account):
     today = datetime.datetime.now().date()
-    return Borrow.objects.filter(active=True, start__gte=today, 
-                                 src__responsible=account)
+    borrows = Borrow.objects.filter(
+            active=True, start__gte=today, src__responsible=account
+    )
+    borrows = borrows.order_by("start")
+    return borrows
 
 
 ##############
