@@ -481,3 +481,14 @@ def lender_edit_bike(account, borrow, bike, note):
     _insert_into_borrow_chain(borrow, bike, account=account, note=note)
 
 
+def send_reminders_borrower_rate():
+    today = datetime.datetime.now().date()
+    borrows = Borrow.objects.filter(
+            state="ACCEPTED", finish__lt=today, reminded_borrower_rate=False
+    )
+    for borrow in borrows:
+        email = account_control.get_email_or_404(borrow.borrower)
+        subject, message = _get_email_templates("borrower", "remind_rate")
+        send_mail([email], subject, message, { "borrow" : borrow })
+        borrow.reminded_borrower_rate = True
+        borrow.save()
