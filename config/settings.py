@@ -118,12 +118,13 @@ INSTALLED_APPS = (
     'rosetta',          # https://www.djangopackages.com/packages/p/django-rosetta/
     'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
     'imagekit',         # https://www.djangopackages.com/packages/p/django-imagekit/
+    'south',            # http://south.aeracode.org/
 
     # biksurfing apps
     'apps.common',
+    'apps.account',
     'apps.bike',
     'apps.borrow',
-    'apps.account',
     'apps.gallery',
     'apps.team',
     'apps.blog',
@@ -132,7 +133,7 @@ INSTALLED_APPS = (
     'apps.station',
     'apps.link',
 
-    # auth
+    # auth (must be after bikesurf apps to use its base template)
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

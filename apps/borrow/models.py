@@ -43,6 +43,15 @@ class Borrow(Model):
     dest = ForeignKey('station.Station', related_name='arrivals',
                       blank=True, null=True)
 
+    # reminders
+    reminded_borrower_rate = BooleanField(default=False)
+    # reminded_borrower_pickup = BooleanField(default=False)
+    # reminded_borrower_dropoff = BooleanField(default=False)
+    # reminded_lender_rate = BooleanField(default=False)
+    # reminded_lender_putout = BooleanField(default=False)
+    # reminded_lender_takein = BooleanField(default=False)
+
+
     @property
     def borrower_rating(self):
         if self._borrower_rating:

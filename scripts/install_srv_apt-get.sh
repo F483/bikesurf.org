@@ -10,14 +10,15 @@ fi
 # required apt packages
 apt-get -qy install mercurial python-pip gettext
 apt-get -qy install apache2 postgresql libapache2-mod-wsgi python-imaging python-psycopg2
+apt-get -qy install python-django python-django-south # XXX only because i cant use pip stuff
 
 # python packages
-pip install Django
+#pip install Django # incompatible with South ...
+#pip install South  # incompatible with Django ...
 pip install django-countries
 pip install django-allauth
 pip install django-html_sanitizer
 pip install django-imagekit
-pip install South
 pip install unidecode
 pip install django-rosetta
 

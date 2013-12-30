@@ -23,7 +23,11 @@ db_sql:
 db_shell:
 	sqlite3 $(SQLITE_FILE)
 
-db_sync: clean
+db_migrate_auto:
+	python manage.py schemamigration $(APP) --auto
+	python manage.py migrate $(APP)
+
+db_sync:
 	python manage.py syncdb
 
 py_shell:

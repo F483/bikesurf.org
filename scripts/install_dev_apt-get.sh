@@ -9,17 +9,18 @@ fi
 
 # required apt packages
 apt-get -qy install mercurial python-pip gettext sqlite3
+apt-get -qy install python-django python-django-south # XXX only because i cant use pip stuff
 
 # optional apt packages
 apt-get -qy install python-docutils
 
 # python packages
-pip install Django
+#pip install Django # incompatible with pip South ...
+#pip install South  # incompatible with pip Django ...
 pip install django-countries
 pip install django-allauth
 pip install django-html_sanitizer
 pip install django-imagekit
-pip install South
 pip install unidecode
 pip install django-rosetta
 
