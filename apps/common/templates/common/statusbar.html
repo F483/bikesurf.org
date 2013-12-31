@@ -2,28 +2,35 @@
 
 {% if user.is_authenticated %}
 
+    {% if borrow_count %}
+        <a href="/borrows">{% trans "BORROWS" %} ({{ borrow_count }})</a>
+        -
+    {% endif %}
+
     {% for team in current_account_teams %}
         <a href="/{{ team.link }}">{{ team.name }}</a>
+        -
     {% endfor %}
 
-    {% if borrow_count %}
-        <a href="/borrows">{% trans "BORROWS" %}({{ borrow_count }})</a>
-    {% endif %}
+    {% for station in current_account_stations %}
+        <a href="/{{ station.team.link }}/station/view/{{ station.id }}">
+            {{ station.street }}
+        </a>
+        -
+    {% endfor %}
 
     {% if arrival_count %}
         <a href="/borrow/arrivals">
-            {% trans "ARRIVALS" %}({{ arrival_count }})
+            {% trans "ARRIVALS" %} ({{ arrival_count }})
         </a>
+        -
     {% endif %}
 
     {% if departure_count %}
         <a href="/borrow/departures">
-            {% trans "DEPARTURES" %}({{ departure_count }})
+            {% trans "DEPARTURES" %} ({{ departure_count }})
         </a>
-    {% endif %}
-
-    {% if station_count %}
-        <a href="/stations">{% trans "STATIONS" %}({{ station_count }})</a>
+        -
     {% endif %}
 
     <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
