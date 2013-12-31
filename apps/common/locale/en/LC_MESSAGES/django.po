@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-23 11:35-0600\n"
+"POT-Creation-Date: 2013-12-31 00:52-0600\n"
 "PO-Revision-Date: 2013-12-23 05:06-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,7 @@ msgstr "Free, Bike, Surfing, Borrowing, Lending"
 msgid "META_DESCRIPTION"
 msgstr "Borrow bikes for free."
 
-#: templates/common/filters.html:4
-msgid "SEARCH_FILTERS"
-msgstr "Filter"
-
-#: templates/common/filters.html:9
+#: templates/common/filters.html:8
 msgid "FILTER"
 msgstr "Filter"
 
@@ -82,11 +78,11 @@ msgstr "Stations"
 msgid "LOGOUT"
 msgstr "Logout"
 
-#: templates/common/statusbar.html:34
+#: templates/common/statusbar.html:33
 msgid "LOGIN"
 msgstr "Login"
 
-#: templates/common/statusbar.html:35
+#: templates/common/statusbar.html:34
 msgid "SIGN UP"
 msgstr "Signup"
 
@@ -185,3 +181,6 @@ msgstr "True"
 #: templatetags/common_tags.py:53
 msgid "FALSE"
 msgstr "False"
+
+#~ msgid "SEARCH_FILTERS"
+#~ msgstr "Filter"
