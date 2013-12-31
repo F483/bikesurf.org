@@ -165,12 +165,12 @@ def to_list_data(borrows, team_link=False, columns="ALL"):
         bike_name = borrow.bike and borrow.bike.name or _("DELETED")
         if columns == "ARRIVALS":
             return {
-                "labels" : [ borrow.borrower, bike_name, borrow.finish ], 
+                "labels" : [ borrow.borrower, bike_name, borrow.finish, dest ], 
                 "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
             }
         elif columns == "DEPARTURES":
             return {
-                "labels" : [ borrow.borrower, bike_name, borrow.start ], 
+                "labels" : [ borrow.borrower, bike_name, borrow.start, src ], 
                 "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
             }
         else:
@@ -183,12 +183,16 @@ def to_list_data(borrows, team_link=False, columns="ALL"):
             }
     if columns == "ARRIVALS":
         return { 
-            "columns" : [ _("BORROWER"), _("BIKE"), _("DATE_TO") ], 
+            "columns" : [ 
+                _("BORROWER"), _("BIKE"), _("DATE_TO"), _("STATION_TO") 
+            ], 
             "entries" : map(borrow2entrie, borrows) 
         }
     elif columns == "DEPARTURES":
         return { 
-            "columns" : [ _("BORROWER"), _("BIKE"), _("DATE_FROM") ], 
+            "columns" : [ 
+                _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("STATION_FROM") 
+            ], 
             "entries" : map(borrow2entrie, borrows) 
         }
     else:
