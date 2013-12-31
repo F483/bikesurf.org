@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-31 00:52-0600\n"
-"PO-Revision-Date: 2013-12-31 00:56-0600\n"
-"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
+"PO-Revision-Date: 2013-12-31 01:19\n"
+"Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
-"X-Translated-Using: django-rosetta 0.7.2\n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: control.py:165
 msgid "DELETED"
@@ -33,19 +33,19 @@ msgstr "Bike"
 
 #: control.py:175 templates/borrow/view.html:30
 msgid "DATE_FROM"
-msgstr "From date"
+msgstr "Pick-up date"
 
 #: control.py:175 templates/borrow/view.html:31
 msgid "DATE_TO"
-msgstr "To date"
+msgstr "Drop-off date"
 
 #: control.py:176 forms.py:61 templates/borrow/view.html:34
 msgid "STATION_FROM"
-msgstr "From station"
+msgstr "Pick-up station"
 
 #: control.py:176 forms.py:65 templates/borrow/view.html:35
 msgid "STATION_TO"
-msgstr "To station"
+msgstr "Drop-off station"
 
 #: control.py:176
 msgid "BORROW_STATE"

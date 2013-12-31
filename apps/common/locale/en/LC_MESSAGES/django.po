@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-31 00:52-0600\n"
-"PO-Revision-Date: 2013-12-23 05:06-0600\n"
-"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
+"PO-Revision-Date: 2013-12-31 01:30\n"
+"Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.7.2\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: templates/base.html:6
 msgid "SIGNUP"
@@ -64,11 +64,11 @@ msgstr "Borrows"
 
 #: templates/common/statusbar.html:15
 msgid "ARRIVALS"
-msgstr "Arrivals"
+msgstr "Drop-offs"
 
 #: templates/common/statusbar.html:21
 msgid "DEPARTURES"
-msgstr "Departures"
+msgstr "Pick-ups"
 
 #: templates/common/statusbar.html:26
 msgid "STATIONS"
