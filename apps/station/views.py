@@ -59,6 +59,19 @@ def _tabs(station, team, selected):
     return menu
 
 
+def _load_view_data(station, tab):
+    today = datetime.datetime.now().date()
+    bikes = []
+    borrows = []
+    if tab == "BIKES":
+        bikes = station.bikes.all()
+    elif tab == "DEPARTURES":
+        borrows = station.departures.filter(active=True, start__gte=today)
+    elif tab == "ARRIVALS":
+        borrows = station.arrivals.filter(active=True, finish__gte=today)
+    return bikes, borrows
+
+
 @login_required
 @require_http_methods(["GET"])
 def view(request, **kwargs):
@@ -73,21 +86,11 @@ def view(request, **kwargs):
     else:
         station = get_object_or_404(Station, id=station_id, responsible=account)
 
-    # load tab data
-    today = datetime.datetime.now().date()
-    bikes = []
-    borrows = []
-    if tab == "BIKES":
-        bikes = station.bikes.all()
-    elif tab == "DEPARTURES":
-        borrows = station.departures.filter(active=True, start__gte=today)
-    elif tab == "ARRIVALS":
-        borrows = station.arrivals.filter(active=True, finish__gte=today)
-
-    list_data = borrow_control.to_list_data(borrows, team_link=True)
+    bikes, borrows = _load_view_data(station, tab)
+    data = borrow_control.to_list_data(borrows, team_link=True, columns=tab)
     template_args = { 
         "bike_pairs" : list(chunks(bikes, 2)),
-        "station" : station, "list_data" : list_data,
+        "station" : station, "list_data" : data,
         "page_title" : _VIEW[tab]["page_title"],
         "tabs" : _tabs(station, team, tab),
     }

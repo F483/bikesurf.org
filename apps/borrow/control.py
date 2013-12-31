@@ -157,26 +157,48 @@ def active_borrows_in_timeframe(bike, start, finish, exclude=None):
     return list(qs)
 
 
-def to_list_data(borrows, team_link=False):
+def to_list_data(borrows, team_link=False, columns="ALL"):
     def borrow2entrie(borrow):
         base_url = team_link and ("/%s" % borrow.team.link) or ""
         src = borrow.src and borrow.src.street or None
         dest = borrow.dest and borrow.dest.street or None
         bike_name = borrow.bike and borrow.bike.name or _("DELETED")
-        return {
-            "labels" : [ 
-                borrow.borrower, bike_name, borrow.start, borrow.finish, 
-                src, dest, borrow.state
-            ], 
-            "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+        if columns == "ARRIVALS":
+            return {
+                "labels" : [ borrow.borrower, bike_name, borrow.finish ], 
+                "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+            }
+        elif columns == "DEPARTURES":
+            return {
+                "labels" : [ borrow.borrower, bike_name, borrow.start ], 
+                "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+            }
+        else:
+            return {
+                "labels" : [ 
+                    borrow.borrower, bike_name, borrow.start, borrow.finish, 
+                    src, dest, borrow.state
+                ], 
+                "url" : "%s/borrow/view/%s" % (base_url, borrow.id)
+            }
+    if columns == "ARRIVALS":
+        return { 
+            "columns" : [ _("BORROWER"), _("BIKE"), _("DATE_TO") ], 
+            "entries" : map(borrow2entrie, borrows) 
         }
-    return { 
-        "columns" : [
-            _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("DATE_TO"),
-            _("STATION_FROM"), _("STATION_TO"), _("BORROW_STATE"),
-        ], 
-        "entries" : map(borrow2entrie, borrows) 
-    }
+    elif columns == "DEPARTURES":
+        return { 
+            "columns" : [ _("BORROWER"), _("BIKE"), _("DATE_FROM") ], 
+            "entries" : map(borrow2entrie, borrows) 
+        }
+    else:
+        return { 
+            "columns" : [
+                _("BORROWER"), _("BIKE"), _("DATE_FROM"), _("DATE_TO"),
+                _("STATION_FROM"), _("STATION_TO"), _("BORROW_STATE"),
+            ], 
+            "entries" : map(borrow2entrie, borrows) 
+        }
 
 
 def arrivals(account):

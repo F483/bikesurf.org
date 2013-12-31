@@ -113,7 +113,9 @@ def arrivals(request):
     borrows = control.arrivals(account)
     args = { 
         "page_title" : _("ARRIVALS"),
-        "list_data" : control.to_list_data(borrows, team_link=True)
+        "list_data" : control.to_list_data(
+            borrows, team_link=True, columns="ARRIVALS"
+        )
     }
     return render_response(request, "common/list.html", args)
 
@@ -126,7 +128,9 @@ def departures(request):
     borrows = control.departures(account)
     args = {
         "page_title" : _("DEPARTURES"),
-        "list_data" : control.to_list_data(borrows, team_link=True)
+        "list_data" : control.to_list_data(
+            borrows, team_link=True, columns="DEPARTURES"
+        )
     }
     return render_response(request, "common/list.html", args)
 
