@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-31 00:52-0600\n"
-"PO-Revision-Date: 2013-12-31 02:29-0600\n"
+"POT-Creation-Date: 2014-01-20 09:09-0600\n"
+"PO-Revision-Date: 2014-01-20 08:55-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
 #: templates/base.html:6
@@ -58,31 +58,27 @@ msgstr "Submit"
 msgid "NO_ENTRIES"
 msgstr "No entries"
 
-#: templates/common/statusbar.html:10
-msgid "BORROWS"
+#: templates/common/statusbar.html:5
+msgid "MY_BORROWS"
 msgstr "My Borrows"
 
-#: templates/common/statusbar.html:15
+#: templates/common/statusbar.html:22
 msgid "ARRIVALS"
 msgstr "Drop-offs"
 
-#: templates/common/statusbar.html:21
+#: templates/common/statusbar.html:29
 msgid "DEPARTURES"
 msgstr "Pick-ups"
 
-#: templates/common/statusbar.html:26
-msgid "STATIONS"
-msgstr "Stations"
-
-#: templates/common/statusbar.html:29
+#: templates/common/statusbar.html:34
 msgid "LOGOUT"
 msgstr "Logout"
 
-#: templates/common/statusbar.html:33
+#: templates/common/statusbar.html:38
 msgid "LOGIN"
 msgstr "Login"
 
-#: templates/common/statusbar.html:34
+#: templates/common/statusbar.html:39
 msgid "SIGN UP"
 msgstr "Signup"
 
@@ -181,6 +177,9 @@ msgstr "True"
 #: templatetags/common_tags.py:53
 msgid "FALSE"
 msgstr "False"
+
+#~ msgid "STATIONS"
+#~ msgstr "Stations"
 
 #~ msgid "SEARCH_FILTERS"
 #~ msgstr "Filter"

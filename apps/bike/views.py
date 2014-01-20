@@ -39,9 +39,9 @@ _VIEW = {
 
 
 def _tabs(bike, team, selected, authorized):
-    base_link = "/%s/bike/view/%d" % (team.link, bike.id)
-    overview = (base_link,              _("OVERVIEW"), selected == "OVERVIEW")
-    borrows =  (base_link + "/borrows", _("BORROWS"),  selected == "BORROWS")
+    baseurl = "/%s/bike/view/%d" % (team.link, bike.id)
+    overview = (baseurl,              _("OVERVIEW"), selected == "OVERVIEW")
+    borrows =  (baseurl + "/borrows", _("BIKE_BORROWS"),  selected == "BORROWS")
     if authorized:
         return [overview, borrows]
     return [overview]
