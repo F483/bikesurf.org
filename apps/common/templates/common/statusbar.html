@@ -2,10 +2,8 @@
 
 {% if user.is_authenticated %}
 
-    {% if borrow_count %}
-        <a href="/borrows">{% trans "BORROWS" %} ({{ borrow_count }})</a>
-        -
-    {% endif %}
+    <a href="/borrows">{% trans "BORROWS" %}</a>
+    -
 
     {% for team in current_account_teams %}
         <a href="/{{ team.link }}">{{ team.name }}</a>
