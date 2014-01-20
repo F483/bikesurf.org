@@ -11,4 +11,4 @@ From station: {{ log.borrow.src }}
 To date: {{ log.borrow.finish }}
 To station: {{ log.borrow.dest }}
 
-Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
+Borrow link: http://{{ site.domain }}/{{ log.borrow.team.link }}/borrow/view/{{ log.borrow.id }}

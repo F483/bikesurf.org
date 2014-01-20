@@ -8,4 +8,4 @@ Bike: {{ log.borrow.bike.name }}
 From date: {{ log.borrow.start }}
 To date: {{ log.borrow.finish }}
 
-Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
+Borrow link: http://{{ site.domain }}/{{ log.borrow.team.link }}/borrow/view/{{ log.borrow.id }}

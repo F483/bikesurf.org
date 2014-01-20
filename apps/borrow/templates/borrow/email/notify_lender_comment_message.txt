@@ -3,4 +3,4 @@ Borrow #{{ log.borrow.id }} commented.
 Comment given by {{ log.initiator.user.username }}:
 {{ log.note }}
 
-Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
+Borrow link: http://{{ site.domain }}/{{ log.borrow.team.link }}/borrow/view/{{ log.borrow.id }}
