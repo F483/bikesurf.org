@@ -413,7 +413,7 @@ def lender_can_edit(account, borrow):
     today = datetime.datetime.now().date()
     if borrow.state not in ["REQUEST", "ACCEPTED"]:
         return False
-    if borrow.start <= today:
+    if borrow.finish <= today:
         return False
     if account not in borrow.team.members.all():
         return False
@@ -489,6 +489,7 @@ def lender_edit_dest(account, borrow, dest, note):
         return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_dest_is_allowed(account, borrow, dest):
         raise PermissionDenied
+    # TODO add flag to change all future borrows
     next_borrow = get_next_borrow(borrow.bike, borrow.finish)
     if next_borrow:
         next_borrow.src = dest
