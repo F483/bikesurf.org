@@ -1,6 +1,6 @@
 Borrow #{{ log.borrow.id }} edited.
 
-Reason given by {{ log.initiator.user.username }}:
+Reason given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}
 
 Updated information

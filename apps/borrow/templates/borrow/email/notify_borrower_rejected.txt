@@ -1,7 +1,7 @@
 Hello {{ log.borrow.borrower.user.username }},
 
 Your borrow request has been rejected.
-{% if log.note %}Reason given by {{ log.initiator.user.username }}:
+{% if log.note %}Reason given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}{% endif %}
 
 Thank you for sending us a BikeSurf request!

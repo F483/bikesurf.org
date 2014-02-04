@@ -1,6 +1,6 @@
 Your borrow of "{{ log.borrow.bike.name }}" from {{ log.borrow.start }} to {{ log.borrow.start }} has been edited!
 
-Reason given by {{ log.initiator.user.username }}:
+Reason given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}
 
 Updated information

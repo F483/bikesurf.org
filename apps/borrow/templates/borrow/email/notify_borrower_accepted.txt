@@ -1,7 +1,7 @@
 Hello {{ log.borrow.borrower.user.username }},
 
 Your borrow request has been accepted! 
-{% if log.note %}Note given by {{ log.initiator.user.username }}:
+{% if log.note %}Note given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}{% endif %}
 
 All the information you require for collecting and dropping off the bike is in this message.

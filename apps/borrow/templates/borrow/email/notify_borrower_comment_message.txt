@@ -1,6 +1,6 @@
-Your borrow has been commented by {{ log.initiator.user.username }}.
+Your borrow has been commented by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}.
 
-Comment given by {{ log.initiator.user.username }}:
+Comment given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}
 
 Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
