@@ -46,7 +46,7 @@
         </table>
 
         <div class="actions">
-            {% borrow_draw bike %}
+            {% borrow_draw bike date_start date_finish %}
             {% if_member current_account bike.team %}
                 {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
                 {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}

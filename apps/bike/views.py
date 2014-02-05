@@ -6,6 +6,7 @@
 import datetime
 from random import shuffle
 
+from dateutil.parser import parse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
@@ -88,6 +89,16 @@ def _get_listing_bikes(request, team, form):
 def view(request, team_link, bike_id, tab):
     team = team_control.get_or_404(team_link)
 
+    # get parameters
+    start = request.GET.get('start', None)
+    finish = request.GET.get('finish', None)
+    try:
+        start = start and parse(start).date() or None
+        finish = finish and parse(finish).date() or None
+    except ValueError:
+        start = None
+        finish = None
+
     # check user permissions
     requires_login = tab != "OVERVIEW"
     requires_membership = tab != "OVERVIEW"
@@ -111,6 +122,7 @@ def view(request, team_link, bike_id, tab):
         "bike" : bike, "list_data" : list_data,
         "page_title" : _VIEW[tab]["page_title"],
         "tabs" : _tabs(bike, team, tab, authorized), 
+        "date_start" : start, "date_finish" : finish,
     }
     return rtr(team, "bikes", request, template, args)
 
@@ -119,10 +131,14 @@ def view(request, team_link, bike_id, tab):
 def listing(request, team_link):
     team = team_control.get_or_404(team_link)
 
+    date_start = None
+    date_finish = None
     if request.method == "POST":
         form = forms.FilterListing(request.POST)
         if form.is_valid():
             bikes = _get_listing_bikes(request, team, form)
+            date_start = form.cleaned_data["start"]
+            date_finish = form.cleaned_data["finish"]
         else:
             bikes = _get_listing_bikes(request, team, None)
     else:
@@ -133,7 +149,8 @@ def listing(request, team_link):
 
     args = { 
         "page_title" : _("BIKES"), "filters" : form,
-        "bike_pairs" : list(chunks(bikes, 2))
+        "bike_pairs" : list(chunks(bikes, 2)),
+        "date_start" : date_start, "date_finish" : date_finish
     }
     return rtr(team, "bikes", request, "bike/list.html", args)
 

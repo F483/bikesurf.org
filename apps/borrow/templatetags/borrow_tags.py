@@ -51,10 +51,17 @@ def borrow_draw_lender_edit_bike(account, borrow):
 
 
 @register.simple_tag
-def borrow_draw(bike):
+def borrow_draw(bike, date_start, date_finish):
     if control.can_borrow(bike):
+        qs = ""
+        if date_start and date_finish:
+            qs = "?start=%s&finish=%s" % (date_start, date_finish)
+        elif date_start:
+            qs = "?start=%s" % date_start
+        elif date_finish:
+            qs = "?finish=%s" % date_finish
         image = "/static/famfamfam/arrow_rotate_clockwise.png"
-        url = "/%s/borrow/create/%i" % (bike.team.link, bike.id)
+        url = "/%s/borrow/create/%i%s" % (bike.team.link, bike.id, qs)
         return draw_action(image, "BORROW", url)
     return ""
 

@@ -5,6 +5,7 @@
 
 import datetime
 
+from dateutil.parser import parse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_http_methods
@@ -138,11 +139,23 @@ def departures(request):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create(request, team_link, bike_id):
+
+    # get parameters
+    start = request.GET.get('start', None)
+    finish = request.GET.get('finish', None)
+    try:
+        start = start and parse(start).date() or None
+        finish = finish and parse(finish).date() or None
+    except ValueError:
+        start = None
+        finish = None
+
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":
-        form = forms.Create(request.POST, bike=bike, account=account)
+        form = forms.Create(request.POST, bike=bike, account=account, 
+                            start=start, finish=finish)
         if form.is_valid():
             borrow = control.create(account, bike,
                                     form.cleaned_data["start"],
@@ -150,7 +163,8 @@ def create(request, team_link, bike_id):
                                     form.cleaned_data["note"].strip())
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.Create(bike=bike, account=account)
+        form = forms.Create(bike=bike, account=account, 
+                            start=start, finish=finish)
     args = { 
         "form" : form, "form_title" : _("BORROW_CREATE"),
         "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id),

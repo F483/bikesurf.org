@@ -21,6 +21,7 @@ pip install django-html_sanitizer
 pip install django-imagekit
 pip install unidecode
 pip install django-rosetta
+pip install python-dateutil
 
 hg clone https://bitbucket.org/fabe/bikesurf.org www
 chown bikesurf:bikesurf -R bikesurfing.org/
