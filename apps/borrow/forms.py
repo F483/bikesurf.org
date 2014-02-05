@@ -136,12 +136,14 @@ class Create(Form):
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
         self.account = kwargs.pop("account")
+        start = kwargs.pop("start")
+        finish = kwargs.pop("finish")
         super(Create, self).__init__(*args, **kwargs)
         today = datetime.datetime.now()
-        tomorrow = today + datetime.timedelta(days=1)
-        eightdays = today + datetime.timedelta(days=8)
-        self.fields["start"].initial = tomorrow
-        self.fields["finish"].initial = eightdays
+        start = start and start or (today + datetime.timedelta(days=1))
+        finish = finish and finish or (start + datetime.timedelta(days=8))
+        self.fields["start"].initial = start
+        self.fields["finish"].initial = finish
 
     def clean(self):
         cleaned_data = super(Create, self).clean()

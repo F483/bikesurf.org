@@ -20,7 +20,7 @@
                         {{ bike.name }}
                     </div>
                     <div id="bike_list_entrie" class="content">
-                        <a href="/{{ bike.team.link }}/bike/view/{{ bike.id }}">
+                        <a href="/{{ bike.team.link }}/bike/view/{{ bike.id }}{% if date_start or date_finish %}?{% endif %}{% if date_start %}start={{ date_start.isoformat }}{% endif %}{% if date_start and date_finish %}&{% endif %}{% if date_finish %}finish={{ date_finish.isoformat }}{% endif %}">
                             <table>
                                 <tr>
                                     <td id="td_bike_image">
