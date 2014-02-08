@@ -15,9 +15,9 @@
             {% trans "MOBILE" %}: {{ view_account.mobile }} </br>
             {% trans "EMAIL" %}: {{ email }}</br>
 
-            {% if current_account.passport %}
+            {% if view_account.passport %}
                 {% trans "PASSPORT" %}: 
-                <a href="{{ current_account.passport.url }}">
+                <a href="{{ view_account.passport.url }}">
                     {% trans "IMAGE" %}
                 </a>
             {% else %}
