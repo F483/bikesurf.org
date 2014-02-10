@@ -44,8 +44,7 @@ def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
           x>1 -   -   - 1>b>3         x>1 - 1>B>1 - 1>b>3                       
         1>b>2 -   -   - 2>b>4       1>b>2 - 2>B>2 - 2>b>4 
     """
-    if borrow.active: # fix borrow chains
-        _remove_from_borrow_chain(borrow) # remove from previous chain
+    if borrow.active:
         prev_borrow = get_prev_borrow(bike, borrow.start)
         borrow.src = prev_borrow and prev_borrow.dest or bike.station
         borrow.dest = borrow.src
@@ -449,12 +448,12 @@ def borrower_edit_is_allowed(account, borrow, start, finish, bike):
     return True
 
 
-def lender_edit_bike_is_allowed(account, borrow, bike):
+def lender_edit_is_allowed(account, borrow, start, finish, bike):
     if not lender_can_edit(account, borrow):
         return False
     if bike.team != borrow.team or not bike.active:
         return False
-    if active_borrows_in_timeframe(bike, borrow.start, borrow.finish):
+    if active_borrows_in_timeframe(bike, start, finish, exclude=borrow):
         return False
     return True
 
@@ -484,6 +483,25 @@ def borrower_edit(account, borrow, start, finish, bike, note):
     log(account, borrow, note, "EDIT")
 
 
+def lender_edit(account, borrow, start, finish, bike, note):
+    # TODO if finish before today finish borrow
+    if (borrow.start == start and borrow.finish == finish 
+            and borrow.bike == bike):
+        return # nothing changed TODO throw error here, should never get this far!
+    if not lender_edit_is_allowed(account, borrow, start, finish, bike):
+        raise PermissionDenied
+    if borrow.bike != bike:
+        _remove_from_borrow_chain(borrow)
+        borrow.start = start
+        borrow.finish = finish
+        _insert_into_borrow_chain(borrow, bike, account=account, note=note)
+    else:
+        borrow.start = start
+        borrow.finish = finish
+        borrow.save()
+        log(account, borrow, note, "EDIT")
+
+
 def lender_edit_dest(account, borrow, dest, note):
     if borrow.dest == dest:
         return # nothing changed TODO throw error here, should never get this far!
@@ -497,14 +515,6 @@ def lender_edit_dest(account, borrow, dest, note):
     borrow.dest = dest
     borrow.save()
     log(account, borrow, note, "EDIT")
-
-
-def lender_edit_bike(account, borrow, bike, note):
-    if borrow.bike == bike:
-        return # nothing changed TODO throw error here, should never get this far!
-    if not lender_edit_bike_is_allowed(account, borrow, bike):
-        raise PermissionDenied
-    _insert_into_borrow_chain(borrow, bike, account=account, note=note)
 
 
 def send_reminders_borrower_rate():

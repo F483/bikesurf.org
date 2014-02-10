@@ -26,7 +26,7 @@ urlpatterns = patterns("apps.borrow.views",
 
     url(r"^%(team)s/borrows$" % p,                      "lender_list"),
     url(r"^%(team)s/borrow/view/%(borrow)s$" % p,       "lender_view"),
-    url(r"^%(team)s/borrow/edit_bike/%(borrow)s$" % p,  "lender_edit_bike"),
+    url(r"^%(team)s/borrow/edit/%(borrow)s$" % p,       "lender_edit"),
     url(r"^%(team)s/borrow/edit_dest/%(borrow)s$" % p,  "lender_edit_dest"),
     url(r"^%(team)s/borrow/respond/%(borrow)s$" % p,    "respond"),
     url(r"^%(team)s/borrow/create/%(bike)s$" % p,       "create"),

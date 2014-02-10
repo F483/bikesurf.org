@@ -179,7 +179,7 @@ def borrower_edit(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
     if request.method == "POST":
-        form = forms.BorrowerEdit(request.POST, account=account, borrow=borrow)
+        form = forms.Edit(request.POST, borrow=borrow)
         if form.is_valid():
             control.borrower_edit(
                     account, borrow,
@@ -190,7 +190,7 @@ def borrower_edit(request, borrow_id):
             )
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.BorrowerEdit(account=account, borrow=borrow)
+        form = forms.Edit(borrow=borrow)
     args = { 
         "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/borrow/view/%s" % borrow.id
@@ -200,20 +200,22 @@ def borrower_edit(request, borrow_id):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def lender_edit_bike(request, team_link, borrow_id):
+def lender_edit(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
-        form = forms.LenderEditBike(request.POST, borrow=borrow)
+        form = forms.Edit(request.POST, borrow=borrow)
         if form.is_valid():
-            control.lender_edit_bike(
+            control.lender_edit(
                     account, borrow,
+                    form.cleaned_data["start"],
+                    form.cleaned_data["finish"],
                     form.cleaned_data["bike"],
                     form.cleaned_data["note"].strip()
             )
             url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
-        form = forms.LenderEditBike(borrow=borrow)
+        form = forms.Edit(borrow=borrow)
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }

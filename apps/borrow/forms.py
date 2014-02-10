@@ -34,17 +34,19 @@ RESPONSE_CHOICES = [
 ]
 
 
-def _validate_borrow_timeframe(bike, start, finish):
-    today = datetime.datetime.now().date()
+def _validate_borrow_timeframe(bike, start, finish, exclude=None, 
+                               timetraveler=False):
     if not start:
         raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
     if not finish:
         raise ValidationError(_("ERROR_IMPOSSIBLE_FINISH_DATE"))
-    if start <= today:
-        raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
     if finish < start:
         raise ValidationError(_("ERROR_FINISH_BEFORE_START"))
-    if len(control.active_borrows_in_timeframe(bike, start, finish)):
+    today = datetime.datetime.now().date()
+    if not timetraveler and start <= today:
+        raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
+    if len(control.active_borrows_in_timeframe(bike, start, finish, 
+                                               exclude=exclude)):
         raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
 
 
@@ -192,7 +194,7 @@ class Rate(Form):
     rating = TypedChoiceField(choices=RATING_CHOICES, widget=RadioSelect)
 
 
-class BorrowerEdit(Form):
+class Edit(Form):
 
     start = DateField(label=_("START"), widget=SelectDateWidget())
     finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
@@ -203,8 +205,7 @@ class BorrowerEdit(Form):
 
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
-        self.account = kwargs.pop("account")
-        super(BorrowerEdit, self).__init__(*args, **kwargs)
+        super(Edit, self).__init__(*args, **kwargs)
         bikes = self.borrow.team.bikes.filter(active=True)
         self.fields["start"].initial = self.borrow.start
         self.fields["finish"].initial = self.borrow.finish
@@ -212,35 +213,12 @@ class BorrowerEdit(Form):
         self.fields["bike"].initial = self.borrow.bike
 
     def clean(self):
-        cleaned_data = super(BorrowerEdit, self).clean()
+        cleaned_data = super(Edit, self).clean()
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
         bike = cleaned_data.get("bike")
-        _validate_borrow_timeframe(bike, start, finish)
-        return cleaned_data
-
-
-class LenderEditBike(Form):
-
-    bike = ModelChoiceField(
-            label=_("BIKE"), queryset=None, required=True, empty_label=None
-    )
-    note = CharField(label=_("NOTE"), widget=Textarea)
-
-    def __init__(self, *args, **kwargs):
-        self.borrow = kwargs.pop("borrow")
-        super(LenderEditBike, self).__init__(*args, **kwargs)
-        bikes = self.borrow.team.bikes.filter(active=True)
-        self.fields["bike"].queryset = bikes
-        self.fields["bike"].initial = self.borrow.bike
-
-    def clean(self):
-        cleaned_data = super(LenderEditBike, self).clean()
-        bike = cleaned_data.get("bike")
-        start = self.borrow.start
-        finish = self.borrow.finish
-        if len(control.active_borrows_in_timeframe(bike, start, finish)):
-            raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
+        _validate_borrow_timeframe(bike, start, finish, exclude=self.borrow, 
+                                   timetraveler=True)
         return cleaned_data
 
 

@@ -26,8 +26,10 @@ def borrow_draw_comment(account, borrow, team):
 
 
 @register.simple_tag
-def borrow_draw_borrower_edit(account, borrow):
-    if control.borrower_can_edit(account, borrow):
+def borrow_draw_edit(account, borrow):
+    if control.lender_can_edit(account, borrow):
+        return draw_edit("/%s/borrow/edit/%i" % (borrow.team.link, borrow.id))
+    elif control.borrower_can_edit(account, borrow):
         return draw_edit("/borrow/edit/%i" % borrow.id)
     return ""
 
@@ -38,15 +40,6 @@ def borrow_draw_lender_edit_dest(account, borrow):
         url = "/%s/borrow/edit_dest/%i" % (borrow.team.link, borrow.id)
         image = "/static/famfamfam/pencil.png"
         return draw_action(image, "CHANGE_DEST", url)
-    return ""
-
-
-@register.simple_tag
-def borrow_draw_lender_edit_bike(account, borrow):
-    if control.lender_can_edit(account, borrow):
-        url = "/%s/borrow/edit_bike/%i" % (borrow.team.link, borrow.id)
-        image = "/static/famfamfam/pencil.png"
-        return draw_action(image, "CHANGE_BIKE", url)
     return ""
 
 
