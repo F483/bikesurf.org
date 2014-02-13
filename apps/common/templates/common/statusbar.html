@@ -32,7 +32,7 @@
     {% endif %}
 
     <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
-    <a href="/accounts/profile/">{{ user.username }}</a>
+    <a href="/account/profile">{{ user.username }}</a>
 
 {% else %}
     <a href="/accounts/login/?next={{ current_path }}">{% trans "LOGIN" %}</a>

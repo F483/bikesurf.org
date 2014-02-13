@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 09:09-0600\n"
+"POT-Creation-Date: 2014-02-13 03:49-0600\n"
 "PO-Revision-Date: 2013-12-27 08:23\n"
 "Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,23 +113,31 @@ msgstr "Twitter"
 msgid "PROFILE_UPDATED"
 msgstr "Profile updated"
 
-#: views.py:35 templates/account/profile.html:38
+#: views.py:36 templates/account/profile.html:38
 msgid "SET_PASSPORT"
 msgstr "Set passport image"
 
-#: views.py:54
-msgid "LINK_DELETE?"
-msgstr "Delete link?"
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr "Upload required copy of your Passport."
 
-#: views.py:78
-msgid "ADD_LINK_SUBTITLE"
-msgstr "Add social link to account."
-
-#: views.py:131 templates/account/profile.html:16
+#: views.py:39 views.py:86 views.py:144 templates/account/profile.html:16
 msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
 "This information can only be seen by bikesurf.org administrators and members "
 "of teams where you are borrowing a bike."
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr "Delete link?"
+
+#: views.py:85
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr "Add required link to a site with references."
+
+#: views.py:143
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr "Add required profile information."
 
 #: templates/account/profile.html:13
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
@@ -163,6 +171,9 @@ msgstr "None"
 #: templates/account/profile.html:48 templates/account/view.html:33
 msgid "LINKS"
 msgstr "Links"
+
+#~ msgid "ADD_LINK_SUBTITLE"
+#~ msgstr "Add social link to account."
 
 #~ msgid "PROFILE"
 #~ msgstr "Profile"

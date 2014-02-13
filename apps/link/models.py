@@ -11,10 +11,10 @@ from django.utils.translation import ugettext as _
 
 
 SITE_CHOICES = [
-    ("FACEBOOK", _("FACEBOOK")),
-    ("TWITTER", _("TWITTER")),
     ("COUCHSURFING", _("COUCHSURFING")),
     ("BEWELCOME", _("BEWELCOME")),
+    ("FACEBOOK", _("FACEBOOK")),
+    ("TWITTER", _("TWITTER")),
 ]
 
 SITE_IMAGES = { 

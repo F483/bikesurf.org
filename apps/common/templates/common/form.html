@@ -11,6 +11,10 @@
             <h2>{{ form_subtitle }}</h2>
         {% endif %}
 
+        {% if form_info %}
+            <p>{{ form_info }}</p>
+        {% endif %}
+
         {% block pre_form_content %}
         {% endblock %}
 

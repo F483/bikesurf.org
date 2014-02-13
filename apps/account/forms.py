@@ -18,20 +18,21 @@ from apps.link.models import SITE_CHOICES
 from apps.link import control as link_control
 
 
+PROFILE_SITE_CHOICES = SITE_CHOICES[:2]
 USERNAME_REGEX = UserCreationForm().fields['username'].regex
 
 
 class SetPassport(Form):
 
-    passport = ImageField(label=_("PASSPORT"))
+    passport = ImageField(label=_("PASSPORT"), required=True)
 
 
 class Edit(Form):
 
     username = CharField(max_length=30, label=_("USERNAME"), required=False)
-    first_name = CharField(max_length=30, label=_("FIRST_NAME"), required=False)
-    last_name = CharField(max_length=30, label=_("LAST_NAME"), required=False)
-    mobile = CharField(max_length=1024, label=_("MOBILE"), required=False)
+    first_name = CharField(max_length=30, label=_("FIRST_NAME"), required=True)
+    last_name = CharField(max_length=30, label=_("LAST_NAME"), required=True)
+    mobile = CharField(max_length=1024, label=_("MOBILE"), required=True)
     source = ChoiceField(choices=SOURCE_CHOICES, label=_("SOURCE"), 
                          initial="OTHER")
     description = CharField(label=_("DESCRIPTION"), widget=Textarea, 
@@ -62,7 +63,7 @@ class Edit(Form):
 
 class LinkCreate(Form):
 
-    site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
+    site = ChoiceField(choices=PROFILE_SITE_CHOICES, label=_("SITE"), required=True)
     profile = CharField(max_length=1024, label=_("URL"), required=True)
 
     def __init__(self, *args, **kwargs):

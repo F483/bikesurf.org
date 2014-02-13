@@ -266,9 +266,9 @@ msgstr "Comment"
 #: templates/borrow/create.html:6
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr ""
-"WARNING!</br>Your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> "
+"WARNING!</br>Your <u><b><a href=\"/account/profile\">profile</a></b></u> "
 "doesn't have the information required to borrow a bike.</br>Please update "
-"your <u><b><a href=\"/accounts/profile/\">profile</a></b></u> before "
+"your <u><b><a href=\"/account/profile\">profile</a></b></u> before "
 "requesting to borrow a bike."
 
 #: templates/borrow/create.html:8

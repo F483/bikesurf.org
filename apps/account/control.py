@@ -87,7 +87,6 @@ def has_passport(account):
 def has_required_info(account):
     return (has_other_references(account) and has_fullname(account) 
             and has_mobile(account) and has_passport(account))
-    # TODO save and require user origin country
 
 
 #########
