@@ -133,11 +133,11 @@ msgstr "Delete link?"
 
 #: views.py:85
 msgid "ADD_REQUIRED_SOCIAL_LINK"
-msgstr "Add required link to a site with references."
+msgstr "Required link to a site with references."
 
 #: views.py:143
 msgid "ADD_REQUIRED_PROFILE_INFO"
-msgstr "Add required profile information."
+msgstr "Required profile information."
 
 #: templates/account/profile.html:13
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
