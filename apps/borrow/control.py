@@ -271,14 +271,13 @@ def respond(account, borrow, state, note):
 
 def can_cancel(account, borrow):
     today = datetime.datetime.now().date()
-    borrow_started = borrow.start <= datetime.datetime.now().date()
     borrow_ended = borrow.finish  < today
     is_lender = team_control.is_member(account, borrow.team)
     is_borrower = account == borrow.borrower
     lender_state = borrow.state in ["ACCEPTED"]
     borrower_state = borrow.state in ["REQUEST", "ACCEPTED"] 
     return (is_borrower and borrower_state and not borrow_ended or 
-            is_lender and lender_state and not borrow_started)
+            is_lender and lender_state)
 
 
 def cancel(account, borrow, note):
@@ -528,3 +527,5 @@ def send_reminders_borrower_rate():
         send_mail([email], subject, message, { "borrow" : borrow })
         borrow.reminded_borrower_rate = True
         borrow.save()
+
+

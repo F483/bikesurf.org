@@ -13,6 +13,7 @@ help:
 	@echo "  db_shell_sqlite                  "
 	@echo "  db_sql                 APP       "
 	@echo "  clean                            "
+	@echo "  clean_vim                        "
 	@echo "  makemessages                     "
 	@echo "  compilemessages                  "
 
@@ -42,6 +43,10 @@ makemessages:
 
 compilemessages:
 	scripts/messages.sh compilemessages
+
+clean_vim:
+	@find | grep -i ".*\.swp$$" | xargs -r -L1 rm
+	@find | grep -i ".*\.swo$$" | xargs -r -L1 rm 
 
 clean:
 	find | grep -i ".*\.pyc$$" | xargs -r -L1 rm
