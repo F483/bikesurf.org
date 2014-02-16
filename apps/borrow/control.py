@@ -97,7 +97,8 @@ def borrow_log_created_lender_callback(sender, **kwargs):
     log = kwargs["log"]
     if log.action in ["FINISHED", "BORROWER_RATE"]:
         return # no one cares, dont spam
-    if team_control.is_member(log.initiator, log.borrow.team):
+    sys_edit = log.initiator == None
+    if sys_edit or team_control.is_member(log.initiator, log.borrow.team):
         return # not need to notify team of its own actions
     emails = team_control.get_team_emails(log.borrow.team)
     subject, message = _get_email_templates("lender", log.action)
@@ -271,12 +272,13 @@ def respond(account, borrow, state, note):
 
 def can_cancel(account, borrow):
     today = datetime.datetime.now().date()
-    borrow_ended = borrow.finish  < today
+    if borrow.finish < today: # borrow ended
+        return False
     is_lender = team_control.is_member(account, borrow.team)
     is_borrower = account == borrow.borrower
     lender_state = borrow.state in ["ACCEPTED"]
     borrower_state = borrow.state in ["REQUEST", "ACCEPTED"] 
-    return (is_borrower and borrower_state and not borrow_ended or 
+    return (is_borrower and borrower_state or 
             is_lender and lender_state)
 
 
@@ -510,7 +512,7 @@ def lender_edit_dest(account, borrow, dest, note):
     if next_borrow:
         next_borrow.src = dest
         next_borrow.save()
-        log(None, borrow, "", "EDIT")
+        log(None, next_borrow, "", "EDIT")
     borrow.dest = dest
     borrow.save()
     log(account, borrow, note, "EDIT")
