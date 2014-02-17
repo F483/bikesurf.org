@@ -33,11 +33,9 @@
                     {% if_member current_account bike.team %}
                         {% trans "LOCKCODE" %}: {{ bike.lockcode }}<br />
                         {% trans "STATION" %}: 
-                        {% if bike.station %}
-                            {{ bike.station.street }}<br />
-                        {% else %}
-                            {% trans "UNKNOWN" %}<br />
-                        {% endif %}
+                        <a href="/{{ current_team.link }}/station/view/{{ bike.station.id }}">
+                            {{ bike.station.street }}
+                        </a><br />
                     {% endif_member %}
                     <h4> {% trans "DESCRIPTION" %} </h4>
                     <p> {{ bike.description }} </p>
