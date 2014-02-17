@@ -14,7 +14,7 @@ from django.forms import BooleanField
 from django.forms import ChoiceField
 from django.forms import ImageField
 from django.forms import DateField
-from django.forms.extras.widgets import SelectDateWidget
+from django.forms.widgets import DateInput
 
 from apps.bike.models import SIZE_CHOICES
 from apps.bike import control
@@ -26,19 +26,21 @@ FILTER_SIZE_CHOICES = [('', _('ALL'))] + SIZE_CHOICES
 class FilterListing(Form): 
 
     size = ChoiceField(
-            choices=FILTER_SIZE_CHOICES, label=_("BIKE_FILTER_SIZE"), 
-            initial="", required=False
+        choices=FILTER_SIZE_CHOICES, label=_("BIKE_FILTER_SIZE"), 
+        initial="", required=False
     )
     lights = BooleanField(
-            label=_("BIKE_FILTER_LIGHTS"), initial=False, required=False
+        label=_("BIKE_FILTER_LIGHTS"), initial=False, required=False
     )
     start = DateField(
-            label=_("BIKE_FILTER_START"), widget=SelectDateWidget(), 
-            required=False
+        label=_("BIKE_FILTER_START"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+        required=False
     )
     finish = DateField(
-            label=_("BIKE_FILTER_FINISH"), widget=SelectDateWidget(), 
-            required=False
+        label=_("BIKE_FILTER_FINISH"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly': 'true'}), 
+        required=False
     )
 
     def clean(self):

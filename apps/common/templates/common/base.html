@@ -22,6 +22,16 @@
         <meta name="keywords" content="{% trans "META_KEYWORDS" %}" />
         <meta name="description" content="{% trans "META_DESCRIPTION" %}" />
 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+        <script> 
+            $(function() { 
+                $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }); 
+            }); 
+        </script>
+
         <link rel="stylesheet" href="/static/common/base.css"
               type="text/css" charset="utf-8" >
 

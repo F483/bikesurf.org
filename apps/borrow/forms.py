@@ -15,7 +15,7 @@ from django.forms import Textarea
 from django.forms import ChoiceField
 from django.forms import TypedChoiceField
 from django.forms import RadioSelect
-from django.forms.extras.widgets import SelectDateWidget
+from django.forms.widgets import DateInput
 from django.core.exceptions import PermissionDenied
 from django.forms import ModelChoiceField
 from django.utils.safestring import mark_safe
@@ -123,8 +123,15 @@ class Respond(Form):
 
 class Create(Form):
 
-    start = DateField(label=_("START"), widget=SelectDateWidget())
-    finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
+    start = DateField(
+        label=_("START"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+    )
+    finish = DateField(
+        label=_("FINISH"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+    )
+
     note = CharField(label=_("BORROW_NOTE"), widget=Textarea)
     terms_accepted = BooleanField(label=mark_safe(_("ACCEPT_TERMS")), initial=False)
     # TODO have you donated? (use note for this)
@@ -196,10 +203,16 @@ class Rate(Form):
 
 class Edit(Form):
 
-    start = DateField(label=_("START"), widget=SelectDateWidget())
-    finish = DateField(label=_("FINISH"), widget=SelectDateWidget())
+    start = DateField(
+        label=_("START"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+    )
+    finish = DateField(
+        label=_("FINISH"), 
+        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+    )
     bike = ModelChoiceField(
-            label=_("BIKE"), queryset=None, required=True, empty_label=None
+        label=_("BIKE"), queryset=None, required=True, empty_label=None
     )
     note = CharField(label=_("NOTE"), widget=Textarea)
 
