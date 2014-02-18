@@ -44,12 +44,12 @@ class Borrow(Model):
                       blank=True, null=True)
 
     # reminders
-    reminded_borrower_rate = BooleanField(default=False)
-    # reminded_borrower_pickup = BooleanField(default=False)
-    # reminded_borrower_dropoff = BooleanField(default=False)
     # reminded_lender_rate = BooleanField(default=False)
-    # reminded_lender_putout = BooleanField(default=False)
-    # reminded_lender_takein = BooleanField(default=False)
+    reminded_borrower_rate = BooleanField(default=False)
+    reminded_borrower_pickup = BooleanField(default=False)
+    reminded_borrower_dropoff = BooleanField(default=False)
+    reminded_lender_putout = BooleanField(default=False)
+    reminded_lender_takein = BooleanField(default=False)
 
 
     @property

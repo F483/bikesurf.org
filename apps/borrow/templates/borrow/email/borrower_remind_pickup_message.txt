@@ -1,0 +1,16 @@
+Hello {{ borrow.borrower.user.username }},
+
+You can pick up "{{ borrow.bike }}" tomorrow at "{{ borrow.src }}".
+
+For more information visit: http://{{ site.domain }}/borrow/view/{{ borrow.id }}
+
+We appreciate any amount you are able to donate to help maintain our project and to ensure we have the safest bikes!
+http://{{ site.domain }}/#donate
+
+
+“Two legs good, free wheels better!”
+
+Sincerely,
+The team at BikeSurf
+www.bikesurf.org
+

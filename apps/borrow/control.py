@@ -16,6 +16,23 @@ from apps.team import control as team_control
 from apps.account import control as account_control
 
 
+def log(account, borrow, note, action):
+    if not account: # get site account if available
+        account = account_control.get_site_account()
+    l = Log()
+    l.borrow = borrow
+    l.initiator = account
+    l.action = action
+    l.note = note
+    l.save()
+    signals.borrow_log_created.send(sender=log, log=l)
+    return l
+
+
+################
+# BORROW CHAIN #
+################
+
 def _remove_from_borrow_chain(borrow):
     """ Pass the borrow being removed from the chain.
         Ensure that borrow chain src and dest stations always match. 
@@ -51,58 +68,6 @@ def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
     borrow.bike = bike
     borrow.save()
     log(account, borrow, note, "EDIT")
-
-
-def log(account, borrow, note, action):
-    if not account: # get site account if available
-        account = account_control.get_site_account()
-    l = Log()
-    l.borrow = borrow
-    l.initiator = account
-    l.action = action
-    l.note = note
-    l.save()
-    signals.borrow_log_created.send(sender=log, log=l)
-    return l
-
-
-##########
-# EMAILS #
-##########
-
-def _get_email_templates(party, action):
-    action = action.lower()
-    party = party.lower()
-    template = "borrow/email/notify_{party}_{action}_{part}.txt"
-    return (
-        template.format(party=party, action=action, part="subject"),
-        template.format(party=party, action=action, part="message"),
-    )
-
-
-@receiver(signals.borrow_log_created)
-def borrow_log_created_borrower_callback(sender, **kwargs):
-    log = kwargs["log"]
-    if log.borrow.borrower == log.initiator:
-        return # no need to notify user of there own actions
-    if log.action in ["FINISHED", "LENDER_RATE"]:
-        return # no one cares, dont spam
-    email = account_control.get_email_or_404(log.borrow.borrower)
-    subject, message = _get_email_templates("borrower", log.action)
-    send_mail([email], subject, message, kwargs)
-
-
-@receiver(signals.borrow_log_created)
-def borrow_log_created_lender_callback(sender, **kwargs):
-    log = kwargs["log"]
-    if log.action in ["FINISHED", "BORROWER_RATE"]:
-        return # no one cares, dont spam
-    sys_edit = log.initiator == None
-    if sys_edit or team_control.is_member(log.initiator, log.borrow.team):
-        return # not need to notify team of its own actions
-    emails = team_control.get_team_emails(log.borrow.team)
-    subject, message = _get_email_templates("lender", log.action)
-    send_mail(emails, subject, message, kwargs)
 
 
 ###########
@@ -518,16 +483,113 @@ def lender_edit_dest(account, borrow, dest, note):
     log(account, borrow, note, "EDIT")
 
 
+##########
+# EMAILS #
+##########
+
+def _get_email_templates(party, action):
+    action = action.lower()
+    party = party.lower()
+    template = "borrow/email/{party}_{action}_{part}.txt"
+    return (
+        template.format(party=party, action=action, part="subject"),
+        template.format(party=party, action=action, part="message"),
+    )
+
+
+@receiver(signals.borrow_log_created)
+def log_created_borrower_callback(sender, **kwargs):
+    log = kwargs["log"]
+    if log.borrow.borrower == log.initiator:
+        return # no need to notify user of there own actions
+    if log.action in ["FINISHED", "LENDER_RATE"]:
+        return # no one cares, dont spam
+    email = account_control.get_email_or_404(log.borrow.borrower)
+    subject, message = _get_email_templates("borrower", log.action)
+    send_mail([email], subject, message, kwargs)
+
+
+@receiver(signals.borrow_log_created)
+def log_created_lender_callback(sender, **kwargs):
+    log = kwargs["log"]
+    if log.action in ["FINISHED", "BORROWER_RATE"]:
+        return # no one cares, dont spam
+    sys_edit = log.initiator == None
+    if sys_edit or team_control.is_member(log.initiator, log.borrow.team):
+        return # not need to notify team of its own actions
+    emails = team_control.get_team_emails(log.borrow.team)
+    subject, message = _get_email_templates("lender", log.action)
+    send_mail(emails, subject, message, kwargs)
+
+
 def send_reminders_borrower_rate():
     today = datetime.datetime.now().date()
     borrows = Borrow.objects.filter(
-            state="ACCEPTED", finish__lt=today, reminded_borrower_rate=False
+        state="ACCEPTED", finish__lt=today, reminded_borrower_rate=False
     )
     for borrow in borrows:
+        if len(Rating.objects.filter(borrow=borrow, originator='BORROWER')):
+            continue # already rated
         email = account_control.get_email_or_404(borrow.borrower)
         subject, message = _get_email_templates("borrower", "remind_rate")
         send_mail([email], subject, message, { "borrow" : borrow })
         borrow.reminded_borrower_rate = True
+        borrow.save()
+
+
+def send_reminders_borrower_pickup():
+    today = datetime.datetime.now().date()
+    tomorrow = today + datetime.timedelta(days=1)
+    borrows = Borrow.objects.filter(
+        state="ACCEPTED", start=tomorrow, reminded_borrower_pickup=False
+    )
+    for borrow in borrows:
+        email = account_control.get_email_or_404(borrow.borrower)
+        subject, message = _get_email_templates("borrower", "remind_pickup")
+        send_mail([email], subject, message, { "borrow" : borrow })
+        borrow.reminded_borrower_pickup = True
+        borrow.save()
+
+
+def send_reminders_borrower_dropoff():
+    today = datetime.datetime.now().date()
+    tomorrow = today + datetime.timedelta(days=1)
+    borrows = Borrow.objects.filter(
+        state="ACCEPTED", finish=tomorrow, reminded_borrower_dropoff=False
+    )
+    for borrow in borrows:
+        email = account_control.get_email_or_404(borrow.borrower)
+        subject, message = _get_email_templates("borrower", "remind_dropoff")
+        send_mail([email], subject, message, { "borrow" : borrow })
+        borrow.reminded_borrower_dropoff = True
+        borrow.save()
+
+
+def send_reminders_lender_putout():
+    today = datetime.datetime.now().date()
+    tomorrow = today + datetime.timedelta(days=1)
+    borrows = Borrow.objects.filter(
+        state="ACCEPTED", start=tomorrow, reminded_lender_putout=False
+    )
+    for borrow in borrows:
+        email = account_control.get_email_or_404(borrow.src.responsible)
+        subject, message = _get_email_templates("lender", "remind_putout")
+        send_mail([email], subject, message, { "borrow" : borrow })
+        borrow.reminded_lender_putout = True
+        borrow.save()
+
+
+def send_reminders_lender_takein():
+    today = datetime.datetime.now().date()
+    tomorrow = today + datetime.timedelta(days=1)
+    borrows = Borrow.objects.filter( # better to remind them on the dropoff day?
+        state="ACCEPTED", finish=tomorrow, reminded_lender_takein=False
+    )
+    for borrow in borrows:
+        email = account_control.get_email_or_404(borrow.dest.responsible)
+        subject, message = _get_email_templates("lender", "remind_takein")
+        send_mail([email], subject, message, { "borrow" : borrow })
+        borrow.reminded_lender_takein = True
         borrow.save()
 
 

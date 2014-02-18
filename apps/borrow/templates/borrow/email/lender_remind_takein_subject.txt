@@ -1,0 +1,1 @@
+Reminder: "{{ borrow.bike }}" is being dropped off tomorrow at "{{ borrow.dest }}".

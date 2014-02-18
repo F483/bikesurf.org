@@ -9,9 +9,13 @@ from apps.borrow import control
 
 class Command(NoArgsCommand):
 
-    help = 'Send reminder emails for unfinished borrows.'
+    help = 'Send reminder emails.'
 
     def handle_noargs(self, *args, **options):
         control.send_reminders_borrower_rate()
+        control.send_reminders_borrower_pickup()
+        control.send_reminders_borrower_dropoff()
+        control.send_reminders_lender_putout()
+        control.send_reminders_lender_takein()
 
 

@@ -1,0 +1,1 @@
+Reminder: "{{ borrow.bike }}" is being picked up tomorrow at "{{ borrow.src }}".

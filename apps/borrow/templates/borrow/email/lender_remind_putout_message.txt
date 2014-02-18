@@ -1,0 +1,10 @@
+"{{ borrow.bike }}" is being picked up at "{{ borrow.src }}" tomorrow!
+
+Request information
+Bike: {{ borrow.bike.name }}
+Pick-Up date: {{ borrow.start }}
+Drop-Off date: {{ borrow.finish }}
+Pick-Up station: {{ borrow.src }}
+Drop-Off station: {{ borrow.dest }}
+
+Borrow link: http://{{ site.domain }}/{{ borrow.team.link }}/borrow/view/{{ borrow.id }}
