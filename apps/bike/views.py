@@ -79,8 +79,9 @@ def _get_listing_bikes(request, team, form):
     if start and not finish:
         finish = start + datetime.timedelta(days=7)
     if start and finish:
-        qs = qs.exclude(borrows__active=True, borrows__start__range=(start, finish))
-        qs = qs.exclude(borrows__active=True, borrows__finish__range=(start, finish))
+        borrows = team.borrows.filter(state="ACCEPTED")
+        borrows = borrows.exclude(start__gt=finish).exclude(finish__lt=start)
+        qs = qs.exclude(borrows__in=borrows)
 
     return list(qs)
 
