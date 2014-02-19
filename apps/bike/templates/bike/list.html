@@ -35,6 +35,8 @@
                                         {% trans "SIZE" %}: {% trans bike.size %}<br />
                                         {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
                                         {% if_member current_account bike.team %}
+                                            {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
+                                            {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
                                             {% trans "STATION" %}: 
                                             {% if bike.station %}
                                                 {{ bike.station.street }}<br />

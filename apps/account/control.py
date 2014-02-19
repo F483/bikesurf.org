@@ -48,6 +48,7 @@ def can_view_account(current_account, view_account):
     if bool(Borrow.objects.filter(team__members=current_account, 
                                   borrower=view_account)):
         return True # user can view if account has borrow from one of there teams
+    # TODO allow team members to view own team members
     # TODO allow admins to view everyone
     return False
 
