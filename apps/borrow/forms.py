@@ -23,6 +23,7 @@ from django.utils.safestring import mark_safe
 from apps.borrow.models import Borrow
 from apps.borrow.models import RATING_CHOICES, STATE_FILTER_CHOICES
 from apps.borrow import control
+from apps.bike import control as bike_control
 from apps.team import control as team_control
 from apps.account import control as account_control
 from apps.station.forms import validate_station_active
@@ -219,11 +220,17 @@ class Edit(Form):
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
         super(Edit, self).__init__(*args, **kwargs)
-        bikes = self.borrow.team.bikes.filter(active=True)
-        self.fields["start"].initial = self.borrow.start
-        self.fields["finish"].initial = self.borrow.finish
-        self.fields["bike"].queryset = bikes
-        self.fields["bike"].initial = self.borrow.bike
+        team = self.borrow.team
+        bike = self.borrow.bike
+        start = self.borrow.start
+        finish = self.borrow.finish
+        bikes = bike_control.available(
+                team, start, finish, include_reserve=True, include_bike=bike
+        )
+        self.fields["start"].initial = start
+        self.fields["finish"].initial = finish
+        self.fields["bike"].queryset = bikes 
+        self.fields["bike"].initial = bike
 
     def clean(self):
         cleaned_data = super(Edit, self).clean()
