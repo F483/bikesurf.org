@@ -1,0 +1,51 @@
+{% extends "common/form.html" %}
+{% load i18n %}
+{% load link_tags %}
+
+{% block pre_form_content %}
+  <h3> {% trans "BORROWER_INFORMATION" %} </h3>
+
+  <p>
+    {% trans "USERNAME" %}:
+    <a href="/account/view/{{ borrow.borrower.user.username }}">
+      {{ borrow.borrower }}
+    </a>
+    <br />
+
+    {% trans "FIRST_NAME" %}: {{ borrow.borrower.user.first_name }}</br>
+    {% trans "LAST_NAME" %}: {{ borrow.borrower.user.last_name }}</br>
+    {% trans "PASSPORT" %}: 
+    {% if borrow.borrower.passport %}
+      <a href="{{ borrow.borrower.passport.url }}">{% trans "IMAGE" %}</a>
+    {% else %}
+      {% trans "NONE" %}
+    {% endif %}
+    </br>
+    {% trans "MOBILE" %}: {{ borrow.borrower.mobile }} </br>
+    {% trans "EMAIL" %}: {{ email }}</br>
+    {% trans "SOURCE" %}: {{ borrow.borrower.source }} </br>
+    {% trans "DESCRIPTION" %}: {{ borrow.borrower.description }} </br>
+    {% if links %}
+      <p>
+        {% for link in links %}
+          {% link_draw link %} </br>
+        {% endfor %}
+      </p>
+    {% endif %}
+  </p>
+
+  <h3> {% trans "BORROW_INFORMATION" %} </h3>
+
+  <p>
+    {% trans "BIKE" %}: 
+    <a href="/{{ borrow.team.link }}/bike/view/{{ borrow.bike.id }}">
+      {{ borrow.bike }}
+    </a>
+    <br />
+    {% trans "DATE_FROM" %}: {{ borrow.start }}<br />
+    {% trans "DATE_TO" %}: {{ borrow.finish }}<br />
+    {% trans "STATION_FROM" %}: {{ station }}<br />
+    {% trans "STATION_TO" %}: {{ station }}<br />
+  </p>
+
+{% endblock %}

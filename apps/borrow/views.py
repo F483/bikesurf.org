@@ -257,11 +257,14 @@ def respond(request, team_link, borrow_id):
             return HttpResponseRedirect(url)
     else:
         form = forms.Respond(borrow=borrow, account=account)
+    email = account_control.get_email_or_404(borrow.borrower)
     args = { 
-        "form" : form, "form_title" : _("BORROW_RESPOND"), 
+        "station" : control.accept_station(borrow),
+        "email" : email, "links" : borrow.borrower.links.all(),
+        "borrow" : borrow, "form" : form, "form_title" : _("BORROW_RESPOND"), 
         "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "borrow/respond.html", args)
 
 
 @login_required

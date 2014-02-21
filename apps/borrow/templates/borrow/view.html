@@ -33,7 +33,7 @@
         {% if borrow.active and borrow.state == "ACCEPTED" %}
             {% trans "STATION_FROM" %}: {{ borrow.src.street }}<br />
             {% trans "STATION_TO" %}: {{ borrow.dest.street }}<br />
-            {% trans "LOCKCODE" %}: {{ borrow.bike.lockcode }}<br /> <!-- TODO think this through !!! -->
+            {% trans "LOCKCODE" %}: {{ borrow.bike.lockcode }}<br />
         {% endif %}
 
         <div class="actions">

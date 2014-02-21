@@ -216,14 +216,18 @@ def response_is_allowed(account, borrow, state):
     return True
 
 
+def accept_station(borrow):
+    prev_borrow = get_prev_borrow(borrow.bike, borrow.start)
+    return prev_borrow and prev_borrow.dest or borrow.bike.station
+
+
 def respond(account, borrow, state, note):
     if not response_is_allowed(account, borrow, state):
         raise PermissionDenied
     borrow.state = state
     borrow.active = state != "REJECTED"
     if state != "REJECTED": # set stations
-        prev_borrow = get_prev_borrow(borrow.bike, borrow.start)
-        borrow.src = prev_borrow and prev_borrow.dest or borrow.bike.station
+        borrow.src = accept_station(borrow)
         borrow.dest = borrow.src
     borrow.save()
     log(account, borrow, note, "RESPOND")

@@ -27,7 +27,7 @@
             </table>
 
             {% if cancel_url %}
-                <input type="button" onclick="window.location.href = '{{ cancel_url }}';" value="CANCEL">
+                <input type="button" onclick="window.location.href = '{{ cancel_url }}';" value={% trans "CANCEL" %}>
             {% endif %}
 
             {% block post_form_content %}

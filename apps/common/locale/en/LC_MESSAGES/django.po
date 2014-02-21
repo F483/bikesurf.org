@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-13 03:49-0600\n"
+"POT-Creation-Date: 2014-02-21 04:35-0600\n"
 "PO-Revision-Date: 2014-01-20 08:55-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,10 @@ msgstr "Repository"
 #: templates/common/footer.html:22
 msgid "TERMS_AND_CONDITIONS"
 msgstr "Terms and conditions"
+
+#: templates/common/form.html:30 templatetags/common_tags.py:17
+msgid "CANCEL"
+msgstr "Cancel"
 
 #: templates/common/form.html:36
 msgid "SUBMIT"
@@ -93,10 +97,6 @@ msgstr "Process request"
 #: templatetags/common_tags.py:16
 msgid "RESPOND"
 msgstr "Respond"
-
-#: templatetags/common_tags.py:17
-msgid "CANCEL"
-msgstr "Cancel"
 
 #: templatetags/common_tags.py:18
 msgid "RATE"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-13 03:49-0600\n"
+"POT-Creation-Date: 2014-02-21 04:35-0600\n"
 "PO-Revision-Date: 2014-01-20 09:15-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,70 +34,72 @@ msgstr "Lights"
 msgid "BIKE_FILTER_START"
 msgstr "Date from"
 
-#: forms.py:40
+#: forms.py:41
 msgid "BIKE_FILTER_FINISH"
 msgstr "Date to"
 
-#: forms.py:50
+#: forms.py:52
 msgid "ERROR_START_NOT_IN_FUTURE"
 msgstr "Error: Start not in future!"
 
-#: forms.py:52
+#: forms.py:54
 msgid "ERROR_FINISH_NOT_IN_FUTURE"
 msgstr "Error: Finish not in future!"
 
-#: forms.py:54
+#: forms.py:56
 msgid "ERROR_FINISH_BEFORE_START"
 msgstr "Error: Finish before start!"
 
-#: forms.py:60 forms.py:79
+#: forms.py:62 forms.py:81
 msgid "NAME"
 msgstr "Name"
 
-#: forms.py:61
+#: forms.py:63
 msgid "IMAGE"
 msgstr "Image"
 
-#: forms.py:62 forms.py:80 templates/bike/view.html:31
+#: forms.py:64 forms.py:82 templates/bike/list.html:38
+#: templates/bike/view.html:31
 msgid "ACTIVE"
 msgstr "Active"
 
-#: forms.py:63 forms.py:81 templates/bike/view.html:32
+#: forms.py:65 forms.py:83 templates/bike/list.html:39
+#: templates/bike/view.html:32
 msgid "RESERVE"
 msgstr "Reserve"
 
-#: forms.py:64 forms.py:82 templates/bike/list.html:38
+#: forms.py:66 forms.py:84 templates/bike/list.html:40
 #: templates/bike/view.html:35
 msgid "STATION"
 msgstr "Station"
 
-#: forms.py:65 forms.py:83 templates/bike/view.html:34
+#: forms.py:67 forms.py:85 templates/bike/view.html:34
 msgid "LOCKCODE"
 msgstr "Lockcode"
 
-#: forms.py:66 forms.py:84 templates/bike/list.html:35
+#: forms.py:68 forms.py:86 templates/bike/list.html:35
 #: templates/bike/view.html:29
 msgid "SIZE"
 msgstr "Size"
 
-#: forms.py:67 forms.py:85 templates/bike/list.html:36
+#: forms.py:69 forms.py:87 templates/bike/list.html:36
 #: templates/bike/view.html:30
 msgid "LIGHTS"
 msgstr "Lights"
 
-#: forms.py:68 forms.py:86 templates/bike/view.html:42
+#: forms.py:70 forms.py:88 templates/bike/view.html:40
 msgid "DESCRIPTION"
 msgstr "Description"
 
-#: forms.py:109
+#: forms.py:111
 msgid "ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"
 msgstr "Error: Cannot deactivate, bike in use!"
 
-#: forms.py:113
+#: forms.py:115
 msgid "ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"
 msgstr "Error: Cannot change station, bike in use!"
 
-#: forms.py:128
+#: forms.py:130
 msgid "ERROR_CANNOT_DELETE_BIKE_IN_USE"
 msgstr "Error: Cannot delete, bike in use!"
 
@@ -121,27 +123,27 @@ msgstr "Bike Borrows"
 msgid "OVERVIEW"
 msgstr "Overview"
 
-#: views.py:151
+#: views.py:152
 msgid "BIKES"
 msgstr "Bikes"
 
-#: views.py:181
+#: views.py:182
 msgid "BIKE_CREATE"
 msgstr "Add bike"
 
-#: views.py:210
+#: views.py:211
 msgid "BIKE_EDIT"
 msgstr "Edit Bike"
 
-#: views.py:231
+#: views.py:232
 msgid "BIKE_DELETE?"
 msgstr "Delete bike?"
 
-#: templates/bike/list.html:42 templates/bike/view.html:39
+#: templates/bike/list.html:44
 msgid "UNKNOWN"
 msgstr "Unknown"
 
-#: templates/bike/list.html:57
+#: templates/bike/list.html:59
 msgid "NO_BIKES"
 msgstr "No bikes"
 
