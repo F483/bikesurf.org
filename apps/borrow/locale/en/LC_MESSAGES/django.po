@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-21 04:35-0600\n"
-"PO-Revision-Date: 2014-02-21 04:46-0600\n"
+"POT-Creation-Date: 2014-02-23 12:31-0600\n"
+"PO-Revision-Date: 2014-02-23 12:32-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,49 +18,49 @@ msgstr ""
 "Language: \n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
-#: control.py:130
+#: control.py:131
 msgid "DELETED"
 msgstr "Deleted"
 
-#: control.py:152 control.py:159 control.py:166 models.py:118
+#: control.py:153 control.py:160 control.py:167 models.py:118
 #: templates/borrow/view.html:14
 msgid "BORROWER"
 msgstr "Borrower"
 
-#: control.py:152 control.py:159 control.py:166 forms.py:57 forms.py:216
+#: control.py:153 control.py:160 control.py:167 forms.py:58 forms.py:219
 #: templates/borrow/respond.html:40 templates/borrow/view.html:24
 msgid "BIKE"
 msgstr "Bike"
 
-#: control.py:152 control.py:166 templates/borrow/respond.html:46
+#: control.py:153 control.py:167 templates/borrow/respond.html:46
 #: templates/borrow/view.html:31
 msgid "DATE_TO"
 msgstr "Drop-off date"
 
-#: control.py:152 control.py:167 forms.py:68 templates/borrow/respond.html:48
+#: control.py:153 control.py:168 forms.py:69 templates/borrow/respond.html:48
 #: templates/borrow/view.html:35
 msgid "STATION_TO"
 msgstr "Drop-off station"
 
-#: control.py:159 control.py:166 templates/borrow/respond.html:45
+#: control.py:160 control.py:167 templates/borrow/respond.html:45
 #: templates/borrow/view.html:30
 msgid "DATE_FROM"
 msgstr "Pick-up date"
 
-#: control.py:159 control.py:167 forms.py:64 templates/borrow/respond.html:47
+#: control.py:160 control.py:168 forms.py:65 templates/borrow/respond.html:47
 #: templates/borrow/view.html:34
 msgid "STATION_FROM"
 msgstr "Pick-up station"
 
-#: control.py:167
+#: control.py:168
 msgid "BORROW_STATE"
 msgstr "State"
 
-#: forms.py:33 models.py:20
+#: forms.py:34 models.py:20
 msgid "ACCEPTED"
 msgstr "Accepted"
 
-#: forms.py:34 models.py:21
+#: forms.py:35 models.py:21
 msgid "REJECTED"
 msgstr "Rejected"
 
@@ -76,102 +76,102 @@ msgstr "Error: Impossible finish date!"
 msgid "ERROR_FINISH_BEFORE_START"
 msgstr "Error: Finish before start!"
 
-#: forms.py:48
-msgid "ERROR_START_NOT_IN_FUTURE"
-msgstr "Error: Start not in future!"
+#: forms.py:49
+msgid "ERROR_START_LESS_THEN_MINIMUM"
+msgstr "Error: Start must be at least three days in the future!"
 
-#: forms.py:51 forms.py:121
+#: forms.py:52 forms.py:122
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
 msgstr "Error: Other borrow in time frame!"
 
-#: forms.py:57 forms.py:65 forms.py:69 models.py:26
+#: forms.py:58 forms.py:66 forms.py:70 models.py:26
 msgid "ALL"
 msgstr "All"
 
-#: forms.py:60
+#: forms.py:61
 msgid "STATE"
 msgstr "State"
 
-#: forms.py:72
+#: forms.py:73
 msgid "FUTURE_BORROWS"
 msgstr "Future borrows"
 
-#: forms.py:75
+#: forms.py:76
 msgid "ONGOING_BORROWS"
 msgstr "Ongoing borrows"
 
-#: forms.py:78
+#: forms.py:79
 msgid "PAST_BORROWS"
 msgstr "Past borrows"
 
-#: forms.py:95
+#: forms.py:96
 msgid "RESPONSE"
 msgstr "Response"
 
-#: forms.py:96 forms.py:191 forms.py:196 forms.py:201 forms.py:218
-#: forms.py:251
+#: forms.py:97 forms.py:194 forms.py:199 forms.py:204 forms.py:221
+#: forms.py:255
 msgid "NOTE"
 msgstr "Note"
 
-#: forms.py:111
+#: forms.py:112
 msgid "ERROR_TO_LATE_TO_ACCEPT"
 msgstr "Error: To late to accept!"
 
-#: forms.py:113
+#: forms.py:114
 msgid "ERROR_BIKE_NOT_ACTIVE"
 msgstr "Error: Bike not active!"
 
-#: forms.py:115
+#: forms.py:116
 msgid "ERROR_IS_RESERVE_BIKE"
 msgstr "Error: Bike is a reserve bike!"
 
-#: forms.py:117
+#: forms.py:118
 msgid "ERROR_BIKE_STATION_UNKNOWN"
 msgstr "Error: Bike station unknown!"
 
-#: forms.py:119
+#: forms.py:120
 msgid "ERROR_BIKE_STATION_INACTIVE"
 msgstr "Error: Bike station inactive!"
 
-#: forms.py:128 forms.py:208
+#: forms.py:129 forms.py:211
 msgid "START"
 msgstr "From"
 
-#: forms.py:132 forms.py:212
+#: forms.py:133 forms.py:215
 msgid "FINISH"
 msgstr "To"
 
-#: forms.py:136
+#: forms.py:137
 msgid "BORROW_NOTE"
 msgstr "Note"
 
-#: forms.py:137
+#: forms.py:138
 msgid "ACCEPT_TERMS"
 msgstr "Accept terms and</br>conditions of use."
 
-#: forms.py:168
+#: forms.py:171
 msgid "ERROR_MUST_ACCEPT_TERMS"
 msgstr "Please confirm you have read the terms and conditions of use."
 
-#: forms.py:172
+#: forms.py:175
 msgid "ERROR_ACCOUNT_REQUIRES_FULLNAME"
 msgstr "Profile incomplete: First and last name required to borrow a bike."
 
-#: forms.py:176
+#: forms.py:179
 msgid "ERROR_ACCOUNT_REQUIRES_MOBILE"
 msgstr "Error: Bike is a reserve bike!"
 
-#: forms.py:180
+#: forms.py:183
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
 msgstr "Profile incomplete: Passport copy required to borrow a bike."
 
-#: forms.py:184
+#: forms.py:187
 msgid "ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"
 msgstr ""
 "Profile incomplete: At least one link to a trusted site with references "
 "(Bewelcome, Couchsurfing, AirBNB) required to borrow a bike."
 
-#: forms.py:248
+#: forms.py:252
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 
@@ -243,27 +243,27 @@ msgstr "Arrivals"
 msgid "DEPARTURES"
 msgstr "Departures"
 
-#: views.py:169
+#: views.py:170
 msgid "BORROW_CREATE"
 msgstr "Create borrow"
 
-#: views.py:195 views.py:219 views.py:241
+#: views.py:198 views.py:222 views.py:244
 msgid "BORROW_EDIT"
 msgstr "Edit borrow"
 
-#: views.py:264
+#: views.py:267
 msgid "BORROW_RESPOND"
 msgstr "Respond to borrow request."
 
-#: views.py:283 views.py:389
+#: views.py:286 views.py:392
 msgid "BORROW_CANCEL"
 msgstr "Cancel borrow"
 
-#: views.py:303 views.py:327
+#: views.py:306 views.py:330
 msgid "RATE"
 msgstr "Rate"
 
-#: views.py:366
+#: views.py:369
 msgid "BORROW_COMMENT"
 msgstr "Comment"
 

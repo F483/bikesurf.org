@@ -46,7 +46,7 @@ def _validate_borrow_timeframe(bike, start, finish, exclude=None, lender=False):
     today = datetime.datetime.now().date()
     minstart = today + datetime.timedelta(days=MIN_DAYS)
     if not lender and start < minstart:
-        raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
+        raise ValidationError(_("ERROR_START_LESS_THEN_MINIMUM"))
     if len(control.active_borrows_in_timeframe(bike, start, finish, 
                                                exclude=exclude)):
         raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
