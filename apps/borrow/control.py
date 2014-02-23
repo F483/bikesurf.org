@@ -14,6 +14,7 @@ from apps.borrow.models import Log
 from apps.borrow import signals
 from apps.team import control as team_control
 from apps.account import control as account_control
+from config.settings import BORROW_MIN_BOOK_IN_ADVANCE_DAYS as MIN_BOOK
 
 
 def log(account, borrow, note, action):
@@ -217,6 +218,9 @@ def response_is_allowed(account, borrow, state):
 
 
 def accept_station(borrow):
+    """ The station the borrow would have as src and dest if it were to be 
+    accepted at this very moment.
+    """
     prev_borrow = get_prev_borrow(borrow.bike, borrow.start)
     return prev_borrow and prev_borrow.dest or borrow.bike.station
 
@@ -275,15 +279,17 @@ def can_borrow(bike):
             bike.station and bike.station.active)
 
 
-def creation_is_allowed(bike, start, finish, exclude=None):
+def creation_is_allowed(account, bike, start, finish, exclude=None):
     if not can_borrow(bike):
         return False
     # check timeframe
-    today = datetime.datetime.now().date()
-    if start <= today:
-        return False
     if finish < start:
         return False
+    if not team_control.is_member(account, bike.team):
+        today = datetime.datetime.now().date()
+        minstart = today + datetime.timedelta(days=MIN_BOOK)
+        if start < minstart:
+            return False
     if len(active_borrows_in_timeframe(bike, start, finish, exclude=exclude)):
         return False
     return True
@@ -292,7 +298,7 @@ def creation_is_allowed(bike, start, finish, exclude=None):
 def create(account, bike, start, finish, note):
     if not account_control.has_required_info(account):
         raise PermissionDenied
-    if not creation_is_allowed(bike, start, finish):
+    if not creation_is_allowed(account, bike, start, finish):
         raise PermissionDenied
     borrow = Borrow()
     borrow.bike = bike
@@ -392,7 +398,7 @@ def lender_can_edit(account, borrow):
 def lender_can_edit_dest(account, borrow):
     if not lender_can_edit(account, borrow):
         return False
-    if not borrow.active:
+    if not borrow.state == "ACCEPTED":
         return False
     return True
 
@@ -411,7 +417,7 @@ def borrower_can_edit(account, borrow):
 def borrower_edit_is_allowed(account, borrow, start, finish, bike):
     if not borrower_can_edit(account, borrow):
         return False
-    if not creation_is_allowed(bike, start, finish, exclude=borrow):
+    if not creation_is_allowed(account, bike, start, finish, exclude=borrow):
         return False
     if bike.team != borrow.team or not bike.active:
         return False
@@ -454,7 +460,6 @@ def borrower_edit(account, borrow, start, finish, bike, note):
 
 
 def lender_edit(account, borrow, start, finish, bike, note):
-    # TODO if finish before today finish borrow
     if (borrow.start == start and borrow.finish == finish 
             and borrow.bike == bike):
         return # nothing changed TODO throw error here, should never get this far!

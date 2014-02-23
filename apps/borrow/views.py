@@ -152,10 +152,11 @@ def create(request, team_link, bike_id):
 
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
+    is_lender = team_control.is_member(account, team)
     bike = get_object_or_404(Bike, id=bike_id)
     if request.method == "POST":
         form = forms.Create(request.POST, bike=bike, account=account, 
-                            start=start, finish=finish)
+                            start=start, finish=finish, is_lender=is_lender)
         if form.is_valid():
             borrow = control.create(account, bike,
                                     form.cleaned_data["start"],
@@ -164,7 +165,7 @@ def create(request, team_link, bike_id):
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
         form = forms.Create(bike=bike, account=account, 
-                            start=start, finish=finish)
+                            start=start, finish=finish, is_lender=is_lender)
     args = { 
         "form" : form, "form_title" : _("BORROW_CREATE"),
         "cancel_url" : "/%s/bike/view/%s" % (team_link, bike_id),
@@ -178,8 +179,10 @@ def create(request, team_link, bike_id):
 def borrower_edit(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
+    if account != borrow.borrower:
+        raise PermissionDenied
     if request.method == "POST":
-        form = forms.Edit(request.POST, borrow=borrow)
+        form = forms.Edit(request.POST, borrow=borrow, is_lender=False)
         if form.is_valid():
             control.borrower_edit(
                     account, borrow,
@@ -190,7 +193,7 @@ def borrower_edit(request, borrow_id):
             )
             return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
     else:
-        form = forms.Edit(borrow=borrow)
+        form = forms.Edit(borrow=borrow, is_lender=False)
     args = { 
         "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/borrow/view/%s" % borrow.id
@@ -203,7 +206,7 @@ def borrower_edit(request, borrow_id):
 def lender_edit(request, team_link, borrow_id):
     team, account, borrow = _get_team_models(request, team_link, borrow_id)
     if request.method == "POST":
-        form = forms.Edit(request.POST, borrow=borrow)
+        form = forms.Edit(request.POST, borrow=borrow, is_lender=True)
         if form.is_valid():
             control.lender_edit(
                     account, borrow,
@@ -215,7 +218,7 @@ def lender_edit(request, team_link, borrow_id):
             url = "/%s/borrow/view/%s" % (team.link, borrow.id)
             return HttpResponseRedirect(url)
     else:
-        form = forms.Edit(borrow=borrow)
+        form = forms.Edit(borrow=borrow, is_lender=True)
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }

@@ -27,6 +27,7 @@ from apps.bike import control as bike_control
 from apps.team import control as team_control
 from apps.account import control as account_control
 from apps.station.forms import validate_station_active
+from config.settings import BORROW_MIN_BOOK_IN_ADVANCE_DAYS as MIN_DAYS
 
 
 RESPONSE_CHOICES = [
@@ -35,8 +36,7 @@ RESPONSE_CHOICES = [
 ]
 
 
-def _validate_borrow_timeframe(bike, start, finish, exclude=None, 
-                               timetraveler=False):
+def _validate_borrow_timeframe(bike, start, finish, exclude=None, lender=False):
     if not start:
         raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
     if not finish:
@@ -44,7 +44,8 @@ def _validate_borrow_timeframe(bike, start, finish, exclude=None,
     if finish < start:
         raise ValidationError(_("ERROR_FINISH_BEFORE_START"))
     today = datetime.datetime.now().date()
-    if not timetraveler and start <= today:
+    minstart = today + datetime.timedelta(days=MIN_DAYS)
+    if not lender and start < minstart:
         raise ValidationError(_("ERROR_START_NOT_IN_FUTURE"))
     if len(control.active_borrows_in_timeframe(bike, start, finish, 
                                                exclude=exclude)):
@@ -146,12 +147,13 @@ class Create(Form):
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
         self.account = kwargs.pop("account")
+        self.is_lender = kwargs.pop("is_lender")
         start = kwargs.pop("start")
         finish = kwargs.pop("finish")
         super(Create, self).__init__(*args, **kwargs)
         today = datetime.datetime.now()
-        start = start and start or (today + datetime.timedelta(days=1))
-        finish = finish and finish or (start + datetime.timedelta(days=8))
+        start = start and start or (today + datetime.timedelta(days=MIN_DAYS)) 
+        finish = finish and finish or (start + datetime.timedelta(days=7))
         self.fields["start"].initial = start
         self.fields["finish"].initial = finish
 
@@ -161,7 +163,8 @@ class Create(Form):
         # check timeframe
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
-        _validate_borrow_timeframe(self.bike, start, finish)
+        _validate_borrow_timeframe(self.bike, start, finish, 
+                                   lender=self.is_lender)
 
         # must accept terms
         if not cleaned_data.get("terms_accepted"):
@@ -219,6 +222,7 @@ class Edit(Form):
 
     def __init__(self, *args, **kwargs):
         self.borrow = kwargs.pop("borrow")
+        self.is_lender = kwargs.pop("is_lender")
         super(Edit, self).__init__(*args, **kwargs)
         team = self.borrow.team
         bike = self.borrow.bike
@@ -238,7 +242,7 @@ class Edit(Form):
         finish = cleaned_data.get("finish")
         bike = cleaned_data.get("bike")
         _validate_borrow_timeframe(bike, start, finish, exclude=self.borrow, 
-                                   timetraveler=True)
+                                   lender=self.is_lender)
         return cleaned_data
 
 
