@@ -101,6 +101,22 @@ def edit_is_allowed(account, bike, name, description, active, reserve, station,
         return False
     return True
 
+def _change_station(account, bike, station):
+    today = datetime.datetime.now().date()
+    prev_borrow = borrow_control.get_prev_borrow(bike, today)
+    if prev_borrow:
+        prev_borrow.dest = station
+        prev_borrow.save()
+        borrow_control.log(account, prev_borrow, 
+                           "Changed Drop-Off station.", "EDIT")
+    yesterday = today + datetime.timedelta(days=-1)
+    next_borrow = borrow_control.get_next_borrow(bike, yesterday)
+    if next_borrow:
+        next_borrow.src = station
+        next_borrow.save()
+        borrow_control.log(account, next_borrow, 
+                           "Changed Pick-Up station", "EDIT")
+
 
 def edit( account, bike, name, description, active, reserve, station, lockcode, 
           size, lights ):
@@ -108,17 +124,7 @@ def edit( account, bike, name, description, active, reserve, station, lockcode,
                            station, lockcode, size, lights):
         raise PermissionDenied
     if bike.station != station:
-        today = datetime.datetime.now().date()
-        prev_borrow = borrow_control.get_prev_borrow(bike, today)
-        if prev_borrow:
-            prev_borrow.dest = station
-            prev_borrow.save()
-            borrow_control.log(account, prev_borrow, "", "EDIT")
-        next_borrow = borrow_control.get_next_borrow(bike, today)
-        if next_borrow:
-            next_borrow.src = station
-            next_borrow.save()
-            borrow_control.log(account, next_borrow, "", "EDIT")
+        _change_station(account, bike, station)
     bike.name = name
     bike.description = description
     bike.active = active

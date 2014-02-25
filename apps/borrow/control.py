@@ -34,7 +34,7 @@ def log(account, borrow, note, action):
 # BORROW CHAIN #
 ################
 
-def _remove_from_borrow_chain(borrow):
+def _remove_from_borrow_chain(account, borrow):
     """ Pass the borrow being removed from the chain.
         Ensure that borrow chain src and dest stations always match. 
 
@@ -48,10 +48,10 @@ def _remove_from_borrow_chain(borrow):
     if next_borrow and next_borrow.src != borrow.src:
          next_borrow.src = borrow.src
          next_borrow.save()
-         log(None, next_borrow, "", "EDIT")
+         log(account, next_borrow, "Changed Pick-Up station.", "EDIT")
 
 
-def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
+def _insert_into_borrow_chain(borrow, bike):
     """ Pass the borrow being inserted into the chain.
         Ensure that borrow chain src and dest stations always match. 
 
@@ -62,13 +62,11 @@ def _insert_into_borrow_chain(borrow, bike, account=None, note=""):
           x>1 -   -   - 1>b>3         x>1 - 1>B>1 - 1>b>3                       
         1>b>2 -   -   - 2>b>4       1>b>2 - 2>B>2 - 2>b>4 
     """
-    if borrow.active:
+    if borrow.state == "ACCEPTED":
         prev_borrow = get_prev_borrow(bike, borrow.start)
         borrow.src = prev_borrow and prev_borrow.dest or bike.station
         borrow.dest = borrow.src
     borrow.bike = bike
-    borrow.save()
-    log(account, borrow, note, "EDIT")
 
 
 ###########
@@ -258,11 +256,11 @@ def can_cancel(account, borrow):
 def cancel(account, borrow, note):
     if not can_cancel(account, borrow):
         raise PermissionDenied
-    borrow.state = "CANCELED"
-    if borrow.active: # ensure borrow chain unbroken
-        _remove_from_borrow_chain(borrow)
+    if borrow.state == "ACCEPTED": # ensure borrow chain unbroken
+        _remove_from_borrow_chain(account, borrow)
         borrow.src = None
         borrow.dest = None
+    borrow.state = "CANCELED"
     borrow.active = False
     borrow.save()
     log(account, borrow, note, "CANCEL")
@@ -318,12 +316,12 @@ def create(account, bike, start, finish, note):
 ##########
 
 
-def _finish(borrow):
+def _finish(account, borrow):
     if len(Rating.objects.filter(borrow=borrow)) != 2:
         return borrow # only finish when borrower and lender have rated
     borrow.state = "FINISHED"
     borrow.save()
-    log(None, borrow, "", "FINISHED")
+    log(account, borrow, "Set state to Finished.", "FINISHED")
     return borrow
 
 
@@ -363,7 +361,7 @@ def lender_rate(account, borrow, rating_value, note):
     rating.originator = "LENDER"
     rating.save()
     log(account, borrow, note, "LENDER_RATE")
-    return _finish(borrow)
+    return _finish(account, borrow)
 
 
 def borrower_rate(account, borrow, rating_value, note):
@@ -376,7 +374,7 @@ def borrower_rate(account, borrow, rating_value, note):
     rating.originator = "BORROWER"
     rating.save()
     log(account, borrow, note, "BORROWER_RATE")
-    return _finish(borrow)
+    return _finish(account, borrow)
 
 
 ###########
@@ -448,8 +446,8 @@ def borrower_edit(account, borrow, start, finish, bike, note):
         return # nothing changed TODO throw error here, should never get this far!
     if not borrower_edit_is_allowed(account, borrow, start, finish, bike):
         raise PermissionDenied
-    if borrow.active: # ensure borrow chain unbroken
-        _remove_from_borrow_chain(borrow)
+    if borrow.state == "ACCEPTED": # ensure borrow chain unbroken
+        _remove_from_borrow_chain(account, borrow)
     borrow.start = start
     borrow.finish = finish
     borrow.bike = bike
@@ -466,10 +464,12 @@ def lender_edit(account, borrow, start, finish, bike, note):
     if not lender_edit_is_allowed(account, borrow, start, finish, bike):
         raise PermissionDenied
     if borrow.bike != bike:
-        _remove_from_borrow_chain(borrow)
+        _remove_from_borrow_chain(account, borrow)
         borrow.start = start
         borrow.finish = finish
-        _insert_into_borrow_chain(borrow, bike, account=account, note=note)
+        _insert_into_borrow_chain(borrow, bike)
+        borrow.save()
+        log(account, borrow, note, "EDIT")
     else:
         borrow.start = start
         borrow.finish = finish
@@ -486,7 +486,7 @@ def lender_edit_dest(account, borrow, dest, note):
     if next_borrow:
         next_borrow.src = dest
         next_borrow.save()
-        log(None, next_borrow, "", "EDIT")
+        log(account, next_borrow, "Changed Pick-Up station.", "EDIT")
     borrow.dest = dest
     borrow.save()
     log(account, borrow, note, "EDIT")
@@ -506,16 +506,34 @@ def _get_email_templates(party, action):
     )
 
 
+def lender_emails(borrow):
+    if borrow.state == "ACCEPTED":
+        src = borrow.src
+        dest = borrow.dest
+    else:
+        src = accept_station(borrow)
+        dest = src
+    if src == dest:
+        return [account_control.get_email_or_404(src.responsible)]
+    else:
+        src_email = account_control.get_email_or_404(src.responsible)
+        dest_email = account_control.get_email_or_404(dest.responsible)
+        return [src_email, dest_email]
+
+
 @receiver(signals.borrow_log_created)
 def log_created_borrower_callback(sender, **kwargs):
     log = kwargs["log"]
     if log.borrow.borrower == log.initiator:
         return # no need to notify user of there own actions
-    if log.action in ["FINISHED", "LENDER_RATE"]:
+    today = datetime.datetime.now().date()
+    if log.borrow.finish < today or log.action in ["FINISHED", "LENDER_RATE"]:
         return # no one cares, dont spam
-    email = account_control.get_email_or_404(log.borrow.borrower)
+    # mail lenders so they can answer borrower questions and see station changes
+    emails = lender_emails(log.borrow) 
+    emails.append(account_control.get_email_or_404(log.borrow.borrower))
     subject, message = _get_email_templates("borrower", log.action)
-    send_mail([email], subject, message, kwargs)
+    send_mail(emails, subject, message, kwargs)
 
 
 @receiver(signals.borrow_log_created)
@@ -526,7 +544,7 @@ def log_created_lender_callback(sender, **kwargs):
     sys_edit = log.initiator == None
     if sys_edit or team_control.is_member(log.initiator, log.borrow.team):
         return # not need to notify team of its own actions
-    emails = team_control.get_team_emails(log.borrow.team)
+    emails = lender_emails(log.borrow)
     subject, message = _get_email_templates("lender", log.action)
     send_mail(emails, subject, message, kwargs)
 
@@ -591,7 +609,7 @@ def send_reminders_lender_putout():
 def send_reminders_lender_takein():
     today = datetime.datetime.now().date()
     tomorrow = today + datetime.timedelta(days=1)
-    borrows = Borrow.objects.filter( # better to remind them on the dropoff day?
+    borrows = Borrow.objects.filter(
         state="ACCEPTED", finish=tomorrow, reminded_lender_takein=False
     )
     for borrow in borrows:
