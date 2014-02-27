@@ -496,17 +496,17 @@ def lender_edit_dest(account, borrow, dest, note):
 # EMAILS #
 ##########
 
-def _get_email_templates(party, action):
-    action = action.lower()
-    party = party.lower()
-    template = "borrow/email/{party}_{action}_{part}.txt"
-    return (
-        template.format(party=party, action=action, part="subject"),
-        template.format(party=party, action=action, part="message"),
-    )
+
+def _borrower_emails(borrow):
+    """ Get the email adresses for borrower emails.
+    Mail lenders so they can answer borrower questions and see station changes.
+    """
+    emails = _lender_emails(borrow) 
+    emails.append(account_control.get_email_or_404(borrow.borrower))
+    return emails
 
 
-def lender_emails(borrow):
+def _lender_emails(borrow):
     if borrow.state == "ACCEPTED":
         src = borrow.src
         dest = borrow.dest
@@ -521,6 +521,16 @@ def lender_emails(borrow):
         return [src_email, dest_email]
 
 
+def _get_email_templates(party, action):
+    action = action.lower()
+    party = party.lower()
+    template = "borrow/email/{party}_{action}_{part}.txt"
+    return (
+        template.format(party=party, action=action, part="subject"),
+        template.format(party=party, action=action, part="message"),
+    )
+
+
 @receiver(signals.borrow_log_created)
 def log_created_borrower_callback(sender, **kwargs):
     log = kwargs["log"]
@@ -529,9 +539,7 @@ def log_created_borrower_callback(sender, **kwargs):
     today = datetime.datetime.now().date()
     if log.borrow.finish < today or log.action in ["FINISHED", "LENDER_RATE"]:
         return # no one cares, dont spam
-    # mail lenders so they can answer borrower questions and see station changes
-    emails = lender_emails(log.borrow) 
-    emails.append(account_control.get_email_or_404(log.borrow.borrower))
+    emails = _borrower_emails(log.borrow)
     subject, message = _get_email_templates("borrower", log.action)
     send_mail(emails, subject, message, kwargs)
 
@@ -544,7 +552,7 @@ def log_created_lender_callback(sender, **kwargs):
     sys_edit = log.initiator == None
     if sys_edit or team_control.is_member(log.initiator, log.borrow.team):
         return # not need to notify team of its own actions
-    emails = lender_emails(log.borrow)
+    emails = _lender_emails(log.borrow)
     subject, message = _get_email_templates("lender", log.action)
     send_mail(emails, subject, message, kwargs)
 
@@ -557,9 +565,9 @@ def send_reminders_borrower_rate():
     for borrow in borrows:
         if len(Rating.objects.filter(borrow=borrow, originator='BORROWER')):
             continue # already rated
-        email = account_control.get_email_or_404(borrow.borrower)
+        emails = _borrower_emails(borrow)
         subject, message = _get_email_templates("borrower", "remind_rate")
-        send_mail([email], subject, message, { "borrow" : borrow })
+        send_mail(emails, subject, message, { "borrow" : borrow })
         borrow.reminded_borrower_rate = True
         borrow.save()
 
@@ -571,9 +579,9 @@ def send_reminders_borrower_pickup():
         state="ACCEPTED", start=tomorrow, reminded_borrower_pickup=False
     )
     for borrow in borrows:
-        email = account_control.get_email_or_404(borrow.borrower)
+        emails = _borrower_emails(borrow)
         subject, message = _get_email_templates("borrower", "remind_pickup")
-        send_mail([email], subject, message, { "borrow" : borrow })
+        send_mail(emails, subject, message, { "borrow" : borrow })
         borrow.reminded_borrower_pickup = True
         borrow.save()
 
@@ -585,9 +593,9 @@ def send_reminders_borrower_dropoff():
         state="ACCEPTED", finish=tomorrow, reminded_borrower_dropoff=False
     )
     for borrow in borrows:
-        email = account_control.get_email_or_404(borrow.borrower)
+        emails = _borrower_emails(borrow)
         subject, message = _get_email_templates("borrower", "remind_dropoff")
-        send_mail([email], subject, message, { "borrow" : borrow })
+        send_mail(emails, subject, message, { "borrow" : borrow })
         borrow.reminded_borrower_dropoff = True
         borrow.save()
 
