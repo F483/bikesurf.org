@@ -44,6 +44,8 @@ def _remove_from_borrow_chain(account, borrow):
           x>1 - 1>B>2 - 2>b>3         x>1 -   -   - 1>b>3
         1>b>2 - 2>B>3 - 3>b>4       1>b>2 -   -   - 2>b>4
     """
+    if borrow.state != "ACCEPTED":
+        raise Exception("Only accepted borrows allowed!")
     next_borrow = get_next_borrow(borrow.bike, borrow.finish)
     if next_borrow and next_borrow.src != borrow.src:
          next_borrow.src = borrow.src
@@ -62,10 +64,11 @@ def _insert_into_borrow_chain(borrow, bike):
           x>1 -   -   - 1>b>3         x>1 - 1>B>1 - 1>b>3                       
         1>b>2 -   -   - 2>b>4       1>b>2 - 2>B>2 - 2>b>4 
     """
-    if borrow.state == "ACCEPTED":
-        prev_borrow = get_prev_borrow(bike, borrow.start)
-        borrow.src = prev_borrow and prev_borrow.dest or bike.station
-        borrow.dest = borrow.src
+    if borrow.state != "ACCEPTED":
+        raise Exception("Only accepted borrows allowed!")
+    prev_borrow = get_prev_borrow(bike, borrow.start)
+    borrow.src = prev_borrow and prev_borrow.dest or bike.station
+    borrow.dest = borrow.src
     borrow.bike = bike
 
 
@@ -464,10 +467,12 @@ def lender_edit(account, borrow, start, finish, bike, note):
     if not lender_edit_is_allowed(account, borrow, start, finish, bike):
         raise PermissionDenied
     if borrow.bike != bike:
-        _remove_from_borrow_chain(account, borrow)
+        if borrow.state == "ACCEPTED":
+            _remove_from_borrow_chain(account, borrow)
         borrow.start = start
         borrow.finish = finish
-        _insert_into_borrow_chain(borrow, bike)
+        if borrow.state == "ACCEPTED":
+            _insert_into_borrow_chain(borrow, bike)
         borrow.save()
         log(account, borrow, note, "EDIT")
     else:
