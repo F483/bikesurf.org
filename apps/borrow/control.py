@@ -466,20 +466,16 @@ def lender_edit(account, borrow, start, finish, bike, note):
         return # nothing changed TODO throw error here, should never get this far!
     if not lender_edit_is_allowed(account, borrow, start, finish, bike):
         raise PermissionDenied
-    if borrow.bike != bike:
-        if borrow.state == "ACCEPTED":
-            _remove_from_borrow_chain(account, borrow)
-        borrow.start = start
-        borrow.finish = finish
-        if borrow.state == "ACCEPTED":
-            _insert_into_borrow_chain(borrow, bike)
-        borrow.save()
-        log(account, borrow, note, "EDIT")
+    if borrow.state == "ACCEPTED":
+        _remove_from_borrow_chain(account, borrow)
+    borrow.start = start
+    borrow.finish = finish
+    if borrow.state == "ACCEPTED":
+        _insert_into_borrow_chain(borrow, bike)
     else:
-        borrow.start = start
-        borrow.finish = finish
-        borrow.save()
-        log(account, borrow, note, "EDIT")
+        borrow.bike = bike
+    borrow.save()
+    log(account, borrow, note, "EDIT")
 
 
 def lender_edit_dest(account, borrow, dest, note):
