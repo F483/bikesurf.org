@@ -152,7 +152,7 @@ msgstr "Replace logo"
 
 #: templatetags/common_tags.py:31
 msgid "SET_PASSPORT"
-msgstr "Set passport"
+msgstr "Set Photo ID"
 
 #: templatetags/common_tags.py:32
 msgid "CREATE_TEAM"

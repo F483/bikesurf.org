@@ -499,10 +499,10 @@ def lender_edit_dest(account, borrow, dest, note):
 
 
 def _borrower_emails(borrow):
-    """ Get the email adresses for borrower emails.
-    Mail lenders so they can answer borrower questions and see station changes.
+    """ Get the email addresses for borrower emails.
+    Mail team so they can answer borrower questions and see station changes.
     """
-    emails = _lender_emails(borrow) 
+    emails = [] # TODO get team email address
     emails.append(account_control.get_email_or_404(borrow.borrower))
     return emails
 

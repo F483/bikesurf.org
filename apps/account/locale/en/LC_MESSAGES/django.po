@@ -22,7 +22,7 @@ msgstr ""
 #: templates/account/profile.html.py:35 templates/account/view.html:19
 #: templates/account/view.html.py:24
 msgid "PASSPORT"
-msgstr "Passport"
+msgstr "Photo ID"
 
 #: forms.py:32
 msgid "USERNAME"
@@ -115,11 +115,11 @@ msgstr "Profile updated"
 
 #: views.py:36 templates/account/profile.html:38
 msgid "SET_PASSPORT"
-msgstr "Set passport image"
+msgstr "Set Photo ID image"
 
 #: views.py:38
 msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr "Upload required copy of your Passport."
+msgstr "Upload required copy of your Photo ID, Passport or Drivers License."
 
 #: views.py:39 views.py:86 views.py:144 templates/account/profile.html:16
 msgid "USER_PRIVECY_INFORMATION"

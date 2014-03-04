@@ -182,10 +182,6 @@ class Create(Form):
         if not account_control.has_passport(self.account):
             raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_PASSPORT"))
 
-        # must have a other references
-        if not account_control.has_other_references(self.account):
-            raise ValidationError(_("ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"))
-
         return cleaned_data
 
 

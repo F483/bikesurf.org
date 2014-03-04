@@ -63,7 +63,7 @@ def link_delete(request, link_id):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def link_create(request, wizard):
+def link_create(request):
     account = get_object_or_404(Account, user=request.user)
     if request.method == "POST":
         form = forms.LinkCreate(request.POST, account=account)
@@ -73,10 +73,7 @@ def link_create(request, wizard):
                 form.cleaned_data["site"], 
                 form.cleaned_data["profile"].strip(), 
             )
-            if wizard:
-                return HttpResponseRedirect("/account/wiz/passport")
-            else:
-                return HttpResponseRedirect("/account/profile")
+            return HttpResponseRedirect("/account/profile")
     else:
         form = forms.LinkCreate(account=account)
     args = { 
@@ -132,7 +129,7 @@ def edit(request, wizard):
                 form.cleaned_data["description"].strip()
             )
             if wizard:
-                return HttpResponseRedirect("/account/wiz/link")
+                return HttpResponseRedirect("/account/wiz/passport")
             else:
                 return HttpResponseRedirect("/account/profile")
     else:

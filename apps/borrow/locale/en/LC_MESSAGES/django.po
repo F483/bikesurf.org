@@ -163,7 +163,7 @@ msgstr "Error: Bike is a reserve bike!"
 
 #: forms.py:183
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
-msgstr "Profile incomplete: Passport copy required to borrow a bike."
+msgstr "Profile incomplete: Photo ID copy required to borrow a bike."
 
 #: forms.py:187
 msgid "ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"
@@ -305,7 +305,7 @@ msgstr "Last name"
 
 #: templates/borrow/respond.html:17
 msgid "PASSPORT"
-msgstr "Passport"
+msgstr "Photo ID"
 
 #: templates/borrow/respond.html:19
 msgid "IMAGE"

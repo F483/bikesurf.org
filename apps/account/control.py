@@ -68,11 +68,6 @@ def edit(account, username, first_name, last_name, mobile, source, description):
 # required borrow information #
 ###############################
 
-def has_other_references(account):
-    return (site_link_exists(account, "COUCHSURFING")
-            or site_link_exists(account, "BEWELCOME"))
-
-
 def has_fullname(account):
     return bool(account.user.first_name and account.user.last_name)
 
@@ -86,8 +81,9 @@ def has_passport(account):
 
 
 def has_required_info(account):
-    return (has_other_references(account) and has_fullname(account) 
-            and has_mobile(account) and has_passport(account))
+    return (has_fullname(account) and 
+            has_mobile(account) and 
+            has_passport(account))
 
 
 #########

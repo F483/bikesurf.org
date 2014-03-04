@@ -18,7 +18,6 @@ from apps.link.models import SITE_CHOICES
 from apps.link import control as link_control
 
 
-PROFILE_SITE_CHOICES = SITE_CHOICES[:2]
 USERNAME_REGEX = UserCreationForm().fields['username'].regex
 
 
@@ -63,7 +62,7 @@ class Edit(Form):
 
 class LinkCreate(Form):
 
-    site = ChoiceField(choices=PROFILE_SITE_CHOICES, label=_("SITE"), required=True)
+    site = ChoiceField(choices=SITE_CHOICES, label=_("SITE"), required=True)
     profile = CharField(max_length=1024, label=_("URL"), required=True)
 
     def __init__(self, *args, **kwargs):
