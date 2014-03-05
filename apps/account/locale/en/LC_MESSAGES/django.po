@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 03:36-0600\n"
+"POT-Creation-Date: 2014-03-05 09:21-0600\n"
 "PO-Revision-Date: 2013-12-27 08:23\n"
 "Last-Translator:   <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: templates/account/profile.html.py:35 templates/account/view.html:19
 #: templates/account/view.html.py:24
 msgid "PASSPORT"
-msgstr "Photo ID"
+msgstr "Photo of passport, driving licence or national ID card."
 
 #: forms.py:31
 msgid "USERNAME"
@@ -50,7 +50,7 @@ msgstr "Source"
 #: forms.py:37 templates/account/profile.html:43
 #: templates/account/view.html:29
 msgid "DESCRIPTION"
-msgstr "Description"
+msgstr "Why would you like to borrow a bike?"
 
 #: forms.py:53
 msgid "ERROR_BAD_USERNAME_FORMAT"
@@ -67,7 +67,9 @@ msgstr "Site"
 
 #: forms.py:66
 msgid "URL"
-msgstr "Url"
+msgstr ""
+"The internet address to your profile from CouchSurfing, BeWelcome, AirBNB or "
+"other hospitality club."
 
 #: forms.py:77
 msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
@@ -119,7 +121,8 @@ msgstr "Set Photo ID image"
 
 #: views.py:38
 msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr "Upload required copy of your Photo ID, Passport or Drivers License."
+msgstr ""
+"Upload required copy of your National ID card, Passport or Driver's License."
 
 #: views.py:39 views.py:83 views.py:141 templates/account/profile.html:16
 msgid "USER_PRIVECY_INFORMATION"
