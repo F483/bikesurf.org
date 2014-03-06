@@ -30,7 +30,7 @@ def _get_team_models(request, team_link, borrow_id):
     team = team_control.get_or_404(team_link)
     account = get_object_or_404(Account, user=request.user)
     assert_member(account, team)
-    borrow = get_object_or_404(Borrow, id=borrow_id)
+    borrow = get_object_or_404(Borrow, id=borrow_id, team=team)
     return team, account, borrow
 
 
@@ -341,6 +341,9 @@ def borrower_view(request, borrow_id):
     account = get_object_or_404(Account, user=request.user)
     borrow = get_object_or_404(Borrow, id=borrow_id)
     if account != borrow.borrower:
+        if team_control.is_member(account, borrow.team): # is_lender
+            url = "/%s/borrow/view/%s" % (borrow.team.link, borrow.id)
+            return HttpResponseRedirect(url) # redirect lender to right url
         raise PermissionDenied
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
     return render_response(request, "borrow/view.html", args)
@@ -398,7 +401,13 @@ def borrower_cancel(request, borrow_id):
 @login_required
 @require_http_methods(["GET"])
 def lender_view(request, team_link, borrow_id):
-    team, account, borrow = _get_team_models(request, team_link, borrow_id)
+    account = get_object_or_404(Account, user=request.user)
+    team = team_control.get_or_404(team_link)
+    borrow = get_object_or_404(Borrow, id=borrow_id, team=team)
+    if not team_control.is_member(account, borrow.team): # is not lender
+        if account == borrow.borrower: # redirect borrower to right url
+            return HttpResponseRedirect("/borrow/view/%s" % borrow.id)
+        raise PermissionDenied
     args = { "borrow" : borrow, "logs" : borrow.logs.all() }
     return rtr(team, "borrows", request, "borrow/view.html", args)
 
