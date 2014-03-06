@@ -112,11 +112,21 @@ def get_prev_borrow(bike, start):
     return borrows and borrows[0] or None                  
 
 
+def borrows_requested_in_timeframe(account, start, finish, exclude=None):
+    """ Returns borrow requests for account overlaping given timeframe. """
+    qs = Borrow.objects.filter(borrower=account, state="REQUEST")
+    qs = qs.exclude(start__gt=finish)
+    qs = qs.exclude(finish__lt=start)
+    if exclude:
+        qs = qs.exclude(id=exclude.id)
+    return list(qs)
+
+
 def active_borrows_in_timeframe(bike, start, finish, exclude=None):
     """ Returns borrows in the given timeframe. finish is inclusive! """
     if not bike:
         raise Exception("BIKE REQUIRED!")
-    qs = Borrow.objects.filter(bike=bike, active=True)
+    qs = Borrow.objects.filter(bike=bike, state="ACCEPTED")
     qs = qs.exclude(start__gt=finish)
     qs = qs.exclude(finish__lt=start)
     if exclude:
@@ -287,9 +297,14 @@ def creation_is_allowed(account, bike, start, finish, exclude=None):
     if finish < start:
         return False
     if not team_control.is_member(account, bike.team):
+        # check minimum start time
         today = datetime.datetime.now().date()
         minstart = today + datetime.timedelta(days=MIN_BOOK)
         if start < minstart:
+            return False
+        # only allowed to borrow one bike at a time
+        if len(borrows_requested_in_timeframe(account, start, finish, 
+                                              exclude=exclude)):
             return False
     if len(active_borrows_in_timeframe(bike, start, finish, exclude=exclude)):
         return False

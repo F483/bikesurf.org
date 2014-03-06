@@ -36,7 +36,8 @@ RESPONSE_CHOICES = [
 ]
 
 
-def _validate_borrow_timeframe(bike, start, finish, exclude=None, lender=False):
+def _validate_borrow_timeframe(borrower, bike, start, finish, 
+                               is_lender, exclude=None):
     if not start:
         raise ValidationError(_("ERROR_IMPOSSIBLE_START_DATE"))
     if not finish:
@@ -45,11 +46,14 @@ def _validate_borrow_timeframe(bike, start, finish, exclude=None, lender=False):
         raise ValidationError(_("ERROR_FINISH_BEFORE_START"))
     today = datetime.datetime.now().date()
     minstart = today + datetime.timedelta(days=MIN_DAYS)
-    if not lender and start < minstart:
+    if not is_lender and start < minstart:
         raise ValidationError(_("ERROR_START_LESS_THEN_MINIMUM"))
     if len(control.active_borrows_in_timeframe(bike, start, finish, 
                                                exclude=exclude)):
         raise ValidationError(_("ERROR_OTHER_BORROW_IN_TIMEFRAME"))
+    args = (borrower, start, finish, exclude)
+    if not is_lender and len(control.borrows_requested_in_timeframe(*args)):
+        raise ValidationError(_("ERROR_ALREADY_REQUESTED_BORROW_IN_TIMEFRAME"))
 
 
 class FilterListing(Form): 
@@ -136,13 +140,6 @@ class Create(Form):
 
     note = CharField(label=_("BORROW_NOTE"), widget=Textarea)
     terms_accepted = BooleanField(label=mark_safe(_("ACCEPT_TERMS")), initial=False)
-    # TODO have you donated? (use note for this)
-    # TODO why do you want to bikesurf in xxx (use note for this)
-    # TODO feedback (use note for this)
-    #  \_ cat together with seperators and save in note
-
-    # TODO receive newsletter (were spamming people?)
-    # TODO link to terms
 
     def __init__(self, *args, **kwargs):
         self.bike = kwargs.pop("bike")
@@ -163,8 +160,8 @@ class Create(Form):
         # check timeframe
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
-        _validate_borrow_timeframe(self.bike, start, finish, 
-                                   lender=self.is_lender)
+        _validate_borrow_timeframe(self.account, self.bike, start, finish, 
+                                   self.is_lender)
 
         # must accept terms
         if not cleaned_data.get("terms_accepted"):
@@ -237,8 +234,8 @@ class Edit(Form):
         start = cleaned_data.get("start")
         finish = cleaned_data.get("finish")
         bike = cleaned_data.get("bike")
-        _validate_borrow_timeframe(bike, start, finish, exclude=self.borrow, 
-                                   lender=self.is_lender)
+        _validate_borrow_timeframe(self.borrow.borrower, bike, start, finish, 
+                                   self.is_lender, exclude=self.borrow)
         return cleaned_data
 
 
