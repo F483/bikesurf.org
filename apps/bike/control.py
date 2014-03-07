@@ -13,15 +13,27 @@ from apps.gallery.control import create as create_gallery
 from apps.gallery.control import delete as delete_gallery
 
 
-def available(team, start, finish, include_reserve=False, include_bike=None):
-    """ List bikes available for a team in a given date range. 
-    Optionally include reserve bikes and one additional bike.
+def team_bikes(team, include_reserve=False, include_inactive=False):
+    """ List bikes for given team. 
+    Optionally include reserve and inactive bikes.
     """
-    borrows = team.borrows.filter(state="ACCEPTED")
-    borrows = borrows.exclude(start__gt=finish).exclude(finish__lt=start)
-    bikes = team.bikes.filter(active=True)
+    bikes = team.bikes.all()
+    if not include_inactive:
+        bikes = bikes.filter(active=True)
     if not include_reserve:
         bikes = bikes.filter(reserve=False)
+    return bikes
+
+
+def available(team, start, finish, include_reserve=False, 
+              include_inactive=False, include_bike=None):
+    """ List bikes available for a team in a given date range. 
+    Optionally include reserve or inactive or an additional bike.
+    """
+    bikes = team_bikes(team, include_reserve=include_reserve, 
+                       include_inactive=include_inactive)
+    borrows = team.borrows.filter(state="ACCEPTED")
+    borrows = borrows.exclude(start__gt=finish).exclude(finish__lt=start)
     bikes = bikes.exclude(borrows__in=borrows)
     if include_bike:
         bikes = bikes | Bike.objects.filter(id=include_bike.id)

@@ -218,16 +218,11 @@ class Edit(Form):
         self.is_lender = kwargs.pop("is_lender")
         super(Edit, self).__init__(*args, **kwargs)
         team = self.borrow.team
-        bike = self.borrow.bike
-        start = self.borrow.start
-        finish = self.borrow.finish
-        bikes = bike_control.available(
-                team, start, finish, include_reserve=True, include_bike=bike
-        )
-        self.fields["start"].initial = start
-        self.fields["finish"].initial = finish
+        bikes = bike_control.team_bikes(team, include_reserve=self.is_lender)
+        self.fields["start"].initial = self.borrow.start
+        self.fields["finish"].initial = self.borrow.finish
         self.fields["bike"].queryset = bikes 
-        self.fields["bike"].initial = bike
+        self.fields["bike"].initial = self.borrow.bike
 
     def clean(self):
         cleaned_data = super(Edit, self).clean()

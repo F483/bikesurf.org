@@ -82,7 +82,7 @@ msgstr "Error: Start must be at least three days in the future!"
 
 #: forms.py:53 forms.py:126
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
-msgstr "Error: Other borrow in time frame!"
+msgstr "Error: This bike has another borrow in time frame!"
 
 #: forms.py:56
 msgid "ERROR_ALREADY_REQUESTED_BORROW_IN_TIMEFRAME"
