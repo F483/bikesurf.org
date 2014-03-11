@@ -9,6 +9,7 @@ from apps.common.urls import arg_id, arg_slug
 
 urlpatterns = patterns('apps.site.views',
     url(r'^$', 'index'),
+    url(r'^site/donate.html$', 'donate'),
     url(r'^site/terms_and_conditions.html$', 'terms'),
 )
 

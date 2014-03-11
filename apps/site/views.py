@@ -24,3 +24,7 @@ def index(request):
 @require_http_methods(['GET'])
 def terms(request):
     return render_response(request, 'site/terms.html', {})
+
+@require_http_methods(['GET'])
+def donate(request):
+    return render_response(request, 'site/donate.html', {})
