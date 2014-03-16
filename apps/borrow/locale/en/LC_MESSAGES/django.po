@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-06 06:35-0600\n"
+"POT-Creation-Date: 2014-03-16 12:40-0500\n"
 "PO-Revision-Date: 2014-02-23 12:32-0600\n"
 "Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,9 +86,10 @@ msgstr "Error: This bike has another borrow in time frame!"
 
 #: forms.py:56
 msgid "ERROR_ALREADY_REQUESTED_BORROW_IN_TIMEFRAME"
-msgstr "Error: You have another borrow overlapping this time frame,"
-" only one borrow at a time is allowed! If you have friends that wish to"
-" borrow a bike please ask them to make a request themselves!"
+msgstr ""
+"Error: You have another borrow overlapping this time frame, only one borrow "
+"at a time is allowed! If you have friends that wish to borrow a bike please "
+"ask them to make a request themselves!"
 
 #: forms.py:62 forms.py:70 forms.py:74 models.py:26
 msgid "ALL"
@@ -115,7 +116,7 @@ msgid "RESPONSE"
 msgstr "Response"
 
 #: forms.py:101 forms.py:187 forms.py:192 forms.py:197 forms.py:214
-#: forms.py:248
+#: forms.py:243
 msgid "NOTE"
 msgstr "Note"
 
@@ -171,7 +172,7 @@ msgstr "Error: Bike is a reserve bike!"
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
 msgstr "Profile incomplete: Photo ID copy required to borrow a bike."
 
-#: forms.py:245
+#: forms.py:240
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 

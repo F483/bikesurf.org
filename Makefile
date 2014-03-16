@@ -11,7 +11,6 @@ help:
 	@echo "  db_migration_create    APP       "
 	@echo "  db_migration_apply     APP       "
 	@echo "  db_shell_sqlite                  "
-	@echo "  db_sql                 APP       "
 	@echo "  clean                            "
 	@echo "  clean_vim                        "
 	@echo "  makemessages                     "
@@ -19,9 +18,6 @@ help:
 
 runserver:
 	python manage.py runserver
-
-db_sql:
-	python manage.py sql $(APP)
 
 db_shell_sqlite:
 	sqlite3 $(SQLITE_FILE)
