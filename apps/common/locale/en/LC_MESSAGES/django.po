@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-16 12:40-0500\n"
-"PO-Revision-Date: 2014-03-16 12:41-0600\n"
-"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
+"PO-Revision-Date: 2014-03-31 15:24\n"
+"Last-Translator: Graham Pope <grahamhpope@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
-"X-Translated-Using: django-rosetta 0.7.2\n"
+"X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: templates/base.html:6
 msgid "SIGNUP"
@@ -24,11 +24,11 @@ msgstr "Signup"
 
 #: templates/common/base.html:22
 msgid "META_KEYWORDS"
-msgstr "Free, Bike, Surfing, Borrowing, Lending"
+msgstr "Free, Bike, Surfing, Borrowing, Lending, Bicycle, Sharing, Cheap"
 
 #: templates/common/base.html:23
 msgid "META_DESCRIPTION"
-msgstr "Borrow bikes for free."
+msgstr "Borrow bikes - pay what you want."
 
 #: templates/common/base.html:91
 msgid "DONATE"

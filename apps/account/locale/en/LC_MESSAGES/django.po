@@ -2,27 +2,27 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-16 12:40-0500\n"
-"PO-Revision-Date: 2014-03-08 14:34\n"
-"Last-Translator: Graham Pope <grahamhpope@gmail.com>\n"
+"PO-Revision-Date: 2014-04-24 13:46\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.6.8\n"
 
 #: forms.py:26 templates/account/profile.html:30
 #: templates/account/profile.html.py:35 templates/account/view.html:19
 #: templates/account/view.html.py:24
 msgid "PASSPORT"
-msgstr "Photo of passport, driving licence or national ID card."
+msgstr "Photo of passport, driving license or national ID card."
 
 #: forms.py:31
 msgid "USERNAME"
@@ -40,12 +40,12 @@ msgstr "Last name"
 #: forms.py:34 templates/account/profile.html:21
 #: templates/account/view.html:15
 msgid "MOBILE"
-msgstr "Mobile"
+msgstr "Mobile (include international code)"
 
 #: forms.py:35 templates/account/profile.html:42
 #: templates/account/view.html:28
 msgid "SOURCE"
-msgstr "Source"
+msgstr "Where did you hear about the project?"
 
 #: forms.py:37 templates/account/profile.html:43
 #: templates/account/view.html:29
@@ -63,13 +63,13 @@ msgstr "Error: Username taken!"
 
 #: forms.py:65
 msgid "SITE"
-msgstr "Site"
+msgstr "Social media site(s) you belong to"
 
 #: forms.py:66
 msgid "URL"
 msgstr ""
-"The internet address to your profile from CouchSurfing, BeWelcome, AirBNB or "
-"other hospitality club."
+"The internet address to your profile from CouchSurfing, BeWelcome, AirBNB or"
+" other hospitality club."
 
 #: forms.py:77
 msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
@@ -127,8 +127,8 @@ msgstr ""
 #: views.py:39 views.py:83 views.py:141 templates/account/profile.html:16
 msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
-"This information can only be seen by bikesurf.org administrators and members "
-"of teams where you are borrowing a bike."
+"This information can only be seen by bikesurf.org administrators and members"
+" of teams where you are borrowing a bike."
 
 #: views.py:57
 msgid "LINK_DELETE?"
@@ -152,13 +152,11 @@ msgstr "Sign In"
 #, python-format
 msgid ""
 "Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
-"up</a> \n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
 "for a %(site_name)s account and sign in below:"
 msgstr ""
 "Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"/accounts/signup/"
-"\">sign up</a>\n"
+"of your existing third party accounts. Or, <a href=\"/accounts/signup/\">sign up</a>\n"
 "for a bikesurf.org account and sign in below:"
 
 #: templates/account/login.html:24
@@ -180,11 +178,8 @@ msgstr "Forgot Password?"
 #: templates/account/profile.html:13
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
 msgstr ""
-"WARNING!</br>Your profile doesn't have the information required to borrow a "
-"bike.</br>\n"
-"Please make sure all fields marked with a * are filled out and you have at "
-"least one link to a trusted site with references (couchsurfing.org or "
-"bewelcome.org)."
+"WARNING!</br>Your profile doesn't have the information required to borrow a bike.</br>\n"
+"Please make sure all fields marked with a * are filled out and you have at least one link to a trusted site with references (couchsurfing.org or bewelcome.org)."
 
 #: templates/account/profile.html:20
 msgid "LIST_NAME"
