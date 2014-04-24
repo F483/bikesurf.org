@@ -176,10 +176,10 @@ LANGUAGE_CODE = 'en-us'
 
 _ = lambda s : s
 LANGUAGES = (
-#    ('de', _("German")),
+    ('de', _("German")),
     ('en', _("English")),
 #    ('fr', _("French")),
-#    ('es', _("Spanish")),
+    ('es', _("Spanish")),
 #    ('it', _("Italian")),
 #    ('zh-tw', _("Traditional Chinese")),
 )

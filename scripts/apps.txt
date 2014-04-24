@@ -2,10 +2,9 @@ account
 bike
 blog
 borrow
-account
 common
-image
-message
+gallery
+link
 page
 site
 station
