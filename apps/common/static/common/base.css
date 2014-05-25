@@ -51,9 +51,11 @@ body>.base_wrapper {
 
 body {
 	background-color: #E6E6E6;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 10pt;
+    font-family: 'Exo', helvetica, arial, sans-serif;
+	font-size: 10pt;
     color: #000;
+
+
 }
 
 div {
@@ -62,6 +64,7 @@ div {
 
 img {
     vertical-align: bottom;
+	
 }
 
 table {
@@ -82,7 +85,7 @@ a {
 }
 
 a:hover {
-    text-shadow: #000000 0px 0px 2px;
+    text-shadow: #8AE9FF 1px 1px 2px;
 }
 
 #site_background {
@@ -106,8 +109,14 @@ a:hover {
 }
 
 #base_header {
-    height: 100px;
+    height: 50px;
     padding-left: 10px;
+	background: #FFFFFF;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+
+	 
 }
 
 #base_main {
@@ -132,19 +141,21 @@ a:hover {
 #base_menu {
     width: 200px;
     min-width: 200px;
-    padding-top: 5px;
+    padding-top: 25px;
 }
 
 #base_content {
-    padding-top: 5px;
+    padding-top: 25px;
 }
 
 #base_info {
-    padding-left: 10px;
+    padding-left: 25px;
     padding-right: 10px;
     width:160px;
     min-width: 160px;
     text-align: center;
+
+
 }
 
 
@@ -163,17 +174,17 @@ a:hover {
 
 .navigation_title {
     text-align: left;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 16pt;
+	font-family: 'monoton' sans-serif;
+    font-size: 29pt;
     background-color: rgb(208,236,242);
-    background-image: url(/static/common/navigation_title_background.png);
     background-position: right;
     background-repeat: no-repeat;
     margin-right: 5px;
-    margin-left: 10px;
-    height: 25px;
-    padding-left: 5px;
+	height: 65px;
+    margin-left: 25px;
+    padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
     -moz-box-shadow:    -5px 5px 0px #AAA;
     -webkit-box-shadow: -5px 5px 0px #AAA;
     box-shadow:         -5px 5px 0px #AAA;
@@ -192,9 +203,10 @@ a:hover {
 }
 
 .navigation ul {
-    list-style: none outside none;
+  	list-style: none outside none;
     margin: 0;
-    padding: 0;
+    padding-left: 15px;
+
 }
 
 .navigation #selected {
@@ -255,23 +267,23 @@ a:hover {
 
 .content_title {
     text-align: left;
-    text-transform: uppercase;
     font-weight: bold;
     font-size: 16pt;
     background-color: rgb(215,223,35);
-    background-image: url(/static/common/content_title_background.png);
     background-position: right;
     background-repeat: no-repeat;
     margin-right: 5px;
-    margin-left: 10px;
+    margin-left: 25px;
     height: 25px;
     padding-left: 5px;
+	padding-top: 5px;
     -moz-box-shadow:    -5px 5px 0px #AAA;
     -webkit-box-shadow: -5px 5px 0px #AAA;
     box-shadow:         -5px 5px 0px #AAA;
 }
 
 .content {
+	font-family: exo, sans-serif;
     padding: 5px;
     margin-left: 25px;
     margin-right: 5px;
@@ -307,4 +319,5 @@ a:hover {
     background: #45A563;
     color: #FFFFFF;
 }
+
 
