@@ -18,7 +18,7 @@ from django.template import RequestContext
 from config.settings import GOOGLE_ANALYTICS_URL, GOOGLE_ANALYTICS_ID
 
 
-COUNTRIES = [('', '---------')] + list(countries.COUNTRIES)
+COUNTRIES = [('', '---------')] + list(countries)
 
 
 def chunks(l, n):

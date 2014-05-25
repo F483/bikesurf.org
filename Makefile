@@ -40,10 +40,6 @@ makemessages:
 compilemessages:
 	scripts/messages.sh compilemessages
 
-clean_vim:
-	@find | grep -i ".*\.swp$$" | xargs -r -L1 rm
-	@find | grep -i ".*\.swo$$" | xargs -r -L1 rm 
-
 clean:
 	find | grep -i ".*\.pyc$$" | xargs -r -L1 rm
 	find | grep -i ".*\.orig$$" | xargs -r -L1 rm

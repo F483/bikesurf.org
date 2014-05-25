@@ -10,7 +10,6 @@ from django.db.models import BooleanField
 from django.db.models import CharField
 from django.db.models import DateTimeField
 from django.utils.translation import ugettext as _
-from django_countries import CountryField
 
 
 class Station(Model):

@@ -13,7 +13,6 @@ from django.db.models import DateTimeField
 from django.db.models import URLField
 from django.db.models import ManyToManyField
 from django.utils.translation import ugettext as _
-from django_countries import CountryField
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up
 from imagekit.models.fields import ProcessedImageField
