@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forms.py:19
+msgid "PICK_A_LOCATION"
+msgstr ""
+
+#: templates/site/donate.html:8 templates/site/index-old.html:49
+#: templates/site/index-old.html.py:148 templates/site/index.html:85
+msgid "DONATE"
+msgstr ""
+
+#: templates/site/index-old.html:29
+msgid "SITE_SLOGAN"
+msgstr ""
+
+#: templates/site/index-old.html:34
+msgid "PRESS"
+msgstr ""
+
+#: templates/site/index-old.html:39
+msgid "THE_STORY"
+msgstr ""
+
+#: templates/site/index-old.html:44
+msgid "CONTACT"
+msgstr ""
+
+#: templates/site/index-old.html:54
+msgid "BLOG"
+msgstr ""
+
+#: templates/site/index-old.html:60
+msgid "FREEDOM"
+msgstr ""
+
+#: templates/site/index-old.html:65 templates/site/index.html:41
+msgid "BORROW_A_BIKE"
+msgstr ""
+
+#: templates/site/index-old.html:76 templates/site/index.html:45
+#: templates/site/index.html.py:92
+msgid "SELECT"
+msgstr ""
+
+#: templates/site/index-old.html:97 templates/site/index.html:62
+msgid "WHAT_WERE_ABOUT"
+msgstr ""
+
+#: templates/site/index-old.html:100 templates/site/index.html:63
+msgid "SITE_DESCRIPTION_TEXT"
+msgstr ""
+
+#: templates/site/index-old.html:105 templates/site/index.html:70
+msgid "INDEX_VIDEO_EMBED_HTML"
+msgstr ""
+
+#: templates/site/index-old.html:121 templates/site/index.html:52
+#: templates/site/index.html.py:99
+msgid "START_A_TEAM"
+msgstr ""
+
+#: templates/site/index-old.html:157 templates/site/index.html:114
+msgid "BIKESURF_IN_THE_PRESS"
+msgstr ""
+
+#: templates/site/index-old.html:181
+msgid "THE_STORY_TITLE"
+msgstr ""
+
+#: templates/site/index-old.html:185
+msgid "THE_STORY_CONTENT"
+msgstr ""
+
+#: templates/site/index.html:37
+msgid "BIKESURF_IS"
+msgstr ""
+
+#: templates/site/index.html:53
+msgid "BRING_BIKE_SURF"
+msgstr ""
+
+#: templates/site/index.html:88
+msgid "DONATE_TEXT"
+msgstr ""
+
+#: templates/site/terms.html:8
+msgid "TERMS_AND_CONDITIONS_TITLE"
+msgstr ""
+
+#: templates/site/terms.html:12
+msgid "TERMS_AND_CONDITIONS_TEXT"
+msgstr ""

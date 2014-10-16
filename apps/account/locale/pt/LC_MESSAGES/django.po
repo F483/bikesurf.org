@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-18 08:26-0500\n"
+"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
+
+#: forms.py:26 templates/account/profile.html:30
+#: templates/account/profile.html.py:35 templates/account/view.html:19
+#: templates/account/view.html.py:24
+msgid "PASSPORT"
+msgstr "Passaporte"
+
+#: forms.py:31
+msgid "USERNAME"
+msgstr "Nome do Usuário"
+
+#: forms.py:32 templates/account/profile.html:19
+#: templates/account/view.html:13
+msgid "FIRST_NAME"
+msgstr "Primeiro Nome"
+
+#: forms.py:33 templates/account/view.html:14
+msgid "LAST_NAME"
+msgstr "Último Nome"
+
+#: forms.py:34 templates/account/profile.html:21
+#: templates/account/view.html:15
+msgid "MOBILE"
+msgstr "Celular(incluir código de área internacional)"
+
+#: forms.py:35 templates/account/profile.html:42
+#: templates/account/view.html:28
+msgid "SOURCE"
+msgstr "Onde você conheceu o projeto?"
+
+#: forms.py:37 templates/account/profile.html:43
+#: templates/account/view.html:29
+msgid "DESCRIPTION"
+msgstr "Descrição"
+
+#: forms.py:53
+msgid "ERROR_BAD_USERNAME_FORMAT"
+msgstr ""
+"Erro: O nome do usuário deve conter apenas os caracteres \"a-zA-Z0-9_.@+-\"!"
+
+#: forms.py:59
+msgid "ERROR_USERNAME_TAKEN"
+msgstr "Erro: Nome de usuário já em uso"
+
+#: forms.py:65
+msgid "SITE"
+msgstr "Site(s) de rede social que você utiliza"
+
+#: forms.py:66
+msgid "URL"
+msgstr ""
+"Endereço(URL) para seu perfil nos sites CouchSurfing, BeWelcome, AirBNB ou "
+"outro clube de hospitalidade."
+
+#: forms.py:77
+msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
+msgstr "Erro: Perfil já existe"
+
+#: forms.py:79
+msgid "ERROR_BAD_PROFILE_FORMAT"
+msgstr "Erro: O endereço deve ligar a um perfil no site!"
+
+#: forms.py:81
+msgid "ERROR_CANNOT_CREATE_LINK"
+msgstr "Erro: Não foi possível criar o link"
+
+#: forms.py:95
+msgid "ERROR_CANNOT_DELETE_LINK"
+msgstr "Erro: Não foi possível excluir o link"
+
+#: models.py:31
+msgid "OTHER"
+msgstr "Outros"
+
+#: models.py:32
+msgid "COUCHSURFING"
+msgstr "Couchsurfing"
+
+#: models.py:33
+msgid "FACEBOOK"
+msgstr "Facebook"
+
+#: models.py:34
+msgid "FRIENDS"
+msgstr "Amigos"
+
+#: models.py:35
+msgid "GOOGLE"
+msgstr "Google"
+
+#: models.py:36
+msgid "TWITTER"
+msgstr "Twitter"
+
+#: views.py:19
+msgid "PROFILE_UPDATED"
+msgstr "Perfil atualizado"
+
+#: views.py:36 templates/account/profile.html:38
+msgid "SET_PASSPORT"
+msgstr "Defina imagem de identificação"
+
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr ""
+"Carregar cópia da sua identidade, passaporte ou carteira de motorista."
+
+#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:16
+msgid "USER_PRIVECY_INFORMATION"
+msgstr ""
+"Estas informações podem ser vistas apenas pelos administradores do "
+"bikesurf.org e membros dos times onde você está emprestando a bicicleta."
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr "Excluir link?"
+
+#: views.py:82
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr ""
+"Link obrigatório para site com referências(Couchsurfing, BeWelcome, AirBNB)"
+
+#: views.py:140
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr "Informação obrigatória"
+
+#: templates/account/login.html:7 templates/account/login.html.py:11
+#: templates/account/login.html:41
+msgid "Sign In"
+msgstr "Logar"
+
+#: templates/account/login.html:14
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
+"for a %(site_name)s account and sign in below:"
+msgstr ""
+"Por favor, faça login com uma conta existente em outro site ou  <a "
+"href=\"%(signup_url)s\">Inscreva-se</a> no site %(site_name) e faça login "
+"abaixo:"
+
+#: templates/account/login.html:24
+msgid "or"
+msgstr "ou"
+
+#: templates/account/login.html:31
+msgid "SIGN UP SUGGESTION"
+msgstr "Não tem uma conta?"
+
+#: templates/account/login.html:31
+msgid "SIGN UP"
+msgstr "Inscrever-se"
+
+#: templates/account/login.html:40
+msgid "Forgot Password?"
+msgstr "Esqueceu sua senha?"
+
+#: templates/account/profile.html:13
+msgid "ACCOUNT_ADD_REQUIRED_INFO"
+msgstr ""
+"ATENÇÃO! </ Br> O seu perfil não tem as informações necessárias para emprestar uma bicicleta. </ Br> \n"
+"Por favor, certifique-se todos os campos marcados com * estão preenchidos e você tem pelo menos um link para um site confiável, com referências (couchsurfing.org ou bewelcome.org)."
+
+#: templates/account/profile.html:20
+msgid "LIST_NAME"
+msgstr "Último nome"
+
+#: templates/account/profile.html:23 templates/account/view.html:16
+msgid "EMAIL"
+msgstr "Email"
+
+#: templates/account/profile.html:25
+msgid "CHANGE_EMAIL"
+msgstr "Mudar email"
+
+#: templates/account/profile.html:32 templates/account/view.html:21
+msgid "IMAGE"
+msgstr "Imagem"
+
+#: templates/account/profile.html:35 templates/account/view.html:24
+msgid "NONE"
+msgstr "Nenhum"
+
+#: templates/account/profile.html:48 templates/account/view.html:33
+msgid "LINKS"
+msgstr "Links"

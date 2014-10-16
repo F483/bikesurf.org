@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 14:21-0500\n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
 "PO-Revision-Date: 2014-03-31 15:24\n"
 "Last-Translator: Graham Pope <grahamhpope@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "SIGNUP"
 msgstr "Signup"
 
-#: templates/common/base.html:22
+#: templates/common/base-old.html:22 templates/common/base.html:22
 msgid "META_KEYWORDS"
 msgstr "Free, Bike, Surfing, Borrowing, Lending, Bicycle, Sharing, Cheap"
 
-#: templates/common/base.html:23
+#: templates/common/base-old.html:23 templates/common/base.html:23
 msgid "META_DESCRIPTION"
 msgstr "Borrow bikes - pay what you want."
 
-#: templates/common/base.html:91
+#: templates/common/base-old.html:95 templates/common/base.html:103
 msgid "DONATE"
 msgstr "Donate"
 
@@ -66,27 +66,27 @@ msgstr "Submit"
 msgid "NO_ENTRIES"
 msgstr "No entries"
 
-#: templates/common/statusbar.html:5
+#: templates/common/statusbar-old.html:5 templates/common/statusbar.html:5
 msgid "MY_BORROWS"
 msgstr "My Borrows"
 
-#: templates/common/statusbar.html:22
+#: templates/common/statusbar-old.html:22 templates/common/statusbar.html:22
 msgid "ARRIVALS"
 msgstr "Drop-offs"
 
-#: templates/common/statusbar.html:29
+#: templates/common/statusbar-old.html:29 templates/common/statusbar.html:29
 msgid "DEPARTURES"
 msgstr "Pick-ups"
 
-#: templates/common/statusbar.html:34
+#: templates/common/statusbar-old.html:34 templates/common/statusbar.html:34
 msgid "LOGOUT"
 msgstr "Logout"
 
-#: templates/common/statusbar.html:38
+#: templates/common/statusbar-old.html:38 templates/common/statusbar.html:38
 msgid "LOGIN"
 msgstr "Login"
 
-#: templates/common/statusbar.html:39
+#: templates/common/statusbar-old.html:39 templates/common/statusbar.html:39
 msgid "SIGN UP"
 msgstr "Signup"
 

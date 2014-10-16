@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-18 08:44-0500\n"
+"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
+
+#: templates/base.html:6
+msgid "SIGNUP"
+msgstr "Inscrever-se"
+
+#: templates/common/base-old.html:22 templates/common/base.html:22
+msgid "META_KEYWORDS"
+msgstr ""
+"Grátis, Bicicleta, Surfirg, Emprestar, Emprestando, Empréstimo, "
+"Compartilhar, Compartilhando, Barato"
+
+#: templates/common/base-old.html:23 templates/common/base.html:23
+msgid "META_DESCRIPTION"
+msgstr "Empreste bicicletas - pague quanto quiser."
+
+#: templates/common/base-old.html:95 templates/common/base.html:103
+msgid "DONATE"
+msgstr "Doar"
+
+#: templates/common/filters.html:8
+msgid "FILTER"
+msgstr "Filtro"
+
+#: templates/common/footer.html:4
+msgid "ADMIN"
+msgstr "Administrar"
+
+#: templates/common/footer.html:10
+msgid "INTERNATIONALISATION"
+msgstr "Internacionalização"
+
+#: templates/common/footer.html:16
+msgid "REPOSITORY"
+msgstr "Repositório"
+
+#: templates/common/footer.html:22
+msgid "TERMS_AND_CONDITIONS"
+msgstr "Termos e condições"
+
+#: templates/common/form.html:30 templatetags/common_tags.py:17
+msgid "CANCEL"
+msgstr "Cancelar"
+
+#: templates/common/form.html:36
+msgid "SUBMIT"
+msgstr "Enviar"
+
+#: templates/common/list.html:44
+msgid "NO_ENTRIES"
+msgstr "Sem entradas"
+
+#: templates/common/statusbar-old.html:5 templates/common/statusbar.html:5
+msgid "MY_BORROWS"
+msgstr "Meus empréstimos"
+
+#: templates/common/statusbar-old.html:22 templates/common/statusbar.html:22
+msgid "ARRIVALS"
+msgstr "Locais de Entrega"
+
+#: templates/common/statusbar-old.html:29 templates/common/statusbar.html:29
+msgid "DEPARTURES"
+msgstr "Locais de Retirada"
+
+#: templates/common/statusbar-old.html:34 templates/common/statusbar.html:34
+msgid "LOGOUT"
+msgstr "Sair"
+
+#: templates/common/statusbar-old.html:38 templates/common/statusbar.html:38
+msgid "LOGIN"
+msgstr "Entrar"
+
+#: templates/common/statusbar-old.html:39 templates/common/statusbar.html:39
+msgid "SIGN UP"
+msgstr "Inscrever"
+
+#: templatetags/common_tags.py:14
+msgid "BORROW"
+msgstr "Emprestar"
+
+#: templatetags/common_tags.py:15
+msgid "PROCESS_REQUEST"
+msgstr "Processar pedido"
+
+#: templatetags/common_tags.py:16
+msgid "RESPOND"
+msgstr "Responder"
+
+#: templatetags/common_tags.py:18
+msgid "RATE"
+msgstr "Taxa"
+
+#: templatetags/common_tags.py:19
+msgid "DELETE"
+msgstr "Excluir"
+
+#: templatetags/common_tags.py:20
+msgid "EDIT"
+msgstr "Editar"
+
+#: templatetags/common_tags.py:21
+msgid "ADD_BLOG"
+msgstr "Adicionar Blog"
+
+#: templatetags/common_tags.py:22
+msgid "ADD_PAGE"
+msgstr "Adicionar Página"
+
+#: templatetags/common_tags.py:23
+msgid "BIKE_CREATE"
+msgstr "Adicionar Bicicleta"
+
+#: templatetags/common_tags.py:24
+msgid "ADD_STATION"
+msgstr "Adicionar Estação"
+
+#: templatetags/common_tags.py:25
+msgid "ADD_PICTURE"
+msgstr "Adicionar Foto"
+
+#: templatetags/common_tags.py:26
+msgid "SET_AS_PRIMARY_PICTURE"
+msgstr "Definir como imagem primária"
+
+#: templatetags/common_tags.py:27
+msgid "CHANGE_DEST"
+msgstr "Mudar destino"
+
+#: templatetags/common_tags.py:28
+msgid "CHANGE_BIKE"
+msgstr "Mudar bicicleta"
+
+#: templatetags/common_tags.py:29
+msgid "ADD_LINK"
+msgstr "Adicionar Link"
+
+#: templatetags/common_tags.py:30
+msgid "REPLACE_LOGO"
+msgstr "Substituir Logo"
+
+#: templatetags/common_tags.py:31
+msgid "SET_PASSPORT"
+msgstr "Definir Foto ID"
+
+#: templatetags/common_tags.py:32
+msgid "CREATE_TEAM"
+msgstr "Criar Time"
+
+#: templatetags/common_tags.py:33
+msgid "COMMENT"
+msgstr "Comentar"
+
+#: templatetags/common_tags.py:34
+msgid "CHANGE_PASSWORD"
+msgstr "Mudar senha"
+
+#: templatetags/common_tags.py:35
+msgid "CHANGE_EMAIL"
+msgstr "Mudar email"
+
+#: templatetags/common_tags.py:52
+msgid "TRUE"
+msgstr "Verdadeiro"
+
+#: templatetags/common_tags.py:53
+msgid "FALSE"
+msgstr "Falso"

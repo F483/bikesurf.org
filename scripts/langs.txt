@@ -1,3 +1,6 @@
 en
 es
 de
+pt
+it
+fr

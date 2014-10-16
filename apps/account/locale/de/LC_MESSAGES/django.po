@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 14:21-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-14 18:16-0500\n"
+"Last-Translator: Graham Pope <grahamhpope@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
 
 #: forms.py:26 templates/account/profile.html:30
 #: templates/account/profile.html.py:35 templates/account/view.html:19
@@ -84,27 +85,27 @@ msgstr ""
 msgid "ERROR_CANNOT_DELETE_LINK"
 msgstr ""
 
-#: models.py:32
+#: models.py:31
 msgid "OTHER"
 msgstr ""
 
-#: models.py:33
+#: models.py:32
 msgid "COUCHSURFING"
 msgstr ""
 
-#: models.py:34
+#: models.py:33
 msgid "FACEBOOK"
 msgstr ""
 
-#: models.py:35
+#: models.py:34
 msgid "FRIENDS"
 msgstr ""
 
-#: models.py:36
+#: models.py:35
 msgid "GOOGLE"
 msgstr ""
 
-#: models.py:37
+#: models.py:36
 msgid "TWITTER"
 msgstr ""
 

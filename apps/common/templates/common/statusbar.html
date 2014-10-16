@@ -1,40 +1,41 @@
 {% load i18n %}
 
 {% if user.is_authenticated %}
-
-    <a href="/borrows">{% trans "MY_BORROWS" %}</a>
+<ul class="nav navbar-nav navbar-right">
+   <li> <a href="/borrows">{% trans "MY_BORROWS" %}</a></li>
     -
 
     {% for team in current_account_teams %}
-        <a href="/{{ team.link }}">{{ team.name }}</a>
+        <li><a href="/{{ team.link }}">{{ team.name }}</a></li>
         -
     {% endfor %}
 
     {% for station in current_account_stations %}
-        <a href="/{{ station.team.link }}/station/view/{{ station.id }}">
+       <li> <a href="/{{ station.team.link }}/station/view/{{ station.id }}">
             {{ station.street }}
-        </a>
+        </a></li>
         -
     {% endfor %}
 
     {% if arrival_count %}
-        <a href="/borrow/arrivals">
+      <li>  <a href="/borrow/arrivals">
             {% trans "ARRIVALS" %} ({{ arrival_count }})
-        </a>
+        </a></li>
         -
     {% endif %}
 
     {% if departure_count %}
-        <a href="/borrow/departures">
+       <li> <a href="/borrow/departures">
             {% trans "DEPARTURES" %} ({{ departure_count }})
-        </a>
+        </a></li>
         -
     {% endif %}
 
-    <a href="/accounts/logout/">{% trans "LOGOUT" %}</a>
-    <a href="/account/profile">{{ user.username }}</a>
+    <li><a href="/accounts/logout/">{% trans "LOGOUT" %}</a></li>
+    <li><a href="/account/profile">{{ user.username }}</a></li>
 
 {% else %}
-    <a href="/accounts/login/?next={{ current_path }}">{% trans "LOGIN" %}</a>
-    <a href="/accounts/signup/">{% trans "SIGN UP" %}</a>
+    <li><a href="/accounts/login/?next={{ current_path }}">{% trans "LOGIN" %}</a></li>
+    <li><a href="/accounts/signup/">{% trans "SIGN UP" %}</a></li>
 {% endif %}
+</ul>

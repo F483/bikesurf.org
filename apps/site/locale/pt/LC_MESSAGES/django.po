@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-18 09:10-0500\n"
+"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
+
+#: forms.py:19
+msgid "PICK_A_LOCATION"
+msgstr "Escolha um Local"
+
+#: templates/site/donate.html:8 templates/site/index-old.html:49
+#: templates/site/index-old.html.py:148 templates/site/index.html:85
+msgid "DONATE"
+msgstr "Doar"
+
+#: templates/site/index-old.html:29
+msgid "SITE_SLOGAN"
+msgstr "Two Wheels Good, Free Wheels Better"
+
+#: templates/site/index-old.html:34
+msgid "PRESS"
+msgstr "Imprensa"
+
+#: templates/site/index-old.html:39
+msgid "THE_STORY"
+msgstr "História"
+
+#: templates/site/index-old.html:44
+msgid "CONTACT"
+msgstr "Contato"
+
+#: templates/site/index-old.html:54
+msgid "BLOG"
+msgstr "Blog"
+
+#: templates/site/index-old.html:60
+msgid "FREEDOM"
+msgstr "Pague o que puder"
+
+#: templates/site/index-old.html:65 templates/site/index.html:41
+msgid "BORROW_A_BIKE"
+msgstr "Empreste uma bicicleta"
+
+#: templates/site/index-old.html:76 templates/site/index.html:45
+#: templates/site/index.html.py:92
+msgid "SELECT"
+msgstr "Selecionar"
+
+#: templates/site/index-old.html:97 templates/site/index.html:62
+msgid "WHAT_WERE_ABOUT"
+msgstr "O que fazemos"
+
+#: templates/site/index-old.html:100 templates/site/index.html:63
+msgid "SITE_DESCRIPTION_TEXT"
+msgstr ""
+"Acreditamos que o ciclismo muda a maneira como as pessoas pensam e interagem"
+" com seu ambiente. Ter a oportunidade de emprestar uma bicicleta "
+"gratuitamente (ou barata) permite que as pessoas se apaixonem pela bicicleta"
+" novamente. <br> Assista ao vídeo para ver como o sistema de solicitação de "
+"bicicletas funciona. Se você é um defensor da nossa causa e você quer se "
+"envolver, olhe abaixo para fazer uma doação ou iniciar uma equipe própria! "
+"<br> <A href =\"https://www.facebook.com/bikesurf.org \"target=\"_blank\" "
+"class=\"btn learnbtn btn-default\"> Curta-nos no Facebook </a> <br>\" Sempre"
+" que vejo um adulto em uma bicicleta, eu tenho esperança para a raça humana "
+". \"~ H.G. Wells"
+
+#: templates/site/index-old.html:105 templates/site/index.html:70
+msgid "INDEX_VIDEO_EMBED_HTML"
+msgstr ""
+"<iframe src=\"//player.vimeo.com/video/81892478?portrait=0\" width=\"710\" "
+"height=\"399\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen "
+"allowfullscreen></iframe>"
+
+#: templates/site/index-old.html:121 templates/site/index.html:52
+#: templates/site/index.html.py:99
+msgid "START_A_TEAM"
+msgstr "Comece um time"
+
+#: templates/site/index-old.html:157 templates/site/index.html:114
+msgid "BIKESURF_IN_THE_PRESS"
+msgstr "BikeSurf na Imprensa"
+
+#: templates/site/index-old.html:181
+msgid "THE_STORY_TITLE"
+msgstr "Uma ideia que vale a pena espalhar"
+
+#: templates/site/index-old.html:185
+msgid "THE_STORY_CONTENT"
+msgstr ""
+"BikeSurf.org é uma plataforma de código aberto para qualquer um criar seu próprio projeto BikeSurf em sua localidade. O projeto é executado com sucesso desde junho de 2012. Eventualmente, a ideia vai se espalhar por todo o mundo. Ao trabalhar sob o mesmo site, reduz-se o tempo gasto no desenvolvimento das ferramentas da web e aumenta o perfil da iniciativa. \n"
+"<br> \n"
+"Todos os projetos BikeSurf são operados de forma independente, com suas próprias finanças, logística e de política controles. \n"
+"<br> \n"
+"A filosofia BikeSurf visa permitir às pessoas a oportunidade de apreciar o mundo de uma banco: ecológico, saudável e barato. Há também o valor social mais intangível do projeto. Tais projetos de compartilhamento incentivam as pessoas a se comunicar, compartilhar recursos e desenvolver um forte senso de comunidade."
+
+#: templates/site/index.html:37
+msgid "BIKESURF_IS"
+msgstr ""
+"<b>BikeSurf</b> é um projeto com o objetivo de prover a qualquer um, os "
+"melhores meios ecológicos e saudáveis de transporte em qualquer cidade ao "
+"redor do mundo - a bicicleta."
+
+#: templates/site/index.html:53
+msgid "BRING_BIKE_SURF"
+msgstr "Faça o mesmo na sua cidade!"
+
+#: templates/site/index.html:88
+msgid "DONATE_TEXT"
+msgstr "Doar"
+
+#: templates/site/terms.html:8
+msgid "TERMS_AND_CONDITIONS_TITLE"
+msgstr "Termos e condições de uso"
+
+#: templates/site/terms.html:12
+msgid "TERMS_AND_CONDITIONS_TEXT"
+msgstr ""
+"<p> \n"
+"<h1> BikeSurfBerlin - Contrato de Locação e liberação de responsabilidade </ h1> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de solicitação BikeSurf: </ b> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<h1> BikeSurf - Contrato de Locação e Isenção de Responsabilidade </ h1> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de solicitação BikeSurf: </ b> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Lembre-se que BikeSurf pertence a você e que você é responsável pela continuação deste sistema baseado em confiança. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Andar de bicicleta é uma ótima maneira de conhecer uma nova cidade. No entanto, ele exige que você preste atenção às regras de trânsito específicas para aquele país. Ao cuidar de si mesmo e de outros usuários da estrada, a experiência BikeSurfing será ainda mais agradável. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Por favor, avalie o estado da bicicleta e caso encontre qualquer problema que impeça o uso da bicicleta, entre em contato com o seu contato BikeSurf local antes de utilizar a bicicleta. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Eu concordo de liberar a BikeSurf de toda e qualquer responsabilidade por danos ou prejuízos para o usuário do equipamento listado nesta forma ou para qualquer outra pessoa. Concordo em não fazer uma reclamação contra ou processar este projeto de bicicletas por ferimentos ou danos relacionados com a bicicleta ou o uso deste equipamento. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"O equipamento, em todos os momentos, pertence exclusivamente a BikeSurf. Avisarei um membro da BikeSurf dentro de 24 horas se a bicicleta for danificada de alguma forma durante meu uso ou se a bicicleta for roubada enquanto sob meus cuidados. \n"
+"</ p>"

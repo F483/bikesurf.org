@@ -1,0 +1,354 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-18 09:04-0500\n"
+"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
+
+#: control.py:142
+msgid "DELETED"
+msgstr "Apagado"
+
+#: control.py:164 control.py:171 control.py:178 models.py:118
+#: templates/borrow/view.html:14
+msgid "BORROWER"
+msgstr "Tomador do Empréstimo"
+
+#: control.py:164 control.py:171 control.py:178 forms.py:62 forms.py:212
+#: templates/borrow/respond.html:40 templates/borrow/view.html:24
+msgid "BIKE"
+msgstr "Bicicleta"
+
+#: control.py:164 control.py:178 templates/borrow/respond.html:46
+#: templates/borrow/view.html:31
+msgid "DATE_TO"
+msgstr "Data Final"
+
+#: control.py:164 control.py:179 forms.py:73 templates/borrow/respond.html:48
+#: templates/borrow/view.html:35
+msgid "STATION_TO"
+msgstr "Estação de Entrega"
+
+#: control.py:171 control.py:178 templates/borrow/respond.html:45
+#: templates/borrow/view.html:30
+msgid "DATE_FROM"
+msgstr "Data Inicial"
+
+#: control.py:171 control.py:179 forms.py:69 templates/borrow/respond.html:47
+#: templates/borrow/view.html:34
+msgid "STATION_FROM"
+msgstr "Estação de Retirada"
+
+#: control.py:179
+msgid "BORROW_STATE"
+msgstr "Estado"
+
+#: forms.py:34 models.py:20
+msgid "ACCEPTED"
+msgstr "Aceito"
+
+#: forms.py:35 models.py:21
+msgid "REJECTED"
+msgstr "Rejeitado"
+
+#: forms.py:42
+msgid "ERROR_IMPOSSIBLE_START_DATE"
+msgstr "Erro: Data inicial inválida"
+
+#: forms.py:44
+msgid "ERROR_IMPOSSIBLE_FINISH_DATE"
+msgstr "Erro: Data final inválida"
+
+#: forms.py:46
+msgid "ERROR_FINISH_BEFORE_START"
+msgstr "Erro: Data final menor que Data inicial"
+
+#: forms.py:50
+msgid "ERROR_START_LESS_THEN_MINIMUM"
+msgstr "Erro: Data inicial deve estar pelo menos 3 dias a frente"
+
+#: forms.py:53 forms.py:126
+msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
+msgstr ""
+"Erro: Esta bicicleta já possui um empréstimo dentro do período solicitado"
+
+#: forms.py:56
+msgid "ERROR_ALREADY_REQUESTED_BORROW_IN_TIMEFRAME"
+msgstr ""
+"Erro: Você tem outro empréstimo neste período, é permitido apenas um "
+"empréstimo por vez! Se você tem amigos que queiram pedir uma bicicleta, "
+"solicite para cada um fazer sua prórpia reserva."
+
+#: forms.py:62 forms.py:70 forms.py:74 models.py:26
+msgid "ALL"
+msgstr "Todas"
+
+#: forms.py:65
+msgid "STATE"
+msgstr "Estado"
+
+#: forms.py:77
+msgid "FUTURE_BORROWS"
+msgstr "Empréstimos futuros"
+
+#: forms.py:80
+msgid "ONGOING_BORROWS"
+msgstr "Empréstimos em andamento"
+
+#: forms.py:83
+msgid "PAST_BORROWS"
+msgstr "Empréstimos anteriores"
+
+#: forms.py:100
+msgid "RESPONSE"
+msgstr "Responder"
+
+#: forms.py:101 forms.py:187 forms.py:192 forms.py:197 forms.py:214
+#: forms.py:243
+msgid "NOTE"
+msgstr "Observação"
+
+#: forms.py:116
+msgid "ERROR_TO_LATE_TO_ACCEPT"
+msgstr "Erro: Muito tarde para aceitar"
+
+#: forms.py:118
+msgid "ERROR_BIKE_NOT_ACTIVE"
+msgstr "Erro: Bicicleta não está ativa"
+
+#: forms.py:120
+msgid "ERROR_IS_RESERVE_BIKE"
+msgstr "Erro: Esta é uma bicicleta reservada"
+
+#: forms.py:122
+msgid "ERROR_BIKE_STATION_UNKNOWN"
+msgstr "Erro: Estação desconhecida"
+
+#: forms.py:124
+msgid "ERROR_BIKE_STATION_INACTIVE"
+msgstr "Erro: Estação desativada"
+
+#: forms.py:133 forms.py:204
+msgid "START"
+msgstr "Início"
+
+#: forms.py:137 forms.py:208
+msgid "FINISH"
+msgstr "Fim"
+
+#: forms.py:141
+msgid "BORROW_NOTE"
+msgstr "Obervação"
+
+#: forms.py:142
+msgid "ACCEPT_TERMS"
+msgstr "Aceitar Termos e </ br> condições de uso."
+
+#: forms.py:168
+msgid "ERROR_MUST_ACCEPT_TERMS"
+msgstr ""
+"Por favor confirme que você leu e aceitou os termos e condições de uso."
+
+#: forms.py:172
+msgid "ERROR_ACCOUNT_REQUIRES_FULLNAME"
+msgstr "Perfil incompleto: O primeiro e último nome devem ser preenchidos."
+
+#: forms.py:176
+msgid "ERROR_ACCOUNT_REQUIRES_MOBILE"
+msgstr "Erro: Preencha o número de celular no seu perfil."
+
+#: forms.py:180
+msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
+msgstr ""
+"Perfil incompleto: Cópia de um documento de identidade é requerido para "
+"emprestar uma bicicleta."
+
+#: forms.py:240
+msgid "DESTINATION_STATION"
+msgstr "Destino"
+
+#: models.py:19
+msgid "REQUEST"
+msgstr "Solicitação"
+
+#: models.py:22
+msgid "CANCELED"
+msgstr "Cancelado"
+
+#: models.py:23 models.py:95
+msgid "FINISHED"
+msgstr "Concluído"
+
+#: models.py:90
+msgid "LENDER_RATE"
+msgstr "Taxa"
+
+#: models.py:91
+msgid "BORROWER_RATE"
+msgstr "Taxa"
+
+#: models.py:92
+msgid "CREATE"
+msgstr "Criar"
+
+#: models.py:93
+msgid "RESPOND"
+msgstr "Responder"
+
+#: models.py:94
+msgid "CANCEL"
+msgstr "Cancelar"
+
+#: models.py:96
+msgid "EDIT"
+msgstr "Editar"
+
+#: models.py:119
+msgid "LENDER"
+msgstr "Credor/Emprestador"
+
+#: models.py:124
+msgid "THUMBS_UP"
+msgstr "Positivo"
+
+#: models.py:125
+msgid "NEUTRAL"
+msgstr "Neutro"
+
+#: models.py:126
+msgid "THUMBS_DOWN"
+msgstr "Negativo"
+
+#: views.py:91
+msgid "TEAM_BORROWS"
+msgstr "Empréstimos do Time"
+
+#: views.py:103
+msgid "YOUR_BORROWS"
+msgstr "Seus empréstimos"
+
+#: views.py:116
+msgid "ARRIVALS"
+msgstr "Chegadas"
+
+#: views.py:131
+msgid "DEPARTURES"
+msgstr "Partidas"
+
+#: views.py:170
+msgid "BORROW_CREATE"
+msgstr "Criar empréstimo"
+
+#: views.py:198 views.py:222 views.py:244
+msgid "BORROW_EDIT"
+msgstr "Editar empréstimo"
+
+#: views.py:267
+msgid "BORROW_RESPOND"
+msgstr "Responder a uma solicitação de empréstimo"
+
+#: views.py:286 views.py:395
+msgid "BORROW_CANCEL"
+msgstr "Cancelar empréstimo"
+
+#: views.py:306 views.py:330
+msgid "RATE"
+msgstr "Taxa"
+
+#: views.py:372
+msgid "BORROW_COMMENT"
+msgstr "Comentários"
+
+#: templates/borrow/create.html:6
+msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
+msgstr ""
+"ATENÇÃO!</br>O <u><b><a href=\"/account/profile\">perfil</a></b></u> não tem"
+" as informações necessárias para efetuar um empréstimo.</br>Por favor, "
+"atualize seu <u><b><a href=\"/account/profile\">perfil</a></b></u>, antes de"
+" solicitar uma bicicleta."
+
+#: templates/borrow/create.html:8
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr ""
+"<p> \n"
+"Recebemos muitas solicitações por dia, por favor, tente reservar uma bicicleta pelo menos 3 dias antes da data que pretende pegar a bicicleta, se possível. </ Br> \n"
+"Por favor, seja paciente, pois pode levar até 72 horas para que possamos responder você. \n"
+"</p> \n"
+"\n"
+"<p> \n"
+"Por favor, leia e entenda os <u><b><a href=\"/site/terms_and_conditions.html\" target=\"_blank\"> termos e condições de uso </a></b></u>antes de aceitá-los. \n"
+"</p>"
+
+#: templates/borrow/respond.html:6
+msgid "BORROWER_INFORMATION"
+msgstr "Informações do solicitante"
+
+#: templates/borrow/respond.html:9
+msgid "USERNAME"
+msgstr "Nome do usuário"
+
+#: templates/borrow/respond.html:15
+msgid "FIRST_NAME"
+msgstr "Primeiro nome"
+
+#: templates/borrow/respond.html:16
+msgid "LAST_NAME"
+msgstr "Último nome"
+
+#: templates/borrow/respond.html:17
+msgid "PASSPORT"
+msgstr "Identificação"
+
+#: templates/borrow/respond.html:19
+msgid "IMAGE"
+msgstr "Imagem"
+
+#: templates/borrow/respond.html:21
+msgid "NONE"
+msgstr "Nenhum"
+
+#: templates/borrow/respond.html:24
+msgid "MOBILE"
+msgstr "Celular"
+
+#: templates/borrow/respond.html:25
+msgid "EMAIL"
+msgstr "Email"
+
+#: templates/borrow/respond.html:26
+msgid "SOURCE"
+msgstr "Fonte"
+
+#: templates/borrow/respond.html:27
+msgid "DESCRIPTION"
+msgstr "Descrição"
+
+#: templates/borrow/respond.html:37
+msgid "BORROW_INFORMATION"
+msgstr "Informações do empréstimo"
+
+#: templates/borrow/view.html:10
+msgid "BORROWING"
+msgstr "Empréstimos"
+
+#: templates/borrow/view.html:36
+msgid "LOCKCODE"
+msgstr "Código da trava"
+
+#: templates/borrow/view.html:56
+msgid "SYSTEM"
+msgstr "bikesurf.org"

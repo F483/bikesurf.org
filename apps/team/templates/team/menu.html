@@ -4,11 +4,11 @@
 {% load link_tags %}
 
 
-<div class="navigation_title">
+<h2 class="sidebarheadleft">
     {{ current_team.name }} 
 </div>
-<div class="navigation"> 
-    <ul>
+<div class="leftsidebar">
+    <ul class="sidenav">
         {% for link, label, selected in team_menu_public %}
             <li>
                 {% if selected %}
@@ -20,7 +20,10 @@
                 {% endif %}
             </li>
         {% endfor %}
-
+     </ul>    
+	<h2 class="sidebarheadleft">Team</h2>
+       <div class="leftsidebar">
+     	 <ul class="sidenav">
         {% for link in current_team_links %}
             <li>
                 {% link_draw link %} 
@@ -31,8 +34,8 @@
                 {% endif_member %}
             </li>
         {% endfor %}
-
-    </ul>
+		</ul>
+  	  </div>
 
     {% if_can_join current_account current_team %}
         <div class="actions">
@@ -42,9 +45,9 @@
 </div>
 
 {% if_member current_account current_team %}
-    <div class="navigation_title">{% trans "TEAM" %}</div> 
-    <div class="navigation"> 
-        <ul>
+    <h2 class="sidebarheadleft">{% trans "TEAM" %}</h2> 
+    <div class="leftsidebar">
+        <ul class="sidenav">
             {% for link, label, selected in team_menu_intern %}
                 <li>
                     {% if selected %}
@@ -58,10 +61,11 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="navigation_title">{% trans "ACTIONS" %}</div> 
-    <div class="navigation"> 
+    <h2 class="sidebarheadleft">{% trans "ACTIONS" %}</h2>
+
+    <div class="leftsidebar lsbfinal">
         <ul>
-            <li>
+            <li class="btn btn-xs sidebarbtn">
                 {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}
             </li>
             <li>
@@ -83,5 +87,6 @@
 
         </ul>
     </div>
+    </div>    
 {% endif_member %}
 
