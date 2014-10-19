@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 14:21-0500\n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr ""
 msgid "CREATE_TEAM"
 msgstr ""
 
-#: views.py:161 templates/team/menu.html:39
+#: views.py:161 templates/team/menu-old.html:39 templates/team/menu.html:42
 msgid "JOIN_REQUEST"
 msgstr ""
 
@@ -159,11 +159,11 @@ msgstr ""
 msgid "TEAM_CREATED_DESCRIPTION"
 msgstr ""
 
-#: templates/team/menu.html:45
+#: templates/team/menu-old.html:45 templates/team/menu.html:48
 msgid "TEAM"
 msgstr ""
 
-#: templates/team/menu.html:61
+#: templates/team/menu-old.html:61 templates/team/menu.html:64
 msgid "ACTIONS"
 msgstr ""
 

@@ -74,7 +74,7 @@ def send_mail(recipient_list, template_subject, template_message, context):
     # TODO add i18n templates for users prefered language
     # TODO use async mail queue
     site = context["site"] = Site.objects.get_current()
-    sender = settings.EMAIL_HOST_USER
+    sender = settings.DEFAULT_FROM_EMAIL
     subject = render_to_string(template_subject, context) # render subject
     subject = u" ".join(subject.splitlines()).strip() # remove newlines
     subject = u"[{site}] {subject}".format(site=site.name, subject=subject) # add prefix

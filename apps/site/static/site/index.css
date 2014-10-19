@@ -50,7 +50,7 @@
 #u199
 {
 	z-index: 7;
-	width: 152px;
+	width: 300px;
 	margin-left: 18px;
 	margin-top: 11px;
 }
@@ -61,15 +61,17 @@
 	margin-left: 16px;
 	margin-top: 1px;
 	position: relative;
+	a:visited {text-decoration:none;}
 }
 
 #u240-4
 {
 	z-index: 17;
-	width: 166px;
-	min-height: 22px;
+	width: 300px;
+	min-height: 31px;
 	margin-right: -10000px;
 	margin-top: 4px;
+	font-size: 31px;
 }
 
 #u1678-4
@@ -127,9 +129,9 @@
 
 #u962-4
 {
-	z-index: 121;
-	width: 521px;
-	min-height: 80px;
+	z-index: 70;
+	width: 500px;
+	min-height: 70px;
 	margin-right: -10000px;
 }
 
@@ -668,6 +670,9 @@
 	margin-right: -10000px;
 	margin-top: 383px;
 	left: 123px;
+	moz-column-gap:15px; /* Firefox */
+	webkit-column-gap:15px; /* Safari and Chrome */
+	column-gap:15px;
 }
 
 #story

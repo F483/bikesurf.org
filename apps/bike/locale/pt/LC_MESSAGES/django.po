@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"PO-Revision-Date: 2014-09-18 08:12-0500\n"
+"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
+
+#: forms.py:23
+msgid "ALL"
+msgstr "Todsa"
+
+#: forms.py:29
+msgid "BIKE_FILTER_SIZE"
+msgstr "Tamanho"
+
+#: forms.py:33
+msgid "BIKE_FILTER_LIGHTS"
+msgstr "Luzes"
+
+#: forms.py:36
+msgid "BIKE_FILTER_START"
+msgstr "Data Inicial"
+
+#: forms.py:41
+msgid "BIKE_FILTER_FINISH"
+msgstr "Data Final"
+
+#: forms.py:52
+msgid "ERROR_START_NOT_IN_FUTURE"
+msgstr "Erro: Inicio deve ser uma data futura "
+
+#: forms.py:54
+msgid "ERROR_FINISH_NOT_IN_FUTURE"
+msgstr "Erro: Final deve ser uma data futura "
+
+#: forms.py:56
+msgid "ERROR_FINISH_BEFORE_START"
+msgstr "Erro: Data Final menor que Data Inicial"
+
+#: forms.py:62 forms.py:81
+msgid "NAME"
+msgstr "Nome"
+
+#: forms.py:63
+msgid "IMAGE"
+msgstr "Imagem"
+
+#: forms.py:64 forms.py:82 templates/bike/list.html:38
+#: templates/bike/view.html:31
+msgid "ACTIVE"
+msgstr "Ativo"
+
+#: forms.py:65 forms.py:83 templates/bike/list.html:39
+#: templates/bike/view.html:32
+msgid "RESERVE"
+msgstr "Reservar"
+
+#: forms.py:66 forms.py:84 templates/bike/list.html:40
+#: templates/bike/view.html:35
+msgid "STATION"
+msgstr "Estação"
+
+#: forms.py:67 forms.py:85 templates/bike/view.html:34
+msgid "LOCKCODE"
+msgstr "Código da trava"
+
+#: forms.py:68 forms.py:86 templates/bike/list.html:35
+#: templates/bike/view.html:29
+msgid "SIZE"
+msgstr "Tamanho"
+
+#: forms.py:69 forms.py:87 templates/bike/list.html:36
+#: templates/bike/view.html:30
+msgid "LIGHTS"
+msgstr "Luzes"
+
+#: forms.py:70 forms.py:88 templates/bike/view.html:40
+msgid "DESCRIPTION"
+msgstr "Descrição"
+
+#: forms.py:111
+msgid "ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"
+msgstr "Erro: Não é possível desativar, bicicleta em uso!"
+
+#: forms.py:115
+msgid "ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"
+msgstr "Erro: Não é possível mudar estação, bicicleta em uso!"
+
+#: forms.py:130
+msgid "ERROR_CANNOT_DELETE_BIKE_IN_USE"
+msgstr "Erro: Não é possível excluir, bicicleta em uso!"
+
+#: models.py:16
+msgid "SMALL"
+msgstr "Pequena"
+
+#: models.py:17
+msgid "MEDIUM"
+msgstr "Média"
+
+#: models.py:18
+msgid "LARGE"
+msgstr "Grande"
+
+#: views.py:37 views.py:45
+msgid "BIKE_BORROWS"
+msgstr "Bicicletas emprestadas"
+
+#: views.py:44
+msgid "OVERVIEW"
+msgstr "Visão Geral"
+
+#: views.py:152
+msgid "BIKES"
+msgstr "Bicicletas"
+
+#: views.py:182
+msgid "BIKE_CREATE"
+msgstr "Adicionar Bicicleta"
+
+#: views.py:211
+msgid "BIKE_EDIT"
+msgstr "Editar Bicicleta"
+
+#: views.py:232
+msgid "BIKE_DELETE?"
+msgstr "Excluir Bicicleta"
+
+#: templates/bike/list.html:44
+msgid "UNKNOWN"
+msgstr "Desconhecido"
+
+#: templates/bike/list.html:59
+msgid "NO_BIKES"
+msgstr "Sem bicicletas"
