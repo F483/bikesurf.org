@@ -175,12 +175,13 @@ LANGUAGE_CODE = 'en-us'
 
 _ = lambda s : s
 LANGUAGES = (
-    ('de', _("German")),
-    ('en', _("English")),
-#    ('fr', _("French")),
-    ('es', _("Spanish")),
-#    ('it', _("Italian")),
-#    ('zh-tw', _("Traditional Chinese")),
+    ('en',    _("English")),
+    ('de',    _("German")),
+    ('pt-BR', _("Brazilian Portuguese")),
+    ('fr',    _("French")),
+    ('es',    _("Spanish")),
+    ('it',    _("Italian")),
+    ('zh-TW', _("Traditional Chinese")),
 )
 
 ROSETTA_WSGI_AUTO_RELOAD = True
