@@ -11,6 +11,7 @@ from django.db.models import TextField
 from django.db.models import DateTimeField
 from sanitizer.models import SanitizedCharField
 from config.settings import SANITIZER_ALLOWED_TAGS, SANITIZER_ALLOWED_ATTRIBUTES
+from apps.account.models import Account
 
 
 class Blog(Model):
@@ -23,9 +24,9 @@ class Blog(Model):
                )
 
     # meta
-    created_by = ForeignKey("account.Account", related_name="blogs_created")
+    created_by = ForeignKey(Account, related_name="blogs_created")
     created_on = DateTimeField(auto_now_add=True)
-    updated_by = ForeignKey("account.Account", related_name="blogs_updated")
+    updated_by = ForeignKey(Account, related_name="blogs_updated")
     updated_on = DateTimeField(auto_now=True)
 
     def __unicode__(self):

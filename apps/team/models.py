@@ -15,6 +15,7 @@ from django.utils.translation import ugettext as _
 from django_countries.fields import CountryField
 from imagekit.models.fields import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from apps.account.models import Account
 
 
 STATUS_CHOICES = [
@@ -34,7 +35,7 @@ class Team(Model):
     links       = ManyToManyField('link.Link', null=True, blank=True) # team social media links
     name        = CharField(max_length=1024, unique=True)
     country     = CountryField()
-    members     = ManyToManyField('account.Account', null=True, blank=True, 
+    members     = ManyToManyField(Account, null=True, blank=True, 
                                   related_name="teams") 
     logo        = ProcessedImageField(upload_to=_upload_to, 
                                       processors=[ResizeToFill(525, 100)],
@@ -43,9 +44,9 @@ class Team(Model):
     application = TextField() 
 
     # meta
-    created_by  = ForeignKey('account.Account', related_name='team_created')
+    created_by  = ForeignKey(Account, related_name='team_created')
     created_on  = DateTimeField(auto_now_add=True)
-    updated_by  = ForeignKey('account.Account', related_name='team_updated')
+    updated_by  = ForeignKey(Account, related_name='team_updated')
     updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
@@ -63,10 +64,10 @@ class JoinRequest(Model):
         'team.Team', related_name='join_requests'
     )
     requester = ForeignKey( # user who is requesting to join
-        'account.Account', related_name='join_requests_made'
+        Account, related_name='join_requests_made'
     ) 
     processor = ForeignKey( # user who answerd the request
-        'account.Account', related_name='join_requests_processed', 
+        Account, related_name='join_requests_processed', 
         null=True, blank=True
     )
     status = CharField(
@@ -97,13 +98,13 @@ class RemoveRequest(Model):
         related_name='remove_requests'
     )
     concerned = ForeignKey( # user to be removed
-        'account.Account', related_name='remove_requests_concerned'
+        Account, related_name='remove_requests_concerned'
     )
     requester = ForeignKey( # user who is requesting the removel
-        'account.Account', related_name='remove_requests_made'
+        Account, related_name='remove_requests_made'
     )
     processor = ForeignKey( # user who processed the request
-        'account.Account', related_name='remove_requests_processed', 
+        Account, related_name='remove_requests_processed', 
         null=True, blank=True
     )
     status = CharField(

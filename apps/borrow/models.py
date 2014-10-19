@@ -13,6 +13,7 @@ from django.db.models import DateField
 from django.db.models import DateTimeField
 from django.db.models import IntegerField
 from apps.common.shortcuts import get_object_or_none
+from apps.account.models import Account
 
 
 STATE_CHOICES = [                # initiator
@@ -33,7 +34,7 @@ class Borrow(Model):
             blank=True, null=True
     )
     team = ForeignKey('team.Team', related_name='borrows') # only because bikes may be deleted
-    borrower = ForeignKey('account.Account')
+    borrower = ForeignKey(Account)
     start = DateField()
     finish = DateField() # inclusive
     active = BooleanField() # FIXME deprecate and use (state == "ACCEPTED")
@@ -97,7 +98,7 @@ class Log(Model):
     ]
 
     borrow = ForeignKey('borrow.Borrow', related_name="logs")
-    initiator = ForeignKey('account.Account', blank=True, null=True) # None => system
+    initiator = ForeignKey(Account, blank=True, null=True) # None => system
     action = CharField(max_length=64, choices=ACTION_CHOICES)
     note = TextField(blank=True) # by initiator
 
@@ -131,7 +132,7 @@ class Rating(Model):
 
     borrow = ForeignKey('borrow.Borrow')
     rating = CharField(max_length=64, choices=RATING_CHOICES)
-    account = ForeignKey('account.Account') # borrower or lender
+    account = ForeignKey(Account) # borrower or lender
     originator = CharField(max_length=64, choices=ORIGINATOR_CHOICES)
 
     # meta

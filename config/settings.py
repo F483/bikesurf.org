@@ -22,7 +22,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_DIR, 'uploads/development.db'),                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_DIR, 'development.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -118,7 +118,6 @@ INSTALLED_APPS = (
     'rosetta',          # https://www.djangopackages.com/packages/p/django-rosetta/
     'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
     'imagekit',         # https://www.djangopackages.com/packages/p/django-imagekit/
-    'south',            # http://south.aeracode.org/
 
     # biksurfing apps
     'apps.common',

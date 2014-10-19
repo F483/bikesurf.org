@@ -2,5 +2,8 @@
 # Copyright (c) 2014 Fabian Barkhau <fabian.barkhau@gmail.com>                  
 # License: MIT (see LICENSE.TXT file) 
 
-default_app_config = 'apps.account.app.Config'
+from django.apps import AppConfig
 
+class Config(AppConfig):
+  name = 'apps.account'
+  label = 'bikesurf.org account'

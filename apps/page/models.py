@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from django.core.validators import RegexValidator
 from sanitizer.models import SanitizedCharField
 from config.settings import SANITIZER_ALLOWED_TAGS, SANITIZER_ALLOWED_ATTRIBUTES
+from apps.account.models import Account
 
 
 class Page(models.Model):
@@ -23,9 +24,9 @@ class Page(models.Model):
     order       = models.IntegerField(blank=True, null=True)
 
     # meta
-    created_by  = models.ForeignKey("account.Account", related_name="pages_created")
+    created_by  = models.ForeignKey(Account, related_name="pages_created")
     created_on  = models.DateTimeField(auto_now_add=True)
-    updated_by  = models.ForeignKey("account.Account", related_name="pages_updated")
+    updated_by  = models.ForeignKey(Account, related_name="pages_updated")
     updated_on  = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):

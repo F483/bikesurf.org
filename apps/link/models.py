@@ -8,6 +8,7 @@ from django.db.models import ForeignKey
 from django.db.models import CharField
 from django.db.models import DateTimeField
 from django.utils.translation import ugettext as _
+from apps.account.models import Account
 
 
 SITE_CHOICES = [
@@ -65,13 +66,13 @@ class Link(Model):
     profile    = CharField(max_length=1024) # THE ACTUAL URL, BE CAREFUL !!!
 
     # TODO implement and use mn relationship (the more confirms the better ...)
-    confirmed  = ForeignKey('account.Account',     # None or the account that
+    confirmed  = ForeignKey(Account,     # None or the account that
                             blank=True, null=True)
 
     # metadata
-    created_by = ForeignKey('account.Account', related_name="links_created")
+    created_by = ForeignKey(Account, related_name="links_created")
     created_on = DateTimeField(auto_now_add=True)
-    updated_by = ForeignKey("account.Account", related_name="links_updated")
+    updated_by = ForeignKey(Account, related_name="links_updated")
     updated_on = DateTimeField(auto_now=True)
 
     def get_url(self):

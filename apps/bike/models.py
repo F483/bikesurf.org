@@ -10,6 +10,7 @@ from django.db.models import CharField
 from django.db.models import TextField
 from django.db.models import DateTimeField
 from django.utils.translation import ugettext as _
+from apps.account.models import Account
 
 
 SIZE_CHOICES = [      # Body Hight
@@ -34,9 +35,9 @@ class Bike(Model):
     lights = BooleanField(default=False) # to cycle when dark
     
     # metadata
-    created_by  = ForeignKey('account.Account', related_name="bikes_created")
+    created_by  = ForeignKey(Account, related_name="bikes_created")
     created_on  = DateTimeField(auto_now_add=True)
-    updated_by  = ForeignKey("account.Account", related_name="bikes_updated")
+    updated_by  = ForeignKey(Account, related_name="bikes_updated")
     updated_on  = DateTimeField(auto_now=True)
 
     def __unicode__(self):
