@@ -1,21 +1,25 @@
-Bikesurfing.org
-===============
+# Bikesurf.org
 
 A website for bike sharing.
 
-Installation for development on ubuntu
-======================================
+# Installation for development
+
+bikesurf.org is made with python/django.
+
+### Dependencies for ubuntu
 
     # install apt packages
-    cd where/you/keep/your/repos
     sudo apt-get -qy install apache2 postgresql libapache2-mod-wsgi # only for server
     sudo apt-get -qy install gettext libjpeg-dev
 
+### Project Setup
+
     # Clone repository
-    hg clone https://bitbucket.org/fabe/bikesurf.org
+    cd where/you/keep/your/repos
+    git clone https://github.com/F483/bikesurf.org
     cd bikesurf.org
 
-    # python virtualenv 
+    # python virtualenv
     virtualenv -p /usr/bin/python2 env  # create virtualenv
     source env/bin/activate             # activate virtualenv
 
@@ -23,7 +27,8 @@ Installation for development on ubuntu
     python setup.py develop
 
     # Setup development database
-	  python manage.py syncdb
+    python manage.py syncdb
 
     # Start development server
-	  python manage.py runserver
+    python manage.py runserver
+
