@@ -1,0 +1,13 @@
+
+# site files
+uploads/*
+google437fc9f7c48a6697.html
+
+# development files
+development.db
+env/*
+bikesurf.org.egg*
+
+# site settings
+config/local_settings.py
+
