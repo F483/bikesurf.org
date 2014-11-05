@@ -2,199 +2,202 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-18 07:26-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-10-26 10:55-0500\n"
+"Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
 
 #: forms.py:31
 msgid "ERROR_NAME_TO_SHORT"
-msgstr ""
+msgstr "ERRORE_NOME_TROPPO_CORTO"
 
 #: forms.py:33
 msgid "ERROR_NAME_RESERVED"
-msgstr ""
+msgstr "ERRORE_NOME_PRENOTATO"
 
 #: forms.py:35 forms.py:37
 msgid "ERROR_NAME_USED"
-msgstr ""
+msgstr "ERRORE_NOME_IN_USO"
 
 #: forms.py:42 forms.py:49
 msgid "LOGO"
-msgstr ""
+msgstr "LOGO"
 
 #: forms.py:47
 msgid "TEAM_NAME"
-msgstr ""
+msgstr "NOME_SQUADRA"
 
 #: forms.py:48
 msgid "COUNTRY"
-msgstr ""
+msgstr "PAESE"
 
 #: forms.py:50
 msgid "APPLICATION"
-msgstr ""
+msgstr "APPLICAZIONE"
 
 #: forms.py:55
 msgid "JOIN_REQUEST_REASON"
-msgstr ""
+msgstr "MOTIVO_RICHIESTA_PARTECIPAZIONE"
 
 #: forms.py:60 forms.py:71 templates/team/join_request/list.html:14
 #: templates/team/remove_request/list.html:17
 msgid "RESPONSE"
-msgstr ""
+msgstr "RISPOSTA"
 
 #: forms.py:61 forms.py:72
 msgid "STATUS"
-msgstr ""
+msgstr "STATO"
 
 #: forms.py:66 templates/team/remove_request/list.html:14
 msgid "REASON"
-msgstr ""
+msgstr "MOTIVO"
 
 #: forms.py:77
 msgid "SITE"
-msgstr ""
+msgstr "SITO"
 
 #: forms.py:78
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: forms.py:90
 msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
-msgstr ""
+msgstr "ERRORE_PROFILO_DEL_LINK_PER_SITO_ESISTENTE"
 
 #: forms.py:92
 msgid "ERROR_BAD_PROFILE_FORMAT"
-msgstr ""
+msgstr "ERRORE_FORMATO_PROFILO_INCORRETTO"
 
 #: forms.py:94
 msgid "ERROR_CANNOT_CREATE_LINK"
-msgstr ""
+msgstr "ERRORE_IMPOSSIBILE_CREARE_LINK"
 
 #: forms.py:109
 msgid "ERROR_CANNOT_DELETE_LINK"
-msgstr ""
+msgstr "ERRORE_IMPOSSIBILE_CANCELLARE_LINK"
 
 #: models.py:21
 msgid "PENDING"
-msgstr ""
+msgstr "IN_ATTESA"
 
 #: models.py:22
 msgid "ACCEPTED"
-msgstr ""
+msgstr "ACCETTATO"
 
 #: models.py:23
 msgid "DECLINED"
-msgstr ""
+msgstr "RIFIUTATO"
 
 #: utils.py:15
 msgid "BLOG"
-msgstr ""
+msgstr "BLOG"
 
 #: utils.py:16
 msgid "BIKES"
-msgstr ""
+msgstr "BICICLETTE"
 
 #: utils.py:17 views.py:126
 msgid "MEMBERS"
-msgstr ""
+msgstr "MEMBRI"
 
 #: utils.py:18
 msgid "BORROWS"
-msgstr ""
+msgstr "PRESTITI"
 
 #: utils.py:19
 msgid "STATIONS"
-msgstr ""
+msgstr "STAZIONI"
 
 #: utils.py:20
 msgid "JOIN_REQUESTS"
-msgstr ""
+msgstr "RICHIESTE_PARTECIPAZIONE"
 
 #: utils.py:21
 msgid "REMOVE_REQUESTS"
-msgstr ""
+msgstr "RICHIESTE_CANCELLAZIONE"
 
 #: views.py:39
 msgid "LINK_DELETE?"
-msgstr ""
+msgstr "CANCELLA_LINK?"
 
 #: views.py:64
 msgid "ADD_LINK_SUBTITLE"
-msgstr ""
+msgstr "AGGIUNGI_SOTTOTITOLO_SITO"
 
 #: views.py:84
 msgid "REPLACE_LOGO"
-msgstr ""
+msgstr "SOSTITUISCI_LOGO"
 
 #: views.py:106
 msgid "CREATE_TEAM"
-msgstr ""
+msgstr "CREA_SQUADRA"
 
 #: views.py:161 templates/team/menu-old.html:39 templates/team/menu.html:42
 msgid "JOIN_REQUEST"
-msgstr ""
+msgstr "RICHIESTA_PARTECIPAZIONE"
 
 #: views.py:217
+#, fuzzy
 msgid "REMOVE_REQUEST_CREATE"
-msgstr ""
+msgstr "RIMUOVI_CREA_RICHIESTA"
 
 #: templates/team/created.html:8
 msgid "TEAM_CREATED_TITLE"
-msgstr ""
+msgstr "TITOLO_SQUADRA_CREATA"
 
 #: templates/team/created.html:9
 msgid "TEAM_CREATED_DESCRIPTION"
-msgstr ""
+msgstr "DESCRIZIONE_SQUADRA_CREATA"
 
 #: templates/team/menu-old.html:45 templates/team/menu.html:48
 msgid "TEAM"
-msgstr ""
+msgstr "SQUADRA"
 
 #: templates/team/menu-old.html:61 templates/team/menu.html:64
 msgid "ACTIONS"
-msgstr ""
+msgstr "AZIONI"
 
 #: templates/team/join_request/created.html:6
 msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr ""
+msgstr "TITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
 
 #: templates/team/join_request/created.html:7
 msgid "JOIN_REQUEST_CREATED_SUBTITLE"
-msgstr ""
+msgstr "SOTTOTITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
 
 #: templates/team/join_request/list.html:26
 msgid "NO_JOIN_REQUESTS"
-msgstr ""
+msgstr "NESSUNA_RICHIESTA_PARTECIPAZIONE"
 
 #: templates/team/remove_request/created.html:6
+#, fuzzy
 msgid "REMOVE_REQUESTED"
-msgstr ""
+msgstr "RIMOZIONE_RICHIESTA"
 
 #: templates/team/remove_request/created.html:7
 msgid "REMOVE_REQUEST_MADE"
-msgstr ""
+msgstr "RICHIESTA_RIMOZIONE_FATTA"
 
 #: templates/team/remove_request/list.html:12
 msgid "REQUESTER"
-msgstr ""
+msgstr "RICHIEDENTE"
 
 #: templates/team/remove_request/list.html:13
 msgid "CONCERNED"
-msgstr ""
+msgstr "ALL_ATTENZIONE_DI"
 
 #: templates/team/remove_request/list.html:30
 msgid "NO_REMOVE_REQUESTS"
-msgstr ""
+msgstr "NESSNA_RICHIESTA_RIMOZIONE"
