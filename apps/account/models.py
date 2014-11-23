@@ -16,7 +16,7 @@ from django.utils.translation import ugettext as _
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up
 from imagekit.models.fields import ProcessedImageField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFit
 
 
 @receiver(user_signed_up)
@@ -50,7 +50,7 @@ class Account(Model):
     mobile = CharField(max_length=1024, blank=True)
     links = ManyToManyField('link.Link', null=True, blank=True) 
     passport = ProcessedImageField(upload_to=_upload_to, null=True, blank=True, 
-                                   processors=[ResizeToFill(1024, 768)],
+                                   processors=[ResizeToFit(1024, 768)],
                                    format='JPEG', options={'quality': 90})
 
     # meta

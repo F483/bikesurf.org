@@ -310,7 +310,7 @@ GOOGLE_ANALYTICS_ID = None
 # borrow settings #
 ###################
 
-BORROW_MIN_BOOK_IN_ADVANCE_DAYS = 3
+BORROW_MIN_BOOK_IN_ADVANCE_DAYS = 2
 
 ##################
 # local settings #

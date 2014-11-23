@@ -41,7 +41,7 @@ setup(
     'oauthlib==0.6.3',
     'pilkit==1.1.12',
     'polib==1.0.5', # because rosetta requires an old buggy version
-    'psycopg2==2.5.4', # only needed when using postgres
+    #'psycopg2==2.5.4', # only needed when using postgres
     'python-dateutil==2.2',
     'python-openid==2.2.5',
     'requests==2.4.3',

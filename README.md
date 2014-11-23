@@ -9,7 +9,6 @@ bikesurf.org is made with python/django.
 ### Dependencies for ubuntu
 
     # install apt packages
-    sudo apt-get -qy install apache2 postgresql libapache2-mod-wsgi # only for server
     sudo apt-get -qy install gettext libjpeg-dev
 
 ### Project Setup
