@@ -37,4 +37,8 @@ class Station(Model):
         )
         return u"%s %s / %s (%s)" % args
 
+    class Meta:
+        
+        ordering = ['street']
+
 
