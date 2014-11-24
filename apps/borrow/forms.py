@@ -116,8 +116,6 @@ class Respond(Form):
                 raise ValidationError(_("ERROR_TO_LATE_TO_ACCEPT"))
             if not self.borrow.bike.active:
                 raise ValidationError(_("ERROR_BIKE_NOT_ACTIVE"))
-            if self.borrow.bike.reserve:
-                raise ValidationError(_("ERROR_IS_RESERVE_BIKE"))
             if not self.borrow.bike.station:
                 raise ValidationError(_("ERROR_BIKE_STATION_UNKNOWN"))
             if not self.borrow.bike.station.active:
