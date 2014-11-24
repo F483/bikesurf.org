@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
-# License: MIT (see LICENSE.TXT file) 
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>
+# License: MIT (see LICENSE.TXT file)
 
 
 import os
@@ -254,6 +254,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
+
+    # bikesurf.org
+    'apps.common.context_processors.settings',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -268,7 +271,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_SIGNUP_FORM_CLASS = None 
+ACCOUNT_SIGNUP_FORM_CLASS = None
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = True
@@ -281,10 +284,10 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 # TODO provider specific settings SOCIALACCOUNT_PROVIDERS (= dict)
 
 
-#SOCIALACCOUNT_PROVIDERS = { 
-#    'google': { 
+#SOCIALACCOUNT_PROVIDERS = {
+#    'google': {
 #        'SCOPE': ['https://www.googleapis.com/auth/userinfo.profile'],
-#        'AUTH_PARAMS': { 'access_type': 'online' } 
+#        'AUTH_PARAMS': { 'access_type': 'online' }
 #    },
 #}
 
@@ -293,7 +296,7 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 ######################
 
 SANITIZER_ALLOWED_TAGS = [
-    'a', 'p', 'b', 'u', 'i', 'h1', 'h2', 'h3', 'img', 'br', 'table', 'tbody', 
+    'a', 'p', 'b', 'u', 'i', 'h1', 'h2', 'h3', 'img', 'br', 'table', 'tbody',
     'tr', 'td', 'span', 'li', 'ul'
 ]
 SANITIZER_ALLOWED_ATTRIBUTES = [ 'href', 'src', 'style', 'width', 'height']
@@ -311,6 +314,15 @@ GOOGLE_ANALYTICS_ID = None
 ###################
 
 BORROW_MIN_BOOK_IN_ADVANCE_DAYS = 2
+
+
+#########
+# theme #
+#########
+
+# see apps/common/static/bootswatch or http://bootswatch.com
+BOOTSWATCH_THEME = "cerulean"
+
 
 ##################
 # local settings #

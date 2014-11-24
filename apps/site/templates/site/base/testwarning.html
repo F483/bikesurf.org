@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load common_tags %}
+
+{% if not settings.LIVE_INSTANCE %}
+  <div class="container">
+    <div class="alert alert-dismissable alert-warning">
+      {% trans "TEST_INSTANCE_WARNING" %}
+    </div>
+  </div>
+{% endif %}

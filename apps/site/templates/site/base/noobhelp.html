@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load common_tags %}
+
+{% if not user.is_authenticated %}
+  <div class="container">
+    <div class="alert alert-dismissable alert-info">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="row">
+        <div class="col-sm-3">
+          <p>{% trans "NOOB_HELP_INFO" %}</p>
+          {% render_button _("NOOB_HELP_TOUR") "/about" "btn btn-primary" "fa fa-info-circle" %}
+        </div>
+        <div class="col-sm-2" style="text-align: center;">
+          <p><i class="fa fa-bitcoin fa-5x"></i></p>
+          {% trans "NOOB_HELP_CLAIM" %}
+        </div>
+        <div class="col-sm-2" style="text-align: center;">
+          <p><i class="fa fa-exchange fa-5x"></i></p>
+          {% trans "NOOB_HELP_CREATE" %}
+        </div>
+        <div class="col-sm-2" style="text-align: center;">
+          <p><i class="fa fa-users fa-5x"></i></p>
+          {% trans "NOOB_HELP_FUND" %}
+        </div>
+        <div class="col-sm-2" style="text-align: center;">
+          <p><i class="fa fa-lock fa-5x"></i></p>
+          {% trans "NOOB_HELP_SAFE" %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

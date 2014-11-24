@@ -1,0 +1,10 @@
+{% extends "site/base.html" %}
+{% load i18n %}
+{% load common_tags %}
+
+{% block content %}
+  <div class="container">
+    {{ _("SITE_FAQ")|render_markdown }}
+  </div>
+{% endblock %}
+

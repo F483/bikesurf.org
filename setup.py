@@ -27,6 +27,7 @@ setup(
   zip_safe=False,
   install_requires=[
     'Django==1.7',
+    'Markdown==2.5.2',
     'Pillow==2.6.1', # PIL fork
     'Unidecode==0.04.16',
     'argparse==1.2.1',

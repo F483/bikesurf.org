@@ -7,7 +7,7 @@ from django import template
 from django.utils.translation import ugettext as _
 
 from apps.team import control
-from apps.common.templatetags.common_tags import condition_tag
+from apps.common.templatetags.condition_tag import condition_tag
 
 
 register = template.Library()

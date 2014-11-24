@@ -1,16 +1,12 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
 {% block content %}
-
-    <div class="content_title">
-        {% trans "TERMS_AND_CONDITIONS_TITLE" %}
-    </div>
-
-    <div class="content">
-        {% trans "TERMS_AND_CONDITIONS_TEXT" %}
-    </div>
+<div class="container">
+  <h1>{% trans "TERMS_AND_CONDITIONS_TITLE" %}</h1>
+  {% trans "TERMS_AND_CONDITIONS_TEXT" %}
+</div>
 
 {% endblock %}
 

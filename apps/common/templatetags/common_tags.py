@@ -1,13 +1,104 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
-# License: MIT (see LICENSE.TXT file) 
+# Copyright (c) 2014 Fabian Barkhau <fabian.barkhau@gmail.com>
+# License: MIT (see LICENSE.TXT file)
 
-
+import bleach
+import markdown
+import datetime
 from django import template
-from django.template import NodeList
-from functools import wraps
-import inspect
+from django.utils.safestring import mark_safe
+from apps.common.templatetags.condition_tag import condition_tag
 from django.utils.translation import ugettext as _
+
+register = template.Library()
+
+@register.simple_tag
+def gen_qrcode(typenumber, tag_id, data):
+  return """
+    <div id="%(id)s"></div>
+    <script type="text/javascript">
+      append_qrcode(%(typenumber)s,"%(id)s","%(data)s");
+    </script>
+  """ % { "id" : tag_id, "data" : data, "typenumber" : typenumber }
+
+@register.simple_tag
+def render_button(label, url, button_classes, icon_classes=None):
+  args = { 
+    "label" : label, "url" : url, 
+    "button_classes" : button_classes, 
+    "icon_classes" : icon_classes 
+  }
+  if icon_classes:
+    return """
+      <a href="%(url)s" class="%(button_classes)s">
+        <i class="%(icon_classes)s"></i> %(label)s
+      </a>
+    """ % args
+  return """<a href="%(url)s" class="%(button_classes)s">%(label)s</a>""" % args
+
+@register.simple_tag
+def render_button_edit(label, url, button_classes):
+  return render_button(label, url, button_classes, "fa fa-pencil")
+
+@register.simple_tag
+def render_button_delete(label, url, button_classes):
+  return render_button(label, url, button_classes, "fa fa-trash-o")
+
+@register.simple_tag
+def render_button_cancel(label, url, button_classes):
+  return render_button(label, url, button_classes, "fa fa-minus-circle")
+
+@register.simple_tag
+def render_boolean(value):
+  if value:
+    return """<i class="fa fa-check"></i>"""
+  else:
+    return """<i class="fa fa-times"></i>"""
+
+@register.filter
+def render_markdown(usertext):
+  tags = [
+    'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'h1', 'h2', 'h3', 
+    'h4', 'h5', 'h6', 'hr', 'i', 'img', 'li', 'ol', 'p', 'pre', 'strong', 'ul'
+  ]
+  attributes = {
+    'a': ['href', 'title'], 
+    'abbr': ['title'], 
+    'acronym': ['title'],
+    'img' : ['src', 'alt', 'title']
+  }
+  html = markdown.markdown(usertext) # docs say use bleach instead of safe_mode 
+  return mark_safe(bleach.clean(html, tags=tags, attributes=attributes))
+
+@register.tag
+@condition_tag
+def if_user_in_group(user, groupname):
+  return bool(user.groups.filter(name=groupname))
+
+@register.filter
+def mul(a, b):
+  return a * b
+
+@register.filter
+def div(a, b):
+  if not b:
+    return b
+  return a / b
+
+@register.filter
+def render_percent(ratio):
+  percent = ratio * 100
+  return "%0.1f%%" % percent
+
+@register.filter
+def unixtime_to_datetime(unixtime):
+  return datetime.datetime.fromtimestamp(unixtime)
+
+@register.filter
+def unixtime_to_date(unixtime):
+  return unixtime_to_datetime(unixtime).date()
+
+
 
 
 ACTION_LABELS = { # TODO find a better way of doing this
@@ -34,9 +125,6 @@ ACTION_LABELS = { # TODO find a better way of doing this
         "CHANGE_PASSWORD" : _("CHANGE_PASSWORD"),
         "CHANGE_EMAIL" : _("CHANGE_EMAIL"),
 }
-
-
-register = template.Library()
 
 
 @register.simple_tag
@@ -86,100 +174,5 @@ def draw_create(label, *args):
 
 
 
-
-
-
-# Source: http://djangosnippets.org/snippets/1538/
-def condition_tag(func):
-    """ Generic conditional templatetag decorator.
-
-    Example - how to define a conditional tag:
-        @register.tag
-        @condition_tag
-        def if_can_foo(object, user='user'):
-            return user.can_foo(object)
-
-    Example - how to use it in the template:
-        {% if_can_foo object user %}
-        ...
-        {% else %}
-        ...
-        {% endif_can_foo %}
-
-    Or - we can leave out the second parameter, and it will default
-    to 'user':
-        {% if_can_foo object %}
-        ...
-
-    In python, the if_can_foo function's arguments are the expected
-    arguments to the template tag. In this case, the first argument
-    should be the object, the second argument should be the user. The
-    return value must be either True or False, corresponding to the
-    if/else sections of the condition node in the template.
-
-    Default arguments for the function (e.g. user='user') will be
-    processed by the context that the template tag resides in. In this
-    case, it will resolve the global 'user' name, and in the function,
-    we will be accessing the resultant object. If this value does not
-    exist in the template's context, it will break.
-    """
-
-    class ConditionNode(template.Node):
-        def __init__(self, arg_expressions, nodelist_true, nodelist_false):
-            self.arg_expressions = arg_expressions
-            self.nodelist_true = nodelist_true
-            self.nodelist_false = nodelist_false
-
-        def render(self, context):
-            params = [ i.resolve(context) for i in self.arg_expressions ]
-            if func(*params):
-                return self.nodelist_true.render(context)
-            else:
-                return self.nodelist_false.render(context)
-
-    @wraps(func)
-    def wrapper(parser, token):
-        bits = token.contents.split()
-
-        # Get the parameters and default parameters for the decorated function
-        argspec = inspect.getargspec(func)
-        params = argspec[0]
-        defaults = argspec[3] and list(argspec[3]) or [] # XXX see http://djangosnippets.org/snippets/1538/#c4772
-        if defaults:
-            default_params = dict(zip([i for i in reversed(params)],
-                                      [i for i in reversed(defaults)] ))
-        else:
-            default_params = {}
-
-        # Try to display nice template errors
-        if len(bits) > len(params)+1 or len(bits) <= len(params)-len(defaults):
-            error = (
-                '"%s" accepts %d arguments: %s' %
-                (bits[0], len(params), ', '.join(params),)
-            )
-            raise template.TemplateSyntaxError, error
-
-        # Get the (string) arguments from the template
-        arg_expressions = []
-        for i in range(len(params)):
-            try:
-                # Try to use the parameter given by the template
-                arg_expressions.append(parser.compile_filter(bits[i+1]))
-            except IndexError:
-                # If it doesn't exist, use the default value
-                arg_expressions.append(
-                    parser.compile_filter(default_params[params[i]])
-                )
-
-        # Parse out the true and false nodes
-        nodelist_true = parser.parse(('else', 'end'+bits[0],))
-        token = parser.next_token()
-        if token.contents == 'else':
-            nodelist_false = parser.parse(('end'+bits[0],))
-            parser.delete_first_token()
-        else:
-            nodelist_false = NodeList()
-        return ConditionNode(arg_expressions, nodelist_true, nodelist_false)
-    return wrapper
 
 

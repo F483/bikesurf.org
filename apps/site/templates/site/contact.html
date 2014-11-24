@@ -1,0 +1,14 @@
+{% extends "site/base.html" %}
+{% load i18n %}
+{% load common_tags %}
+
+{% block noobhelp %}
+  {# dont display noobhelp since this is what it leads to ... #}
+{% endblock %}
+
+{% block content %}
+  <div class="container" style="text-align: center">
+    {{ _("SITE_CONTACT")|render_markdown }}
+  </div>
+{% endblock %}
+

@@ -1,0 +1,9 @@
+{% if settings.SYSINFO %}
+  <div class="container">
+    <div class="alert alert-dismissable alert-info">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <h3>{{ settings.SYSINFO.title }}</h3>
+      <p> {{ settings.SYSINFO.description }}</p>
+    </div>
+  </div>
+{% endif %}

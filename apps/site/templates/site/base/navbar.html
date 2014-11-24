@@ -1,0 +1,114 @@
+{% load i18n %}
+{% load common_tags %}
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">
+        <img src="/static/favicon.ico"> bikesurf.org
+      </a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav">
+
+        <li>
+          <a href="/borrows">
+            <i class="fa fa-info-circle"></i>
+            {% trans "MY_BORROWS" %}
+          </a>
+        </li>
+
+        {% if arrival_count %}
+          <li>
+            <a href="/borrow/arrivals">
+              <i class="fa fa-info-circle"></i>
+              {% trans "ARRIVALS" %} ({{ arrival_count }})
+            </a>
+          </li>
+        {% endif %}
+
+        {% if departure_count %}
+          <li>
+            <a href="/borrow/departures">
+              <i class="fa fa-info-circle"></i>
+              {% trans "DEPARTURES" %} ({{ departure_count }})
+            </a>
+          </li>
+        {% endif %}
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">
+            <i class="fa fa-info-circle"></i> {% trans "INFO" %}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><a href="/about">{% trans "ABOUT" %}</a></li>
+            <li><a href="/contact">{% trans "CONTACT" %}</a></li>
+            <li><a href="/faq">{% trans "FAQ" %}</a></li>
+            <li><a href="/terms">{% trans "TERMS" %}</a></li>
+          </ul>
+        </li>
+
+        {% if user.is_staff %}
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">
+              <i class="fa fa-gears"></i> {% trans "INTERNAL" %}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="themes">
+              {% if_user_in_group user "translators" %}
+                <li>
+                  <a href="/rosetta/pick/?filter=third-party">
+                    {% trans "TRANSLATIONS" %}
+                  </a>
+                </li>
+              {% endif_user_in_group %}
+              {% if user.is_superuser %}
+                <li><a href="/admin/">{% trans "DJANGO_ADMIN" %}</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        {% endif %}
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+          <li>
+            <a href="/accounts/profile/">
+              <i class="fa fa-user"></i> {{ user.username }}
+            </a>
+          </li>
+          <li>
+            <a href="/accounts/logout/">
+              <i class="fa fa-sign-out"></i> {% trans "LOGOUT" %}
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="/accounts/login/?next={{ request.path }}">
+              <i class="fa fa-sign-in"></i> {% trans "LOGIN" %}
+            </a>
+          </li>
+          <li>
+            <a href="/accounts/signup/">
+              <i class="fa fa-pencil-square-o"></i> {% trans "SIGNUP" %}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </div>
+
+  </div>
+</div>
