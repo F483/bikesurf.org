@@ -3,14 +3,16 @@
 {% load team_tags %}
 {% load link_tags %}
 
-<h3>{{ current_team.name }}</h3>
-<h4>{{ current_team.country.name }}</h4>
+<a href="/{{ current_team.link }}">
+  <h3>{{ current_team.name }}</h3>
+  <h4>{{ current_team.country.name }}</h4>
+</a>
 
   <ul>
     {% for link, label, selected in team_menu_public %}
       <li>
         {% if selected %}
-          <a id="selected" href="{{ link }}">
+          <a class="text_bold" href="{{ link }}">
             {{ label }}
           </a>
         {% else %}
@@ -42,7 +44,7 @@
       {% for link, label, selected in team_menu_intern %}
         <li>
           {% if selected %}
-            <a id="selected" href="{{ link }}">
+            <a class="text_bold" href="{{ link }}">
               {{ label }}
             </a>
           {% else %}

@@ -1,0 +1,16 @@
+{% load team_tags %}
+
+<ul class="nav nav-tabs">
+  {% for link, label, selected in tabs %}
+    {% if selected %}
+      <li class="active"><a href="{{ link }}"><b>{{ label }}</b></a></li>
+    {% else %}
+      <li><a href="{{ link }}">{{ label }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+
+
+
+

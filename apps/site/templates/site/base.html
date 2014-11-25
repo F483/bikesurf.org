@@ -112,7 +112,7 @@
 
               {% block tabs %}
                 {% if tabs %}
-                  {% include "common/tabs.html" %}
+                  {% include "site/tabs.html" %}
                 {% endif %}
               {% endblock %}
 
@@ -134,11 +134,7 @@
             {##### info column #####}
             <div class="col-sm-2">
               {% block info %}
-                {% if current_team %}
-                  {% include "team/donate_info.html" %}
-                {% else %}
-                  {% include "site/donate_info.html" %}
-                {% endif %}
+                {% include "site/info.html" %}
               {% endblock %}
             </div>
 

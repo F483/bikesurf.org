@@ -5,7 +5,9 @@
 .text_center { text-align: center; }
 .text_right { text-align: right; }
 .text_left { text-align: left; }
+.text_bold { font-weight: bold; }
 
 .display_inline { display: inline }
 .float_left_wrap_5px { float: left; margin-right: 5px; }
+.float_left_wrap_25px { float: left; margin-right: 25px; }
 

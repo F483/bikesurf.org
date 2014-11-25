@@ -1,66 +1,134 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 {% load borrow_tags %}
 {% load account_tags %}
 
 {% block content %}
-    <div class="content_title">
-        {{ borrow.borrower }}
-        {% trans "BORROWING" %} {{ borrow.bike }} 
-        ({% trans borrow.state %})
-    </div>
-    <div class="content">
-        {% trans "BORROWER" %}:
-        {% if_can_view_account current_account borrow.borrower %} 
-            <a href="/account/view/{{ borrow.borrower.user.username }}">
-                {{ borrow.borrower }}
-            </a>
-        {% else %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-6">
+          <b>
             {{ borrow.borrower }}
-        {% endif_can_view_account %}
-        <br />
-
-        {% trans "BIKE" %}: 
-        <a href="/{{ borrow.team.link }}/bike/view/{{ borrow.bike.id }}">
-            {{ borrow.bike }}
-        </a>
-        <br />
-
-        {% trans "DATE_FROM" %}: {{ borrow.start }}<br />
-        {% trans "DATE_TO" %}: {{ borrow.finish }}<br />
-
-        {% if borrow.state == "ACCEPTED" %}
-            {% trans "STATION_FROM" %}: {{ borrow.src.street }}<br />
-            {% trans "STATION_TO" %}: {{ borrow.dest.street }}<br />
-            {% trans "LOCKCODE" %}: {{ borrow.bike.lockcode }}<br />
-        {% endif %}
-
-        <div class="actions">
-            {% borrow_draw_comment current_account borrow current_team %}
-            {% borrow_draw_respond current_account borrow %}
-            {% borrow_draw_edit current_account borrow %}
-            {% borrow_draw_lender_edit_dest current_account borrow %}
-            {% borrow_draw_cancel current_account borrow current_team %}
-            {% borrow_draw_rate current_account borrow current_team %}
+            {% trans "BORROWING" %} {{ borrow.bike }} 
+            ({% trans borrow.state %})
+          </b>
         </div>
+        <div class="col-sm-6 text_right">
+          {% borrow_draw_comment current_account borrow current_team %}
+          {% borrow_draw_respond current_account borrow %}
+          {% borrow_draw_edit current_account borrow %}
+          {% borrow_draw_lender_edit_dest current_account borrow %}
+          {% borrow_draw_cancel current_account borrow current_team %}
+          {% borrow_draw_rate current_account borrow current_team %}
+        </div>
+      </div>
     </div>
+    <div class="panel-body">
 
-    {% for log in logs %}
-        <div class="content">
-            <h3> 
-                {{ log.created_on }} - 
-                {% if log.initiator %}
-                    {{ log.initiator }}
-                {% else %}
-                    {% trans "SYSTEM" %}
-                {% endif %}
-                -
-                {% trans log.action %}
-            </h3>
-            {{ log.note }}
+      <div class="row">
+        <div class="col-sm-6">
+          <table class="table table-striped table-hover ">
+            <tbody>
+
+              <tr>
+                <td>{% trans "BIKE" %}</td>
+                <td>
+                  <a href="/{{ borrow.team.link }}/bike/view/{{ borrow.bike.id }}">
+                    {{ borrow.bike }}
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>{% trans "BORROWER" %}</td>
+                <td>
+                  {% if_can_view_account current_account borrow.borrower %} 
+                    <a href="/account/view/{{ borrow.borrower.user.username }}">
+                      {{ borrow.borrower }}
+                    </a>
+                  {% else %}
+                    {{ borrow.borrower }}
+                  {% endif_can_view_account %}
+                </td>
+              </tr>
+
+              {% if borrow.state == "ACCEPTED" %}
+
+                <tr>
+                  <td>{% trans "LOCKCODE" %}</td>
+                  <td>{{ borrow.bike.lockcode }}</td>
+                </tr>
+
+              {% endif %}
+
+            </tbody>
+          </table>
         </div>
-    {% endfor %}
+        <div class="col-sm-6">
+          <table class="table table-striped table-hover ">
+            <tbody>
+
+              <tr>
+                <td>{% trans "DATE_FROM" %}</td>
+                <td>{{ borrow.start }}</td>
+              </tr>
+
+              <tr>
+                <td>{% trans "DATE_TO" %}</td>
+                <td>{{ borrow.finish }}</td>
+              </tr>
+
+              {% if borrow.state == "ACCEPTED" %}
+
+                <tr>
+                  <td>{% trans "STATION_FROM" %}</td>
+                  <td>{{ borrow.src.street }}</td>
+                </tr>
+
+                <tr>
+                  <td>{% trans "STATION_TO" %}</td>
+                  <td>{{ borrow.dest.street }}</td>
+                </tr>
+
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {% for log in logs %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-8">
+            <b>
+              {{ log.created_on }} - 
+              {% if log.initiator %}
+                  {{ log.initiator }}
+              {% else %}
+                  {% trans "SYSTEM" %}
+              {% endif %}
+              -
+              {% trans log.action %}
+            </b>
+          </div>
+          <div class="col-sm-4 text_right">
+            {# actions #}
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        {{ log.note }}
+      </div>
+    </div>
+  {% endfor %}
 
 {% endblock %}
 

@@ -1,56 +1,89 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 {% load borrow_tags %}
 {% load team_tags %}
 
-{% block styles %}
-    <link   rel="stylesheet" href="/static/bike/style.css"
-            type="text/css" charset="utf-8">
-{% endblock %}
-
 {% block content %}
-
-    <div class="content_title"> {{ bike.name }} </div>
-    <div class="content">
-
-        <table>
-            <tr>
-                <td id="td_bike_image">
-                    {% if current_team %}
-                        <a href="/{{ current_team.link }}/gallery/list/{{ bike.gallery.id }}">
-                    {% else %}
-                        <a href="/gallery/list/{{ bike.gallery.id }}">
-                    {% endif %} 
-                        <img src="{{ bike.gallery.primary.preview.url }}">
-                    </a>
-                </td>
-                <td id="td_bike_info">
-                    {% trans "SIZE" %}: {% trans bike.size %}<br />
-                    {% trans "LIGHTS" %}: {% draw_bool bike.lights %} <br />
-                    {% trans "ACTIVE" %}: {% draw_bool bike.active %} <br />
-                    {% trans "RESERVE" %}: {% draw_bool bike.reserve %} <br />
-                    {% if_member current_account bike.team %}
-                        {% trans "LOCKCODE" %}: {{ bike.lockcode }}<br />
-                        {% trans "STATION" %}: 
-                        <a href="/{{ current_team.link }}/station/view/{{ bike.station.id }}">
-                            {{ bike.station.street }}
-                        </a><br />
-                    {% endif_member %}
-                    <h4> {% trans "DESCRIPTION" %} </h4>
-                    <p> {{ bike.description }} </p>
-                </td>
-            </tr>
-        </table>
-
-        <div class="actions">
-            {% borrow_draw bike date_start date_finish %}
-            {% if_member current_account bike.team %}
-                {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
-                {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}
-            {% endif_member %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-8">
+          <b>{{ bike.name }}</b>
         </div>
+        <div class="col-sm-4 text_right">
+          {% if_member current_account bike.team %}
+            {% draw_edit "/" bike.team.link "/bike/edit/" bike.id %}
+            {% draw_delete "/" bike.team.link "/bike/delete/" bike.id %}
+          {% endif_member %}
+          {% borrow_draw bike date_start date_finish %}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6 text_center">
+
+            <p>
+              <img src="{{ bike.gallery.primary.preview.url }}">
+            </p>
+
+            {% if current_team %}
+                <a href="/{{ current_team.link }}/gallery/list/{{ bike.gallery.id }}">
+            {% else %}
+                <a href="/gallery/list/{{ bike.gallery.id }}">
+            {% endif %}
+              <b>{% trans "GALLERY"%}</b>
+            </a>
+
+        </div>
+        <div class="col-sm-6">
+
+          <div class="well">
+            <table class="table table-striped table-hover ">
+              <tbody>
+                <tr>
+                  <td>{% trans "SIZE" %}</td>
+                  <td>{% trans bike.size %}</td>
+                </tr>
+                <tr>
+                  <td>{% trans "LIGHTS" %}</td>
+                  <td>{% draw_bool bike.lights %}</td>
+                </tr>
+                <tr>
+                  <td>{% trans "ACTIVE" %}</td>
+                  <td>{% draw_bool bike.active %}</td>
+                </tr>
+                <tr>
+                  <td>{% trans "RESERVE" %}</td>
+                  <td>{% draw_bool bike.reserve %}</td>
+                </tr>
+                {% if_member current_account bike.team %}
+                  <tr>
+                    <td>{% trans "LOCKCODE" %}</td>
+                    <td>{{ bike.lockcode }}</td>
+                  </tr>
+                  <tr>
+                    <td>{% trans "STATION" %}</td>
+                    <td>
+                      <a href="/{{ current_team.link }}/station/view/{{ bike.station.id }}">
+                        {{ bike.station.street }}
+                      </a>
+                    </td>
+                  </tr>
+                {% endif_member %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <h3> {% trans "DESCRIPTION" %} </h3>
+      <p> {{ bike.description }} </p>
 
     </div>
+  </div>
+
 {% endblock %}
 

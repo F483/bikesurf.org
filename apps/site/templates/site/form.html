@@ -3,7 +3,9 @@
 {% load common_tags %}
 
 {% block content %}
-  <div class="container"> 
-    {% include "site/form_include.html" %}
-  </div>
+
+  {% block pre_form_content %}
+  {% endblock %}
+
+  {% include "site/form_include.html" %}
 {% endblock %}

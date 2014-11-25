@@ -1,9 +1,13 @@
-{% extends "common/form.html" %}
+{% extends "site/form.html" %}
 {% load i18n %}
 
 {% block pre_form_content %}
-    {% if not has_required_info %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {% if not has_required_info %}
         <p> {% trans "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO" %}</p>
-    {% endif %}
-    <p> {% trans "BORROW_CREATE_HELP_TEXT" %} </p>
+      {% endif %}
+      <p> {% trans "BORROW_CREATE_HELP_TEXT" %} </p>
+    </div>
+  </div>
 {% endblock %}

@@ -1,26 +1,30 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load sanitizer %}
 {% load common_tags %}
 {% load team_tags %}
 
 {% block content %}
-    {% for blog in blogs %}
-
-        <div class="content_title">{{ blog.name }}</div>
-        <div class="content">
-            {{ blog.content|escape_html|safe }}
-
+  {% for blog in blogs %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-8">
+            <b>{{ blog.name }}</b>
+          </div>
+          <div class="col-sm-4 text_right">
             {% if_member current_account blog.team %}
-                <div class="actions">
-                    {% draw_edit "/" blog.team.link "/blog/edit/" blog.id %}
-                    {% draw_delete "/" blog.team.link "/blog/delete/" blog.id %}
-                </div>
+              {% draw_edit "/" blog.team.link "/blog/edit/" blog.id %}
+              {% draw_delete "/" blog.team.link "/blog/delete/" blog.id %}
             {% endif_member %}
+          </div>
         </div>
-    {% empty %}
-        <div class="content">
-            {% trans "NO_BLOG_ENTRIES" %}
-        </div>
-    {% endfor %}
+      </div>
+      <div class="panel-body">
+        {{ blog.content|escape_html|safe }}
+      </div>
+    </div>
+  {% empty %}
+    {% trans "NO_BLOG_ENTRIES" %}
+  {% endfor %}
 {% endblock %}
