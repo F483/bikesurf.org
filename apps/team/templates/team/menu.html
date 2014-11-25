@@ -4,6 +4,7 @@
 {% load link_tags %}
 
 <h3>{{ current_team.name }}</h3>
+<h4>{{ current_team.country.name }}</h4>
 
   <ul>
     {% for link, label, selected in team_menu_public %}
@@ -36,7 +37,7 @@
   {% endif_can_join %}
 
 {% if_member current_account current_team %}
-  <h3>{% trans "TEAM" %}</h3> 
+    <hr />
     <ul>
       {% for link, label, selected in team_menu_intern %}
         <li>
@@ -50,7 +51,7 @@
         </li>
       {% endfor %}
     </ul>
-  <h3>{% trans "ACTIONS" %}</h3> 
+    <hr />
     <ul>
       <li>
         {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}

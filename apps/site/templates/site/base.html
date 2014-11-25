@@ -90,7 +90,6 @@
       <div class="container">
 
         {% block before_content %}
-          {# content that comes before main content menus, tabs etc #}
         {% endblock %}
 
         {% if current_team or three_cloumn_layout %} 
@@ -126,7 +125,6 @@
               {% endblock %}
 
               {% block content %}
-                {# main content of page here #}
               {% endblock %}
 
         {% if current_team or three_cloumn_layout %} 
@@ -149,7 +147,6 @@
         {% endif %} {# three_cloumn_layout #}
 
         {% block after_content %}
-          {# content that comes after main content additional footers etc #}
         {% endblock %}
 
       </div>
