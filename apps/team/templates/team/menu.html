@@ -3,90 +3,74 @@
 {% load team_tags %}
 {% load link_tags %}
 
+<h3>{{ current_team.name }}</h3>
 
-<h2 class="sidebarheadleft">
-    {{ current_team.name }} 
-</div>
-<div class="leftsidebar">
-    <ul class="sidenav">
-        {% for link, label, selected in team_menu_public %}
-            <li>
-                {% if selected %}
-                    <a id="selected" href="{{ link }}">
-                        {{ label }}
-                    </a>
-                {% else %}
-                    <a href="{{ link }}">{{ label }}</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-     </ul>    
-	<h2 class="sidebarheadleft">Team</h2>
-       <div class="leftsidebar">
-     	 <ul class="sidenav">
-        {% for link in current_team_links %}
-            <li>
-                {% link_draw link %} 
-                {% if_member current_account current_team %}
-                    <a href="/{{ current_team.link }}/link/delete/{{ link.id }}">
-                        <img src="/static/famfamfam/delete.png" alt="DELETE">
-                    </a>
-                {% endif_member %}
-            </li>
-        {% endfor %}
-		</ul>
-  	  </div>
+  <ul>
+    {% for link, label, selected in team_menu_public %}
+      <li>
+        {% if selected %}
+          <a id="selected" href="{{ link }}">
+            {{ label }}
+          </a>
+        {% else %}
+          <a href="{{ link }}">{{ label }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
 
-    {% if_can_join current_account current_team %}
-        <div class="actions">
-            <a class="action" href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
-        </div>
-    {% endif_can_join %}
-</div>
+    {% for link in current_team_links %}
+      <li>
+        {% link_draw link %} 
+        {% if_member current_account current_team %}
+          <a href="/{{ current_team.link }}/link/delete/{{ link.id }}">
+            <img src="/static/famfamfam/delete.png" alt="DELETE">
+          </a>
+        {% endif_member %}
+      </li>
+    {% endfor %}
+
+  </ul>
+
+  {% if_can_join current_account current_team %}
+      <a class="action" href="/{{ current_team.link }}/join_request/create">{% trans "JOIN_REQUEST" %}</a>
+  {% endif_can_join %}
 
 {% if_member current_account current_team %}
-    <h2 class="sidebarheadleft">{% trans "TEAM" %}</h2> 
-    <div class="leftsidebar">
-        <ul class="sidenav">
-            {% for link, label, selected in team_menu_intern %}
-                <li>
-                    {% if selected %}
-                        <a id="selected" href="{{ link }}">
-                            {{ label }}
-                        </a>
-                    {% else %}
-                        <a href="{{ link }}">{{ label }}</a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <h2 class="sidebarheadleft">{% trans "ACTIONS" %}</h2>
+  <h3>{% trans "TEAM" %}</h3> 
+    <ul>
+      {% for link, label, selected in team_menu_intern %}
+        <li>
+          {% if selected %}
+            <a id="selected" href="{{ link }}">
+              {{ label }}
+            </a>
+          {% else %}
+            <a href="{{ link }}">{{ label }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  <h3>{% trans "ACTIONS" %}</h3> 
+    <ul>
+      <li>
+        {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}
+      </li>
+      <li>
+        {% draw_create "ADD_PAGE" "/" current_team.link "/page/create" %}
+      </li>
+      <li>
+        {% draw_create "BIKE_CREATE" "/" current_team.link "/bike/create" %}
+      </li>
+      <li>
+        {% draw_create "ADD_STATION" "/" current_team.link "/station/create" %}
+      </li>
+      <li>
+        {% draw_create "REPLACE_LOGO" "/" current_team.link "/replace_logo" %}
+      </li>
 
-    <div class="leftsidebar lsbfinal">
-        <ul>
-            <li class="btn btn-xs sidebarbtn">
-                {% draw_create "ADD_BLOG" "/" current_team.link "/blog/create" %}
-            </li>
-            <li>
-                {% draw_create "ADD_PAGE" "/" current_team.link "/page/create" %}
-            </li>
-            <li>
-                {% draw_create "BIKE_CREATE" "/" current_team.link "/bike/create" %}
-            </li>
-            <li>
-                {% draw_create "ADD_STATION" "/" current_team.link "/station/create" %}
-            </li>
-            <li>
-                {% draw_create "REPLACE_LOGO" "/" current_team.link "/replace_logo" %}
-            </li>
+      <li>
+        {% draw_create "ADD_LINK" "/" current_team.link "/link/create" %}
+      </li>
 
-            <li>
-                {% draw_create "ADD_LINK" "/" current_team.link "/link/create" %}
-            </li>
-
-        </ul>
-    </div>
-    </div>    
+    </ul>
 {% endif_member %}
-

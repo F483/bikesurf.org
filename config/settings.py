@@ -113,12 +113,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
-    # third party apps
-    'django_countries', # https://www.djangopackages.com/packages/p/django-countries/
-    'rosetta',          # https://www.djangopackages.com/packages/p/django-rosetta/
-    'sanitizer',        # https://www.djangopackages.com/packages/p/django-html_sanitizer/
-    'imagekit',         # https://www.djangopackages.com/packages/p/django-imagekit/
-
     # biksurfing apps
     'apps.common',
     'apps.account',
@@ -132,7 +126,16 @@ INSTALLED_APPS = (
     'apps.station',
     'apps.link',
 
-    # auth (must be after bikesurf apps to use its base template)
+    # third party apps
+    'django_countries',
+    'rosetta',
+    'bootstrapform',
+    #'pagination', # TODO add this
+    'sanitizer', # TODO remove this
+    'imagekit',
+    #'debug_toolbar.apps.DebugToolbarConfig', # Django 1.7.x or later
+    #'debug_toolbar', # Django 1.6.x or earlier
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -257,6 +260,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     # bikesurf.org
     'apps.common.context_processors.settings',
+    'apps.common.context_processors.account',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -309,19 +313,16 @@ SANITIZER_ALLOWED_STYLES = []
 GOOGLE_ANALYTICS_URL = None
 GOOGLE_ANALYTICS_ID = None
 
-###################
-# borrow settings #
-###################
+###########
+# Website #
+###########
 
+LIVE_INSTANCE = False
+SYSINFO = None # { "title" : "title text", "description" : "description text" }
 BORROW_MIN_BOOK_IN_ADVANCE_DAYS = 2
 
-
-#########
-# theme #
-#########
-
 # see apps/common/static/bootswatch or http://bootswatch.com
-BOOTSWATCH_THEME = "cerulean"
+BOOTSWATCH_THEME = "lumen"
 
 
 ##################

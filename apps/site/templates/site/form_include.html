@@ -33,7 +33,11 @@
             </button>
           {% endif %}
           <button type="submit" class="btn btn-primary">
-            {% trans "SUBMIT" %}
+            {% if submit_text %}
+              {{ submit_text }}
+            {% else %}
+              {% trans "SUBMIT" %}
+            {% endif %}
           </button>
         </div>
       </div>

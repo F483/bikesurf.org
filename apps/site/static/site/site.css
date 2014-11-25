@@ -1,0 +1,11 @@
+
+/* text formatting */
+.fontsize_xxl { font-size: xx-large; }
+.fontsize_xl { font-size: x-large; }
+.text_center { text-align: center; }
+.text_right { text-align: right; }
+.text_left { text-align: left; }
+
+.display_inline { display: inline }
+.float_left_wrap_5px { float: left; margin-right: 5px; }
+

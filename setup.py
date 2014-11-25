@@ -34,6 +34,7 @@ setup(
     'bleach==1.4',
     'django-allauth==0.18.0',
     'django-appconf==0.6',
+    'django-bootstrap-form==3.1',
     'django-countries==2.1.2',
     'django-html-sanitizer==0.1.4', # TODO use only bleach
     'django-imagekit==3.2.4',

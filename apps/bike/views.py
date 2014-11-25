@@ -150,7 +150,7 @@ def listing(request, team_link):
 
     args = { 
         "page_title" : _("BIKES"), "filters" : form,
-        "bike_pairs" : list(chunks(bikes, 2)),
+        "bike_rows" : list(chunks(bikes, 2)),
         "date_start" : date_start, "date_finish" : date_finish
     }
     return rtr(team, "bikes", request, "bike/list.html", args)

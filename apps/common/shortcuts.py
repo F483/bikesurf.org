@@ -15,7 +15,6 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail as _send_mail
 from django.conf import settings
 from django.template import RequestContext
-from config.settings import GOOGLE_ANALYTICS_URL, GOOGLE_ANALYTICS_ID
 
 
 COUNTRIES = [('', '---------')] + list(countries)
@@ -34,30 +33,7 @@ def uslugify(ustr):
 
 
 def render_response(request, template, args):
-    # avoid circular imports ...
-    from apps.team import control as team_control 
-    from apps.borrow import control as borrow_control
-    from apps.borrow.models import Borrow
-    from apps.station.models import Station
-
-    # TODO load this automaticly to every template
-    args.update({ 
-        "current_path" : request.path,
-        "google_analytics_url" : GOOGLE_ANALYTICS_URL,
-        "google_analytics_id" : GOOGLE_ANALYTICS_ID,
-    })
-    if request.user.is_authenticated():
-        account = request.user.accounts.all()[0]
-        stations = Station.objects.filter(responsible=account)
-        args.update({ 
-            "current_account" : account,
-            "current_account_teams" : team_control.get_teams(account),
-            "current_account_stations" : stations,
-            "departure_count" : len(borrow_control.departures(account)),
-            "arrival_count" : len(borrow_control.arrivals(account)),
-        })
     args.update(csrf(request))
-
     rc = RequestContext(request)
     return render_to_response(template, args, context_instance=rc)
 
