@@ -322,7 +322,7 @@ SYSINFO = None # { "title" : "title text", "description" : "description text" }
 BORROW_MIN_BOOK_IN_ADVANCE_DAYS = 2
 
 # see apps/common/static/bootswatch or http://bootswatch.com
-BOOTSWATCH_THEME = "lumen"
+BOOTSWATCH_THEME = "bikesurf"
 
 
 ##################
