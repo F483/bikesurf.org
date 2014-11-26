@@ -1,66 +1,95 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 {% load link_tags %}
 
 {% block content %}
-    <div class="content_title">
-        {{ current_account }}
-    </div>
-    <div class="content">
-
-        {% if not has_required_info %}
-            <p> {% trans "ACCOUNT_ADD_REQUIRED_INFO" %}</p>
-        {% endif %}
-
-        <p> {% trans "USER_PRIVECY_INFORMATION" %} </p>
-
-        <p>
-            {% trans "FIRST_NAME" %}*: {{ current_account.user.first_name }} </br>
-            {% trans "LIST_NAME" %}*: {{ current_account.user.last_name }} </br>
-            {% trans "MOBILE" %}*: {{ current_account.mobile }} </br>
-
-            {% trans "EMAIL" %}: {{ email }}
-            <a href="/accounts/email/">
-                <img alt="{% trans "CHANGE_EMAIL" %}" src="/static/famfamfam/pencil.png">
-            </a>
-            </br>
-
-            {% if current_account.passport %}
-                {% trans "PASSPORT" %}*: 
-                <a href="{{ current_account.passport.url }}">
-                    {% trans "IMAGE" %}
-                </a>
-            {% else %}
-                {% trans "PASSPORT" %}: {% trans "NONE" %}
-            {% endif %}
-            <a href="/account/set_passport">
-                <img alt="{% trans "SET_PASSPORT" %}" src="/static/famfamfam/pencil.png">
-            </a>
-            </br>
-
-            {% trans "SOURCE" %}: {% trans current_account.source %} </br>
-            {% trans "DESCRIPTION" %}: {{ current_account.description }} </br>
-        </p>
-
-
-        {% if links %}
-            <h3> {% trans "LINKS" %} </h3>
-            <p>
-                {% for link in links %}
-                    {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
-                {% endfor %}
-            </p>
-        {% endif %}
-
-        <div class="actions">
-            {% draw_edit "/account/edit" %}
-            {% draw_create "ADD_LINK" "/account/link/create" %}
-            {% draw_action "/static/famfamfam/pencil.png" "CHANGE_PASSWORD" "/accounts/password/change/" %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-8">
+          <b> <i class="fa fa-user"></i> {{ current_account }} </b>
         </div>
+        <div class="col-sm-4 text_right">
+          {% draw_edit "/account/edit" %}
+          {% draw_create "ADD_LINK" "/account/link/create" %}
+          {% draw_action "/static/famfamfam/pencil.png" "CHANGE_PASSWORD" "/accounts/password/change/" %}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+
+      {% if not has_required_info %}
+        <p> {% trans "ACCOUNT_ADD_REQUIRED_INFO" %}</p>
+      {% endif %}
+
+      <p> {% trans "USER_PRIVECY_INFORMATION" %} </p>
+
+      <div class="row">
+        <div class="col-sm-6">
+
+          <h3> {% trans "DETAILS" %} </h3>
+
+          <ul>
+            <li>
+              {% trans "FIRST_NAME" %}*: {{ current_account.user.first_name }} 
+            </li>
+
+            <li>
+              {% trans "LIST_NAME" %}*: {{ current_account.user.last_name }} 
+            </li>
+
+            <li>
+              {% trans "MOBILE" %}*: {{ current_account.mobile }} 
+            </li>
+
+            <li>
+              {% trans "EMAIL" %}: {{ email }}
+              <a href="/accounts/email/">
+                  <img alt="{% trans "CHANGE_EMAIL" %}" src="/static/famfamfam/pencil.png">
+              </a>
+            </li>
+
+            <li>
+              {% trans "SOURCE" %}: {% trans current_account.source %} </br>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-sm-6 text_center">
+
+          <h3> {% trans "PASSPORT" %} </h3>
+          <p>
+            {% if current_account.passport %}
+              <a href="{{ current_account.passport.url }}">
+                  <img class="thumbnail display_inline" 
+                       width="320" height="240"
+                       src="{{ current_account.passport.url }}"
+                  >
+              </a>
+            {% else %}
+              {% trans "PASSPORT" %}: {% trans "NONE" %}
+            {% endif %}
+          </p>
+          <a href="/account/set_passport">
+            <img alt="{% trans "SET_PASSPORT" %}" src="/static/famfamfam/pencil.png">
+            {% trans "EDIT" %}
+          </a>
+        </div>
+      </div>
+
+      {% if links %}
+        <h3> {% trans "LINKS" %} </h3>
+        <p>
+          {% for link in links %}
+            {% link_draw link %} {% draw_delete "/account/link/delete/" link.id %}</br>
+          {% endfor %}
+        </p>
+      {% endif %}
+
+      <h3>{% trans "DESCRIPTION" %}</h3>
+      <p>{{ current_account.description }}</p>
 
     </div>
+  </div>
 {% endblock %}
-
-
-

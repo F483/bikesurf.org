@@ -4,7 +4,11 @@
 
 <div class="well">
 
-  <form class="form" role="form" action="{{ request.get_full_path }}" method="POST">
+  <form 
+    role="form" class="form" method="POST" action="{{ request.get_full_path }}" 
+    {% if multipart_form %}enctype="multipart/form-data" {% endif %}
+  >
+
     {% csrf_token %}
     <fieldset>
 
