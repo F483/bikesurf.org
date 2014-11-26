@@ -46,9 +46,9 @@ def add(request, **kwargs):
         "multipart_form" : True
     }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "site/form.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -76,9 +76,9 @@ def setprimary(request, **kwargs):
         "cancel_url" : url
     }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "site/form.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -104,9 +104,9 @@ def remove(request, **kwargs):
         "cancel_url" : url
     }
     if team:
-        return rtr(team, None, request, "common/form.html", args)
+        return rtr(team, None, request, "site/form.html", args)
     else:
-        return render_response(request, "common/form.html", args)
+        return render_response(request, "site/form.html", args)
 
 
 @require_http_methods(["GET"])

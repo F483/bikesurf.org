@@ -91,7 +91,7 @@ def lender_list(request, team_link):
         "filters" : form, "page_title" : _("TEAM_BORROWS"),
         "list_data" : control.to_list_data(borrows, team_link=True) 
     }
-    return rtr(team, "borrows", request, "common/list.html", args)
+    return rtr(team, "borrows", request, "site/list.html", args)
 
 
 @login_required
@@ -103,7 +103,7 @@ def borrower_list(request):
         "page_title" : _("YOUR_BORROWS"),
         "list_data" :  control.to_list_data(borrows) 
     }
-    return render_response(request, "common/list.html", args)
+    return render_response(request, "site/list.html", args)
 
 
 @login_required
@@ -118,7 +118,7 @@ def arrivals(request):
             borrows, team_link=True, columns="ARRIVALS"
         )
     }
-    return render_response(request, "common/list.html", args)
+    return render_response(request, "site/list.html", args)
 
 
 @login_required
@@ -133,7 +133,7 @@ def departures(request):
             borrows, team_link=True, columns="DEPARTURES"
         )
     }
-    return render_response(request, "common/list.html", args)
+    return render_response(request, "site/list.html", args)
 
 
 @login_required
@@ -198,7 +198,7 @@ def borrower_edit(request, borrow_id):
         "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/borrow/view/%s" % borrow.id
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -222,7 +222,7 @@ def lender_edit(request, team_link, borrow_id):
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "site/form.html", args)
 
 
 @login_required
@@ -244,7 +244,7 @@ def lender_edit_dest(request, team_link, borrow_id):
     args = { "form" : form, "form_title" : _("BORROW_EDIT"),
         "cancel_url" : "/%s/borrow/view/%s" % (team.link, borrow.id)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "site/form.html", args)
 
 
 @login_required
@@ -286,7 +286,7 @@ def lender_cancel(request, team_link, borrow_id):
         "form" : form, "form_title" : _("BORROW_CANCEL"), 
         "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "site/form.html", args)
 
 
 @login_required
@@ -308,7 +308,7 @@ def lender_rate(request, team_link, borrow_id):
         "form" : form, "form_title" : form_title, 
         "cancel_url" : "/%s/borrow/view/%s" % (team_link, borrow_id)
     }
-    return rtr(team, "borrows", request, "common/form.html", args)
+    return rtr(team, "borrows", request, "site/form.html", args)
 
 
 @login_required
@@ -332,7 +332,7 @@ def borrower_rate(request, borrow_id):
         "form" : form, "form_title" : form_title, 
         "cancel_url" : "/borrow/view/%s" % borrow_id
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -373,8 +373,8 @@ def comment(request, **kwargs):
         "cancel_url" : url
     }
     if team:
-        return rtr(team, "borrows", request, "common/form.html", args)
-    return render_response(request, "common/form.html", args)
+        return rtr(team, "borrows", request, "site/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -395,7 +395,7 @@ def borrower_cancel(request, borrow_id):
         "form" : form, "form_title" : _("BORROW_CANCEL"), 
         "cancel_url" : "/borrow/view/%s" % borrow_id
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required

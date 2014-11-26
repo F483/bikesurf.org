@@ -84,12 +84,20 @@
 
                 <tr>
                   <td>{% trans "STATION_FROM" %}</td>
-                  <td>{{ borrow.src.street }}</td>
+                  <td>
+                    <a href="/{{ borrow.src.team.link }}/station/view/{{ borrow.src.id }}">
+                      {{ borrow.src }}
+                    </a>
+                  </td>
                 </tr>
 
                 <tr>
                   <td>{% trans "STATION_TO" %}</td>
-                  <td>{{ borrow.dest.street }}</td>
+                  <td>
+                    <a href="/{{ borrow.dest.team.link }}/station/view/{{ borrow.dest.id }}">
+                      {{ borrow.dest }}
+                    </a>
+                  </td>
                 </tr>
 
               {% endif %}

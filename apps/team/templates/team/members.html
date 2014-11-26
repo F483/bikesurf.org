@@ -1,19 +1,33 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load team_tags %}
 {% load common_tags %}
 
 {% block content %}
-    {% for member in members %}
-        <div class="content_title">
-            {{ member }}
-        </div>
-        <div class="content">
-            <div class="actions">
-                {% if_can_create_remove_request current_account member current_team %}
-                    {% draw_delete "/" current_team.link "/remove_request/create/" member.id %}
-                {% endif_can_create_remove_request %}
-            </div>
-        </div>
-    {% endfor %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <b>{% trans "MEMBERS" %}</b>
+    </div>
+    <div class="panel-body">
+      {% if members %}
+        <table class="table table-striped table-hover">
+          <tbody>
+            {% for member in members %}
+              <tr>
+                <td> {{ member }} </td>
+                <td> 
+                  {% if_can_create_remove_request current_account member current_team %}
+                      {% draw_delete "/" current_team.link "/remove_request/create/" member.id %}
+                  {% endif_can_create_remove_request %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        {% trans "NO_BLOG_ENTRIES" %}
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}
+

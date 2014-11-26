@@ -40,7 +40,7 @@ def link_delete(request, team_link, link_id):
         "form_subtitle" : link.get_label(), 
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, "", request, "common/form.html", args)
+    return rtr(team, "", request, "site/form.html", args)
 
 
 @login_required
@@ -63,7 +63,7 @@ def link_create(request, team_link):
         "form" : form, "cancel_url" : "/%s" % team.link, 
         "form_title" :  account, "form_subtitle" : _("ADD_LINK_SUBTITLE")
     }
-    return rtr(team, "", request, "common/form.html", args)
+    return rtr(team, "", request, "site/form.html", args)
 
 
 @login_required
@@ -84,7 +84,7 @@ def replace_logo(request, team_link):
         "form" : form, "form_title" : _("REPLACE_LOGO"), 
         "multipart_form" : True, "cancel_url" : "/%s" % team.link
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -106,7 +106,7 @@ def create(request):
         "form" : form, "form_title" : _("CREATE_TEAM"), 
         "multipart_form" : True, "cancel_url" : "/"
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -161,7 +161,7 @@ def join_request_create(request, team_link):
         "form" : form, "form_title" : _("JOIN_REQUEST"),
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, "join_request/list", request, "common/form.html", args)
+    return rtr(team, "join_request/list", request, "site/form.html", args)
 
 
 @login_required
@@ -183,7 +183,7 @@ def join_request_process(request, team_link, join_request_id):
         "form" : form, "form_title" : "PROCESS_JOIN_REQUEST",
         "cancel_url" : "/%s/join_request/list" % team.link
     }
-    return rtr(team, "join_request/list", request, "common/form.html", args)
+    return rtr(team, "join_request/list", request, "site/form.html", args)
 
 
 @login_required
@@ -218,7 +218,7 @@ def remove_request_create(request, team_link, concerned_id):
         "form_subtitle" : concerned,
         "cancel_url" : "/%s/members" % team.link
     }
-    return rtr(team, "remove_request/list", request, "common/form.html", args)
+    return rtr(team, "remove_request/list", request, "site/form.html", args)
 
 
 @login_required
@@ -260,6 +260,6 @@ def remove_request_process(request, team_link, remove_request_id):
         "form" : form, "form_title" : "PROCESS_REMOVE_REQUEST", 
         "cancel_url" : "/%s/remove_request/list" % team.link
     }
-    return rtr(team, "remove_request/list", request, "common/form.html", args)
+    return rtr(team, "remove_request/list", request, "site/form.html", args)
 
 

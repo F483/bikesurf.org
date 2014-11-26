@@ -46,7 +46,7 @@ def create(request, team_link):
         "form" : form, "form_title" : _("ADD_BLOG"), 
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, "blog", request, "common/form.html", args)
+    return rtr(team, "blog", request, "site/form.html", args)
 
 
 @login_required
@@ -72,7 +72,7 @@ def edit(request, team_link, blog_id):
         "form" : form, "form_title" : _("BLOG_EDIT"), 
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, "blog", request, "common/form.html", args)
+    return rtr(team, "blog", request, "site/form.html", args)
 
 
 @login_required
@@ -96,6 +96,6 @@ def delete(request, team_link, blog_id):
         "form" : form, "form_title" : _("BLOG_DELETE?"), 
         "form_subtitle" : blog.name, "cancel_url" : "/%s/blog" % team.link
     }
-    return rtr(team, "blog", request, "common/form.html", args)
+    return rtr(team, "blog", request, "site/form.html", args)
 
 

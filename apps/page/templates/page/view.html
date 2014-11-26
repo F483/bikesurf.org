@@ -1,22 +1,29 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load sanitizer %}
 {% load i18n %}
 {% load team_tags %}
 {% load common_tags %}
 
 {% block content %}
-    <div class="content_title">
-        {{ page.name }}
-    </div>
-    <div class="content">
-        {{ page.content|escape_html|safe }}
-
-        {% if_member current_account page.team %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-8">
+          <b>{{ page.name }}</b>
+        </div>
+        <div class="col-sm-4 text_right">
+          {% if_member current_account page.team %}
             <div class="actions">
-                {% draw_edit "/" page.team.link "/page/edit/" page.link %}
-                {% draw_delete "/" page.team.link "/page/delete/" page.link %}
+              {% draw_edit "/" page.team.link "/page/edit/" page.link %}
+              {% draw_delete "/" page.team.link "/page/delete/" page.link %}
             </div>
-        {% endif_member %}
+          {% endif_member %}
+        </div>
+      </div>
     </div>
+    <div class="panel-body">
+      {{ page.content|escape_html|safe }}
+    </div>
+  </div>
 {% endblock %}
 

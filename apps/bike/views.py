@@ -33,7 +33,7 @@ _VIEW = {
         "page_title" : "",
     },
     "BORROWS" :    {
-        "template" : "common/list.html",
+        "template" : "site/list.html",
         "page_title" : _("BIKE_BORROWS"),
     },
 }
@@ -182,7 +182,7 @@ def create(request, team_link):
         "form" : form, "form_title" : _("BIKE_CREATE"), "multipart_form" : True, 
         "cancel_url" : "/%s/bikes" % team.link
     }
-    return rtr(team, "bikes", request, "common/form.html", args)
+    return rtr(team, "bikes", request, "site/form.html", args)
 
 
 @login_required
@@ -211,7 +211,7 @@ def edit(request, team_link, bike_id):
         "form" : form, "form_title" : _("BIKE_EDIT"),
         "cancel_url" : "/%s/bike/view/%s" % (team.link, bike.id)
     }
-    return rtr(team, "bikes", request, "common/form.html", args)
+    return rtr(team, "bikes", request, "site/form.html", args)
 
 
 @login_required
@@ -233,7 +233,7 @@ def delete(request, team_link, bike_id):
         "form_subtitle" : bike.name, 
         "cancel_url" : "/%s/bike/view/%s" % (team.link, bike.id)
     }
-    return rtr(team, "bikes", request, "common/form.html", args)
+    return rtr(team, "bikes", request, "site/form.html", args)
 
 
 

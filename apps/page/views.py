@@ -46,7 +46,7 @@ def create(request, team_link):
         "form" : form, "form_title" : _("ADD_PAGE"),
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, None, request, "common/form.html", args)
+    return rtr(team, None, request, "site/form.html", args)
 
 
 @login_required
@@ -70,7 +70,7 @@ def edit(request, team_link, page_link):
         "form" : form, "form_title" : _("PAGE_EDIT"),
         "cancel_url" : "/%s/%s" % (team.link, page.link)
     }
-    return rtr(team, page.link, request, "common/form.html", args)
+    return rtr(team, page.link, request, "site/form.html", args)
 
 
 @login_required
@@ -93,6 +93,6 @@ def delete(request, team_link, page_link):
         "form" : form, "form_title" : _("PAGE_DELETE?"), 
         "form_subtitle" : page.name, "cancel_url" : cancel_url
     }
-    return rtr(team, page.link, request, "common/form.html", args)
+    return rtr(team, page.link, request, "site/form.html", args)
 
 

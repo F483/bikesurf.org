@@ -35,11 +35,11 @@ _VIEW = {
         "page_title" : _("STATION_BIKES"),
     },
     "ARRIVALS" : {
-        "template" : "common/list.html",
+        "template" : "site/list.html",
         "page_title" : _("ARRIVALS"),
     },
     "DEPARTURES" : {
-        "template" : "common/list.html",
+        "template" : "site/list.html",
         "page_title" : _("DEPARTURES"),
     },
 }
@@ -123,7 +123,7 @@ def listing(request, **kwargs):
             "page_title" : _("STATIONS"),
             "list_data" : { "columns" : columns, "entries" : entries }
         }
-        return rtr(team, "stations", request, "common/list.html", args)
+        return rtr(team, "stations", request, "site/list.html", args)
     else:
         def station2entrie(s):
             return {
@@ -137,7 +137,7 @@ def listing(request, **kwargs):
             "page_title" : _("STATIONS"),
             "list_data" : { "columns" : columns, "entries" : entries }
         }
-        return render_response(request, "common/list.html", args)
+        return render_response(request, "site/list.html", args)
 
 
 @login_required
@@ -165,7 +165,7 @@ def create(request, team_link):
         "form" : form, "form_title" : _("ADD_STATION"),
         "cancel_url" : "/%s" % team.link
     }
-    return rtr(team, "stations", request, "common/form.html", args)
+    return rtr(team, "stations", request, "site/form.html", args)
 
 
 @login_required
@@ -194,7 +194,7 @@ def edit(request, team_link, station_id):
         "form" : form, "form_title" : _("EDIT_STATION"),
         "cancel_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
-    return rtr(team, "stations", request, "common/form.html", args)
+    return rtr(team, "stations", request, "site/form.html", args)
 
 
 @login_required
@@ -216,6 +216,6 @@ def delete(request, team_link, station_id):
         "form_subtitle" : str(station), 
         "cancel_url" : "/%s/station/view/%s" % (team.link, station.id)
     }
-    return rtr(team, "stations", request, "common/form.html", args)
+    return rtr(team, "stations", request, "site/form.html", args)
 
 

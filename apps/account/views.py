@@ -38,7 +38,7 @@ def set_passport(request, wizard):
         "form_subtitle" : _("ADD_REQUIRED_PASSPORT_IMAGE"),
         "form_info" : _("USER_PRIVECY_INFORMATION"),
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -58,7 +58,7 @@ def link_delete(request, link_id):
         "form_subtitle" : link.get_label(), 
         "cancel_url" : "/account/profile"
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -82,7 +82,7 @@ def link_create(request):
         "form_subtitle" : _("ADD_REQUIRED_SOCIAL_LINK"),
         "form_info" : _("USER_PRIVECY_INFORMATION"),
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
 
 @login_required
@@ -140,5 +140,5 @@ def edit(request, wizard):
         "form_subtitle" : _("ADD_REQUIRED_PROFILE_INFO"),
         "form_info" : _("USER_PRIVECY_INFORMATION"),
     }
-    return render_response(request, "common/form.html", args)
+    return render_response(request, "site/form.html", args)
 
