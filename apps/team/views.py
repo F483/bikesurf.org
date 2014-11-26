@@ -113,7 +113,7 @@ def create(request):
 @require_http_methods(["GET"])
 def created(request, team_link):
     account = get_object_or_404(Account, user=request.user)
-    team = get_object_or_404(Team, link=team_link, active=False)
+    team = get_object_or_404(Team, link=team_link)
     return render_response(request, "team/created.html", { "team" : team })
 
 

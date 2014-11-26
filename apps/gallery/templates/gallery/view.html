@@ -1,10 +1,8 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
 {% block content %}
-    <div class="content">
-        <img src="{{ picture.image.url }}">
-    </div>
+  <img class="thumbnail" src="{{ picture.image.url }}">
 {% endblock %}
 

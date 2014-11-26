@@ -1,31 +1,35 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 {% load team_tags %}
 
 {% block content %}
-    {% for join_request in join_requests %}
-        <div class="content_title">
-            {{ join_request.requester }} ({{ join_request.status }})
+  {% for join_request in join_requests %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-8">
+            <b>{{ join_request.requester }} ({{ join_request.status }})</b>
+          </div>
+          <div class="col-sm-4 text_right">
+            {% if_can_process_join_request current_account join_request %}
+                <!-- TODO create template tag draw_process_request in team app -->
+                {% draw_action "/static/famfamfam/pencil.png" "PROCESS_REQUEST" "/" current_team.link "/join_request/process/" join_request.id %}
+            {% endif_can_process_join_request %}
+          </div>
         </div>
-        <div class="content">
-            {{ join_request.application }}
-            {% if join_request.processor and join_request.response %} 
-                <h3> {% trans "RESPONSE" %} ({{ join_request.processor }}) </h3>
-                {{ join_request.response }}
-            {% endif %}
-            <div class="actions">
-                {% if_can_process_join_request current_account join_request %}
-                    <!-- TODO create template tag draw_process_request in team app -->
-                    {% draw_action "/static/famfamfam/pencil.png" "PROCESS_REQUEST" "/" current_team.link "/join_request/process/" join_request.id %}
-                {% endif_can_process_join_request %}
-            </div>
-        </div>
-    {% empty %}
-        <div class="content">
-            {% trans "NO_JOIN_REQUESTS" %}
-        </div>
-    {% endfor %}
+      </div>
+      <div class="panel-body">
+        {{ join_request.application }}
+        {% if join_request.processor and join_request.response %} 
+            <h3> {% trans "RESPONSE" %} ({{ join_request.processor }}) </h3>
+            {{ join_request.response }}
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    {% trans "NO_JOIN_REQUESTS" %}
+  {% endfor %}
 {% endblock %}
 
 

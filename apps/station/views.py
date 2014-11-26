@@ -89,7 +89,7 @@ def view(request, **kwargs):
     bikes, borrows = _load_view_data(station, tab)
     data = borrow_control.to_list_data(borrows, team_link=True, columns=tab)
     template_args = { 
-        "bike_pairs" : list(chunks(bikes, 2)),
+        "bike_rows" : list(chunks(bikes, 2)),
         "station" : station, "list_data" : data,
         "page_title" : _VIEW[tab]["page_title"],
         "tabs" : _tabs(station, team, tab),

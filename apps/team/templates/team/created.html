@@ -1,11 +1,9 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load team_tags %}
 {% load common_tags %}
 
 {% block content %}
-    <div class="content">
-        <h2>{% trans "TEAM_CREATED_TITLE" %}</h2>
-        {% trans "TEAM_CREATED_DESCRIPTION" %}
-    </div>
+  <h1>{% trans "TEAM_CREATED_TITLE" %}</h1>
+  {% trans "TEAM_CREATED_DESCRIPTION" %}
 {% endblock %}

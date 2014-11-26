@@ -1,25 +1,56 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 
 {% block content %}
-    <div class="content_title"> 
-        {{ station.postalcode }} 
-        {{ station.city }} -
-        {{ station.street }} 
-    </div>
-    <div class="content">
-
-        {% trans "POSTALCODE" %}: {{ station.postalcode }} <br />
-        {% trans "CITY" %}: {{ station.city }} <br />
-        {% trans "STREET" %}: {{ station.street }} <br />
-        {% trans "RESPONSIBLE" %}: {{ station.responsible }} <br />
-        {% trans "ACTIVE" %}: {% draw_bool station.active %} <br />
-
-        <div class="actions">
-            {% draw_edit "/" station.team.link "/station/edit/" station.id %}
-            {% draw_delete "/" station.team.link "/station/delete/" station.id %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-8">
+          <b>
+            {{ station.postalcode }} 
+            {{ station.city }} -
+            {{ station.street }} 
+          </b>
         </div>
+        <div class="col-sm-4 text_right">
+          {% draw_edit "/" station.team.link "/station/edit/" station.id %}
+          {% draw_delete "/" station.team.link "/station/delete/" station.id %}
+        </div>
+      </div>
     </div>
+    <div class="panel-body">
+      <table class="table table-striped table-hover">
+        <tbody>
+
+          <tr>
+            <td> {% trans "POSTALCODE" %} </td>
+            <td> {{ station.postalcode }} </td>
+          </tr>
+
+          <tr>
+            <td> {% trans "CITY" %} </td>
+            <td> {{ station.city }} </td>
+          </tr>
+
+          <tr>
+            <td> {% trans "STREET" %} </td>
+            <td> {{ station.street }} </td>
+          </tr>
+
+          <tr>
+            <td> {% trans "RESPONSIBLE" %} </td>
+            <td> {{ station.responsible }} </td>
+          </tr>
+
+          <tr>
+            <td> {% trans "ACTIVE" %} </td>
+            <td> {% draw_bool station.active %} </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}
 

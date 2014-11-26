@@ -1,34 +1,37 @@
-{% extends "common/base.html" %}
+{% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
 {% load team_tags %}
 
 {% block content %}
-    {% for remove_request in remove_requests %}
-        <div class="content_title">
-            {{ remove_request.concerned }} ({{ remove_request.status }})
+  {% for remove_request in remove_requests %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-8">
+            <b>{{ remove_request.concerned }} ({{ remove_request.status }})</b>
+          </div>
+          <div class="col-sm-4 text_right">
+            {% if_can_process_remove_request current_account remove_request %}
+              <!-- TODO create template tag draw_process_request in team app -->
+              {% draw_action "/static/famfamfam/pencil.png" "PROCESS_REQUEST" "/" current_team.link "/remove_request/process/" remove_request.id %}
+            {% endif_can_process_remove_request %}
+          </div>
         </div>
-        <div class="content">
-            {% trans "REQUESTER" %}: {{ remove_request.requester }}</br>
-            {% trans "CONCERNED" %}: {{ remove_request.concerned }}</br>
-            {% trans "REASON" %}: {{ remove_request.reason }} 
+      </div>
+      <div class="panel-body">
+        {% trans "REQUESTER" %}: {{ remove_request.requester }}</br>
+        {% trans "CONCERNED" %}: {{ remove_request.concerned }}</br>
+        {% trans "REASON" %}: {{ remove_request.reason }} 
 
-            {% if remove_request.processor and remove_request.response %} 
-                <h3> {% trans "RESPONSE" %} ({{ remove_request.processor }}) </h3>
-                {{ remove_request.response }}
-            {% endif %}
-
-            <div class="actions">
-                {% if_can_process_remove_request current_account remove_request %}
-                    <!-- TODO create template tag draw_process_request in team app -->
-                    {% draw_action "/static/famfamfam/pencil.png" "PROCESS_REQUEST" "/" current_team.link "/remove_request/process/" remove_request.id %}
-                {% endif_can_process_remove_request %}
-            </div>
-        </div>
-    {% empty %}
-        <div class="content">
-            {% trans "NO_REMOVE_REQUESTS" %}
-        </div>
-    {% endfor %}
+        {% if remove_request.processor and remove_request.response %} 
+          <h3> {% trans "RESPONSE" %} ({{ remove_request.processor }}) </h3>
+          {{ remove_request.response }}
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    {% trans "NO_REMOVE_REQUESTS" %}
+  {% endfor %}
 {% endblock %}
 
