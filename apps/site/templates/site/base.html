@@ -72,7 +72,7 @@
       {% endblock %}
 
       {% block testwarning %}
-        {% include "site/base/testwarning.html" %}
+        {#% include "site/base/testwarning.html" %#}
       {% endblock %}
 
       {% block sysinfo %}
@@ -119,7 +119,9 @@
               {% block filters %}
                 {% if filters %}
                   {% with filters as form and _("FILTER") as submit_text %}
-                    {% include "site/form_include.html" %}
+                    <div class="well">
+                      {% include "site/form_include.html" %}
+                    </div>
                   {% endwith %}
                 {% endif %}
               {% endblock %}

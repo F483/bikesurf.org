@@ -2,50 +2,47 @@
 {% load common_tags %}
 {% load bootstrap %}
 
-<div class="well">
+<form 
+  role="form" class="form" method="POST" action="{{ request.get_full_path }}" 
+  {% if multipart_form %}enctype="multipart/form-data" {% endif %}
+>
 
-  <form 
-    role="form" class="form" method="POST" action="{{ request.get_full_path }}" 
-    {% if multipart_form %}enctype="multipart/form-data" {% endif %}
-  >
+  {% csrf_token %}
+  <fieldset>
 
-    {% csrf_token %}
-    <fieldset>
+    {##### TITLE #####}
+    {% if form_title %}<legend>{{ form_title }}</legend>{% endif %}
 
-      {##### TITLE #####}
-      {% if form_title %}<legend>{{ form_title }}</legend>{% endif %}
-
-      {##### INFO #####}
-      {% if form_alert_info %}
-        <div class="alert alert-dismissable alert-info">
-          {{ form_alert_info }}
-        </div>
-      {% endif %}
-
-      {##### RENDER FORM #####}
-      {% if form %}
-        {{ form|bootstrap }}
-      {% endif %}
-
-      {##### CANCEL AND SUBMIT BUTTONS #####}
-      <div class="form-group">
-        <div class="col-lg-12">
-          {% if cancel_url %}
-            <button type="button" class="btn btn-default"
-                    onclick="window.location.href = '{{ cancel_url }}';">
-              {% trans "CANCEL" %}
-            </button>
-          {% endif %}
-          <button type="submit" class="btn btn-primary">
-            {% if submit_text %}
-              {{ submit_text }}
-            {% else %}
-              {% trans "SUBMIT" %}
-            {% endif %}
-          </button>
-        </div>
+    {##### INFO #####}
+    {% if form_alert_info %}
+      <div class="alert alert-dismissable alert-info">
+        {{ form_alert_info }}
       </div>
+    {% endif %}
 
-    </fieldset>
-  </form>
-</div>
+    {##### RENDER FORM #####}
+    {% if form %}
+      {{ form|bootstrap }}
+    {% endif %}
+
+    {##### CANCEL AND SUBMIT BUTTONS #####}
+    <div class="form-group">
+      <div class="col-lg-12">
+        {% if cancel_url %}
+          <button type="button" class="btn btn-default"
+                  onclick="window.location.href = '{{ cancel_url }}';">
+            {% trans "CANCEL" %}
+          </button>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">
+          {% if submit_text %}
+            {{ submit_text }}
+          {% else %}
+            {% trans "SUBMIT" %}
+          {% endif %}
+        </button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
