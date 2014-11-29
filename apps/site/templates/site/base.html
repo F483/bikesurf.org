@@ -31,7 +31,7 @@
     {% endblock %}
 
     {##### DATEPICKER STYLE #####}
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/static/jquery/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
     {##### BOOTSWATCH STYLE #####}
     <link rel="stylesheet" href="/static/bootswatch/{{ settings.BOOTSWATCH_THEME }}/bootstrap.css" media="screen">
@@ -69,10 +69,6 @@
 
       {% block navbar %}
         {% include "site/base/navbar.html" %}
-      {% endblock %}
-
-      {% block testwarning %}
-        {#% include "site/base/testwarning.html" %#}
       {% endblock %}
 
       {% block sysinfo %}
@@ -160,7 +156,7 @@
 
     {##### JQUERY SCRIPT #####}
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="/static/jquery/ui/1.10.4/jquery-ui.js"></script>
 
     {##### BOOTSWATCH SCRIPT #####}
     <script src="/static/bootswatch/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

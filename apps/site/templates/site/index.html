@@ -3,134 +3,147 @@
 {% load common_tags %}
 
 
-{% block content %}
+{% block body %}
 
-  <div class="row">
-    <div class="col-sm-8">
+  {% include "site/base/navbar.html" %}
+  {% include "site/base/sysinfo.html" %}
+  {% include "site/base/messages.html" %}
 
-      {##### BRAINWASHING #####}
-      <h1> bikesurf.org </h1>
+  <div class="bikesurf_splash" style="background-image: url({{ splash_bg}});">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
 
-      <h3> Two Wheels Good, Free Wheels Better </h3>
+          <h1 class="color_white"> bikesurf.org </h1>
+          <h2 class="color_white"> {% trans "SITE_SLOGAN" %} </h2>
+          <p> {% trans "INDEX_VIDEO_EMBED_HTML" %} </p>
 
-      <p> {% trans "INDEX_VIDEO_EMBED_HTML" %} </p>
+        </div>
+        <div class="col-sm-4">
 
-      <h3>{% trans "WHAT_WERE_ABOUT" %}</h3>
+          {##### BORROW #####}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>{% trans "BORROW_A_BIKE" %}</b>
+            </div>
+            <div class="panel-body">
+              {% with _("SELECT") as submit_text %}
+                {% include "site/form_include.html" %}
+              {% endwith %}
+            </div>
+          </div>
 
-      <p> {% trans "SITE_DESCRIPTION_TEXT" %} </p>
+          {##### DONATE #####}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>{% trans "DONATE_TITLE" %}</b>
+            </div>
+            <div class="panel-body">
+              <p> {% trans "DONATE_TEXT" %} </p>
+              <a href="/site/donate.html" class="btn btn-success btn-lg">
+                {% trans "DONATE" %}
+              </a>
+            </div>
+          </div>
 
+          {##### CREATE TEAM #####}
+          {% if user.is_authenticated %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <b>{% trans "START_A_TEAM" %}</b>
+              </div>
+              <div class="panel-body">
+                <p> {% trans "START_A_TEAM_TEXT" %} </p>
+                <a href="/team/create" class="btn btn-success btn-lg">
+                  {% trans "START_A_TEAM" %}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
     </div>
-    <div class="col-sm-4">
+  </div>
 
-      {##### BORROW #####}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <b>{% trans "BORROW_A_BIKE" %}</b>
-        </div>
-        <div class="panel-body">
-          {% with _("SELECT") as submit_text %}
-            {% include "site/form_include.html" %}
-          {% endwith %}
-        </div>
-      </div>
+  <div class="container text_center">
 
-      {##### DONATE #####}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <b>{% trans "DONATE_TITLE" %}</b>
-        </div>
-        <div class="panel-body">
-          <p> {% trans "DONATE_TEXT" %} </p>
-          <a href="/site/donate.html" class="btn btn-success btn-lg">
-            {% trans "DONATE" %}
-          </a>
-        </div>
-      </div>
+    {##### ABOUT #####}
+    <h1>{% trans "WHAT_WERE_ABOUT" %}</h1>
 
-      {##### CREATE TEAM #####}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <b>{% trans "START_A_TEAM" %}</b>
-        </div>
-        <div class="panel-body">
-          <p> {% trans "START_A_TEAM_TEXT" %} </p>
-          <a href="/team/create" class="btn btn-success btn-lg">
-            {% trans "START_A_TEAM" %}
-          </a>
-        </div>
-      </div>
+    <p> {% trans "SITE_DESCRIPTION_TEXT" %} </p>
 
+    {##### PRESS #####}
+    <h1>{% trans "PRESS" %}</h1>
+
+    {# cnn #}
+    <div class="col-lg-6">
+      <iframe width="416" height="234" src="http://edition.cnn.com/video/api/embed.html#/video/international/2013/09/11/spc-business-traveller-sharing-berlin-b.cnn" frameborder="0"></iframe>
     </div>
+
+    {# cctv #}
+    <div class="col-lg-6">
+      <embed id='v_player_cctv' width='379' height='234' flashvars='adCall=http%3A//a.cctv.com/xtserver/site%3Denglish.cntv.cn/aamsz%3DVOD_ADS/CHANNEL%3DCN10/sorts%3DC24064000005/keyword%3DCulturenews/sorts_special%3D&videoId=20130825103022&filePath=/flvxml/2009/08/25/&isAutoPlay=false&url=http://english.cntv.cn/program/cultureexpress/20130825/103022.shtml&tai=english&configPath=http://js.player.cntv.cn/xml/config/outside.xml&widgetsConfig=&languageConfig=http://js.player.cntv.cn/xml/english/main.xml&hour24DataURL=&outsideChannelId=channelBugu&videoCenterId=e857731bb2cd4d4783e4f5ea84ca14b3' allowscriptaccess='always' allowfullscreen='true' menu='false' quality='best' bgcolor='#000000' name='v_player_cctv' src='http://player.cntv.cn/standard/cntvOutSidePlayer.swf' type='application/x-shockwave-flash' lk_mediaid='lk_juiceapp_mediaPopup_1257416656250' lk_media='yes'/>
+    </div>
+
+    {# articles #}
+
+    <p>
+      <a target="_blank" href="http://frugaltraveler.blogs.nytimes.com/2013/05/28/after-the-thaw-outdoor-fun-in-berlin/?ref=travel">
+        <img class="block" src="/static/site/nyt_btn.png" width="131" height="29"/>
+      </a>
+
+      <a target="_blank" href="http://betterymagazine.com/news/collaborative-consumption-the-mobility-issue/">
+        <img class="block" src="/static/site/bettery_btn.png" width="97" height="41"/>
+      </a>
+
+      <a target="_blank" href="http://wikitravel.org/en/Berlin">
+        <img class="block" src="/static/site/wikitrav_btn.png" width="98" height="52"/>
+      </a>
+
+      <a target="_blank" href="http://www.exberliner.com/visiting/what-to-see/best-hot-deals-on-two-wheels/">
+        <img class="block" src="/static/site/exberliner_btn.png" width="146" height="40"/>
+      </a>
+
+      <a target="_blank" href="http://www.irishtimes.com/life-and-style/you-might-have-heard-of-couchsurfing-now-try-bikesurfing-1.1435555">
+        <img class="block" src="/static/site/it_btn.png" width="49" height="50"/>
+      </a>
+
+      <a target="_blank" href="http://www.rte.ie/2fm/dave-fanning/programmes-saturday/2013/0713/462286-dave-fanning-saturday-13-july-2013/?clipid=1265264">
+        <img class="block" src="/static/site/rte_btn.png" width="125" height="42"/>
+      </a>
+    </p>
+
+    <p>
+      <a target="_blank" href="http://www.facebook.com/SlowTravelBerlin?ref=ts&amp;fref=ts">
+        <img class="block" src="/static/site/slowtravber_btn.png" width="95" height="89"/>
+      </a>
+
+      <a target="_blank" href="https://respondingtogether.wikispiral.org/tiki-read_article.php?articleId=334">
+        <img class="block" src="/static/site/stogeth_btn.png" width="118" height="56"/></a>
+
+      <a target="_blank" href="http://hub.coe.int/google-search/?q=bikesurf&amp;x=-1100&amp;y=-2&amp;sitesearch=coe.int">
+        <img class="block" src="/static/site/ec_btn.png" width="99" height="79"/></a>
+
+      <a target="_blank" href="http://www.sustainablecouch.org/?ACT=27&amp;email_id=163">
+        <img class="block" src="/static/site/suscouch.png" width="153" height="132"/></a>
+
+      <a target="_blank" href="http://www.thelocal.de/society/20130220-47973.html">
+        <img class="block" src="/static/site/thelocal_btn.png" width="112" height="40"/></a>
+
+      <a target="_blank" href="http://www.themuslimtimes.org/2013/02/countries/germany/biking-for-free-in-berlin">
+        <img class="block" src="/static/site/mt_btn.png" width="205" height="24"/>
+      </a>
+
+      <a target="_blank" href="http://velo-city2013.com/?page_id=2337&amp;project_id=218" target="_blank" title="VeloCity">
+        <img class="block" src="/static/site/velo_city_btn.png" width="116" height="122"/></a>
+
+      <a target="_blank" href="http://www.travelinggreener.com/green-traveler/bikesurfberlin/">
+        <img class="block" src="/static/site/travgreen_btn.png" width="176" height="23"/></a>
+    </p>
+
   </div>
 
-  {##### BOASTING #####}
-  <h3>{% trans "PRESS" %}</h3>
-
-  {# cnn #}
-  <div class="col-lg-6">
-    <iframe width="416" height="234" src="http://edition.cnn.com/video/api/embed.html#/video/international/2013/09/11/spc-business-traveller-sharing-berlin-b.cnn" frameborder="0"></iframe>
-  </div>
-
-  {# cctv #}
-  <div class="col-lg-6">
-    <embed id='v_player_cctv' width='379' height='234' flashvars='adCall=http%3A//a.cctv.com/xtserver/site%3Denglish.cntv.cn/aamsz%3DVOD_ADS/CHANNEL%3DCN10/sorts%3DC24064000005/keyword%3DCulturenews/sorts_special%3D&videoId=20130825103022&filePath=/flvxml/2009/08/25/&isAutoPlay=false&url=http://english.cntv.cn/program/cultureexpress/20130825/103022.shtml&tai=english&configPath=http://js.player.cntv.cn/xml/config/outside.xml&widgetsConfig=&languageConfig=http://js.player.cntv.cn/xml/english/main.xml&hour24DataURL=&outsideChannelId=channelBugu&videoCenterId=e857731bb2cd4d4783e4f5ea84ca14b3' allowscriptaccess='always' allowfullscreen='true' menu='false' quality='best' bgcolor='#000000' name='v_player_cctv' src='http://player.cntv.cn/standard/cntvOutSidePlayer.swf' type='application/x-shockwave-flash' lk_mediaid='lk_juiceapp_mediaPopup_1257416656250' lk_media='yes'/>
-  </div>
-
-  {# articles #}
-
-  <p>
-    <a target="_blank" href="http://frugaltraveler.blogs.nytimes.com/2013/05/28/after-the-thaw-outdoor-fun-in-berlin/?ref=travel">
-      <img class="block" src="/static/site/nyt_btn.png" width="131" height="29"/>
-    </a>
-
-    <a target="_blank" href="http://betterymagazine.com/news/collaborative-consumption-the-mobility-issue/">
-      <img class="block" src="/static/site/bettery_btn.png" width="97" height="41"/>
-    </a>
-
-    <a target="_blank" href="http://wikitravel.org/en/Berlin">
-      <img class="block" src="/static/site/wikitrav_btn.png" width="98" height="52"/>
-    </a>
-
-    <a target="_blank" href="http://www.exberliner.com/visiting/what-to-see/best-hot-deals-on-two-wheels/">
-      <img class="block" src="/static/site/exberliner_btn.png" width="146" height="40"/>
-    </a>
-
-    <a target="_blank" href="http://www.irishtimes.com/life-and-style/you-might-have-heard-of-couchsurfing-now-try-bikesurfing-1.1435555">
-      <img class="block" src="/static/site/it_btn.png" width="49" height="50"/>
-    </a>
-
-    <a target="_blank" href="http://www.rte.ie/2fm/dave-fanning/programmes-saturday/2013/0713/462286-dave-fanning-saturday-13-july-2013/?clipid=1265264">
-      <img class="block" src="/static/site/rte_btn.png" width="125" height="42"/>
-    </a>
-  </p>
-
-  <p>
-    <a target="_blank" href="http://www.facebook.com/SlowTravelBerlin?ref=ts&amp;fref=ts">
-      <img class="block" src="/static/site/slowtravber_btn.png" width="95" height="89"/>
-    </a>
-
-    <a target="_blank" href="https://respondingtogether.wikispiral.org/tiki-read_article.php?articleId=334">
-      <img class="block" src="/static/site/stogeth_btn.png" width="118" height="56"/></a>
-
-    <a target="_blank" href="http://hub.coe.int/google-search/?q=bikesurf&amp;x=-1100&amp;y=-2&amp;sitesearch=coe.int">
-      <img class="block" src="/static/site/ec_btn.png" width="99" height="79"/></a>
-
-    <a target="_blank" href="http://www.sustainablecouch.org/?ACT=27&amp;email_id=163">
-      <img class="block" src="/static/site/suscouch.png" width="153" height="132"/></a>
-
-    <a target="_blank" href="http://www.thelocal.de/society/20130220-47973.html">
-      <img class="block" src="/static/site/thelocal_btn.png" width="112" height="40"/></a>
-
-    <a target="_blank" href="http://www.themuslimtimes.org/2013/02/countries/germany/biking-for-free-in-berlin">
-      <img class="block" src="/static/site/mt_btn.png" width="205" height="24"/>
-    </a>
-
-    <a target="_blank" href="http://velo-city2013.com/?page_id=2337&amp;project_id=218" target="_blank" title="VeloCity">
-      <img class="block" src="/static/site/velo_city_btn.png" width="116" height="122"/></a>
-
-    <a target="_blank" href="http://www.travelinggreener.com/green-traveler/bikesurfberlin/">
-      <img class="block" src="/static/site/travgreen_btn.png" width="176" height="23"/></a>
-  </p>
-
+  {% include "site/base/footer.html" %}
 {% endblock %}
 
