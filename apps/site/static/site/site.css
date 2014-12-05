@@ -11,9 +11,6 @@
 .float_left_wrap_5px { float: left; margin-right: 5px; }
 .float_left_wrap_25px { float: left; margin-right: 25px; }
 
-.color_white {
-  color: #FFFFFF;
-}
 
 .bikesurf_splash {
   padding: 4em 0 2em;
@@ -23,3 +20,8 @@
   text-align: center;
 }
 
+.bikesurf_splash_title {
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 0.1em 0.1em 0.1em black;
+}
