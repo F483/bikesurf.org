@@ -4,6 +4,52 @@
 {% load borrow_tags %}
 {% load team_tags %}
 
+{% block filters %}
+  <div class="well well-sm">
+    <form class="form" role="form" method="POST"
+          action="{{ request.get_full_path }}">
+      {% csrf_token %}
+      <fieldset>
+        <div class="col-sm-3">
+          <div class="form-group">
+            {{ filters.start.label }}
+            {{ filters.start }}
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            {{ filters.finish.label }}
+            {{ filters.finish }}
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            {{ filters.size.label }}
+            {{ filters.size }}
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            &nbsp;
+            <div>
+            {{ filters.lights }}
+            {{ filters.lights.label }}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div class="form-group">
+            &nbsp;
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+{% endblock %}
+
 {% block content %}
 
   {% for bikes in bike_rows %}
@@ -22,7 +68,7 @@
 
               <p>
                 {% if bike.gallery.primary %}
-                  <img class="thumbnail display_inline" 
+                  <img class="thumbnail display_inline"
                        width="200" height="150"
                        src="{{ bike.gallery.primary.preview.url }}"
                   >

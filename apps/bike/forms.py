@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
-# License: MIT (see LICENSE.TXT file) 
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>
+# License: MIT (see LICENSE.TXT file)
 
 
 import datetime
@@ -15,6 +15,8 @@ from django.forms import ChoiceField
 from django.forms import ImageField
 from django.forms import DateField
 from django.forms.widgets import DateInput
+from django.forms.widgets import CheckboxInput
+from django.forms import Select
 
 from apps.bike.models import SIZE_CHOICES
 from apps.bike import control
@@ -23,23 +25,34 @@ from apps.bike import control
 FILTER_SIZE_CHOICES = [('', _('ALL'))] + SIZE_CHOICES
 
 
-class FilterListing(Form): 
+class FilterListing(Form):
 
     size = ChoiceField(
-        choices=FILTER_SIZE_CHOICES, label=_("BIKE_FILTER_SIZE"), 
-        initial="", required=False
+        choices=FILTER_SIZE_CHOICES, label=_("BIKE_FILTER_SIZE"),
+        initial="", required=False,
+        widget=Select(attrs={'class':'form-control'})
     )
     lights = BooleanField(
-        label=_("BIKE_FILTER_LIGHTS"), initial=False, required=False
+        label=_("BIKE_FILTER_LIGHTS"), initial=False, required=False,
+        #widget=CheckboxInput(attrs={'class':'form-control'})
+
     )
     start = DateField(
-        label=_("BIKE_FILTER_START"), 
-        widget=DateInput(attrs={'class': 'datepicker', 'readonly':' true'}), 
+        label=_("BIKE_FILTER_START"),
+        widget=DateInput(attrs={
+          'class' : 'form-control datepicker',
+          'readonly' : 'true',
+          'placeholder' : _('BIKE_FILTER_START'),
+        }),
         required=False
     )
     finish = DateField(
-        label=_("BIKE_FILTER_FINISH"), 
-        widget=DateInput(attrs={'class': 'datepicker', 'readonly': 'true'}), 
+        label=_("BIKE_FILTER_FINISH"),
+        widget=DateInput(attrs={
+          'class' : 'form-control datepicker',
+          'readonly' : 'true',
+          'placeholder' : _('BIKE_FILTER_FINISH'),
+        }),
         required=False
     )
 
