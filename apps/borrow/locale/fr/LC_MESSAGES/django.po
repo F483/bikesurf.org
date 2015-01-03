@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:53-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,33 +22,33 @@ msgstr ""
 msgid "DELETED"
 msgstr ""
 
-#: control.py:164 control.py:171 control.py:178 models.py:118
-#: templates/borrow/view.html:14
+#: control.py:164 control.py:171 control.py:178 models.py:119
+#: templates/borrow/respond.html:11 templates/borrow/view.html:45
 msgid "BORROWER"
 msgstr ""
 
-#: control.py:164 control.py:171 control.py:178 forms.py:62 forms.py:212
-#: templates/borrow/respond.html:40 templates/borrow/view.html:24
+#: control.py:164 control.py:171 control.py:178 forms.py:62 forms.py:210
+#: templates/borrow/respond.html:83 templates/borrow/view.html:36
 msgid "BIKE"
 msgstr ""
 
-#: control.py:164 control.py:178 templates/borrow/respond.html:46
-#: templates/borrow/view.html:31
+#: control.py:164 control.py:178 templates/borrow/respond.html:97
+#: templates/borrow/view.html:79
 msgid "DATE_TO"
 msgstr ""
 
-#: control.py:164 control.py:179 forms.py:73 templates/borrow/respond.html:48
-#: templates/borrow/view.html:35
+#: control.py:164 control.py:179 forms.py:73 templates/borrow/respond.html:111
+#: templates/borrow/view.html:95
 msgid "STATION_TO"
 msgstr ""
 
-#: control.py:171 control.py:178 templates/borrow/respond.html:45
-#: templates/borrow/view.html:30
+#: control.py:171 control.py:178 templates/borrow/respond.html:92
+#: templates/borrow/view.html:74
 msgid "DATE_FROM"
 msgstr ""
 
-#: control.py:171 control.py:179 forms.py:69 templates/borrow/respond.html:47
-#: templates/borrow/view.html:34
+#: control.py:171 control.py:179 forms.py:69 templates/borrow/respond.html:102
+#: templates/borrow/view.html:86
 msgid "STATION_FROM"
 msgstr ""
 
@@ -56,11 +56,11 @@ msgstr ""
 msgid "BORROW_STATE"
 msgstr ""
 
-#: forms.py:34 models.py:20
+#: forms.py:34 models.py:21
 msgid "ACCEPTED"
 msgstr ""
 
-#: forms.py:35 models.py:21
+#: forms.py:35 models.py:22
 msgid "REJECTED"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr ""
 msgid "ERROR_START_LESS_THEN_MINIMUM"
 msgstr ""
 
-#: forms.py:53 forms.py:126
+#: forms.py:53 forms.py:124
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "ERROR_ALREADY_REQUESTED_BORROW_IN_TIMEFRAME"
 msgstr ""
 
-#: forms.py:62 forms.py:70 forms.py:74 models.py:26
+#: forms.py:62 forms.py:70 forms.py:74 models.py:27
 msgid "ALL"
 msgstr ""
 
@@ -112,8 +112,8 @@ msgstr ""
 msgid "RESPONSE"
 msgstr ""
 
-#: forms.py:101 forms.py:187 forms.py:192 forms.py:197 forms.py:214
-#: forms.py:243
+#: forms.py:101 forms.py:185 forms.py:190 forms.py:195 forms.py:212
+#: forms.py:241
 msgid "NOTE"
 msgstr ""
 
@@ -126,103 +126,147 @@ msgid "ERROR_BIKE_NOT_ACTIVE"
 msgstr ""
 
 #: forms.py:120
-msgid "ERROR_IS_RESERVE_BIKE"
-msgstr ""
-
-#: forms.py:122
 msgid "ERROR_BIKE_STATION_UNKNOWN"
 msgstr ""
 
-#: forms.py:124
+#: forms.py:122
 msgid "ERROR_BIKE_STATION_INACTIVE"
 msgstr ""
 
-#: forms.py:133 forms.py:204
+#: forms.py:131 forms.py:202
 msgid "START"
 msgstr ""
 
-#: forms.py:137 forms.py:208
+#: forms.py:135 forms.py:206
 msgid "FINISH"
 msgstr ""
 
-#: forms.py:141
+#: forms.py:139
 msgid "BORROW_NOTE"
 msgstr ""
 
-#: forms.py:142
+#: forms.py:140
 msgid "ACCEPT_TERMS"
 msgstr ""
 
-#: forms.py:168
+#: forms.py:166
 msgid "ERROR_MUST_ACCEPT_TERMS"
 msgstr ""
 
-#: forms.py:172
+#: forms.py:170
 msgid "ERROR_ACCOUNT_REQUIRES_FULLNAME"
 msgstr ""
 
-#: forms.py:176
+#: forms.py:174
 msgid "ERROR_ACCOUNT_REQUIRES_MOBILE"
 msgstr ""
 
-#: forms.py:180
+#: forms.py:178
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
 msgstr ""
 
-#: forms.py:240
+#: forms.py:238
 msgid "DESTINATION_STATION"
 msgstr ""
 
-#: models.py:19
+#: models.py:20
 msgid "REQUEST"
 msgstr ""
 
-#: models.py:22
+#: models.py:23
 msgid "CANCELED"
 msgstr ""
 
-#: models.py:23 models.py:95
+#: models.py:24 models.py:96
 msgid "FINISHED"
 msgstr ""
 
-#: models.py:90
+#: models.py:91
 msgid "LENDER_RATE"
 msgstr ""
 
-#: models.py:91
+#: models.py:92
 msgid "BORROWER_RATE"
 msgstr ""
 
-#: models.py:92
+#: models.py:93
 msgid "CREATE"
 msgstr ""
 
-#: models.py:93
+#: models.py:94
 msgid "RESPOND"
 msgstr ""
 
-#: models.py:94
+#: models.py:95
 msgid "CANCEL"
 msgstr ""
 
-#: models.py:96
+#: models.py:97
 msgid "EDIT"
 msgstr ""
 
-#: models.py:119
+#: models.py:120
 msgid "LENDER"
 msgstr ""
 
-#: models.py:124
+#: models.py:125
 msgid "THUMBS_UP"
 msgstr ""
 
-#: models.py:125
+#: models.py:126
 msgid "NEUTRAL"
 msgstr ""
 
-#: models.py:126
+#: models.py:127
 msgid "THUMBS_DOWN"
+msgstr ""
+
+#: templates/borrow/create.html:8
+msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
+msgstr ""
+
+#: templates/borrow/create.html:10
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr ""
+
+#: templates/borrow/respond.html:19
+msgid "USERNAME"
+msgstr ""
+
+#: templates/borrow/respond.html:33
+msgid "EMAIL"
+msgstr ""
+
+#: templates/borrow/respond.html:38
+msgid "MOBILE"
+msgstr ""
+
+#: templates/borrow/respond.html:43
+msgid "DESCRIPTION"
+msgstr ""
+
+#: templates/borrow/respond.html:58
+msgid "PASSPORT"
+msgstr ""
+
+#: templates/borrow/respond.html:66
+msgid "NONE"
+msgstr ""
+
+#: templates/borrow/respond.html:76
+msgid "BORROW"
+msgstr ""
+
+#: templates/borrow/view.html:14
+msgid "BORROWING"
+msgstr ""
+
+#: templates/borrow/view.html:60
+msgid "LOCKCODE"
+msgstr ""
+
+#: templates/borrow/view.html:124
+msgid "SYSTEM"
 msgstr ""
 
 #: views.py:91
@@ -263,72 +307,4 @@ msgstr ""
 
 #: views.py:372
 msgid "BORROW_COMMENT"
-msgstr ""
-
-#: templates/borrow/create.html:6
-msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
-msgstr ""
-
-#: templates/borrow/create.html:8
-msgid "BORROW_CREATE_HELP_TEXT"
-msgstr ""
-
-#: templates/borrow/respond.html:6
-msgid "BORROWER_INFORMATION"
-msgstr ""
-
-#: templates/borrow/respond.html:9
-msgid "USERNAME"
-msgstr ""
-
-#: templates/borrow/respond.html:15
-msgid "FIRST_NAME"
-msgstr ""
-
-#: templates/borrow/respond.html:16
-msgid "LAST_NAME"
-msgstr ""
-
-#: templates/borrow/respond.html:17
-msgid "PASSPORT"
-msgstr ""
-
-#: templates/borrow/respond.html:19
-msgid "IMAGE"
-msgstr ""
-
-#: templates/borrow/respond.html:21
-msgid "NONE"
-msgstr ""
-
-#: templates/borrow/respond.html:24
-msgid "MOBILE"
-msgstr ""
-
-#: templates/borrow/respond.html:25
-msgid "EMAIL"
-msgstr ""
-
-#: templates/borrow/respond.html:26
-msgid "SOURCE"
-msgstr ""
-
-#: templates/borrow/respond.html:27
-msgid "DESCRIPTION"
-msgstr ""
-
-#: templates/borrow/respond.html:37
-msgid "BORROW_INFORMATION"
-msgstr ""
-
-#: templates/borrow/view.html:10
-msgid "BORROWING"
-msgstr ""
-
-#: templates/borrow/view.html:36
-msgid "LOCKCODE"
-msgstr ""
-
-#: templates/borrow/view.html:56
-msgid "SYSTEM"
 msgstr ""

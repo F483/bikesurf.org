@@ -1,0 +1,128 @@
+#: forms.py:23
+msgid "ALL"
+msgstr ""
+
+#: forms.py:29
+msgid "BIKE_FILTER_SIZE"
+msgstr ""
+
+#: forms.py:33
+msgid "BIKE_FILTER_LIGHTS"
+msgstr ""
+
+#: forms.py:36
+msgid "BIKE_FILTER_START"
+msgstr ""
+
+#: forms.py:41
+msgid "BIKE_FILTER_FINISH"
+msgstr ""
+
+#: forms.py:52
+msgid "ERROR_START_NOT_IN_FUTURE"
+msgstr ""
+
+#: forms.py:54
+msgid "ERROR_FINISH_NOT_IN_FUTURE"
+msgstr ""
+
+#: forms.py:56
+msgid "ERROR_FINISH_BEFORE_START"
+msgstr ""
+
+#: forms.py:62 forms.py:81
+msgid "NAME"
+msgstr ""
+
+#: forms.py:63
+msgid "IMAGE"
+msgstr ""
+
+#: forms.py:64 forms.py:82 templates/bike/list.html:39
+#: templates/bike/view.html:54
+msgid "ACTIVE"
+msgstr ""
+
+#: forms.py:65 forms.py:83 templates/bike/list.html:40
+#: templates/bike/view.html:58
+msgid "RESERVE"
+msgstr ""
+
+#: forms.py:66 forms.py:84 templates/bike/list.html:42
+#: templates/bike/view.html:67
+msgid "STATION"
+msgstr ""
+
+#: forms.py:67 forms.py:85 templates/bike/view.html:63
+msgid "LOCKCODE"
+msgstr ""
+
+#: forms.py:68 forms.py:86 templates/bike/list.html:36
+#: templates/bike/view.html:46
+msgid "SIZE"
+msgstr ""
+
+#: forms.py:69 forms.py:87 templates/bike/list.html:37
+#: templates/bike/view.html:50
+msgid "LIGHTS"
+msgstr ""
+
+#: forms.py:70 forms.py:88 templates/bike/view.html:82
+msgid "DESCRIPTION"
+msgstr ""
+
+#: forms.py:111
+msgid "ERROR_CANNOT_DEACTIVATE_BIKE_IN_USE"
+msgstr ""
+
+#: forms.py:115
+msgid "ERROR_CANNOT_CHANGE_STATION_BIKE_IN_USE"
+msgstr ""
+
+#: forms.py:130
+msgid "ERROR_CANNOT_DELETE_BIKE_IN_USE"
+msgstr ""
+
+#: models.py:17
+msgid "SMALL"
+msgstr ""
+
+#: models.py:18
+msgid "MEDIUM"
+msgstr ""
+
+#: models.py:19
+msgid "LARGE"
+msgstr ""
+
+#: templates/bike/list.html:46
+msgid "UNKNOWN"
+msgstr ""
+
+#: templates/bike/view.html:36
+msgid "GALLERY"
+msgstr ""
+
+#: views.py:37 views.py:45
+msgid "BIKE_BORROWS"
+msgstr ""
+
+#: views.py:44
+msgid "OVERVIEW"
+msgstr ""
+
+#: views.py:152
+msgid "BIKES"
+msgstr ""
+
+#: views.py:182
+msgid "BIKE_CREATE"
+msgstr ""
+
+#: views.py:211
+msgid "BIKE_EDIT"
+msgstr ""
+
+#: views.py:232
+msgid "BIKE_DELETE?"
+msgstr ""

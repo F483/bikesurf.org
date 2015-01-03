@@ -9,8 +9,6 @@
 {% block content %}
   <div class="container" style="text-align: center">
     {{ _("SITE_ABOUT")|render_markdown }}
-    {% render_button _("CREATE_BOUNTY") "/bounty/create" "btn btn-primary" "fa fa-plus-circle" %}
-    {% render_button _("BROWSE_BOUNTIES") "/" "btn btn-primary" "fa fa-search" %}
   </div>
 {% endblock %}
 

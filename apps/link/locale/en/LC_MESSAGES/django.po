@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:51-0600\n"
 "PO-Revision-Date: 2014-04-24 14:35-0600\n"
 "Last-Translator: uieiue Barkhau <fabian.barkhau+testuserone@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Translated-Using: django-rosetta 0.7.2\n"
 
-#: models.py:14
+#: models.py:15
 msgid "COUCHSURFING"
 msgstr "Couchsurfing"
 
-#: models.py:15
+#: models.py:16
 msgid "BEWELCOME"
 msgstr "Bewelcome"
 
-#: models.py:16
+#: models.py:17
 msgid "FACEBOOK"
 msgstr "Facebook"
 
-#: models.py:17
+#: models.py:18
 msgid "TWITTER"
 msgstr "Twitter"

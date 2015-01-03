@@ -2,186 +2,169 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:53-0600\n"
 "PO-Revision-Date: 2014-10-26 09:52-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: templates/base.html:6
-msgid "SIGNUP"
-msgstr "REGISTRATI"
-
-#: templates/common/base-old.html:22 templates/common/base.html:22
-msgid "META_KEYWORDS"
-msgstr "META_PAROLE_CHIAVE"
-
-#: templates/common/base-old.html:23 templates/common/base.html:23
-msgid "META_DESCRIPTION"
-msgstr "META_DESCRIZIONE"
-
-#: templates/common/base-old.html:95 templates/common/base.html:103
-msgid "DONATE"
-msgstr "FAI_UN_OFFERTA"
-
-#: templates/common/filters.html:8
-#, fuzzy
-msgid "FILTER"
-msgstr "FILTRO"
-
-#: templates/common/footer.html:4
-msgid "ADMIN"
-msgstr "AMMINISTRAZIONE"
-
-#: templates/common/footer.html:10
-msgid "INTERNATIONALISATION"
-msgstr "INTERNAZIONALIZZAZIONE"
-
-#: templates/common/footer.html:16
-msgid "REPOSITORY"
-msgstr "REPOSITORY"
-
-#: templates/common/footer.html:22
-msgid "TERMS_AND_CONDITIONS"
-msgstr "TERMINI_E_CONDIZIONI"
-
-#: templates/common/form.html:30 templatetags/common_tags.py:17
-msgid "CANCEL"
-msgstr "CANCELLA"
-
-#: templates/common/form.html:36
-msgid "SUBMIT"
-msgstr "INVIA"
-
-#: templates/common/list.html:44
-msgid "NO_ENTRIES"
-msgstr "NESSUN_CONTENUTO"
-
-#: templates/common/statusbar-old.html:5 templates/common/statusbar.html:5
-msgid "MY_BORROWS"
-msgstr "MIEI_PRESTITI"
-
-#: templates/common/statusbar-old.html:22 templates/common/statusbar.html:22
-msgid "ARRIVALS"
-msgstr "ARRIVI"
-
-#: templates/common/statusbar-old.html:29 templates/common/statusbar.html:29
-msgid "DEPARTURES"
-msgstr "PARTENZE"
-
-#: templates/common/statusbar-old.html:34 templates/common/statusbar.html:34
-msgid "LOGOUT"
-msgstr "ESCI"
-
-#: templates/common/statusbar-old.html:38 templates/common/statusbar.html:38
-msgid "LOGIN"
-msgstr "ACCEDI"
-
-#: templates/common/statusbar-old.html:39 templates/common/statusbar.html:39
-msgid "SIGN UP"
-msgstr "REGISTRATI"
-
-#: templatetags/common_tags.py:14
+#: templatetags/common_tags.py:105
 #, fuzzy
 msgid "BORROW"
 msgstr "PRESTITO"
 
-#: templatetags/common_tags.py:15
+#: templatetags/common_tags.py:106
 #, fuzzy
 msgid "PROCESS_REQUEST"
 msgstr "RICHIESTA_IN_CORSO"
 
-#: templatetags/common_tags.py:16
+#: templatetags/common_tags.py:107
 msgid "RESPOND"
 msgstr "RISPONDI"
 
-#: templatetags/common_tags.py:18
+#: templatetags/common_tags.py:108
+msgid "CANCEL"
+msgstr "CANCELLA"
+
+#: templatetags/common_tags.py:109
 msgid "RATE"
 msgstr "VALUTA"
 
-#: templatetags/common_tags.py:19
+#: templatetags/common_tags.py:110
 msgid "DELETE"
 msgstr "CANCELLA"
 
-#: templatetags/common_tags.py:20
+#: templatetags/common_tags.py:111
 msgid "EDIT"
 msgstr "MODIFICA"
 
-#: templatetags/common_tags.py:21
+#: templatetags/common_tags.py:112
 msgid "ADD_BLOG"
 msgstr "AGGIUNGI_BLOG"
 
-#: templatetags/common_tags.py:22
+#: templatetags/common_tags.py:113
 msgid "ADD_PAGE"
 msgstr "AGGIUNGI_PAGINA"
 
-#: templatetags/common_tags.py:23
+#: templatetags/common_tags.py:114
 msgid "BIKE_CREATE"
 msgstr "CREA_BICICLETTA"
 
-#: templatetags/common_tags.py:24
+#: templatetags/common_tags.py:115
 msgid "ADD_STATION"
 msgstr "AGGIUNGI_STAZIONE"
 
-#: templatetags/common_tags.py:25
+#: templatetags/common_tags.py:116
 msgid "ADD_PICTURE"
 msgstr "AGGIUNGI_IMMAGINE"
 
-#: templatetags/common_tags.py:26
+#: templatetags/common_tags.py:117
 msgid "SET_AS_PRIMARY_PICTURE"
 msgstr "IMPOSTA_COME_IMMAGINE_PRINCIPALE"
 
-#: templatetags/common_tags.py:27
+#: templatetags/common_tags.py:118
 msgid "CHANGE_DEST"
 msgstr "CAMBIA_DESTINAZIONE"
 
-#: templatetags/common_tags.py:28
+#: templatetags/common_tags.py:119
 msgid "CHANGE_BIKE"
 msgstr "CAMBIA_BICICLETTA"
 
-#: templatetags/common_tags.py:29
+#: templatetags/common_tags.py:120
 msgid "ADD_LINK"
 msgstr "AGGIUNGI_LINK"
 
-#: templatetags/common_tags.py:30
+#: templatetags/common_tags.py:121
 msgid "REPLACE_LOGO"
 msgstr "SOSTITUISCI_LOGO"
 
-#: templatetags/common_tags.py:31
+#: templatetags/common_tags.py:122
 msgid "SET_PASSPORT"
 msgstr "IMPOSTA_PASSAPORTO"
 
-#: templatetags/common_tags.py:32
+#: templatetags/common_tags.py:123
 msgid "CREATE_TEAM"
 msgstr "CREA-SQUADRA"
 
-#: templatetags/common_tags.py:33
+#: templatetags/common_tags.py:124
 msgid "COMMENT"
 msgstr "COMMENTA"
 
-#: templatetags/common_tags.py:34
+#: templatetags/common_tags.py:125
 msgid "CHANGE_PASSWORD"
 msgstr "CAMBIA_PASSWORD"
 
-#: templatetags/common_tags.py:35
+#: templatetags/common_tags.py:126
 msgid "CHANGE_EMAIL"
 msgstr "CAMBIA_EMAIL"
 
-#: templatetags/common_tags.py:52
+#: templatetags/common_tags.py:140
 msgid "TRUE"
 msgstr "VERO"
 
-#: templatetags/common_tags.py:53
+#: templatetags/common_tags.py:141
 msgid "FALSE"
 msgstr "FALSO"
+
+#~ msgid "SIGNUP"
+#~ msgstr "REGISTRATI"
+
+#~ msgid "META_KEYWORDS"
+#~ msgstr "META_PAROLE_CHIAVE"
+
+#~ msgid "META_DESCRIPTION"
+#~ msgstr "META_DESCRIZIONE"
+
+#~ msgid "DONATE"
+#~ msgstr "FAI_UN_OFFERTA"
+
+#, fuzzy
+#~ msgid "FILTER"
+#~ msgstr "FILTRO"
+
+#~ msgid "ADMIN"
+#~ msgstr "AMMINISTRAZIONE"
+
+#~ msgid "INTERNATIONALISATION"
+#~ msgstr "INTERNAZIONALIZZAZIONE"
+
+#~ msgid "REPOSITORY"
+#~ msgstr "REPOSITORY"
+
+#~ msgid "TERMS_AND_CONDITIONS"
+#~ msgstr "TERMINI_E_CONDIZIONI"
+
+#~ msgid "SUBMIT"
+#~ msgstr "INVIA"
+
+#~ msgid "NO_ENTRIES"
+#~ msgstr "NESSUN_CONTENUTO"
+
+#~ msgid "MY_BORROWS"
+#~ msgstr "MIEI_PRESTITI"
+
+#~ msgid "ARRIVALS"
+#~ msgstr "ARRIVI"
+
+#~ msgid "DEPARTURES"
+#~ msgstr "PARTENZE"
+
+#~ msgid "LOGOUT"
+#~ msgstr "ESCI"
+
+#~ msgid "LOGIN"
+#~ msgstr "ACCEDI"
+
+#~ msgid "SIGN UP"
+#~ msgstr "REGISTRATI"

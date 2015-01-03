@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:53-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,36 +58,36 @@ msgstr ""
 msgid "IMAGE"
 msgstr ""
 
-#: forms.py:64 forms.py:82 templates/bike/list.html:38
-#: templates/bike/view.html:31
+#: forms.py:64 forms.py:82 templates/bike/list.html:39
+#: templates/bike/view.html:54
 msgid "ACTIVE"
 msgstr ""
 
-#: forms.py:65 forms.py:83 templates/bike/list.html:39
-#: templates/bike/view.html:32
+#: forms.py:65 forms.py:83 templates/bike/list.html:40
+#: templates/bike/view.html:58
 msgid "RESERVE"
 msgstr ""
 
-#: forms.py:66 forms.py:84 templates/bike/list.html:40
-#: templates/bike/view.html:35
+#: forms.py:66 forms.py:84 templates/bike/list.html:42
+#: templates/bike/view.html:67
 msgid "STATION"
 msgstr ""
 
-#: forms.py:67 forms.py:85 templates/bike/view.html:34
+#: forms.py:67 forms.py:85 templates/bike/view.html:63
 msgid "LOCKCODE"
 msgstr ""
 
-#: forms.py:68 forms.py:86 templates/bike/list.html:35
-#: templates/bike/view.html:29
+#: forms.py:68 forms.py:86 templates/bike/list.html:36
+#: templates/bike/view.html:46
 msgid "SIZE"
 msgstr ""
 
-#: forms.py:69 forms.py:87 templates/bike/list.html:36
-#: templates/bike/view.html:30
+#: forms.py:69 forms.py:87 templates/bike/list.html:37
+#: templates/bike/view.html:50
 msgid "LIGHTS"
 msgstr ""
 
-#: forms.py:70 forms.py:88 templates/bike/view.html:40
+#: forms.py:70 forms.py:88 templates/bike/view.html:82
 msgid "DESCRIPTION"
 msgstr ""
 
@@ -103,16 +103,24 @@ msgstr ""
 msgid "ERROR_CANNOT_DELETE_BIKE_IN_USE"
 msgstr ""
 
-#: models.py:16
+#: models.py:17
 msgid "SMALL"
 msgstr ""
 
-#: models.py:17
+#: models.py:18
 msgid "MEDIUM"
 msgstr ""
 
-#: models.py:18
+#: models.py:19
 msgid "LARGE"
+msgstr ""
+
+#: templates/bike/list.html:46
+msgid "UNKNOWN"
+msgstr ""
+
+#: templates/bike/view.html:36
+msgid "GALLERY"
 msgstr ""
 
 #: views.py:37 views.py:45
@@ -137,12 +145,4 @@ msgstr ""
 
 #: views.py:232
 msgid "BIKE_DELETE?"
-msgstr ""
-
-#: templates/bike/list.html:44
-msgid "UNKNOWN"
-msgstr ""
-
-#: templates/bike/list.html:59
-msgid "NO_BIKES"
 msgstr ""

@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-03 11:52-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: forms.py:26 templates/account/profile.html:61
+#: templates/account/view.html:43
+msgid "PASSPORT"
+msgstr ""
+
+#: forms.py:31
+msgid "USERNAME"
+msgstr ""
+
+#: forms.py:32 templates/account/profile.html:35
+#: templates/account/view.html:20
+msgid "FIRST_NAME"
+msgstr ""
+
+#: forms.py:33
+msgid "LAST_NAME"
+msgstr ""
+
+#: forms.py:34 templates/account/profile.html:43
+#: templates/account/view.html:28
+msgid "MOBILE"
+msgstr ""
+
+#: forms.py:35 templates/account/profile.html:54
+#: templates/account/view.html:36
+msgid "SOURCE"
+msgstr ""
+
+#: forms.py:37 templates/account/profile.html:90
+#: templates/account/view.html:68
+msgid "DESCRIPTION"
+msgstr ""
+
+#: forms.py:53
+msgid "ERROR_BAD_USERNAME_FORMAT"
+msgstr ""
+
+#: forms.py:59
+msgid "ERROR_USERNAME_TAKEN"
+msgstr ""
+
+#: forms.py:65
+msgid "SITE"
+msgstr ""
+
+#: forms.py:66
+msgid "URL"
+msgstr ""
+
+#: forms.py:77
+msgid "ERROR_LINK_PROFILE_FOR_SITE_EXISTS"
+msgstr ""
+
+#: forms.py:79
+msgid "ERROR_BAD_PROFILE_FORMAT"
+msgstr ""
+
+#: forms.py:81
+msgid "ERROR_CANNOT_CREATE_LINK"
+msgstr ""
+
+#: forms.py:95
+msgid "ERROR_CANNOT_DELETE_LINK"
+msgstr ""
+
+#: models.py:31
+msgid "OTHER"
+msgstr ""
+
+#: models.py:32
+msgid "COUCHSURFING"
+msgstr ""
+
+#: models.py:33
+msgid "FACEBOOK"
+msgstr ""
+
+#: models.py:34
+msgid "FRIENDS"
+msgstr ""
+
+#: models.py:35
+msgid "GOOGLE"
+msgstr ""
+
+#: models.py:36
+msgid "TWITTER"
+msgstr ""
+
+#: templates/account/profile.html:23
+msgid "ACCOUNT_ADD_REQUIRED_INFO"
+msgstr ""
+
+#: templates/account/profile.html:26 views.py:39 views.py:83 views.py:141
+msgid "USER_PRIVECY_INFORMATION"
+msgstr ""
+
+#: templates/account/profile.html:31 templates/account/view.html:16
+msgid "DETAILS"
+msgstr ""
+
+#: templates/account/profile.html:39 templates/account/view.html:24
+msgid "LIST_NAME"
+msgstr ""
+
+#: templates/account/profile.html:47 templates/account/view.html:32
+msgid "EMAIL"
+msgstr ""
+
+#: templates/account/profile.html:49
+msgid "CHANGE_EMAIL"
+msgstr ""
+
+#: templates/account/profile.html:71 templates/account/view.html:53
+msgid "NONE"
+msgstr ""
+
+#: templates/account/profile.html:75 views.py:36
+msgid "SET_PASSPORT"
+msgstr ""
+
+#: templates/account/profile.html:76
+msgid "EDIT"
+msgstr ""
+
+#: templates/account/profile.html:82 templates/account/view.html:60
+msgid "LINKS"
+msgstr ""
+
+#: views.py:19
+msgid "PROFILE_UPDATED"
+msgstr ""
+
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr ""
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr ""
+
+#: views.py:82
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr ""
+
+#: views.py:140
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr ""

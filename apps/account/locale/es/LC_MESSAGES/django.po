@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:26 templates/account/profile.html:30
-#: templates/account/profile.html.py:35 templates/account/view.html:19
-#: templates/account/view.html.py:24
+#: forms.py:26 templates/account/profile.html:61
+#: templates/account/view.html:43
 msgid "PASSPORT"
 msgstr ""
 
@@ -28,27 +27,27 @@ msgstr ""
 msgid "USERNAME"
 msgstr ""
 
-#: forms.py:32 templates/account/profile.html:19
-#: templates/account/view.html:13
+#: forms.py:32 templates/account/profile.html:35
+#: templates/account/view.html:20
 msgid "FIRST_NAME"
 msgstr ""
 
-#: forms.py:33 templates/account/view.html:14
+#: forms.py:33
 msgid "LAST_NAME"
 msgstr ""
 
-#: forms.py:34 templates/account/profile.html:21
-#: templates/account/view.html:15
+#: forms.py:34 templates/account/profile.html:43
+#: templates/account/view.html:28
 msgid "MOBILE"
 msgstr ""
 
-#: forms.py:35 templates/account/profile.html:42
-#: templates/account/view.html:28
+#: forms.py:35 templates/account/profile.html:54
+#: templates/account/view.html:36
 msgid "SOURCE"
 msgstr ""
 
-#: forms.py:37 templates/account/profile.html:43
-#: templates/account/view.html:29
+#: forms.py:37 templates/account/profile.html:90
+#: templates/account/view.html:68
 msgid "DESCRIPTION"
 msgstr ""
 
@@ -108,20 +107,52 @@ msgstr ""
 msgid "TWITTER"
 msgstr ""
 
+#: templates/account/profile.html:23
+msgid "ACCOUNT_ADD_REQUIRED_INFO"
+msgstr ""
+
+#: templates/account/profile.html:26 views.py:39 views.py:83 views.py:141
+msgid "USER_PRIVECY_INFORMATION"
+msgstr ""
+
+#: templates/account/profile.html:31 templates/account/view.html:16
+msgid "DETAILS"
+msgstr ""
+
+#: templates/account/profile.html:39 templates/account/view.html:24
+msgid "LIST_NAME"
+msgstr ""
+
+#: templates/account/profile.html:47 templates/account/view.html:32
+msgid "EMAIL"
+msgstr ""
+
+#: templates/account/profile.html:49
+msgid "CHANGE_EMAIL"
+msgstr ""
+
+#: templates/account/profile.html:71 templates/account/view.html:53
+msgid "NONE"
+msgstr ""
+
+#: templates/account/profile.html:75 views.py:36
+msgid "SET_PASSPORT"
+msgstr ""
+
+#: templates/account/profile.html:76
+msgid "EDIT"
+msgstr ""
+
+#: templates/account/profile.html:82 templates/account/view.html:60
+msgid "LINKS"
+msgstr ""
+
 #: views.py:19
 msgid "PROFILE_UPDATED"
 msgstr ""
 
-#: views.py:36 templates/account/profile.html:38
-msgid "SET_PASSPORT"
-msgstr ""
-
 #: views.py:38
 msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr ""
-
-#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:16
-msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
 
 #: views.py:57
@@ -134,62 +165,4 @@ msgstr ""
 
 #: views.py:140
 msgid "ADD_REQUIRED_PROFILE_INFO"
-msgstr ""
-
-#: templates/account/login.html:7 templates/account/login.html.py:11
-#: templates/account/login.html:41
-msgid "Sign In"
-msgstr ""
-
-#: templates/account/login.html:14
-#, python-format
-msgid ""
-"Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
-"up</a> \n"
-"for a %(site_name)s account and sign in below:"
-msgstr ""
-
-#: templates/account/login.html:24
-msgid "or"
-msgstr ""
-
-#: templates/account/login.html:31
-msgid "SIGN UP SUGGESTION"
-msgstr ""
-
-#: templates/account/login.html:31
-msgid "SIGN UP"
-msgstr ""
-
-#: templates/account/login.html:40
-msgid "Forgot Password?"
-msgstr ""
-
-#: templates/account/profile.html:13
-msgid "ACCOUNT_ADD_REQUIRED_INFO"
-msgstr ""
-
-#: templates/account/profile.html:20
-msgid "LIST_NAME"
-msgstr ""
-
-#: templates/account/profile.html:23 templates/account/view.html:16
-msgid "EMAIL"
-msgstr ""
-
-#: templates/account/profile.html:25
-msgid "CHANGE_EMAIL"
-msgstr ""
-
-#: templates/account/profile.html:32 templates/account/view.html:21
-msgid "IMAGE"
-msgstr ""
-
-#: templates/account/profile.html:35 templates/account/view.html:24
-msgid "NONE"
-msgstr ""
-
-#: templates/account/profile.html:48 templates/account/view.html:33
-msgid "LINKS"
 msgstr ""

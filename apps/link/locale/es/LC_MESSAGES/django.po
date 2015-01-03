@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:14
+#: models.py:15
 msgid "COUCHSURFING"
 msgstr ""
 
-#: models.py:15
+#: models.py:16
 msgid "BEWELCOME"
 msgstr ""
 
-#: models.py:16
+#: models.py:17
 msgid "FACEBOOK"
 msgstr ""
 
-#: models.py:17
+#: models.py:18
 msgid "TWITTER"
 msgstr ""

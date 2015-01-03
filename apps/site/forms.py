@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>                  
-# License: MIT (see LICENSE.TXT file) 
+# Copyright (c) 2012 Fabian Barkhau <fabian.barkhau@gmail.com>
+# License: MIT (see LICENSE.TXT file)
 
 
 from django.utils.translation import ugettext as _
@@ -16,9 +16,9 @@ teams = teams.filter(active=True, bike_count__gt=0)
 class TeamSelectForm(Form):
 
     team = ModelChoiceField(
-        label='', empty_label=_("PICK_A_LOCATION"), 
+        label='', empty_label=_("PICK_A_LOCATION"),
         queryset=teams,
-        widget=Select(attrs={'style':'WIDTH: 235px;'})
-    ) 
+        widget=Select(attrs={'class':'form-control'})
+    )
 
 

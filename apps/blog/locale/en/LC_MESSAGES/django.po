@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:51-0600\n"
 "PO-Revision-Date: 2013-09-06 07:06-0500\n"
 "Last-Translator:   <test@user.one>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,10 @@ msgstr "Title"
 msgid "CONTENT"
 msgstr "Content"
 
+#: templates/blog/list.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr "No blog entries."
+
 #: views.py:46
 msgid "ADD_BLOG"
 msgstr "Add blog"
@@ -37,7 +41,3 @@ msgstr "Edit Blog"
 #: views.py:96
 msgid "BLOG_DELETE?"
 msgstr "Delete Blog"
-
-#: templates/blog/list.html:23
-msgid "NO_BLOG_ENTRIES"
-msgstr "No blog entries."

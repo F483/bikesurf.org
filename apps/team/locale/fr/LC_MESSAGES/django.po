@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-01-03 11:53-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,8 +50,8 @@ msgstr ""
 msgid "JOIN_REQUEST_REASON"
 msgstr ""
 
-#: forms.py:60 forms.py:71 templates/team/join_request/list.html:14
-#: templates/team/remove_request/list.html:17
+#: forms.py:60 forms.py:71 templates/team/join_request/list.html:25
+#: templates/team/remove_request/list.html:28
 msgid "RESPONSE"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "STATUS"
 msgstr ""
 
-#: forms.py:66 templates/team/remove_request/list.html:14
+#: forms.py:66 templates/team/remove_request/list.html:25
 msgid "REASON"
 msgstr ""
 
@@ -87,16 +87,68 @@ msgstr ""
 msgid "ERROR_CANNOT_DELETE_LINK"
 msgstr ""
 
-#: models.py:21
+#: models.py:22
 msgid "PENDING"
 msgstr ""
 
-#: models.py:22
+#: models.py:23
 msgid "ACCEPTED"
 msgstr ""
 
-#: models.py:23
+#: models.py:24
 msgid "DECLINED"
+msgstr ""
+
+#: templates/team/created.html:7
+msgid "TEAM_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/created.html:8
+msgid "TEAM_CREATED_DESCRIPTION"
+msgstr ""
+
+#: templates/team/join_request/created.html:5
+msgid "JOIN_REQUEST_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/join_request/created.html:6
+msgid "JOIN_REQUEST_CREATED_SUBTITLE"
+msgstr ""
+
+#: templates/team/join_request/list.html:31
+msgid "NO_JOIN_REQUESTS"
+msgstr ""
+
+#: templates/team/members.html:9 utils.py:17 views.py:126
+msgid "MEMBERS"
+msgstr ""
+
+#: templates/team/members.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr ""
+
+#: templates/team/menu.html:40 views.py:161
+msgid "JOIN_REQUEST"
+msgstr ""
+
+#: templates/team/remove_request/created.html:5
+msgid "REMOVE_REQUESTED"
+msgstr ""
+
+#: templates/team/remove_request/created.html:6
+msgid "REMOVE_REQUEST_MADE"
+msgstr ""
+
+#: templates/team/remove_request/list.html:23
+msgid "REQUESTER"
+msgstr ""
+
+#: templates/team/remove_request/list.html:24
+msgid "CONCERNED"
+msgstr ""
+
+#: templates/team/remove_request/list.html:34
+msgid "NO_REMOVE_REQUESTS"
 msgstr ""
 
 #: utils.py:15
@@ -105,10 +157,6 @@ msgstr ""
 
 #: utils.py:16
 msgid "BIKES"
-msgstr ""
-
-#: utils.py:17 views.py:126
-msgid "MEMBERS"
 msgstr ""
 
 #: utils.py:18
@@ -143,58 +191,6 @@ msgstr ""
 msgid "CREATE_TEAM"
 msgstr ""
 
-#: views.py:161 templates/team/menu-old.html:39 templates/team/menu.html:42
-msgid "JOIN_REQUEST"
-msgstr ""
-
 #: views.py:217
 msgid "REMOVE_REQUEST_CREATE"
-msgstr ""
-
-#: templates/team/created.html:8
-msgid "TEAM_CREATED_TITLE"
-msgstr ""
-
-#: templates/team/created.html:9
-msgid "TEAM_CREATED_DESCRIPTION"
-msgstr ""
-
-#: templates/team/menu-old.html:45 templates/team/menu.html:48
-msgid "TEAM"
-msgstr ""
-
-#: templates/team/menu-old.html:61 templates/team/menu.html:64
-msgid "ACTIONS"
-msgstr ""
-
-#: templates/team/join_request/created.html:6
-msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr ""
-
-#: templates/team/join_request/created.html:7
-msgid "JOIN_REQUEST_CREATED_SUBTITLE"
-msgstr ""
-
-#: templates/team/join_request/list.html:26
-msgid "NO_JOIN_REQUESTS"
-msgstr ""
-
-#: templates/team/remove_request/created.html:6
-msgid "REMOVE_REQUESTED"
-msgstr ""
-
-#: templates/team/remove_request/created.html:7
-msgid "REMOVE_REQUEST_MADE"
-msgstr ""
-
-#: templates/team/remove_request/list.html:12
-msgid "REQUESTER"
-msgstr ""
-
-#: templates/team/remove_request/list.html:13
-msgid "CONCERNED"
-msgstr ""
-
-#: templates/team/remove_request/list.html:30
-msgid "NO_REMOVE_REQUESTS"
 msgstr ""

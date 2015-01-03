@@ -9,8 +9,8 @@
         }
     ],
     "type": "component",
-    "require": {
-        "robloach/component-installer": "0.0.*"
+    "suggest": {
+        "robloach/component-installer": "Allows installation of Components via Composer"
     },
     "extra": {
         "component": {
@@ -22,11 +22,14 @@
                 "cerulean/*",
                 "cosmo/*",
                 "cyborg/*",
+                "darkly/*",
                 "flatly/*",
                 "fonts/*",
                 "journal/*",
                 "lumen/*",
+                "paper/*",
                 "readable/*",
+                "sandstone/*",
                 "simplex/*",
                 "slate/*",
                 "spacelab/*",

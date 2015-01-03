@@ -1,6 +1,7 @@
 {% extends "site/base.html" %}
 {% load i18n %}
 {% load common_tags %}
+{% load bootstrap %}
 
 
 {% block body %}
@@ -15,32 +16,47 @@
         <div class="col-sm-8">
 
           <h1 class="bikesurf_splash_title"> bikesurf.org </h1>
-          <h2 class="bikesurf_splash_title"> {% trans "SITE_SLOGAN" %} </h2>
-          <p> {% trans "INDEX_VIDEO_EMBED_HTML" %} </p>
+          <h3 class="bikesurf_splash_title"> {% trans "SITE_SLOGAN" %} </h3>
+
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe src="{% trans "INDEX_VIDEO_URL" %}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
 
         </div>
         <div class="col-sm-4">
 
           {##### BORROW #####}
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <b>{% trans "BORROW_A_BIKE" %}</b>
-            </div>
+          <div class="panel panel-default bikesurf_splash_panel">
             <div class="panel-body">
-              {% with _("SELECT") as submit_text %}
-                {% include "site/form_include.html" %}
-              {% endwith %}
+
+              <p>{% trans "BORROW_A_BIKE" %}</p>
+
+              <form class="form" role="form"
+                    action="{{ request.get_full_path }}" method="POST">
+                {% csrf_token %}
+                <fieldset>
+                  <div class="form-group">
+                    <div class="input-group">
+                      {{ form.team }}
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success">
+                          <i class="fa fa-arrow-right"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
             </div>
           </div>
 
           {##### DONATE #####}
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <b>{% trans "DONATE_TITLE" %}</b>
-            </div>
+          <div class="panel panel-default bikesurf_splash_panel">
             <div class="panel-body">
+
               <p> {% trans "DONATE_TEXT" %} </p>
-              <a href="/site/donate.html" class="btn btn-success btn-lg">
+
+              <a href="/site/donate.html" class="btn btn-success">
                 {% trans "DONATE" %}
               </a>
             </div>
@@ -48,13 +64,10 @@
 
           {##### CREATE TEAM #####}
           {% if user.is_authenticated %}
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <b>{% trans "START_A_TEAM" %}</b>
-              </div>
+            <div class="panel panel-default bikesurf_splash_panel">
               <div class="panel-body">
                 <p> {% trans "START_A_TEAM_TEXT" %} </p>
-                <a href="/team/create" class="btn btn-success btn-lg">
+                <a href="/team/create" class="btn btn-success">
                   {% trans "START_A_TEAM" %}
                 </a>
               </div>

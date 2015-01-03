@@ -2,53 +2,53 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
-"PO-Revision-Date: 2014-02-23 12:32-0600\n"
-"Last-Translator:   <fabian.barkhau+admin@gmail.com>\n"
+"POT-Creation-Date: 2015-01-03 11:51-0600\n"
+"PO-Revision-Date: 2015-01-03 12:02-0600\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.7.2\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.4\n"
 
 #: control.py:142
 msgid "DELETED"
 msgstr "Deleted"
 
-#: control.py:164 control.py:171 control.py:178 models.py:118
-#: templates/borrow/view.html:14
+#: control.py:164 control.py:171 control.py:178 models.py:119
+#: templates/borrow/respond.html:11 templates/borrow/view.html:45
 msgid "BORROWER"
 msgstr "Borrower"
 
-#: control.py:164 control.py:171 control.py:178 forms.py:62 forms.py:212
-#: templates/borrow/respond.html:40 templates/borrow/view.html:24
+#: control.py:164 control.py:171 control.py:178 forms.py:62 forms.py:210
+#: templates/borrow/respond.html:83 templates/borrow/view.html:36
 msgid "BIKE"
 msgstr "Bike"
 
-#: control.py:164 control.py:178 templates/borrow/respond.html:46
-#: templates/borrow/view.html:31
+#: control.py:164 control.py:178 templates/borrow/respond.html:97
+#: templates/borrow/view.html:79
 msgid "DATE_TO"
 msgstr "Drop-off date"
 
-#: control.py:164 control.py:179 forms.py:73 templates/borrow/respond.html:48
-#: templates/borrow/view.html:35
+#: control.py:164 control.py:179 forms.py:73 templates/borrow/respond.html:111
+#: templates/borrow/view.html:95
 msgid "STATION_TO"
 msgstr "Drop-off station"
 
-#: control.py:171 control.py:178 templates/borrow/respond.html:45
-#: templates/borrow/view.html:30
+#: control.py:171 control.py:178 templates/borrow/respond.html:92
+#: templates/borrow/view.html:74
 msgid "DATE_FROM"
 msgstr "Pick-up date"
 
-#: control.py:171 control.py:179 forms.py:69 templates/borrow/respond.html:47
-#: templates/borrow/view.html:34
+#: control.py:171 control.py:179 forms.py:69 templates/borrow/respond.html:102
+#: templates/borrow/view.html:86
 msgid "STATION_FROM"
 msgstr "Pick-up station"
 
@@ -56,11 +56,11 @@ msgstr "Pick-up station"
 msgid "BORROW_STATE"
 msgstr "State"
 
-#: forms.py:34 models.py:20
+#: forms.py:34 models.py:21
 msgid "ACCEPTED"
 msgstr "Accepted"
 
-#: forms.py:35 models.py:21
+#: forms.py:35 models.py:22
 msgid "REJECTED"
 msgstr "Rejected"
 
@@ -80,7 +80,7 @@ msgstr "Error: Finish before start!"
 msgid "ERROR_START_LESS_THEN_MINIMUM"
 msgstr "Error: Start must be at least three days in the future!"
 
-#: forms.py:53 forms.py:126
+#: forms.py:53 forms.py:124
 msgid "ERROR_OTHER_BORROW_IN_TIMEFRAME"
 msgstr "Error: This bike has another borrow in time frame!"
 
@@ -91,7 +91,7 @@ msgstr ""
 "at a time is allowed! If you have friends that wish to borrow a bike please "
 "ask them to make a request themselves!"
 
-#: forms.py:62 forms.py:70 forms.py:74 models.py:26
+#: forms.py:62 forms.py:70 forms.py:74 models.py:27
 msgid "ALL"
 msgstr "All"
 
@@ -115,8 +115,8 @@ msgstr "Past borrows"
 msgid "RESPONSE"
 msgstr "Response"
 
-#: forms.py:101 forms.py:187 forms.py:192 forms.py:197 forms.py:214
-#: forms.py:243
+#: forms.py:101 forms.py:185 forms.py:190 forms.py:195 forms.py:212
+#: forms.py:241
 msgid "NOTE"
 msgstr "Note"
 
@@ -129,104 +129,160 @@ msgid "ERROR_BIKE_NOT_ACTIVE"
 msgstr "Error: Bike not active!"
 
 #: forms.py:120
-msgid "ERROR_IS_RESERVE_BIKE"
-msgstr "Error: Bike is a reserve bike!"
-
-#: forms.py:122
 msgid "ERROR_BIKE_STATION_UNKNOWN"
 msgstr "Error: Bike station unknown!"
 
-#: forms.py:124
+#: forms.py:122
 msgid "ERROR_BIKE_STATION_INACTIVE"
 msgstr "Error: Bike station inactive!"
 
-#: forms.py:133 forms.py:204
+#: forms.py:131 forms.py:202
 msgid "START"
 msgstr "From"
 
-#: forms.py:137 forms.py:208
+#: forms.py:135 forms.py:206
 msgid "FINISH"
 msgstr "To"
 
-#: forms.py:141
+#: forms.py:139
 msgid "BORROW_NOTE"
 msgstr "Note"
 
-#: forms.py:142
+#: forms.py:140
 msgid "ACCEPT_TERMS"
 msgstr "Accept terms and</br>conditions of use."
 
-#: forms.py:168
+#: forms.py:166
 msgid "ERROR_MUST_ACCEPT_TERMS"
 msgstr "Please confirm you have read the terms and conditions of use."
 
-#: forms.py:172
+#: forms.py:170
 msgid "ERROR_ACCOUNT_REQUIRES_FULLNAME"
 msgstr "Profile incomplete: First and last name required to borrow a bike."
 
-#: forms.py:176
+#: forms.py:174
 msgid "ERROR_ACCOUNT_REQUIRES_MOBILE"
 msgstr "Error: Bike is a reserve bike!"
 
-#: forms.py:180
+#: forms.py:178
 msgid "ERROR_ACCOUNT_REQUIRES_PASSPORT"
 msgstr "Profile incomplete: Photo ID copy required to borrow a bike."
 
-#: forms.py:240
+#: forms.py:238
 msgid "DESTINATION_STATION"
 msgstr "Destination"
 
-#: models.py:19
+#: models.py:20
 msgid "REQUEST"
 msgstr "Request"
 
-#: models.py:22
+#: models.py:23
 msgid "CANCELED"
 msgstr "Canceled"
 
-#: models.py:23 models.py:95
+#: models.py:24 models.py:96
 msgid "FINISHED"
 msgstr "Finished"
 
-#: models.py:90
+#: models.py:91
 msgid "LENDER_RATE"
 msgstr "Rate"
 
-#: models.py:91
+#: models.py:92
 msgid "BORROWER_RATE"
 msgstr "Rate"
 
-#: models.py:92
+#: models.py:93
 msgid "CREATE"
 msgstr "Create"
 
-#: models.py:93
+#: models.py:94
 msgid "RESPOND"
 msgstr "Respond"
 
-#: models.py:94
+#: models.py:95
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: models.py:96
+#: models.py:97
 msgid "EDIT"
 msgstr "Edit"
 
-#: models.py:119
+#: models.py:120
 msgid "LENDER"
 msgstr "Lender"
 
-#: models.py:124
+#: models.py:125
 msgid "THUMBS_UP"
 msgstr "Positive"
 
-#: models.py:125
+#: models.py:126
 msgid "NEUTRAL"
 msgstr "Neutral"
 
-#: models.py:126
+#: models.py:127
 msgid "THUMBS_DOWN"
 msgstr "Negative"
+
+#: templates/borrow/create.html:8
+msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
+msgstr ""
+"WARNING!</br>Your <u><b><a href=\"/account/profile\">profile</a></b></u> "
+"doesn't have the information required to borrow a bike.</br>Please update "
+"your <u><b><a href=\"/account/profile\">profile</a></b></u> before "
+"requesting to borrow a bike."
+
+#: templates/borrow/create.html:10
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr ""
+"<p>\n"
+"We receive many requests per day, please attempt to book a bike at least 3 days before you intend to ride, if possible.</br>\n"
+"Please be patient, as it can take up to 72 hours for us to get back to you.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"Please read and understand the <u><b><a href=\"/site/terms_and_conditions.html\" target=\"_blank\">terms and conditions of use</a></b></u> before accepting them.\n"
+"</p>"
+
+#: templates/borrow/respond.html:19
+msgid "USERNAME"
+msgstr "Username"
+
+#: templates/borrow/respond.html:33
+msgid "EMAIL"
+msgstr "Email"
+
+#: templates/borrow/respond.html:38
+msgid "MOBILE"
+msgstr "Mobile"
+
+#: templates/borrow/respond.html:43
+msgid "DESCRIPTION"
+msgstr "Description"
+
+#: templates/borrow/respond.html:58
+msgid "PASSPORT"
+msgstr "Photo ID"
+
+#: templates/borrow/respond.html:66
+msgid "NONE"
+msgstr "None"
+
+#: templates/borrow/respond.html:76
+msgid "BORROW"
+msgstr "Borrow"
+
+#: templates/borrow/view.html:14
+msgid "BORROWING"
+msgstr "borrowing"
+
+#: templates/borrow/view.html:60
+msgid "LOCKCODE"
+msgstr "Lock code"
+
+#: templates/borrow/view.html:124
+msgid "SYSTEM"
+msgstr "bikesurf.org"
 
 #: views.py:91
 msgid "TEAM_BORROWS"
@@ -238,11 +294,11 @@ msgstr "Your borrows"
 
 #: views.py:116
 msgid "ARRIVALS"
-msgstr "Arrivals"
+msgstr "Pick-ups"
 
 #: views.py:131
 msgid "DEPARTURES"
-msgstr "Departures"
+msgstr "Drop-offs"
 
 #: views.py:170
 msgid "BORROW_CREATE"
@@ -268,88 +324,26 @@ msgstr "Rate"
 msgid "BORROW_COMMENT"
 msgstr "Comment"
 
-#: templates/borrow/create.html:6
-msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
-msgstr ""
-"WARNING!</br>Your <u><b><a href=\"/account/profile\">profile</a></b></u> "
-"doesn't have the information required to borrow a bike.</br>Please update "
-"your <u><b><a href=\"/account/profile\">profile</a></b></u> before "
-"requesting to borrow a bike."
+#~ msgid "ERROR_IS_RESERVE_BIKE"
+#~ msgstr "Error: Bike is a reserve bike!"
 
-#: templates/borrow/create.html:8
-msgid "BORROW_CREATE_HELP_TEXT"
-msgstr ""
-"<p>\n"
-"We receive many requests per day, please attempt to book a bike at least 3 "
-"days before you intend to ride, if possible.</br>\n"
-"Please be patient, as it can take up to 72 hours for us to get back to you.\n"
-"</p>\n"
-"\n"
-"<p>\n"
-"Please read and understand the <u><b><a href=\"/site/terms_and_conditions."
-"html\" target=\"_blank\">terms and conditions of use</a></b></u> before "
-"accepting them.\n"
-"</p>"
+#~ msgid "BORROWER_INFORMATION"
+#~ msgstr "Borrower Information"
 
-#: templates/borrow/respond.html:6
-msgid "BORROWER_INFORMATION"
-msgstr "Borrower Information"
+#~ msgid "FIRST_NAME"
+#~ msgstr "First name"
 
-#: templates/borrow/respond.html:9
-msgid "USERNAME"
-msgstr "Username"
+#~ msgid "LAST_NAME"
+#~ msgstr "Last name"
 
-#: templates/borrow/respond.html:15
-msgid "FIRST_NAME"
-msgstr "First name"
+#~ msgid "IMAGE"
+#~ msgstr "Image"
 
-#: templates/borrow/respond.html:16
-msgid "LAST_NAME"
-msgstr "Last name"
+#~ msgid "SOURCE"
+#~ msgstr "Source"
 
-#: templates/borrow/respond.html:17
-msgid "PASSPORT"
-msgstr "Photo ID"
-
-#: templates/borrow/respond.html:19
-msgid "IMAGE"
-msgstr "Image"
-
-#: templates/borrow/respond.html:21
-msgid "NONE"
-msgstr "None"
-
-#: templates/borrow/respond.html:24
-msgid "MOBILE"
-msgstr "Mobile"
-
-#: templates/borrow/respond.html:25
-msgid "EMAIL"
-msgstr "Email"
-
-#: templates/borrow/respond.html:26
-msgid "SOURCE"
-msgstr "Source"
-
-#: templates/borrow/respond.html:27
-msgid "DESCRIPTION"
-msgstr "Description"
-
-#: templates/borrow/respond.html:37
-msgid "BORROW_INFORMATION"
-msgstr "Borrow Information"
-
-#: templates/borrow/view.html:10
-msgid "BORROWING"
-msgstr "borrowing"
-
-#: templates/borrow/view.html:36
-msgid "LOCKCODE"
-msgstr "Lock code"
-
-#: templates/borrow/view.html:56
-msgid "SYSTEM"
-msgstr "bikesurf.org"
+#~ msgid "BORROW_INFORMATION"
+#~ msgstr "Borrow Information"
 
 #~ msgid "ERROR_ACCOUNT_REQUIRES_OTHER_REFERENCES"
 #~ msgstr ""
