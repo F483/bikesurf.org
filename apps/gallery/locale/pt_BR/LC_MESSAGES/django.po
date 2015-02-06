@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
-"PO-Revision-Date: 2014-09-18 07:38-0500\n"
-"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"POT-Creation-Date: 2015-02-06 08:52-0600\n"
+"PO-Revision-Date: 2015-02-06 09:40-0600\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +35,10 @@ msgstr "Definir imagem como primária"
 msgid "REMOVE_GALLERY_PICTURE"
 msgstr "Remover imagem da galeria"
 
-#: templates/gallery/list.html:51
+#: templates/gallery/list.html:11
+msgid "GALLERY"
+msgstr "Galeria"
+
+#: templates/gallery/list.html:57
 msgid "NO_PICTURES"
 msgstr "Sem imagens"

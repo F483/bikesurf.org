@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:53-0600\n"
+"POT-Creation-Date: 2015-02-06 08:52-0600\n"
 "PO-Revision-Date: 2014-10-26 10:04-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,23 +23,23 @@ msgstr ""
 msgid "ERROR_STATION_MUST_BE_ACTIVE"
 msgstr "ERRORE_STAZIONE_DEVE_ESSERE_ATTIVA"
 
-#: forms.py:22 forms.py:39 templates/station/view.html:42 views.py:109
+#: forms.py:22 forms.py:39 views.py:109 templates/station/view.html:42
 msgid "RESPONSIBLE"
 msgstr "RESPONSABILE"
 
-#: forms.py:23 forms.py:40 templates/station/view.html:27 views.py:109
+#: forms.py:23 forms.py:40 views.py:109 templates/station/view.html:27
 msgid "POSTALCODE"
 msgstr "CODICE_POSTALE"
 
-#: forms.py:24 forms.py:41 templates/station/view.html:32 views.py:109
+#: forms.py:24 forms.py:41 views.py:109 templates/station/view.html:32
 msgid "CITY"
 msgstr "CITTA"
 
-#: forms.py:25 forms.py:42 templates/station/view.html:37 views.py:109
+#: forms.py:25 forms.py:42 views.py:109 templates/station/view.html:37
 msgid "STREET"
 msgstr "STRADA"
 
-#: forms.py:26 forms.py:43 templates/station/view.html:47 views.py:109
+#: forms.py:26 forms.py:43 views.py:109 templates/station/view.html:47
 msgid "ACTIVE"
 msgstr "ATTIVO"
 

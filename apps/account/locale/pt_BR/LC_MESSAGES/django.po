@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
-"PO-Revision-Date: 2014-09-18 08:26-0500\n"
-"Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
+"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"PO-Revision-Date: 2015-02-06 09:34-0600\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: forms.py:26 templates/account/profile.html:30
-#: templates/account/profile.html.py:35 templates/account/view.html:19
-#: templates/account/view.html.py:24
+#: forms.py:26 templates/account/profile.html:61
+#: templates/account/view.html:43
 msgid "PASSPORT"
 msgstr "Passaporte"
 
@@ -29,27 +28,27 @@ msgstr "Passaporte"
 msgid "USERNAME"
 msgstr "Nome do Usuário"
 
-#: forms.py:32 templates/account/profile.html:19
-#: templates/account/view.html:13
+#: forms.py:32 templates/account/profile.html:35
+#: templates/account/view.html:20
 msgid "FIRST_NAME"
 msgstr "Primeiro Nome"
 
-#: forms.py:33 templates/account/view.html:14
+#: forms.py:33
 msgid "LAST_NAME"
 msgstr "Último Nome"
 
-#: forms.py:34 templates/account/profile.html:21
-#: templates/account/view.html:15
+#: forms.py:34 templates/account/profile.html:43
+#: templates/account/view.html:28
 msgid "MOBILE"
 msgstr "Celular(incluir código de área internacional)"
 
-#: forms.py:35 templates/account/profile.html:42
-#: templates/account/view.html:28
+#: forms.py:35 templates/account/profile.html:54
+#: templates/account/view.html:36
 msgid "SOURCE"
 msgstr "Onde você conheceu o projeto?"
 
-#: forms.py:37 templates/account/profile.html:43
-#: templates/account/view.html:29
+#: forms.py:37 templates/account/profile.html:90
+#: templates/account/view.html:68
 msgid "DESCRIPTION"
 msgstr "Descrição"
 
@@ -116,7 +115,7 @@ msgstr "Twitter"
 msgid "PROFILE_UPDATED"
 msgstr "Perfil atualizado"
 
-#: views.py:36 templates/account/profile.html:38
+#: views.py:36 templates/account/profile.html:75
 msgid "SET_PASSPORT"
 msgstr "Defina imagem de identificação"
 
@@ -125,7 +124,7 @@ msgid "ADD_REQUIRED_PASSPORT_IMAGE"
 msgstr ""
 "Carregar cópia da sua identidade, passaporte ou carteira de motorista."
 
-#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:16
+#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:26
 msgid "USER_PRIVECY_INFORMATION"
 msgstr ""
 "Estas informações podem ser vistas apenas pelos administradores do "
@@ -144,64 +143,63 @@ msgstr ""
 msgid "ADD_REQUIRED_PROFILE_INFO"
 msgstr "Informação obrigatória"
 
-#: templates/account/login.html:7 templates/account/login.html.py:11
-#: templates/account/login.html:41
-msgid "Sign In"
-msgstr "Logar"
-
-#: templates/account/login.html:14
-#, python-format
-msgid ""
-"Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
-"for a %(site_name)s account and sign in below:"
-msgstr ""
-"Por favor, faça login com uma conta existente em outro site ou  <a "
-"href=\"%(signup_url)s\">Inscreva-se</a> no site %(site_name) e faça login "
-"abaixo:"
-
-#: templates/account/login.html:24
-msgid "or"
-msgstr "ou"
-
-#: templates/account/login.html:31
-msgid "SIGN UP SUGGESTION"
-msgstr "Não tem uma conta?"
-
-#: templates/account/login.html:31
-msgid "SIGN UP"
-msgstr "Inscrever-se"
-
-#: templates/account/login.html:40
-msgid "Forgot Password?"
-msgstr "Esqueceu sua senha?"
-
-#: templates/account/profile.html:13
+#: templates/account/profile.html:23
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
 msgstr ""
-"ATENÇÃO! </ Br> O seu perfil não tem as informações necessárias para emprestar uma bicicleta. </ Br> \n"
+"ATENÇÃO! </ br> O seu perfil não tem as informações necessárias para emprestar uma bicicleta. </ br> \n"
 "Por favor, certifique-se todos os campos marcados com * estão preenchidos e você tem pelo menos um link para um site confiável, com referências (couchsurfing.org ou bewelcome.org)."
 
-#: templates/account/profile.html:20
+#: templates/account/profile.html:31 templates/account/view.html:16
+msgid "DETAILS"
+msgstr "Detlhes"
+
+#: templates/account/profile.html:39 templates/account/view.html:24
 msgid "LIST_NAME"
 msgstr "Último nome"
 
-#: templates/account/profile.html:23 templates/account/view.html:16
+#: templates/account/profile.html:47 templates/account/view.html:32
 msgid "EMAIL"
 msgstr "Email"
 
-#: templates/account/profile.html:25
+#: templates/account/profile.html:49
 msgid "CHANGE_EMAIL"
 msgstr "Mudar email"
 
-#: templates/account/profile.html:32 templates/account/view.html:21
-msgid "IMAGE"
-msgstr "Imagem"
-
-#: templates/account/profile.html:35 templates/account/view.html:24
+#: templates/account/profile.html:71 templates/account/view.html:53
 msgid "NONE"
 msgstr "Nenhum"
 
-#: templates/account/profile.html:48 templates/account/view.html:33
+#: templates/account/profile.html:76
+msgid "EDIT"
+msgstr "Editar"
+
+#: templates/account/profile.html:82 templates/account/view.html:60
 msgid "LINKS"
 msgstr "Links"
+
+#~ msgid "Sign In"
+#~ msgstr "Logar"
+
+#~ msgid ""
+#~ "Please sign in with one\n"
+#~ "of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
+#~ "for a %(site_name)s account and sign in below:"
+#~ msgstr ""
+#~ "Por favor, faça login com uma conta existente em outro site ou  <a "
+#~ "href=\"%(signup_url)s\">Inscreva-se</a> no site %(site_name) e faça login "
+#~ "abaixo:"
+
+#~ msgid "or"
+#~ msgstr "ou"
+
+#~ msgid "SIGN UP SUGGESTION"
+#~ msgstr "Não tem uma conta?"
+
+#~ msgid "SIGN UP"
+#~ msgstr "Inscrever-se"
+
+#~ msgid "Forgot Password?"
+#~ msgstr "Esqueceu sua senha?"
+
+#~ msgid "IMAGE"
+#~ msgstr "Imagem"

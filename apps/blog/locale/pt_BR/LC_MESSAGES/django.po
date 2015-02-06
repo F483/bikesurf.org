@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 07:26-0500\n"
+"POT-Creation-Date: 2015-02-06 08:51-0600\n"
 "PO-Revision-Date: 2014-09-18 07:25-0500\n"
 "Last-Translator: Andre Moraes <andrefmoraes@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,6 @@ msgstr "Editar"
 msgid "BLOG_DELETE?"
 msgstr "Apagar"
 
-#: templates/blog/list.html:23
+#: templates/blog/list.html:28
 msgid "NO_BLOG_ENTRIES"
 msgstr "Sem entrada"

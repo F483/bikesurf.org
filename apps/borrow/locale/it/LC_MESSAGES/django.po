@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:53-0600\n"
+"POT-Creation-Date: 2015-02-06 08:51-0600\n"
 "PO-Revision-Date: 2014-10-26 09:45-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,57 +224,6 @@ msgstr "NEUTRO"
 msgid "THUMBS_DOWN"
 msgstr "POLLICE_GIU"
 
-#: templates/borrow/create.html:8
-msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
-msgstr "ACCOUNT_NON_HA_INFO_RICHIESTE"
-
-#: templates/borrow/create.html:10
-msgid "BORROW_CREATE_HELP_TEXT"
-msgstr "PRESTITO_CREA_TESTO_AIUTO"
-
-#: templates/borrow/respond.html:19
-msgid "USERNAME"
-msgstr "USERNAME"
-
-#: templates/borrow/respond.html:33
-msgid "EMAIL"
-msgstr "EMAIL"
-
-#: templates/borrow/respond.html:38
-msgid "MOBILE"
-msgstr "CELLULARE"
-
-#: templates/borrow/respond.html:43
-msgid "DESCRIPTION"
-msgstr "DESCRIZIONE"
-
-#: templates/borrow/respond.html:58
-msgid "PASSPORT"
-msgstr "PASSAPORTO"
-
-#: templates/borrow/respond.html:66
-msgid "NONE"
-msgstr "NESSUNO"
-
-#: templates/borrow/respond.html:76
-#, fuzzy
-#| msgid "BORROWER"
-msgid "BORROW"
-msgstr "UTENTE"
-
-#: templates/borrow/view.html:14
-#, fuzzy
-msgid "BORROWING"
-msgstr "PRENDENDO_IN_PRESTITO"
-
-#: templates/borrow/view.html:60
-msgid "LOCKCODE"
-msgstr "CODICE LUCCHETTO"
-
-#: templates/borrow/view.html:124
-msgid "SYSTEM"
-msgstr "SISTEMA"
-
 #: views.py:91
 msgid "TEAM_BORROWS"
 msgstr "PRESTITI_SQUADRA"
@@ -314,6 +263,56 @@ msgstr "GRADO"
 #: views.py:372
 msgid "BORROW_COMMENT"
 msgstr "PRESTITO_COMMENTA"
+
+#: templates/borrow/create.html:8
+msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
+msgstr "ACCOUNT_NON_HA_INFO_RICHIESTE"
+
+#: templates/borrow/create.html:10
+msgid "BORROW_CREATE_HELP_TEXT"
+msgstr "PRESTITO_CREA_TESTO_AIUTO"
+
+#: templates/borrow/respond.html:19
+msgid "USERNAME"
+msgstr "USERNAME"
+
+#: templates/borrow/respond.html:33
+msgid "EMAIL"
+msgstr "EMAIL"
+
+#: templates/borrow/respond.html:38
+msgid "MOBILE"
+msgstr "CELLULARE"
+
+#: templates/borrow/respond.html:43
+msgid "DESCRIPTION"
+msgstr "DESCRIZIONE"
+
+#: templates/borrow/respond.html:58
+msgid "PASSPORT"
+msgstr "PASSAPORTO"
+
+#: templates/borrow/respond.html:66
+msgid "NONE"
+msgstr "NESSUNO"
+
+#: templates/borrow/respond.html:76
+#, fuzzy
+msgid "BORROW"
+msgstr "UTENTE"
+
+#: templates/borrow/view.html:14
+#, fuzzy
+msgid "BORROWING"
+msgstr "PRENDENDO_IN_PRESTITO"
+
+#: templates/borrow/view.html:60
+msgid "LOCKCODE"
+msgstr "CODICE LUCCHETTO"
+
+#: templates/borrow/view.html:124
+msgid "SYSTEM"
+msgstr "SISTEMA"
 
 #, fuzzy
 #~ msgid "ERROR_IS_RESERVE_BIKE"

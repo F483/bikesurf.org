@@ -184,7 +184,7 @@ LANGUAGES = (
     ('fr',    _("French")),
     ('es',    _("Spanish")),
     ('it',    _("Italian")),
-    ('zh-TW', _("Traditional Chinese")),
+    #('zh-TW', _("Traditional Chinese")),
 )
 
 ROSETTA_WSGI_AUTO_RELOAD = True

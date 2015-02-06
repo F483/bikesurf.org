@@ -1,8 +1,22 @@
 {% load i18n %}
 {% load common_tags %}
 
-{% if current_team %}
-  TODO add team donate info
-{% else %}
-  TODO add site donate info
-{% endif %}
+<div class="text_center">
+    <h3><a href="/site/donate.html">Donate</a></h3>
+    <div>
+        <iframe src="http://www.betterplace.org/en/projects/10457-bikesurfberlin-free-bicycle-rental-in-berlin/widget" width="160" height="260" style="border: 0; padding:0; margin:0;">Ihr Browser unterstützt keine Iframes. &amp;lt;a href='http://www.betterplace.org/projects'&amp;gt;Online Spenden&amp;lt;/a&amp;gt; auf betterplace.org</iframe>
+    </div>
+    <div>
+        <img src="/static/common/bitcoin_donate.png">
+        <img src="/static/common/bitcoin_qrcode.png">
+        <div>
+            Bitcoin Address:<br>
+            <a href="https://blockchain.info/address/1LxGcVVcDCRSzNBoT5SDcjxNr1sAvfNSXi">
+                1LxGcVVcDCR<br>
+                SzNBoT5SDcj<br>
+                xNr1sAvfNSXi
+            </a>
+        </div>
+    </div>
+</div>
+

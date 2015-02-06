@@ -2,6 +2,8 @@
 
 ROOT=$PWD
 COMMAND=$1
+APPS=$(find apps/ -maxdepth 1 -type d | tail -n +2 | sort)
+LANGS=$(python scripts/listlangs.py)
 
 if [ "$COMMAND" != "makemessages" ] && [ "$COMMAND" != "compilemessages" ]; then
     echo "Usage: $0 <COMMAND>"
@@ -10,10 +12,10 @@ if [ "$COMMAND" != "makemessages" ] && [ "$COMMAND" != "compilemessages" ]; then
     exit 1
 fi
 
-for lang in $(cat scripts/langs.txt) ; do
-    for app in $(cat scripts/apps.txt) ; do
-        mkdir -p "$ROOT/apps/$app/locale"
-        cd "$ROOT/apps/$app"
+for app in $APPS ; do
+    for lang in $LANGS ; do
+        mkdir -p "$ROOT/$app/locale"
+        cd "$ROOT/$app"
         python ../../manage.py $COMMAND -l $lang
         cd "$ROOT"
     done

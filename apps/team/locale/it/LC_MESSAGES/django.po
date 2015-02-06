@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:53-0600\n"
+"POT-Creation-Date: 2015-02-06 08:52-0600\n"
 "PO-Revision-Date: 2014-10-26 10:55-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,59 +100,6 @@ msgstr "ACCETTATO"
 msgid "DECLINED"
 msgstr "RIFIUTATO"
 
-#: templates/team/created.html:7
-msgid "TEAM_CREATED_TITLE"
-msgstr "TITOLO_SQUADRA_CREATA"
-
-#: templates/team/created.html:8
-msgid "TEAM_CREATED_DESCRIPTION"
-msgstr "DESCRIZIONE_SQUADRA_CREATA"
-
-#: templates/team/join_request/created.html:5
-msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr "TITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
-
-#: templates/team/join_request/created.html:6
-msgid "JOIN_REQUEST_CREATED_SUBTITLE"
-msgstr "SOTTOTITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
-
-#: templates/team/join_request/list.html:31
-msgid "NO_JOIN_REQUESTS"
-msgstr "NESSUNA_RICHIESTA_PARTECIPAZIONE"
-
-#: templates/team/members.html:9 utils.py:17 views.py:126
-msgid "MEMBERS"
-msgstr "MEMBRI"
-
-#: templates/team/members.html:28
-msgid "NO_BLOG_ENTRIES"
-msgstr ""
-
-#: templates/team/menu.html:40 views.py:161
-msgid "JOIN_REQUEST"
-msgstr "RICHIESTA_PARTECIPAZIONE"
-
-#: templates/team/remove_request/created.html:5
-#, fuzzy
-msgid "REMOVE_REQUESTED"
-msgstr "RIMOZIONE_RICHIESTA"
-
-#: templates/team/remove_request/created.html:6
-msgid "REMOVE_REQUEST_MADE"
-msgstr "RICHIESTA_RIMOZIONE_FATTA"
-
-#: templates/team/remove_request/list.html:23
-msgid "REQUESTER"
-msgstr "RICHIEDENTE"
-
-#: templates/team/remove_request/list.html:24
-msgid "CONCERNED"
-msgstr "ALL_ATTENZIONE_DI"
-
-#: templates/team/remove_request/list.html:34
-msgid "NO_REMOVE_REQUESTS"
-msgstr "NESSNA_RICHIESTA_RIMOZIONE"
-
 #: utils.py:15
 msgid "BLOG"
 msgstr "BLOG"
@@ -160,6 +107,10 @@ msgstr "BLOG"
 #: utils.py:16
 msgid "BIKES"
 msgstr "BICICLETTE"
+
+#: utils.py:17 views.py:126 templates/team/members.html:9
+msgid "MEMBERS"
+msgstr "MEMBRI"
 
 #: utils.py:18
 msgid "BORROWS"
@@ -193,10 +144,59 @@ msgstr "SOSTITUISCI_LOGO"
 msgid "CREATE_TEAM"
 msgstr "CREA_SQUADRA"
 
+#: views.py:161 templates/team/menu.html:40
+msgid "JOIN_REQUEST"
+msgstr "RICHIESTA_PARTECIPAZIONE"
+
 #: views.py:217
 #, fuzzy
 msgid "REMOVE_REQUEST_CREATE"
 msgstr "RIMUOVI_CREA_RICHIESTA"
+
+#: templates/team/created.html:7
+msgid "TEAM_CREATED_TITLE"
+msgstr "TITOLO_SQUADRA_CREATA"
+
+#: templates/team/created.html:8
+msgid "TEAM_CREATED_DESCRIPTION"
+msgstr "DESCRIZIONE_SQUADRA_CREATA"
+
+#: templates/team/members.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr ""
+
+#: templates/team/join_request/created.html:5
+msgid "JOIN_REQUEST_CREATED_TITLE"
+msgstr "TITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
+
+#: templates/team/join_request/created.html:6
+msgid "JOIN_REQUEST_CREATED_SUBTITLE"
+msgstr "SOTTOTITOLO_RICHIESTA_PARTECIPAZIONE_CREATA"
+
+#: templates/team/join_request/list.html:31
+msgid "NO_JOIN_REQUESTS"
+msgstr "NESSUNA_RICHIESTA_PARTECIPAZIONE"
+
+#: templates/team/remove_request/created.html:5
+#, fuzzy
+msgid "REMOVE_REQUESTED"
+msgstr "RIMOZIONE_RICHIESTA"
+
+#: templates/team/remove_request/created.html:6
+msgid "REMOVE_REQUEST_MADE"
+msgstr "RICHIESTA_RIMOZIONE_FATTA"
+
+#: templates/team/remove_request/list.html:23
+msgid "REQUESTER"
+msgstr "RICHIEDENTE"
+
+#: templates/team/remove_request/list.html:24
+msgid "CONCERNED"
+msgstr "ALL_ATTENZIONE_DI"
+
+#: templates/team/remove_request/list.html:34
+msgid "NO_REMOVE_REQUESTS"
+msgstr "NESSNA_RICHIESTA_RIMOZIONE"
 
 #~ msgid "TEAM"
 #~ msgstr "SQUADRA"

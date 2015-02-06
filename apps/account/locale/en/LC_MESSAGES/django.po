@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:51-0600\n"
+"POT-Creation-Date: 2015-02-06 08:50-0600\n"
 "PO-Revision-Date: 2015-01-03 11:37-0600\n"
 "Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,6 +110,38 @@ msgstr "Google"
 msgid "TWITTER"
 msgstr "Twitter"
 
+#: views.py:19
+msgid "PROFILE_UPDATED"
+msgstr "Profile updated"
+
+#: views.py:36 templates/account/profile.html:75
+msgid "SET_PASSPORT"
+msgstr "Set Photo ID image"
+
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr ""
+"Upload required copy of your National ID card, Passport or Driver's License."
+
+#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:26
+msgid "USER_PRIVECY_INFORMATION"
+msgstr ""
+"This information can only be seen by bikesurf.org administrators and members "
+"of teams where you are borrowing a bike."
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr "Delete link?"
+
+#: views.py:82
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr ""
+"Required link to a site with references (Couchsurfing, BeWelcome, AirBNB)"
+
+#: views.py:140
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr "Required profile information."
+
 #: templates/account/profile.html:23
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
 msgstr ""
@@ -118,12 +150,6 @@ msgstr ""
 "Please make sure all fields marked with a * are filled out and you have at "
 "least one link to a trusted site with references (couchsurfing.org or "
 "bewelcome.org)."
-
-#: templates/account/profile.html:26 views.py:39 views.py:83 views.py:141
-msgid "USER_PRIVECY_INFORMATION"
-msgstr ""
-"This information can only be seen by bikesurf.org administrators and members "
-"of teams where you are borrowing a bike."
 
 #: templates/account/profile.html:31 templates/account/view.html:16
 msgid "DETAILS"
@@ -145,10 +171,6 @@ msgstr "Change email"
 msgid "NONE"
 msgstr "None"
 
-#: templates/account/profile.html:75 views.py:36
-msgid "SET_PASSPORT"
-msgstr "Set Photo ID image"
-
 #: templates/account/profile.html:76
 msgid "EDIT"
 msgstr "Edit"
@@ -157,28 +179,6 @@ msgstr "Edit"
 msgid "LINKS"
 msgstr ""
 "Please add link to a site with references (Couchsurfing, BeWelcome, AirBNB)."
-
-#: views.py:19
-msgid "PROFILE_UPDATED"
-msgstr "Profile updated"
-
-#: views.py:38
-msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr ""
-"Upload required copy of your National ID card, Passport or Driver's License."
-
-#: views.py:57
-msgid "LINK_DELETE?"
-msgstr "Delete link?"
-
-#: views.py:82
-msgid "ADD_REQUIRED_SOCIAL_LINK"
-msgstr ""
-"Required link to a site with references (Couchsurfing, BeWelcome, AirBNB)"
-
-#: views.py:140
-msgid "ADD_REQUIRED_PROFILE_INFO"
-msgstr "Required profile information."
 
 #~ msgid "Sign In"
 #~ msgstr "Sign In"

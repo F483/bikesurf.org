@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:53-0600\n"
+"POT-Creation-Date: 2015-02-06 08:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,64 +99,16 @@ msgstr ""
 msgid "DECLINED"
 msgstr ""
 
-#: templates/team/created.html:7
-msgid "TEAM_CREATED_TITLE"
-msgstr ""
-
-#: templates/team/created.html:8
-msgid "TEAM_CREATED_DESCRIPTION"
-msgstr ""
-
-#: templates/team/join_request/created.html:5
-msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr ""
-
-#: templates/team/join_request/created.html:6
-msgid "JOIN_REQUEST_CREATED_SUBTITLE"
-msgstr ""
-
-#: templates/team/join_request/list.html:31
-msgid "NO_JOIN_REQUESTS"
-msgstr ""
-
-#: templates/team/members.html:9 utils.py:17 views.py:126
-msgid "MEMBERS"
-msgstr ""
-
-#: templates/team/members.html:28
-msgid "NO_BLOG_ENTRIES"
-msgstr ""
-
-#: templates/team/menu.html:40 views.py:161
-msgid "JOIN_REQUEST"
-msgstr ""
-
-#: templates/team/remove_request/created.html:5
-msgid "REMOVE_REQUESTED"
-msgstr ""
-
-#: templates/team/remove_request/created.html:6
-msgid "REMOVE_REQUEST_MADE"
-msgstr ""
-
-#: templates/team/remove_request/list.html:23
-msgid "REQUESTER"
-msgstr ""
-
-#: templates/team/remove_request/list.html:24
-msgid "CONCERNED"
-msgstr ""
-
-#: templates/team/remove_request/list.html:34
-msgid "NO_REMOVE_REQUESTS"
-msgstr ""
-
 #: utils.py:15
 msgid "BLOG"
 msgstr ""
 
 #: utils.py:16
 msgid "BIKES"
+msgstr ""
+
+#: utils.py:17 views.py:126 templates/team/members.html:9
+msgid "MEMBERS"
 msgstr ""
 
 #: utils.py:18
@@ -191,6 +143,54 @@ msgstr ""
 msgid "CREATE_TEAM"
 msgstr ""
 
+#: views.py:161 templates/team/menu.html:40
+msgid "JOIN_REQUEST"
+msgstr ""
+
 #: views.py:217
 msgid "REMOVE_REQUEST_CREATE"
+msgstr ""
+
+#: templates/team/created.html:7
+msgid "TEAM_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/created.html:8
+msgid "TEAM_CREATED_DESCRIPTION"
+msgstr ""
+
+#: templates/team/members.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr ""
+
+#: templates/team/join_request/created.html:5
+msgid "JOIN_REQUEST_CREATED_TITLE"
+msgstr ""
+
+#: templates/team/join_request/created.html:6
+msgid "JOIN_REQUEST_CREATED_SUBTITLE"
+msgstr ""
+
+#: templates/team/join_request/list.html:31
+msgid "NO_JOIN_REQUESTS"
+msgstr ""
+
+#: templates/team/remove_request/created.html:5
+msgid "REMOVE_REQUESTED"
+msgstr ""
+
+#: templates/team/remove_request/created.html:6
+msgid "REMOVE_REQUEST_MADE"
+msgstr ""
+
+#: templates/team/remove_request/list.html:23
+msgid "REQUESTER"
+msgstr ""
+
+#: templates/team/remove_request/list.html:24
+msgid "CONCERNED"
+msgstr ""
+
+#: templates/team/remove_request/list.html:34
+msgid "NO_REMOVE_REQUESTS"
 msgstr ""

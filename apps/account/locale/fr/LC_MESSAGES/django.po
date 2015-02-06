@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-03 11:53-0600\n"
+"POT-Creation-Date: 2015-02-06 08:51-0600\n"
 "PO-Revision-Date: 2014-11-03 10:56-0600\n"
 "Last-Translator: Flora Sallen <flora.s@hotmail.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,13 +113,40 @@ msgstr "Google"
 msgid "TWITTER"
 msgstr "Twitter"
 
+#: views.py:19
+msgid "PROFILE_UPDATED"
+msgstr "Profil actualisé"
+
+#: views.py:36 templates/account/profile.html:75
+msgid "SET_PASSPORT"
+msgstr "Télécharge une photo d'identité."
+
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr ""
+"Télécharge une copie de ton passeport national, passeport ou permis de "
+"conduire."
+
+#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:26
+msgid "USER_PRIVECY_INFORMATION"
+msgstr "Cette information ne peut être vue que parBikeSurf.org."
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr "Suprimer ce lien ?"
+
+#: views.py:82
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr ""
+"Le lien d'un site de référence (Couchsurfing, BeWelcome, AirBNB) est requis"
+
+#: views.py:140
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr "Cette information du profil est requise"
+
 #: templates/account/profile.html:23
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
 msgstr "Choisis un vélo. </br>"
-
-#: templates/account/profile.html:26 views.py:39 views.py:83 views.py:141
-msgid "USER_PRIVECY_INFORMATION"
-msgstr "Cette information ne peut être vue que parBikeSurf.org."
 
 #: templates/account/profile.html:31 templates/account/view.html:16
 msgid "DETAILS"
@@ -141,10 +168,6 @@ msgstr "Changer l'adresse email"
 msgid "NONE"
 msgstr "Rien"
 
-#: templates/account/profile.html:75 views.py:36
-msgid "SET_PASSPORT"
-msgstr "Télécharge une photo d'identité."
-
 #: templates/account/profile.html:76
 msgid "EDIT"
 msgstr ""
@@ -154,29 +177,6 @@ msgid "LINKS"
 msgstr ""
 "Ajoute un lien vers l'un des sites de référence (Couchsurfing, BeWelcome, "
 "AirBNB)."
-
-#: views.py:19
-msgid "PROFILE_UPDATED"
-msgstr "Profil actualisé"
-
-#: views.py:38
-msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr ""
-"Télécharge une copie de ton passeport national, passeport ou permis de "
-"conduire."
-
-#: views.py:57
-msgid "LINK_DELETE?"
-msgstr "Suprimer ce lien ?"
-
-#: views.py:82
-msgid "ADD_REQUIRED_SOCIAL_LINK"
-msgstr ""
-"Le lien d'un site de référence (Couchsurfing, BeWelcome, AirBNB) est requis"
-
-#: views.py:140
-msgid "ADD_REQUIRED_PROFILE_INFO"
-msgstr "Cette information du profil est requise"
 
 #~ msgid "Sign In"
 #~ msgstr "Se connecter"
