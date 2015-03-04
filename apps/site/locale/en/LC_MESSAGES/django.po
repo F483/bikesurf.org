@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:52-0600\n"
-"PO-Revision-Date: 2015-02-06 12:09-0600\n"
-"Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
+"POT-Creation-Date: 2015-03-04 14:00-0600\n"
+"PO-Revision-Date: 2015-02-20 06:57-0600\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
 #: forms.py:19
@@ -65,8 +65,7 @@ msgstr ""
 #: templates/account/email.html:45
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, "
-"etc."
+"an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
 
 #: templates/account/email.html:50
@@ -81,12 +80,39 @@ msgstr ""
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr ""
 
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"User %(user_display)s at %(site_name)s has given this as an email address.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email/email_confirmation_subject.txt:3
 #: templates/account/email_confirm.html:7
 #: templates/account/email_confirm.html:11
 #: templates/account/email_confirmed.html:6
 #: templates/account/email_confirmed.html:11
-#: templates/account/email/email_confirmation_subject.txt:3
 msgid "Confirm E-mail Address"
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account at %(site_domain)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+"\n"
+"In case you forgot, your username is %(username)s.\n"
+"\n"
+"Thanks for using our site!\n"
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:3
+msgid "Password Reset E-mail"
 msgstr ""
 
 #: templates/account/email_confirm.html:17
@@ -103,15 +129,15 @@ msgstr ""
 #: templates/account/email_confirm.html:28
 #, python-format
 msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
 
 #: templates/account/email_confirmed.html:15
 #, python-format
 msgid ""
-"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
-"e-mail address for user %(user_display)s."
+"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
+"mail address for user %(user_display)s."
 msgstr ""
 
 #: templates/account/login.html:8 templates/account/login.html.py:12
@@ -123,7 +149,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a> \n"
 "for a %(site_name)s account and sign in below:"
 msgstr ""
 
@@ -149,175 +176,6 @@ msgstr ""
 
 #: templates/account/logout.html:11
 msgid "Are you sure you want to sign out?"
-msgstr ""
-
-#: templates/account/password_change.html:5
-#: templates/account/password_change.html:8
-#: templates/account/password_change.html:13
-#: templates/account/password_reset_from_key.html:6
-#: templates/account/password_reset_from_key.html:9
-msgid "Change Password"
-msgstr ""
-
-#: templates/account/password_delete.html:5
-#: templates/account/password_delete.html:8
-msgid "Delete Password"
-msgstr ""
-
-#: templates/account/password_delete.html:9
-msgid ""
-"You may delete your password since you are currently logged in using OpenID."
-msgstr ""
-
-#: templates/account/password_delete.html:12
-msgid "delete my password"
-msgstr ""
-
-#: templates/account/password_delete_done.html:5
-#: templates/account/password_delete_done.html:8
-msgid "Password Deleted"
-msgstr ""
-
-#: templates/account/password_delete_done.html:9
-msgid "Your password has been deleted."
-msgstr ""
-
-#: templates/account/password_reset.html:7
-#: templates/account/password_reset.html:11
-#: templates/account/password_reset_done.html:6
-#: templates/account/password_reset_done.html:9
-msgid "Password Reset"
-msgstr ""
-
-#: templates/account/password_reset.html:16
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send you"
-" an e-mail allowing you to reset it."
-msgstr ""
-
-#: templates/account/password_reset.html:21
-msgid "Reset My Password"
-msgstr ""
-
-#: templates/account/password_reset.html:25
-msgid "Please contact us if you have any trouble resetting your password."
-msgstr ""
-
-#: templates/account/password_reset_done.html:15
-msgid ""
-"We have sent you an e-mail. Please contact us if you do not receive it "
-"within a few minutes."
-msgstr ""
-
-#: templates/account/password_reset_from_key.html:9
-msgid "Bad Token"
-msgstr ""
-
-#: templates/account/password_reset_from_key.html:13
-#, python-format
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-"reset</a>."
-msgstr ""
-
-#: templates/account/password_reset_from_key.html:19
-msgid "change password"
-msgstr ""
-
-#: templates/account/password_reset_from_key.html:22
-msgid "Your password is now changed."
-msgstr ""
-
-#: templates/account/password_set.html:6 templates/account/password_set.html:9
-#: templates/account/password_set.html:14
-msgid "Set Password"
-msgstr ""
-
-#: templates/account/signup.html:7 templates/socialaccount/signup.html:5
-msgid "Signup"
-msgstr ""
-
-#: templates/account/signup.html:10 templates/account/signup.html.py:20
-#: templates/socialaccount/signup.html:8
-#: templates/socialaccount/signup.html:19
-msgid "Sign Up"
-msgstr ""
-
-#: templates/account/signup.html:12
-#, python-format
-msgid ""
-"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
-msgstr ""
-
-#: templates/account/signup_closed.html:6
-#: templates/account/signup_closed.html:9
-msgid "Sign Up Closed"
-msgstr ""
-
-#: templates/account/signup_closed.html:11
-msgid "We are sorry, but the sign up is currently closed."
-msgstr ""
-
-#: templates/account/verification_sent.html:5
-#: templates/account/verification_sent.html:8
-#: templates/account/verified_email_required.html:6
-#: templates/account/verified_email_required.html:9
-msgid "Verify Your E-mail Address"
-msgstr ""
-
-#: templates/account/verification_sent.html:10
-#, python-format
-msgid ""
-"We have sent an e-mail to <a href=\"mailto:%(email)s\">%(email)s</a> for "
-"verification. Follow the link provided to finalize the signup process. "
-"Please contact us if you do not receive it within a few minutes."
-msgstr ""
-
-#: templates/account/verified_email_required.html:13
-msgid ""
-"This part of the site requires us to verify that\n"
-"you are who you claim to be. For this purpose, we require that you\n"
-"verify ownership of your e-mail address. "
-msgstr ""
-
-#: templates/account/verified_email_required.html:17
-msgid ""
-"We have sent an e-mail to you for\n"
-"verification. Please click on the link inside this e-mail. Please\n"
-"contact us if you do not receive it within a few minutes."
-msgstr ""
-
-#: templates/account/verified_email_required.html:21
-#, python-format
-msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
-"e-mail address</a>."
-msgstr ""
-
-#: templates/account/email/email_confirmation_message.txt:1
-#, python-format
-msgid ""
-"User %(user_display)s at %(site_name)s has given this as an email address.\n"
-"\n"
-"To confirm this is correct, go to %(activate_url)s\n"
-msgstr ""
-
-#: templates/account/email/password_reset_key_message.txt:1
-#, python-format
-msgid ""
-"You're receiving this e-mail because you or someone else has requested a password for your user account at %(site_domain)s.\n"
-"It can be safely ignored if you did not request a password reset. Click the link below to reset your password.\n"
-"\n"
-"%(password_reset_url)s\n"
-"\n"
-"In case you forgot, your username is %(username)s.\n"
-"\n"
-"Thanks for using our site!\n"
-msgstr ""
-
-#: templates/account/email/password_reset_key_subject.txt:3
-msgid "Password Reset E-mail"
 msgstr ""
 
 #: templates/account/messages/cannot_delete_primary_email.txt:2
@@ -365,6 +223,114 @@ msgstr ""
 msgid "Your primary e-mail address must be verified."
 msgstr ""
 
+#: templates/account/password_change.html:5
+#: templates/account/password_change.html:8
+#: templates/account/password_change.html:13
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+msgid "Change Password"
+msgstr ""
+
+#: templates/account/password_delete.html:5
+#: templates/account/password_delete.html:8
+msgid "Delete Password"
+msgstr ""
+
+#: templates/account/password_delete.html:9
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr ""
+
+#: templates/account/password_delete.html:12
+msgid "delete my password"
+msgstr ""
+
+#: templates/account/password_delete_done.html:5
+#: templates/account/password_delete_done.html:8
+msgid "Password Deleted"
+msgstr ""
+
+#: templates/account/password_delete_done.html:9
+msgid "Your password has been deleted."
+msgstr ""
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr ""
+
+#: templates/account/password_reset.html:25
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:19
+msgid "change password"
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:22
+msgid "Your password is now changed."
+msgstr ""
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:9
+#: templates/account/password_set.html:14
+msgid "Set Password"
+msgstr ""
+
+#: templates/account/signup.html:7 templates/socialaccount/signup.html:5
+msgid "Signup"
+msgstr ""
+
+#: templates/account/signup.html:10 templates/account/signup.html.py:20
+#: templates/socialaccount/signup.html:8
+#: templates/socialaccount/signup.html:19
+msgid "Sign Up"
+msgstr ""
+
+#: templates/account/signup.html:12
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: templates/account/signup_closed.html:6
+#: templates/account/signup_closed.html:9
+msgid "Sign Up Closed"
+msgstr ""
+
+#: templates/account/signup_closed.html:11
+msgid "We are sorry, but the sign up is currently closed."
+msgstr ""
+
 #: templates/account/snippets/already_logged_in.html:5
 msgid "Note"
 msgstr ""
@@ -372,6 +338,42 @@ msgstr ""
 #: templates/account/snippets/already_logged_in.html:5
 #, python-format
 msgid "you are already logged in as %(user_display)s."
+msgstr ""
+
+#: templates/account/verification_sent.html:5
+#: templates/account/verification_sent.html:8
+#: templates/account/verified_email_required.html:6
+#: templates/account/verified_email_required.html:9
+msgid "Verify Your E-mail Address"
+msgstr ""
+
+#: templates/account/verification_sent.html:10
+#, python-format
+msgid ""
+"We have sent an e-mail to <a href=\"mailto:%(email)s\">%(email)s</a> for "
+"verification. Follow the link provided to finalize the signup process. "
+"Please contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: templates/account/verified_email_required.html:13
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+
+#: templates/account/verified_email_required.html:17
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: templates/account/verified_email_required.html:21
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
 msgstr ""
 
 #: templates/openid/login.html:10
@@ -390,21 +392,69 @@ msgstr ""
 msgid "META_DESCRIPTION"
 msgstr ""
 "Bikesurf is a non profit web platform to enable free trust based bike "
-"sharing. It allows groups in a city to manage the borrowing of donated "
-"bikes."
+"sharing. It allows groups in a city to manage the borrowing of donated bikes."
 
 #: templates/site/base.html:118
 msgid "FILTER"
 msgstr "Filter"
 
+#: templates/site/base/navbar.html:28
+msgid "MY_BORROWS"
+msgstr "My borrows"
+
+#: templates/site/base/navbar.html:37
+msgid "ARRIVALS"
+msgstr "Drop-offs"
+
+#: templates/site/base/navbar.html:46
+msgid "DEPARTURES"
+msgstr "Pick-ups"
+
+#: templates/site/base/navbar.html:53
+msgid "INFO"
+msgstr "Info"
+
+#: templates/site/base/navbar.html:57 templates/site/donate.html:7
+#: templates/site/index.html:64
+msgid "DONATE"
+msgstr "Donate"
+
+#: templates/site/base/navbar.html:65
+msgid "TERMS"
+msgstr "Terms and conditions"
+
+#: templates/site/base/navbar.html:73
+msgid "INTERNAL"
+msgstr "Internal"
+
+#: templates/site/base/navbar.html:80
+msgid "TRANSLATIONS"
+msgstr "Translations"
+
+#: templates/site/base/navbar.html:85
+msgid "DJANGO_ADMIN"
+msgstr "Django Admin"
+
+#: templates/site/base/navbar.html:102
+msgid "LOGOUT"
+msgstr "Logout"
+
+#: templates/site/base/navbar.html:108
+msgid "LOGIN"
+msgstr "Login"
+
+#: templates/site/base/navbar.html:113
+msgid "SIGNUP"
+msgstr "Sign up"
+
+#: templates/site/base/testwarning.html:7
+msgid "TEST_INSTANCE_WARNING"
+msgstr ""
+"This is a test instance! All data here is fake and for testing purposes only."
+
 #: templates/site/contact.html:11
 msgid "SITE_CONTACT"
 msgstr "Contact"
-
-#: templates/site/donate.html:7 templates/site/index.html:64
-#: templates/site/base/navbar.html:57
-msgid "DONATE"
-msgstr "Donate"
 
 #: templates/site/faq.html:7
 msgid "SITE_FAQ"
@@ -458,10 +508,10 @@ msgstr ""
 "bike allows people to fall in love with biking all over again.<br><br>Watch "
 "the video to see how the bicycle request system works. If you are a "
 "supporter of our cause and you want to be involved, look below to make a "
-"donation or start a team of your own!<br><br><a "
-"href=\"https://www.facebook.com/bikesurf.org\" target=\"_blank\" class=\"btn"
-" btn-default learnbtn\">Like us on Facebook</a><br><br>\"Whenever I see an "
-"adult on a bicycle, I have hope for the human race.\" ~ H.G. Wells "
+"donation or start a team of your own!<br><br><a href=\"https://www.facebook."
+"com/bikesurf.org\" target=\"_blank\" class=\"btn btn-default learnbtn\">Like "
+"us on Facebook</a><br><br>\"Whenever I see an adult on a bicycle, I have "
+"hope for the human race.\" ~ H.G. Wells "
 
 #: templates/site/index.html:94
 msgid "PRESS"
@@ -478,91 +528,74 @@ msgstr "Terms and conditions of use."
 #: templates/site/terms.html:7
 msgid "TERMS_AND_CONDITIONS_TEXT"
 msgstr ""
-"<p>\n"
-"<h1>BikeSurfBerlin Rental Agreement and Release of Liability</h1>\n"
-"</p>\n"
-"\n"
-"<p>\n"
-"<b>Please read carefully before ticking box on the BikeSurf request form:</b>\n"
-"</p>\n"
-"\n"
-"<p>\n"
 "<h1>BikeSurf Rental Agreement and Release of Liability</h1>\n"
+"\n"
+"<p>\n"
+"<b>Please read carefully before ticking box on the BikeSurf request form:</"
+"b>\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"<b>Please read carefully before ticking box on the BikeSurf request form:</b>\n"
+"Remember that BikeSurf belongs to you and that you are responsible for the "
+"continuation of this trust-based system.\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"Remember that BikeSurf belongs to you and that you are responsible for the continuation of this trust-based system.\n"
+"Cycling is a wonderful way to get around a new city. However, it does "
+"require that you pay attention to the rules of the road specific to that "
+"country. By taking care of yourself and other road users, the BikeSurfing "
+"experience will be even more enjoyable.\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"Cycling is a wonderful way to get around a new city. However, it does require that you pay attention to the rules of the road specific to that country. By taking care of yourself and other road users, the BikeSurfing experience will be even more enjoyable.\n"
+"Please assess the bicycle for road-worthiness and contact your local "
+"BikeSurf contact if there are any essential repairs to be completed before "
+"using the bicycle.\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"Please assess the bicycle for road-worthiness and contact your local BikeSurf contact if there are any essential repairs to be completed before using the bicycle.\n"
+"I agree that I will release BikeSurf from any and all responsibility of "
+"liability for injuries or damages to the user of the equipment listed on "
+"this form or to any other person. I agree not to make a claim against or sue "
+"this bicycle project for injuries or damages relating to bicycling or the "
+"use of this equipment.\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"I agree that I will release BikeSurf from any and all responsibility of liability for injuries or damages to the user of the equipment listed on this form or to any other person. I agree not to make a claim against or sue this bicycle project for injuries or damages relating to bicycling or the use of this equipment.\n"
+"The equipment, at all times, remains the exclusive property of BikeSurf. I "
+"will notify a member of BikeSurf within 24 hours if the bicycle is damaged "
+"in any way during my using it or if the bicycle is stolen whilst in my "
+"care.\n"
+"</p>\n"
+"\n"
+"\n"
+"<h1>BikeSurf HuntingtonWVa Rental Agreement and Release of Liability</h1>\n"
+"\n"
+"<p>\n"
+"<b>Please read carefully before ticking box on the BikeSurf request form:</"
+"b>\n"
 "</p>\n"
 "\n"
 "<p>\n"
-"The equipment, at all times, remains the exclusive property of BikeSurf. I will notify a member of BikeSurf within 24 hours if the bicycle is damaged in any way during my using it or if the bicycle is stolen whilst in my care.\n"
+"BikeSurf HuntingtonWVa will guarantee that our bikes will have a white light "
+"on the front and a red reflector on the rear. If when using our bikes you "
+"obtain a ticket for not having a light on the front and/or reflector on the "
+"rear BikeSurf Huntington will not be held responsible for any tickets that "
+"you receive while renting our bicycles.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"If you are renting a bicycle for someone that is 17 years or younger and "
+"they do not have a helmet BikeSurf Huntington will not be held responsible "
+"for any tickets that you receive while renting our bicycles.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"If you plan on using one of BikeSurf HuntingtonWVa's bikes for commercial "
+"purposes (such as bicycle delivery, courier, or any business  use) you are "
+"required to obtain a bicycle license plate from City Hall in Huntington WV. "
+"You may obtain one from City Hall 800 5th Ave, Huntington WV 25701.\n"
 "</p>"
-
-#: templates/site/base/navbar.html:28
-msgid "MY_BORROWS"
-msgstr "My borrows"
-
-#: templates/site/base/navbar.html:37
-msgid "ARRIVALS"
-msgstr "Drop-offs"
-
-#: templates/site/base/navbar.html:46
-msgid "DEPARTURES"
-msgstr "Pick-ups"
-
-#: templates/site/base/navbar.html:53
-msgid "INFO"
-msgstr "Info"
-
-#: templates/site/base/navbar.html:65
-msgid "TERMS"
-msgstr "Terms and conditions"
-
-#: templates/site/base/navbar.html:73
-msgid "INTERNAL"
-msgstr "Internal"
-
-#: templates/site/base/navbar.html:80
-msgid "TRANSLATIONS"
-msgstr "Translations"
-
-#: templates/site/base/navbar.html:85
-msgid "DJANGO_ADMIN"
-msgstr "Django Admin"
-
-#: templates/site/base/navbar.html:102
-msgid "LOGOUT"
-msgstr "Logout"
-
-#: templates/site/base/navbar.html:108
-msgid "LOGIN"
-msgstr "Login"
-
-#: templates/site/base/navbar.html:113
-msgid "SIGNUP"
-msgstr "Sign up"
-
-#: templates/site/base/testwarning.html:7
-msgid "TEST_INSTANCE_WARNING"
-msgstr ""
-"This is a test instance! All data here is fake and for testing purposes "
-"only."
 
 #: templates/socialaccount/account_inactive.html:5
 #: templates/socialaccount/account_inactive.html:8
@@ -612,15 +645,8 @@ msgstr ""
 #, python-format
 msgid ""
 "You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a "
-"href=\"%(login_url)s\">sign in</a>."
-msgstr ""
-
-#: templates/socialaccount/signup.html:10
-#, python-format
-msgid ""
-"You are about to use your %(provider_name)s account to login to \n"
-"%(site_name)s. As a final step, please complete the following form:"
+"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
+"\">sign in</a>."
 msgstr ""
 
 #: templates/socialaccount/messages/account_connected.txt:2
@@ -633,6 +659,13 @@ msgstr ""
 
 #: templates/socialaccount/messages/account_disconnected.txt:2
 msgid "The social account has been disconnected."
+msgstr ""
+
+#: templates/socialaccount/signup.html:10
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to \n"
+"%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
 
 #~ msgid "ABOUT"
@@ -664,17 +697,27 @@ msgstr ""
 
 #~ msgid "THE_STORY_CONTENT"
 #~ msgstr ""
-#~ "BikeSurf.org is a open-source platform for anybody to set up their own BikeSurf project in their local neighbourhood. The project has been running successfully since June 2012. Eventually, the idea will spread all around the world. By working under the one website, it reduces the time spent developing the web tools and increases the profile of the initiative.\n"
+#~ "BikeSurf.org is a open-source platform for anybody to set up their own "
+#~ "BikeSurf project in their local neighbourhood. The project has been "
+#~ "running successfully since June 2012. Eventually, the idea will spread "
+#~ "all around the world. By working under the one website, it reduces the "
+#~ "time spent developing the web tools and increases the profile of the "
+#~ "initiative.\n"
 #~ "<br><br>\n"
-#~ "All the BikeSurf projects are operated independently, with their own financial, logistics and policy controls.\n"
+#~ "All the BikeSurf projects are operated independently, with their own "
+#~ "financial, logistics and policy controls.\n"
 #~ "<br><br>\n"
-#~ "The BikeSurf philosophy seeks to allow people the chance to appreciate the world from a saddle: going green, healthy and cheap. There is also the more intangible  social value of the project. Such sharing projects encourage people to communicate, share resources and develop a stronger sense of community."
+#~ "The BikeSurf philosophy seeks to allow people the chance to appreciate "
+#~ "the world from a saddle: going green, healthy and cheap. There is also "
+#~ "the more intangible  social value of the project. Such sharing projects "
+#~ "encourage people to communicate, share resources and develop a stronger "
+#~ "sense of community."
 
 #~ msgid "BIKESURF_IS"
 #~ msgstr ""
 #~ "<b>BikeSurf</b> is a project aiming to provide anyone with the best, "
-#~ "ecological and healthy means of transportation in any city around the world "
-#~ "- the bike."
+#~ "ecological and healthy means of transportation in any city around the "
+#~ "world - the bike."
 
 #~ msgid "TWO_LEGS_GOOD_FREE_WHEELS_BETTER"
 #~ msgstr "Two legs good, free wheels better."

@@ -51,8 +51,6 @@ setup(
     'six==1.8.0',
     'wsgiref==0.1.2',
 
-    # TODO add 'Markdown',
-    # TODO add 'django-bootstrap-form',
     # TODO add 'django-pagination',
     # TODO use 'django-debug-toolbar',
   ],

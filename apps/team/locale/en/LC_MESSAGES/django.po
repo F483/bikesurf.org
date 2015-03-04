@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:52-0600\n"
+"POT-Creation-Date: 2015-03-04 14:00-0600\n"
 "PO-Revision-Date: 2015-01-03 11:39-0600\n"
 "Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,6 +99,65 @@ msgstr "Accepted"
 msgid "DECLINED"
 msgstr "Declined"
 
+#: templates/team/created.html:7
+msgid "TEAM_CREATED_TITLE"
+msgstr "Team created"
+
+#: templates/team/created.html:8
+msgid "TEAM_CREATED_DESCRIPTION"
+msgstr ""
+"The team has been created. It will be available as soon as an administrator "
+"approves."
+
+#: templates/team/join_request/created.html:5
+msgid "JOIN_REQUEST_CREATED_TITLE"
+msgstr "Join request made"
+
+#: templates/team/join_request/created.html:6
+msgid "JOIN_REQUEST_CREATED_SUBTITLE"
+msgstr ""
+"As soon as a team member approves your join request you will become a member "
+"of the team."
+
+#: templates/team/join_request/list.html:31
+msgid "NO_JOIN_REQUESTS"
+msgstr "No join requests"
+
+#: templates/team/members.html:9 utils.py:17 views.py:126
+msgid "MEMBERS"
+msgstr "Members"
+
+#: templates/team/members.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr "No blog entries"
+
+#: templates/team/menu.html:40 views.py:161
+msgid "JOIN_REQUEST"
+msgstr "Join team"
+
+#: templates/team/remove_request/created.html:5
+msgid "REMOVE_REQUESTED"
+msgstr "Remove request made"
+
+#: templates/team/remove_request/created.html:6
+msgid "REMOVE_REQUEST_MADE"
+msgstr ""
+"As soon as a team member approves your remove request, the concerned member "
+"will be removed from the team. If you are the only other member, you may do "
+"this yourself."
+
+#: templates/team/remove_request/list.html:23
+msgid "REQUESTER"
+msgstr "Requester"
+
+#: templates/team/remove_request/list.html:24
+msgid "CONCERNED"
+msgstr "Concerned"
+
+#: templates/team/remove_request/list.html:34
+msgid "NO_REMOVE_REQUESTS"
+msgstr "No remove requests"
+
 #: utils.py:15
 msgid "BLOG"
 msgstr "Blog"
@@ -106,10 +165,6 @@ msgstr "Blog"
 #: utils.py:16
 msgid "BIKES"
 msgstr "Bikes"
-
-#: utils.py:17 views.py:126 templates/team/members.html:9
-msgid "MEMBERS"
-msgstr "Members"
 
 #: utils.py:18
 msgid "BORROWS"
@@ -143,64 +198,9 @@ msgstr "Replace logo"
 msgid "CREATE_TEAM"
 msgstr "Create team"
 
-#: views.py:161 templates/team/menu.html:40
-msgid "JOIN_REQUEST"
-msgstr "Join team"
-
 #: views.py:217
 msgid "REMOVE_REQUEST_CREATE"
 msgstr "Request member be removed from team."
-
-#: templates/team/created.html:7
-msgid "TEAM_CREATED_TITLE"
-msgstr "Team created"
-
-#: templates/team/created.html:8
-msgid "TEAM_CREATED_DESCRIPTION"
-msgstr ""
-"The team has been created. It will be available as soon as an administrator "
-"approves."
-
-#: templates/team/members.html:28
-msgid "NO_BLOG_ENTRIES"
-msgstr "No blog entries"
-
-#: templates/team/join_request/created.html:5
-msgid "JOIN_REQUEST_CREATED_TITLE"
-msgstr "Join request made"
-
-#: templates/team/join_request/created.html:6
-msgid "JOIN_REQUEST_CREATED_SUBTITLE"
-msgstr ""
-"As soon as a team member approves your join request you will become a member "
-"of the team."
-
-#: templates/team/join_request/list.html:31
-msgid "NO_JOIN_REQUESTS"
-msgstr "No join requests"
-
-#: templates/team/remove_request/created.html:5
-msgid "REMOVE_REQUESTED"
-msgstr "Remove request made"
-
-#: templates/team/remove_request/created.html:6
-msgid "REMOVE_REQUEST_MADE"
-msgstr ""
-"As soon as a team member approves your remove request, the concerned member "
-"will be removed from the team. If you are the only other member, you may do "
-"this yourself."
-
-#: templates/team/remove_request/list.html:23
-msgid "REQUESTER"
-msgstr "Requester"
-
-#: templates/team/remove_request/list.html:24
-msgid "CONCERNED"
-msgstr "Concerned"
-
-#: templates/team/remove_request/list.html:34
-msgid "NO_REMOVE_REQUESTS"
-msgstr "No remove requests"
 
 #~ msgid "TEAM"
 #~ msgstr "Team"

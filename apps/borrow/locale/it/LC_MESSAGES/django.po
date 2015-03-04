@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: 2014-10-26 09:45-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,46 +224,6 @@ msgstr "NEUTRO"
 msgid "THUMBS_DOWN"
 msgstr "POLLICE_GIU"
 
-#: views.py:91
-msgid "TEAM_BORROWS"
-msgstr "PRESTITI_SQUADRA"
-
-#: views.py:103
-msgid "YOUR_BORROWS"
-msgstr "TUOI_PRESTITI"
-
-#: views.py:116
-msgid "ARRIVALS"
-msgstr "ARRIVI"
-
-#: views.py:131
-msgid "DEPARTURES"
-msgstr "PARTENZE"
-
-#: views.py:170
-msgid "BORROW_CREATE"
-msgstr "PRESTITO_CREA"
-
-#: views.py:198 views.py:222 views.py:244
-msgid "BORROW_EDIT"
-msgstr "PRESTITO_MODIFICA"
-
-#: views.py:267
-msgid "BORROW_RESPOND"
-msgstr "PRESTITO_RISPONDI"
-
-#: views.py:286 views.py:395
-msgid "BORROW_CANCEL"
-msgstr "PRESTITO_CANCELLA"
-
-#: views.py:306 views.py:330
-msgid "RATE"
-msgstr "GRADO"
-
-#: views.py:372
-msgid "BORROW_COMMENT"
-msgstr "PRESTITO_COMMENTA"
-
 #: templates/borrow/create.html:8
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr "ACCOUNT_NON_HA_INFO_RICHIESTE"
@@ -313,6 +273,46 @@ msgstr "CODICE LUCCHETTO"
 #: templates/borrow/view.html:124
 msgid "SYSTEM"
 msgstr "SISTEMA"
+
+#: views.py:91
+msgid "TEAM_BORROWS"
+msgstr "PRESTITI_SQUADRA"
+
+#: views.py:103
+msgid "YOUR_BORROWS"
+msgstr "TUOI_PRESTITI"
+
+#: views.py:116
+msgid "ARRIVALS"
+msgstr "ARRIVI"
+
+#: views.py:131
+msgid "DEPARTURES"
+msgstr "PARTENZE"
+
+#: views.py:170
+msgid "BORROW_CREATE"
+msgstr "PRESTITO_CREA"
+
+#: views.py:198 views.py:222 views.py:244
+msgid "BORROW_EDIT"
+msgstr "PRESTITO_MODIFICA"
+
+#: views.py:267
+msgid "BORROW_RESPOND"
+msgstr "PRESTITO_RISPONDI"
+
+#: views.py:286 views.py:395
+msgid "BORROW_CANCEL"
+msgstr "PRESTITO_CANCELLA"
+
+#: views.py:306 views.py:330
+msgid "RATE"
+msgstr "GRADO"
+
+#: views.py:372
+msgid "BORROW_COMMENT"
+msgstr "PRESTITO_COMMENTA"
 
 #, fuzzy
 #~ msgid "ERROR_IS_RESERVE_BIKE"

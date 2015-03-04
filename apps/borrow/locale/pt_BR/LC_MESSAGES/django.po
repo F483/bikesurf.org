@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: 2015-02-06 09:38-0600\n"
 "Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
@@ -229,64 +229,29 @@ msgstr "Neutro"
 msgid "THUMBS_DOWN"
 msgstr "Negativo"
 
-#: views.py:91
-msgid "TEAM_BORROWS"
-msgstr "Empréstimos do Time"
-
-#: views.py:103
-msgid "YOUR_BORROWS"
-msgstr "Seus empréstimos"
-
-#: views.py:116
-msgid "ARRIVALS"
-msgstr "Chegadas"
-
-#: views.py:131
-msgid "DEPARTURES"
-msgstr "Partidas"
-
-#: views.py:170
-msgid "BORROW_CREATE"
-msgstr "Criar empréstimo"
-
-#: views.py:198 views.py:222 views.py:244
-msgid "BORROW_EDIT"
-msgstr "Editar empréstimo"
-
-#: views.py:267
-msgid "BORROW_RESPOND"
-msgstr "Responder a uma solicitação de empréstimo"
-
-#: views.py:286 views.py:395
-msgid "BORROW_CANCEL"
-msgstr "Cancelar empréstimo"
-
-#: views.py:306 views.py:330
-msgid "RATE"
-msgstr "Taxa"
-
-#: views.py:372
-msgid "BORROW_COMMENT"
-msgstr "Comentários"
-
 #: templates/borrow/create.html:8
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr ""
-"ATENÇÃO!</br>O <u><b><a href=\"/account/profile\">perfil</a></b></u> não tem"
-" as informações necessárias para efetuar um empréstimo.</br>Por favor, "
-"atualize seu <u><b><a href=\"/account/profile\">perfil</a></b></u>, antes de"
-" solicitar uma bicicleta."
+"ATENÇÃO!</br>O <u><b><a href=\"/account/profile\">perfil</a></b></u> não tem "
+"as informações necessárias para efetuar um empréstimo.</br>Por favor, "
+"atualize seu <u><b><a href=\"/account/profile\">perfil</a></b></u>, antes de "
+"solicitar uma bicicleta."
 
 #: templates/borrow/create.html:10
 msgid "BORROW_CREATE_HELP_TEXT"
 msgstr ""
 "<p> \n"
-"Recebemos muitas solicitações por dia, por favor, tente reservar uma bicicleta pelo menos 3 dias antes da data que pretende pegar a bicicleta, se possível. </ Br> \n"
-"Por favor, seja paciente, pois pode levar até 72 horas para que possamos responder você. \n"
+"Recebemos muitas solicitações por dia, por favor, tente reservar uma "
+"bicicleta pelo menos 3 dias antes da data que pretende pegar a bicicleta, se "
+"possível. </ Br> \n"
+"Por favor, seja paciente, pois pode levar até 72 horas para que possamos "
+"responder você. \n"
 "</p> \n"
 "\n"
 "<p> \n"
-"Por favor, leia e entenda os <u><b><a href=\"/site/terms_and_conditions.html\" target=\"_blank\"> termos e condições de uso </a></b></u>antes de aceitá-los. \n"
+"Por favor, leia e entenda os <u><b><a href=\"/site/terms_and_conditions.html"
+"\" target=\"_blank\"> termos e condições de uso </a></b></u>antes de aceitá-"
+"los. \n"
 "</p>"
 
 #: templates/borrow/respond.html:19
@@ -328,6 +293,46 @@ msgstr "Código da trava"
 #: templates/borrow/view.html:124
 msgid "SYSTEM"
 msgstr "bikesurf.org"
+
+#: views.py:91
+msgid "TEAM_BORROWS"
+msgstr "Empréstimos do Time"
+
+#: views.py:103
+msgid "YOUR_BORROWS"
+msgstr "Seus empréstimos"
+
+#: views.py:116
+msgid "ARRIVALS"
+msgstr "Chegadas"
+
+#: views.py:131
+msgid "DEPARTURES"
+msgstr "Partidas"
+
+#: views.py:170
+msgid "BORROW_CREATE"
+msgstr "Criar empréstimo"
+
+#: views.py:198 views.py:222 views.py:244
+msgid "BORROW_EDIT"
+msgstr "Editar empréstimo"
+
+#: views.py:267
+msgid "BORROW_RESPOND"
+msgstr "Responder a uma solicitação de empréstimo"
+
+#: views.py:286 views.py:395
+msgid "BORROW_CANCEL"
+msgstr "Cancelar empréstimo"
+
+#: views.py:306 views.py:330
+msgid "RATE"
+msgstr "Taxa"
+
+#: views.py:372
+msgid "BORROW_COMMENT"
+msgstr "Comentários"
 
 #~ msgid "ERROR_IS_RESERVE_BIKE"
 #~ msgstr "Erro: Esta é uma bicicleta reservada"

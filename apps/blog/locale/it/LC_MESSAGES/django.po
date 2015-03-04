@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: 2014-10-26 09:31-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,10 @@ msgstr "TITOLO"
 msgid "CONTENT"
 msgstr "CONTENUTO"
 
+#: templates/blog/list.html:28
+msgid "NO_BLOG_ENTRIES"
+msgstr "NESSUN_CONTENUTO"
+
 #: views.py:46
 msgid "ADD_BLOG"
 msgstr "AGGIUNGI_BLOG"
@@ -38,7 +42,3 @@ msgstr "MODIFICA_BLOG"
 #: views.py:96
 msgid "BLOG_DELETE?"
 msgstr "CANCELLA_BLOG?"
-
-#: templates/blog/list.html:28
-msgid "NO_BLOG_ENTRIES"
-msgstr "NESSUN_CONTENUTO"

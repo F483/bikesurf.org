@@ -95,6 +95,14 @@ msgstr ""
 msgid "LARGE"
 msgstr ""
 
+#: templates/bike/list.html:92
+msgid "UNKNOWN"
+msgstr ""
+
+#: templates/bike/view.html:36
+msgid "GALLERY"
+msgstr ""
+
 #: views.py:37 views.py:45
 msgid "BIKE_BORROWS"
 msgstr ""
@@ -117,12 +125,4 @@ msgstr ""
 
 #: views.py:232
 msgid "BIKE_DELETE?"
-msgstr ""
-
-#: templates/bike/list.html:92
-msgid "UNKNOWN"
-msgstr ""
-
-#: templates/bike/view.html:36
-msgid "GALLERY"
 msgstr ""

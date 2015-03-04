@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,46 +221,6 @@ msgstr ""
 msgid "THUMBS_DOWN"
 msgstr ""
 
-#: views.py:91
-msgid "TEAM_BORROWS"
-msgstr ""
-
-#: views.py:103
-msgid "YOUR_BORROWS"
-msgstr ""
-
-#: views.py:116
-msgid "ARRIVALS"
-msgstr ""
-
-#: views.py:131
-msgid "DEPARTURES"
-msgstr ""
-
-#: views.py:170
-msgid "BORROW_CREATE"
-msgstr ""
-
-#: views.py:198 views.py:222 views.py:244
-msgid "BORROW_EDIT"
-msgstr ""
-
-#: views.py:267
-msgid "BORROW_RESPOND"
-msgstr ""
-
-#: views.py:286 views.py:395
-msgid "BORROW_CANCEL"
-msgstr ""
-
-#: views.py:306 views.py:330
-msgid "RATE"
-msgstr ""
-
-#: views.py:372
-msgid "BORROW_COMMENT"
-msgstr ""
-
 #: templates/borrow/create.html:8
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr ""
@@ -307,4 +267,44 @@ msgstr ""
 
 #: templates/borrow/view.html:124
 msgid "SYSTEM"
+msgstr ""
+
+#: views.py:91
+msgid "TEAM_BORROWS"
+msgstr ""
+
+#: views.py:103
+msgid "YOUR_BORROWS"
+msgstr ""
+
+#: views.py:116
+msgid "ARRIVALS"
+msgstr ""
+
+#: views.py:131
+msgid "DEPARTURES"
+msgstr ""
+
+#: views.py:170
+msgid "BORROW_CREATE"
+msgstr ""
+
+#: views.py:198 views.py:222 views.py:244
+msgid "BORROW_EDIT"
+msgstr ""
+
+#: views.py:267
+msgid "BORROW_RESPOND"
+msgstr ""
+
+#: views.py:286 views.py:395
+msgid "BORROW_CANCEL"
+msgstr ""
+
+#: views.py:306 views.py:330
+msgid "RATE"
+msgstr ""
+
+#: views.py:372
+msgid "BORROW_COMMENT"
 msgstr ""

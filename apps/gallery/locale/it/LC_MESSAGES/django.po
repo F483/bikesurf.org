@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:52-0600\n"
+"POT-Creation-Date: 2015-03-04 14:00-0600\n"
 "PO-Revision-Date: 2014-10-26 09:54-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,14 @@ msgstr ""
 msgid "IMAGE"
 msgstr "IMMAGINE"
 
+#: templates/gallery/list.html:11
+msgid "GALLERY"
+msgstr ""
+
+#: templates/gallery/list.html:57
+msgid "NO_PICTURES"
+msgstr "NESSUN_IMMAGINE"
+
 #: views.py:44
 msgid "ADD_PICTURE_TO_GALLERY"
 msgstr "AGGIUNGI_IMMAGINE_ALLA_GALLERIA"
@@ -34,11 +42,3 @@ msgstr "IMPOSTA_COME_IMMAGINE_PRINCIPALE"
 #: views.py:103
 msgid "REMOVE_GALLERY_PICTURE"
 msgstr "RIMUOVI_IMMAGINE"
-
-#: templates/gallery/list.html:11
-msgid "GALLERY"
-msgstr ""
-
-#: templates/gallery/list.html:57
-msgid "NO_PICTURES"
-msgstr "NESSUN_IMMAGINE"

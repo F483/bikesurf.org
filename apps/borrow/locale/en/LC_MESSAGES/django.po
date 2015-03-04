@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
-"PO-Revision-Date: 2015-01-03 12:02-0600\n"
-"Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
+"PO-Revision-Date: 2015-02-20 06:35-0600\n"
+"Last-Translator: Fabian Barkhau <fabian.barkhau@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -224,46 +224,6 @@ msgstr "Neutral"
 msgid "THUMBS_DOWN"
 msgstr "Negative"
 
-#: views.py:91
-msgid "TEAM_BORROWS"
-msgstr "Team borrows"
-
-#: views.py:103
-msgid "YOUR_BORROWS"
-msgstr "Your borrows"
-
-#: views.py:116
-msgid "ARRIVALS"
-msgstr "Pick-ups"
-
-#: views.py:131
-msgid "DEPARTURES"
-msgstr "Drop-offs"
-
-#: views.py:170
-msgid "BORROW_CREATE"
-msgstr "Create borrow"
-
-#: views.py:198 views.py:222 views.py:244
-msgid "BORROW_EDIT"
-msgstr "Edit borrow"
-
-#: views.py:267
-msgid "BORROW_RESPOND"
-msgstr "Respond to borrow request."
-
-#: views.py:286 views.py:395
-msgid "BORROW_CANCEL"
-msgstr "Cancel borrow"
-
-#: views.py:306 views.py:330
-msgid "RATE"
-msgstr "Rate"
-
-#: views.py:372
-msgid "BORROW_COMMENT"
-msgstr "Comment"
-
 #: templates/borrow/create.html:8
 msgid "ACCOUNT_DOESNT_HAVE_REQUIRED_INFO"
 msgstr ""
@@ -326,6 +286,46 @@ msgstr "Lock code"
 #: templates/borrow/view.html:124
 msgid "SYSTEM"
 msgstr "bikesurf.org"
+
+#: views.py:91
+msgid "TEAM_BORROWS"
+msgstr "Team borrows"
+
+#: views.py:103
+msgid "YOUR_BORROWS"
+msgstr "Your borrows"
+
+#: views.py:116
+msgid "ARRIVALS"
+msgstr "Drop-offs"
+
+#: views.py:131
+msgid "DEPARTURES"
+msgstr "Pick-ups"
+
+#: views.py:170
+msgid "BORROW_CREATE"
+msgstr "Create borrow"
+
+#: views.py:198 views.py:222 views.py:244
+msgid "BORROW_EDIT"
+msgstr "Edit borrow"
+
+#: views.py:267
+msgid "BORROW_RESPOND"
+msgstr "Respond to borrow request."
+
+#: views.py:286 views.py:395
+msgid "BORROW_CANCEL"
+msgstr "Cancel borrow"
+
+#: views.py:306 views.py:330
+msgid "RATE"
+msgstr "Rate"
+
+#: views.py:372
+msgid "BORROW_COMMENT"
+msgstr "Comment"
 
 #~ msgid "ERROR_IS_RESERVE_BIKE"
 #~ msgstr "Error: Bike is a reserve bike!"

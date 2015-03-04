@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:52-0600\n"
+"POT-Creation-Date: 2015-03-04 14:00-0600\n"
 "PO-Revision-Date: 2015-02-06 09:30-0600\n"
 "Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
@@ -66,8 +66,7 @@ msgstr "Aviso:"
 #: templates/account/email.html:45
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, "
-"etc."
+"an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
 "Neste momento não há um endereço de e-mail definido. Você deve adicionar um "
 "endereço de e-mail para que possa receber notificações, redefinir a sua "
@@ -85,13 +84,53 @@ msgstr "Adicionar e-mail"
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr "Deseja mesmo remover o endereço de e-mail seleccionado?"
 
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"User %(user_display)s at %(site_name)s has given this as an email address.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+"O usuário %(user_display)s do %(site_name)s deu este endereço de e-mail.\n"
+"\n"
+"Para confirmar que isto é corrcto, vá até %(activate_url)s\n"
+
+#: templates/account/email/email_confirmation_subject.txt:3
 #: templates/account/email_confirm.html:7
 #: templates/account/email_confirm.html:11
 #: templates/account/email_confirmed.html:6
 #: templates/account/email_confirmed.html:11
-#: templates/account/email/email_confirmation_subject.txt:3
 msgid "Confirm E-mail Address"
 msgstr "Confirmar Endereço de E-mail"
+
+#: templates/account/email/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account at %(site_domain)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+"\n"
+"In case you forgot, your username is %(username)s.\n"
+"\n"
+"Thanks for using our site!\n"
+msgstr ""
+"Você recebeu este e-mail porque você ou outra pessoa pediu uma nova senha "
+"para a sua conta no %(site_domain)s.\n"
+"Se não pediu uma redefinição de senha, ignore este e-mail. Clique no link "
+"abaixo para redefinir a sua password.\n"
+"\n"
+"%(password_reset_url)s\n"
+"\n"
+"Caso se tenha esquecido, o seu nome de usuário é %(username)s.\n"
+"\n"
+"Obrigado por usar o nosso site!\n"
+
+#: templates/account/email/password_reset_key_subject.txt:3
+msgid "Password Reset E-mail"
+msgstr "E-mail de Redefinição de Senha"
 
 #: templates/account/email_confirm.html:17
 #, python-format
@@ -109,17 +148,17 @@ msgstr "Confirmar"
 #: templates/account/email_confirm.html:28
 #, python-format
 msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
-"Este link de verificação de e-mail expirou ou é inválido. Por favor <a "
-"href=\"%(email_url)s\">peça uma nova verificação de e-mail.</a>."
+"Este link de verificação de e-mail expirou ou é inválido. Por favor <a href="
+"\"%(email_url)s\">peça uma nova verificação de e-mail.</a>."
 
 #: templates/account/email_confirmed.html:15
 #, python-format
 msgid ""
-"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
-"e-mail address for user %(user_display)s."
+"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
+"mail address for user %(user_display)s."
 msgstr ""
 
 #: templates/account/login.html:8 templates/account/login.html.py:12
@@ -131,7 +170,8 @@ msgstr "Entrar"
 #, python-format
 msgid ""
 "Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> \n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a> \n"
 "for a %(site_name)s account and sign in below:"
 msgstr ""
 "Por favor faça login com uma\n"
@@ -148,9 +188,8 @@ msgid ""
 "Don't have an account? \n"
 "    <a href=\"%(signup_url)s\"><b>Signup</b></a> for a %(site_name)s account."
 msgstr ""
-"Ainda não possui uma %(site_name)s conta? Por favor "
-"<a href=\"%(signup_url)s\">cadastre-"
-"se</a>."
+"Ainda não possui uma %(site_name)s conta? Por favor <a href=\"%(signup_url)s"
+"\">cadastre-se</a>."
 
 #: templates/account/login.html:44
 msgid "Forgot Password?"
@@ -164,206 +203,6 @@ msgstr "Sair"
 #: templates/account/logout.html:11
 msgid "Are you sure you want to sign out?"
 msgstr "Você tem certeza que deseja sair?"
-
-#: templates/account/password_change.html:5
-#: templates/account/password_change.html:8
-#: templates/account/password_change.html:13
-#: templates/account/password_reset_from_key.html:6
-#: templates/account/password_reset_from_key.html:9
-msgid "Change Password"
-msgstr "Alterar senha"
-
-#: templates/account/password_delete.html:5
-#: templates/account/password_delete.html:8
-msgid "Delete Password"
-msgstr "Remover senha"
-
-#: templates/account/password_delete.html:9
-msgid ""
-"You may delete your password since you are currently logged in using OpenID."
-msgstr "Pode eliminar a sua senha já que entrou com OpenID."
-
-#: templates/account/password_delete.html:12
-msgid "delete my password"
-msgstr "apagar a minha senha"
-
-#: templates/account/password_delete_done.html:5
-#: templates/account/password_delete_done.html:8
-msgid "Password Deleted"
-msgstr "senha eliminada"
-
-#: templates/account/password_delete_done.html:9
-msgid "Your password has been deleted."
-msgstr "A sua senha foi apagada."
-
-#: templates/account/password_reset.html:7
-#: templates/account/password_reset.html:11
-#: templates/account/password_reset_done.html:6
-#: templates/account/password_reset_done.html:9
-msgid "Password Reset"
-msgstr "Redefinição da senha"
-
-#: templates/account/password_reset.html:16
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send you"
-" an e-mail allowing you to reset it."
-msgstr ""
-"Esqueceu a sua senha? Insira o seu endereço de e-mail abaixo, e lhe "
-"enviaremos um e-mail permitindo que a redefina."
-
-#: templates/account/password_reset.html:21
-msgid "Reset My Password"
-msgstr "Redefinir a minha senha"
-
-#: templates/account/password_reset.html:25
-msgid "Please contact us if you have any trouble resetting your password."
-msgstr ""
-"Por favor, contacte-nos se tiver quaisquer problemas para redefinir a sua "
-"senha."
-
-#: templates/account/password_reset_done.html:15
-msgid ""
-"We have sent you an e-mail. Please contact us if you do not receive it "
-"within a few minutes."
-msgstr ""
-"Um e-mail foi enviado. Por favor contacte-nos se não o receber nos próximos "
-"minutos."
-
-#: templates/account/password_reset_from_key.html:9
-msgid "Bad Token"
-msgstr "Problema no Token"
-
-#: templates/account/password_reset_from_key.html:13
-#, python-format
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-"reset</a>."
-msgstr ""
-"O link para redefinição da senha era inválido, provavelmente por já ter sido"
-" usado. Por favor peça uma <a href=\"%(passwd_reset_url)s\">nova redefinição"
-" da senha</a>."
-
-#: templates/account/password_reset_from_key.html:19
-msgid "change password"
-msgstr "alterar a senha"
-
-#: templates/account/password_reset_from_key.html:22
-msgid "Your password is now changed."
-msgstr "A sua senha foi alterada."
-
-#: templates/account/password_set.html:6 templates/account/password_set.html:9
-#: templates/account/password_set.html:14
-msgid "Set Password"
-msgstr "Definir senha"
-
-#: templates/account/signup.html:7 templates/socialaccount/signup.html:5
-msgid "Signup"
-msgstr "Registro"
-
-#: templates/account/signup.html:10 templates/account/signup.html.py:20
-#: templates/socialaccount/signup.html:8
-#: templates/socialaccount/signup.html:19
-msgid "Sign Up"
-msgstr "Registro"
-
-#: templates/account/signup.html:12
-#, python-format
-msgid ""
-"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
-msgstr "Já tem uma conta? Por favor <a href=\"%(login_url)s\">entre</a>."
-
-#: templates/account/signup_closed.html:6
-#: templates/account/signup_closed.html:9
-msgid "Sign Up Closed"
-msgstr "Fechado para novos cadastros"
-
-#: templates/account/signup_closed.html:11
-msgid "We are sorry, but the sign up is currently closed."
-msgstr "Infelizmente novos cadastros não podem ser feitos no momento."
-
-#: templates/account/verification_sent.html:5
-#: templates/account/verification_sent.html:8
-#: templates/account/verified_email_required.html:6
-#: templates/account/verified_email_required.html:9
-msgid "Verify Your E-mail Address"
-msgstr "Verifique o seu endereço de e-mail"
-
-#: templates/account/verification_sent.html:10
-#, python-format
-msgid ""
-"We have sent an e-mail to <a href=\"mailto:%(email)s\">%(email)s</a> for "
-"verification. Follow the link provided to finalize the signup process. "
-"Please contact us if you do not receive it within a few minutes."
-msgstr ""
-"Enviamos-lhe um e-mail para verificação (<a href=\"mailto:%(email)s\">"
-"%(email)s</a>). Por favor clique no link dentro "
-"deste e-mail. Por favor contacte-nos se não o receber dentro dos próximos "
-"minutos."
-
-#: templates/account/verified_email_required.html:13
-msgid ""
-"This part of the site requires us to verify that\n"
-"you are who you claim to be. For this purpose, we require that you\n"
-"verify ownership of your e-mail address. "
-msgstr ""
-"Esta parte do site requer que verifiquemos que é quem diz que é. Para esse "
-"fim, pedimos que verifique que é dono do seu endereço de e-mail. "
-
-#: templates/account/verified_email_required.html:17
-msgid ""
-"We have sent an e-mail to you for\n"
-"verification. Please click on the link inside this e-mail. Please\n"
-"contact us if you do not receive it within a few minutes."
-msgstr ""
-"Enviamos-lhe um e-mail para verificação. Por favor clique no link dentro "
-"deste e-mail. Por favor contacte-nos se não o receber dentro dos próximos "
-"minutos."
-
-#: templates/account/verified_email_required.html:21
-#, python-format
-msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
-"e-mail address</a>."
-msgstr ""
-"<strong>Nota:</strong> você ainda pode <a href=\"%(email_url)s\">alterar o "
-"seu endereço de e-mail</a>."
-
-#: templates/account/email/email_confirmation_message.txt:1
-#, python-format
-msgid ""
-"User %(user_display)s at %(site_name)s has given this as an email address.\n"
-"\n"
-"To confirm this is correct, go to %(activate_url)s\n"
-msgstr ""
-"O usuário %(user_display)s do %(site_name)s deu este endereço de e-mail.\n"
-"\n"
-"Para confirmar que isto é corrcto, vá até %(activate_url)s\n"
-
-#: templates/account/email/password_reset_key_message.txt:1
-#, python-format
-msgid ""
-"You're receiving this e-mail because you or someone else has requested a password for your user account at %(site_domain)s.\n"
-"It can be safely ignored if you did not request a password reset. Click the link below to reset your password.\n"
-"\n"
-"%(password_reset_url)s\n"
-"\n"
-"In case you forgot, your username is %(username)s.\n"
-"\n"
-"Thanks for using our site!\n"
-msgstr ""
-"Você recebeu este e-mail porque você ou outra pessoa pediu uma nova senha para a sua conta no %(site_domain)s.\n"
-"Se não pediu uma redefinição de senha, ignore este e-mail. Clique no link abaixo para redefinir a sua password.\n"
-"\n"
-"%(password_reset_url)s\n"
-"\n"
-"Caso se tenha esquecido, o seu nome de usuário é %(username)s.\n"
-"\n"
-"Obrigado por usar o nosso site!\n"
-
-#: templates/account/email/password_reset_key_subject.txt:3
-msgid "Password Reset E-mail"
-msgstr "E-mail de Redefinição de Senha"
 
 #: templates/account/messages/cannot_delete_primary_email.txt:2
 #, python-format
@@ -410,6 +249,123 @@ msgstr "Endereço de e-mail principal configurado."
 msgid "Your primary e-mail address must be verified."
 msgstr "Seu endereço de e-mail principal precisa ser confirmado."
 
+#: templates/account/password_change.html:5
+#: templates/account/password_change.html:8
+#: templates/account/password_change.html:13
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+msgid "Change Password"
+msgstr "Alterar senha"
+
+#: templates/account/password_delete.html:5
+#: templates/account/password_delete.html:8
+msgid "Delete Password"
+msgstr "Remover senha"
+
+#: templates/account/password_delete.html:9
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr "Pode eliminar a sua senha já que entrou com OpenID."
+
+#: templates/account/password_delete.html:12
+msgid "delete my password"
+msgstr "apagar a minha senha"
+
+#: templates/account/password_delete_done.html:5
+#: templates/account/password_delete_done.html:8
+msgid "Password Deleted"
+msgstr "senha eliminada"
+
+#: templates/account/password_delete_done.html:9
+msgid "Your password has been deleted."
+msgstr "A sua senha foi apagada."
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr "Redefinição da senha"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+"Esqueceu a sua senha? Insira o seu endereço de e-mail abaixo, e lhe "
+"enviaremos um e-mail permitindo que a redefina."
+
+#: templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr "Redefinir a minha senha"
+
+#: templates/account/password_reset.html:25
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Por favor, contacte-nos se tiver quaisquer problemas para redefinir a sua "
+"senha."
+
+#: templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Um e-mail foi enviado. Por favor contacte-nos se não o receber nos próximos "
+"minutos."
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "Problema no Token"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+"O link para redefinição da senha era inválido, provavelmente por já ter sido "
+"usado. Por favor peça uma <a href=\"%(passwd_reset_url)s\">nova redefinição "
+"da senha</a>."
+
+#: templates/account/password_reset_from_key.html:19
+msgid "change password"
+msgstr "alterar a senha"
+
+#: templates/account/password_reset_from_key.html:22
+msgid "Your password is now changed."
+msgstr "A sua senha foi alterada."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:9
+#: templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "Definir senha"
+
+#: templates/account/signup.html:7 templates/socialaccount/signup.html:5
+msgid "Signup"
+msgstr "Registro"
+
+#: templates/account/signup.html:10 templates/account/signup.html.py:20
+#: templates/socialaccount/signup.html:8
+#: templates/socialaccount/signup.html:19
+msgid "Sign Up"
+msgstr "Registro"
+
+#: templates/account/signup.html:12
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr "Já tem uma conta? Por favor <a href=\"%(login_url)s\">entre</a>."
+
+#: templates/account/signup_closed.html:6
+#: templates/account/signup_closed.html:9
+msgid "Sign Up Closed"
+msgstr "Fechado para novos cadastros"
+
+#: templates/account/signup_closed.html:11
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Infelizmente novos cadastros não podem ser feitos no momento."
+
 #: templates/account/snippets/already_logged_in.html:5
 msgid "Note"
 msgstr "Nota"
@@ -418,6 +374,52 @@ msgstr "Nota"
 #, python-format
 msgid "you are already logged in as %(user_display)s."
 msgstr "você já entrou como %(user_display)s."
+
+#: templates/account/verification_sent.html:5
+#: templates/account/verification_sent.html:8
+#: templates/account/verified_email_required.html:6
+#: templates/account/verified_email_required.html:9
+msgid "Verify Your E-mail Address"
+msgstr "Verifique o seu endereço de e-mail"
+
+#: templates/account/verification_sent.html:10
+#, python-format
+msgid ""
+"We have sent an e-mail to <a href=\"mailto:%(email)s\">%(email)s</a> for "
+"verification. Follow the link provided to finalize the signup process. "
+"Please contact us if you do not receive it within a few minutes."
+msgstr ""
+"Enviamos-lhe um e-mail para verificação (<a href=\"mailto:%(email)s\">"
+"%(email)s</a>). Por favor clique no link dentro deste e-mail. Por favor "
+"contacte-nos se não o receber dentro dos próximos minutos."
+
+#: templates/account/verified_email_required.html:13
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+"Esta parte do site requer que verifiquemos que é quem diz que é. Para esse "
+"fim, pedimos que verifique que é dono do seu endereço de e-mail. "
+
+#: templates/account/verified_email_required.html:17
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+"Enviamos-lhe um e-mail para verificação. Por favor clique no link dentro "
+"deste e-mail. Por favor contacte-nos se não o receber dentro dos próximos "
+"minutos."
+
+#: templates/account/verified_email_required.html:21
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+"<strong>Nota:</strong> você ainda pode <a href=\"%(email_url)s\">alterar o "
+"seu endereço de e-mail</a>."
 
 #: templates/openid/login.html:10
 msgid "OpenID Sign In"
@@ -439,124 +441,6 @@ msgstr ""
 msgid "FILTER"
 msgstr "Filtro"
 
-#: templates/site/contact.html:11
-msgid "SITE_CONTACT"
-msgstr "Contato"
-
-#: templates/site/donate.html:7 templates/site/index.html:64
-#: templates/site/base/navbar.html:57
-msgid "DONATE"
-msgstr "Doar"
-
-#: templates/site/faq.html:7
-msgid "SITE_FAQ"
-msgstr "F.A.Q"
-
-#: templates/site/form_include.html:34
-msgid "CANCEL"
-msgstr "Cancelar"
-
-#: templates/site/form_include.html:41
-msgid "SUBMIT"
-msgstr "Submeter"
-
-#: templates/site/index.html:19
-msgid "SITE_SLOGAN"
-msgstr "Two Wheels bom, gratuito Wheels Melhor"
-
-#: templates/site/index.html:22
-msgid "INDEX_VIDEO_URL"
-msgstr "//player.vimeo.com/video/81892478?title=0&amp;byline=0&amp;portrait=0"
-
-#: templates/site/index.html:36
-msgid "BORROW_A_BIKE"
-msgstr "Empreste uma bicicleta"
-
-#: templates/site/index.html:61
-msgid "DONATE_TEXT"
-msgstr ""
-"Estamos sempre em busca de formas de melhorar e expandir o projeto. Qualquer"
-" doação vai ajudar a florescer projeto."
-
-#: templates/site/index.html:73
-msgid "START_A_TEAM_TEXT"
-msgstr ""
-"Precisamos de voluntários entusiastas que estão dispostos a manter estações "
-"Bikesurf lá em vilas e cidades locais."
-
-#: templates/site/index.html:75
-msgid "START_A_TEAM"
-msgstr "Comece um time"
-
-#: templates/site/index.html:89
-msgid "WHAT_WERE_ABOUT"
-msgstr "O que fazemos"
-
-#: templates/site/index.html:91
-msgid "SITE_DESCRIPTION_TEXT"
-msgstr ""
-"Acreditamos que o ciclismo muda a maneira como as pessoas pensam e interagem"
-" com seu ambiente. Ter a oportunidade de emprestar uma bicicleta "
-"gratuitamente (ou barata) permite que as pessoas se apaixonem pela bicicleta"
-" novamente. <br> Assista ao vídeo para ver como o sistema de solicitação de "
-"bicicletas funciona. Se você é um defensor da nossa causa e você quer se "
-"envolver, olhe abaixo para fazer uma doação ou iniciar uma equipe própria! "
-"<br> <A href =\"https://www.facebook.com/bikesurf.org \"target=\"_blank\" "
-"class=\"btn learnbtn btn-default\"> Curta-nos no Facebook </a> <br>\" Sempre"
-" que vejo um adulto em uma bicicleta, eu tenho esperança para a raça humana "
-". \"~ H.G. Wells"
-
-#: templates/site/index.html:94
-msgid "PRESS"
-msgstr "Imprensa"
-
-#: templates/site/list.html:46
-msgid "NO_ENTRIES"
-msgstr ""
-
-#: templates/site/terms.html:6
-msgid "TERMS_AND_CONDITIONS_TITLE"
-msgstr "Termos e condições de uso"
-
-#: templates/site/terms.html:7
-msgid "TERMS_AND_CONDITIONS_TEXT"
-msgstr ""
-"<p> \n"
-"<h1> BikeSurfBerlin - Contrato de Locação e liberação de responsabilidade </ h1> \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de solicitação BikeSurf: </ b> \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"<h1> BikeSurf - Contrato de Locação e Isenção de Responsabilidade </ h1> \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de solicitação BikeSurf: </ b> \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"Lembre-se que BikeSurf pertence a você e que você é responsável pela continuação deste sistema baseado em confiança. \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"Andar de bicicleta é uma ótima maneira de conhecer uma nova cidade. No entanto, ele exige que você preste atenção às regras de trânsito específicas para aquele país. Ao cuidar de si mesmo e de outros usuários da estrada, a experiência BikeSurfing será ainda mais agradável. \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"Por favor, avalie o estado da bicicleta e caso encontre qualquer problema que impeça o uso da bicicleta, entre em contato com o seu contato BikeSurf local antes de utilizar a bicicleta. \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"Eu concordo de liberar a BikeSurf de toda e qualquer responsabilidade por danos ou prejuízos para o usuário do equipamento listado nesta forma ou para qualquer outra pessoa. Concordo em não fazer uma reclamação contra ou processar este projeto de bicicletas por ferimentos ou danos relacionados com a bicicleta ou o uso deste equipamento. \n"
-"</ p> \n"
-"\n"
-"<p> \n"
-"O equipamento, em todos os momentos, pertence exclusivamente a BikeSurf. Avisarei um membro da BikeSurf dentro de 24 horas se a bicicleta for danificada de alguma forma durante meu uso ou se a bicicleta for roubada enquanto sob meus cuidados. \n"
-"</ p>"
-
 #: templates/site/base/navbar.html:28
 msgid "MY_BORROWS"
 msgstr "meus empresta"
@@ -572,6 +456,11 @@ msgstr "partidas"
 #: templates/site/base/navbar.html:53
 msgid "INFO"
 msgstr "Informação"
+
+#: templates/site/base/navbar.html:57 templates/site/donate.html:7
+#: templates/site/index.html:64
+msgid "DONATE"
+msgstr "Doar"
 
 #: templates/site/base/navbar.html:65
 msgid "TERMS"
@@ -604,6 +493,135 @@ msgstr "Registro"
 #: templates/site/base/testwarning.html:7
 msgid "TEST_INSTANCE_WARNING"
 msgstr ""
+
+#: templates/site/contact.html:11
+msgid "SITE_CONTACT"
+msgstr "Contato"
+
+#: templates/site/faq.html:7
+msgid "SITE_FAQ"
+msgstr "F.A.Q"
+
+#: templates/site/form_include.html:34
+msgid "CANCEL"
+msgstr "Cancelar"
+
+#: templates/site/form_include.html:41
+msgid "SUBMIT"
+msgstr "Submeter"
+
+#: templates/site/index.html:19
+msgid "SITE_SLOGAN"
+msgstr "Two Wheels bom, gratuito Wheels Melhor"
+
+#: templates/site/index.html:22
+msgid "INDEX_VIDEO_URL"
+msgstr "//player.vimeo.com/video/81892478?title=0&amp;byline=0&amp;portrait=0"
+
+#: templates/site/index.html:36
+msgid "BORROW_A_BIKE"
+msgstr "Empreste uma bicicleta"
+
+#: templates/site/index.html:61
+msgid "DONATE_TEXT"
+msgstr ""
+"Estamos sempre em busca de formas de melhorar e expandir o projeto. Qualquer "
+"doação vai ajudar a florescer projeto."
+
+#: templates/site/index.html:73
+msgid "START_A_TEAM_TEXT"
+msgstr ""
+"Precisamos de voluntários entusiastas que estão dispostos a manter estações "
+"Bikesurf lá em vilas e cidades locais."
+
+#: templates/site/index.html:75
+msgid "START_A_TEAM"
+msgstr "Comece um time"
+
+#: templates/site/index.html:89
+msgid "WHAT_WERE_ABOUT"
+msgstr "O que fazemos"
+
+#: templates/site/index.html:91
+msgid "SITE_DESCRIPTION_TEXT"
+msgstr ""
+"Acreditamos que o ciclismo muda a maneira como as pessoas pensam e interagem "
+"com seu ambiente. Ter a oportunidade de emprestar uma bicicleta "
+"gratuitamente (ou barata) permite que as pessoas se apaixonem pela bicicleta "
+"novamente. <br> Assista ao vídeo para ver como o sistema de solicitação de "
+"bicicletas funciona. Se você é um defensor da nossa causa e você quer se "
+"envolver, olhe abaixo para fazer uma doação ou iniciar uma equipe própria! "
+"<br> <A href =\"https://www.facebook.com/bikesurf.org \"target=\"_blank\" "
+"class=\"btn learnbtn btn-default\"> Curta-nos no Facebook </a> <br>\" Sempre "
+"que vejo um adulto em uma bicicleta, eu tenho esperança para a raça humana . "
+"\"~ H.G. Wells"
+
+#: templates/site/index.html:94
+msgid "PRESS"
+msgstr "Imprensa"
+
+#: templates/site/list.html:46
+msgid "NO_ENTRIES"
+msgstr ""
+
+#: templates/site/terms.html:6
+msgid "TERMS_AND_CONDITIONS_TITLE"
+msgstr "Termos e condições de uso"
+
+#: templates/site/terms.html:7
+msgid "TERMS_AND_CONDITIONS_TEXT"
+msgstr ""
+"<p> \n"
+"<h1> BikeSurfBerlin - Contrato de Locação e liberação de responsabilidade </ "
+"h1> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de "
+"solicitação BikeSurf: </ b> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<h1> BikeSurf - Contrato de Locação e Isenção de Responsabilidade </ h1> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"<b> Por favor, leia com atenção antes de selecionar a caixa no formulário de "
+"solicitação BikeSurf: </ b> \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Lembre-se que BikeSurf pertence a você e que você é responsável pela "
+"continuação deste sistema baseado em confiança. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Andar de bicicleta é uma ótima maneira de conhecer uma nova cidade. No "
+"entanto, ele exige que você preste atenção às regras de trânsito específicas "
+"para aquele país. Ao cuidar de si mesmo e de outros usuários da estrada, a "
+"experiência BikeSurfing será ainda mais agradável. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Por favor, avalie o estado da bicicleta e caso encontre qualquer problema "
+"que impeça o uso da bicicleta, entre em contato com o seu contato BikeSurf "
+"local antes de utilizar a bicicleta. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"Eu concordo de liberar a BikeSurf de toda e qualquer responsabilidade por "
+"danos ou prejuízos para o usuário do equipamento listado nesta forma ou para "
+"qualquer outra pessoa. Concordo em não fazer uma reclamação contra ou "
+"processar este projeto de bicicletas por ferimentos ou danos relacionados "
+"com a bicicleta ou o uso deste equipamento. \n"
+"</ p> \n"
+"\n"
+"<p> \n"
+"O equipamento, em todos os momentos, pertence exclusivamente a BikeSurf. "
+"Avisarei um membro da BikeSurf dentro de 24 horas se a bicicleta for "
+"danificada de alguma forma durante meu uso ou se a bicicleta for roubada "
+"enquanto sob meus cuidados. \n"
+"</ p>"
 
 #: templates/socialaccount/account_inactive.html:5
 #: templates/socialaccount/account_inactive.html:8
@@ -655,19 +673,9 @@ msgstr "Entrada Cancelada"
 #, python-format
 msgid ""
 "You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a "
-"href=\"%(login_url)s\">sign in</a>."
+"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
+"\">sign in</a>."
 msgstr ""
-
-#: templates/socialaccount/signup.html:10
-#, python-format
-msgid ""
-"You are about to use your %(provider_name)s account to login to \n"
-"%(site_name)s. As a final step, please complete the following form:"
-msgstr ""
-"Está prestes a usar a sua conta no %(provider_name)s para entrar no "
-"%(site_name)s. Como um passo final, por favor complete o seguinte "
-"formulário:"
 
 #: templates/socialaccount/messages/account_connected.txt:2
 msgid "The social account has been connected."
@@ -680,6 +688,15 @@ msgstr "A conta social já está conectada a outra conta."
 #: templates/socialaccount/messages/account_disconnected.txt:2
 msgid "The social account has been disconnected."
 msgstr "A conta social foi desconectada."
+
+#: templates/socialaccount/signup.html:10
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to \n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+"Está prestes a usar a sua conta no %(provider_name)s para entrar no "
+"%(site_name)s. Como um passo final, por favor complete o seguinte formulário:"
 
 #~ msgid "THE_STORY"
 #~ msgstr "História"
@@ -701,11 +718,21 @@ msgstr "A conta social foi desconectada."
 
 #~ msgid "THE_STORY_CONTENT"
 #~ msgstr ""
-#~ "BikeSurf.org é uma plataforma de código aberto para qualquer um criar seu próprio projeto BikeSurf em sua localidade. O projeto é executado com sucesso desde junho de 2012. Eventualmente, a ideia vai se espalhar por todo o mundo. Ao trabalhar sob o mesmo site, reduz-se o tempo gasto no desenvolvimento das ferramentas da web e aumenta o perfil da iniciativa. \n"
+#~ "BikeSurf.org é uma plataforma de código aberto para qualquer um criar seu "
+#~ "próprio projeto BikeSurf em sua localidade. O projeto é executado com "
+#~ "sucesso desde junho de 2012. Eventualmente, a ideia vai se espalhar por "
+#~ "todo o mundo. Ao trabalhar sob o mesmo site, reduz-se o tempo gasto no "
+#~ "desenvolvimento das ferramentas da web e aumenta o perfil da "
+#~ "iniciativa. \n"
 #~ "<br> \n"
-#~ "Todos os projetos BikeSurf são operados de forma independente, com suas próprias finanças, logística e de política controles. \n"
+#~ "Todos os projetos BikeSurf são operados de forma independente, com suas "
+#~ "próprias finanças, logística e de política controles. \n"
 #~ "<br> \n"
-#~ "A filosofia BikeSurf visa permitir às pessoas a oportunidade de apreciar o mundo de uma banco: ecológico, saudável e barato. Há também o valor social mais intangível do projeto. Tais projetos de compartilhamento incentivam as pessoas a se comunicar, compartilhar recursos e desenvolver um forte senso de comunidade."
+#~ "A filosofia BikeSurf visa permitir às pessoas a oportunidade de apreciar "
+#~ "o mundo de uma banco: ecológico, saudável e barato. Há também o valor "
+#~ "social mais intangível do projeto. Tais projetos de compartilhamento "
+#~ "incentivam as pessoas a se comunicar, compartilhar recursos e desenvolver "
+#~ "um forte senso de comunidade."
 
 #~ msgid "BIKESURF_IS"
 #~ msgstr ""

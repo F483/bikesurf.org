@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: 2015-01-03 11:38-0600\n"
 "Last-Translator: Fabian Barkhau <fabian.barkhau+test@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,6 +115,14 @@ msgstr "Medium ~155-175cm"
 msgid "LARGE"
 msgstr "Large ~175cm-190cm"
 
+#: templates/bike/list.html:92
+msgid "UNKNOWN"
+msgstr "Unknown"
+
+#: templates/bike/view.html:36
+msgid "GALLERY"
+msgstr "Gallery"
+
 #: views.py:37 views.py:45
 msgid "BIKE_BORROWS"
 msgstr "Bike Borrows"
@@ -138,14 +146,6 @@ msgstr "Edit Bike"
 #: views.py:232
 msgid "BIKE_DELETE?"
 msgstr "Delete bike?"
-
-#: templates/bike/list.html:92
-msgid "UNKNOWN"
-msgstr "Unknown"
-
-#: templates/bike/view.html:36
-msgid "GALLERY"
-msgstr "Gallery"
 
 #~ msgid "NO_BIKES"
 #~ msgstr "No bikes"

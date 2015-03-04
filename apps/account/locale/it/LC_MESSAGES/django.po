@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 08:51-0600\n"
+"POT-Creation-Date: 2015-03-04 13:58-0600\n"
 "PO-Revision-Date: 2014-09-19 04:17-0500\n"
 "Last-Translator: Paolo De Guidi <paolo.deguidi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,37 +108,13 @@ msgstr "Google"
 msgid "TWITTER"
 msgstr "Twitter"
 
-#: views.py:19
-msgid "PROFILE_UPDATED"
-msgstr "Profilo aggiornato"
-
-#: views.py:36 templates/account/profile.html:75
-msgid "SET_PASSPORT"
-msgstr "Inserisci passaporto"
-
-#: views.py:38
-msgid "ADD_REQUIRED_PASSPORT_IMAGE"
-msgstr "Aggiungi immagine passaporto"
-
-#: views.py:39 views.py:83 views.py:141 templates/account/profile.html:26
-msgid "USER_PRIVECY_INFORMATION"
-msgstr "Informazioni privacy utente"
-
-#: views.py:57
-msgid "LINK_DELETE?"
-msgstr "Cancellare link?"
-
-#: views.py:82
-msgid "ADD_REQUIRED_SOCIAL_LINK"
-msgstr "Aggiungi link del social network"
-
-#: views.py:140
-msgid "ADD_REQUIRED_PROFILE_INFO"
-msgstr "Aggiungi informazione sul profilo"
-
 #: templates/account/profile.html:23
 msgid "ACCOUNT_ADD_REQUIRED_INFO"
 msgstr "Aggiungi informazioni"
+
+#: templates/account/profile.html:26 views.py:39 views.py:83 views.py:141
+msgid "USER_PRIVECY_INFORMATION"
+msgstr "Informazioni privacy utente"
 
 #: templates/account/profile.html:31 templates/account/view.html:16
 msgid "DETAILS"
@@ -160,6 +136,10 @@ msgstr "Cambia email"
 msgid "NONE"
 msgstr "Nessuno"
 
+#: templates/account/profile.html:75 views.py:36
+msgid "SET_PASSPORT"
+msgstr "Inserisci passaporto"
+
 #: templates/account/profile.html:76
 msgid "EDIT"
 msgstr ""
@@ -167,6 +147,26 @@ msgstr ""
 #: templates/account/profile.html:82 templates/account/view.html:60
 msgid "LINKS"
 msgstr "Link"
+
+#: views.py:19
+msgid "PROFILE_UPDATED"
+msgstr "Profilo aggiornato"
+
+#: views.py:38
+msgid "ADD_REQUIRED_PASSPORT_IMAGE"
+msgstr "Aggiungi immagine passaporto"
+
+#: views.py:57
+msgid "LINK_DELETE?"
+msgstr "Cancellare link?"
+
+#: views.py:82
+msgid "ADD_REQUIRED_SOCIAL_LINK"
+msgstr "Aggiungi link del social network"
+
+#: views.py:140
+msgid "ADD_REQUIRED_PROFILE_INFO"
+msgstr "Aggiungi informazione sul profilo"
 
 #~ msgid "Sign In"
 #~ msgstr "Registrati"
