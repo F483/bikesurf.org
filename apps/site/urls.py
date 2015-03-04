@@ -11,5 +11,6 @@ urlpatterns = patterns('apps.site.views',
     url(r'^$', 'index'),
     url(r'^site/donate.html$', 'donate'),
     url(r'^site/terms_and_conditions.html$', 'terms'),
+    url(r'^google437fc9f7c48a6697.html$', 'google_site_verification'),
 )
 

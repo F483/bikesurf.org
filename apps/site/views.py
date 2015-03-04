@@ -35,3 +35,10 @@ def terms(request):
 @require_http_methods(['GET'])
 def donate(request):
     return render_response(request, 'site/donate.html', {})
+
+@require_http_methods(['GET'])
+def google_site_verification(request):
+    return render_response(request, 'google437fc9f7c48a6697.html', {})
+
+
+
