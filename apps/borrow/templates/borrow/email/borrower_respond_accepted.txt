@@ -27,13 +27,13 @@ For more urgent matters you may call the members responsible for the stations.
 
 
 PICK-UP DETAILS
-The bike will be locked with a combination lock at: {{ log.borrow.src }}
+The bike will be locked with a combination lock (for code click go to reservation page by clicking link) at: {{ log.borrow.src }}
 Please see the borrow link above for photos of the bike so you know what to look for.
 
 
 DROP-OFF DETAILS
 At the end of the booked period please return the bike to: {{ log.borrow.dest }}
-Please lock the bike securely (to something secure).
+Please lock the bike securely (to something secure) and let us know that you have done so.
 
 
 BIKE SECURITY
