@@ -1,6 +1,6 @@
 Hello {{ borrow.borrower.user.username }},
 
-You can pick up "{{ borrow.bike }}" tomorrow at "{{ borrow.src }}".
+You can pick up "{{ borrow.bike }}" tomorrow at "{{ borrow.src }}" between 09:00 and 21:00.
 
 For more information visit: http://{{ site.domain }}/borrow/view/{{ borrow.id }}
 
@@ -57,7 +57,7 @@ However, if you do find a big problem with your bike, and it doesn’t function 
 HOW YOU CAN HELP US
  - Any suggestions you may have to improve the project.
  - Let us know if anything is wrong with the bike.
- - Give us a “like” us on Facebook http://www.facebook.com/BikeSurf
+ - Give us a “like” us on Facebook http://www.facebook.com/BikeSurf.org
  - Donate online: http://bikesurf.org/#donate
  - Donate a bike to a bikesurf team.
  - Start your own bikesurf project in your area.
