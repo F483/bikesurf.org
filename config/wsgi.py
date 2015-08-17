@@ -26,7 +26,8 @@ site.addsitedir(os.path.join(PROJECT_DIR, 'env/local/lib/python2.7/site-packages
 sys.path.append(PROJECT_DIR)
 
 # activate virtual env
-activate_env=os.path.expanduser(os.path.join(PROJECT_DIR, "env/bin/activate_this.py"))
+BIKESURF_VIRTENV_PATH = os.environ.get('BIKESURF_VIRTENV_PATH', 'env')
+activate_env=os.path.expanduser(os.path.join(PROJECT_DIR, "{}/bin/activate_this.py".format(BIKESURF_VIRTENV_PATH)))
 execfile(activate_env, dict(__file__=activate_env))
 
 # path to settings file
