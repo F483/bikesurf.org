@@ -6,7 +6,7 @@ Please help us improve Bikesurf by rating your borrowing experience and leaving 
 http://{{ site.domain }}/borrow/rate/{{ borrow.id }}
 
 We appreciate any amount you are able to donate to help maintain our project and to ensure we have the safest bikes!
-http://{{ site.domain }}/#donate
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WZPFJTYN5NMU8
 
 If you are not in a position to donate a small amount of money then there are other ways to show your gratitude. If you know of anyone who no longer uses their bike, we would gladly accept it for use in the project. We are also gathering photos and stories from our BikeSurfers of their time borrowing the bike, to show how rewarding biking about the city can be. We would really enjoy it if you sent us a few photos and/or a written story of your time here, to post on on our website.
 
