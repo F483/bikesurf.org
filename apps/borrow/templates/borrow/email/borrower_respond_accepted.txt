@@ -33,7 +33,7 @@ Please see the borrow link above for photos of the bike so you know what to look
 
 DROP-OFF DETAILS
 At the end of the booked period please return the bike to: {{ log.borrow.dest }}
-Please lock the bike securely (to something secure).
+Please lock the bike securely (to something secure) BEFORE 18:00.
 
 
 BIKE SECURITY
@@ -59,16 +59,13 @@ HOW YOU CAN HELP US
  - Any suggestions you may have to improve the project.
  - Let us know if anything is wrong with the bike.
  - Give us a “like” us on Facebook http://www.facebook.com/BikeSurf
- - Donate online: http://bikesurf.org/#donate
+ - Donate online: http://bikesurf.org/berlin/donate
  - Donate a bike to a bikesurf team.
  - Start your own bikesurf project in your area.
 Give any donation you can afford to help maintain this. It costs us approximately 0.50€ per day to maintain each bike. Unfortunately not everyone can afford to donate, so please be generous.
 
 
 We would like to thank you trying out our project here, and would love to encourage you to start you own bikesurf team in your hometown. Stay in touch if you’re working on a project, so we can all keep sharing with each other!
-
-
-"Two legs good, free wheels better".
 
 
 Sincerely,
