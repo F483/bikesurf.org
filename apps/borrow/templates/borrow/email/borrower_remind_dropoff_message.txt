@@ -6,10 +6,7 @@ Please help us improve Bikesurf by rating your borrowing experience and leaving 
 http://{{ site.domain }}/borrow/rate/{{ borrow.id }}
 
 We appreciate any amount you are able to donate to help maintain our project and to ensure we have the safest bikes!
-http://{{ site.domain }}/#donate
-
-
-“Two legs good, free wheels better!”
+http://bikesurf.org/berlin/donate
 
 Sincerely,
 The team at BikeSurf
