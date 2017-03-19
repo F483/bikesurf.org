@@ -10,7 +10,7 @@ If you wish to cancel this request or pick it up on a later day, please contact 
 
 
 BORROW INFORMATION OVERVIEW
-Bike: {{ log.borrow.bike.name }}
+Bike: {{ log.borrow.bike.name }} - very important you know what the bike looks like.
 Available: {{ log.borrow.start }} to {{ log.borrow.finish }}
 Pick-up station: {{ log.borrow.src }}
 Drop-off station: {{ log.borrow.dest }}
