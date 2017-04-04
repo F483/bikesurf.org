@@ -1,6 +1,6 @@
 Hello {{ borrow.borrower.user.username }},
 
-We would like to remind you to please drop off "{{ borrow.bike }}" at "{{ borrow.src }}" tomorrow BEFORE 18:00. Please text/ contact us as soon as you have dropped back bike.
+We would like to remind you to please drop off "{{ borrow.bike }}" at "{{ borrow.dest }}" tomorrow BEFORE 18:00. Please text/ contact us as soon as you have dropped back bike.
 
 Please help us improve Bikesurf by rating your borrowing experience and leaving some feedback.
 http://{{ site.domain }}/borrow/rate/{{ borrow.id }}
