@@ -3,4 +3,5 @@ Your borrow has been commented by {% if log.initiator %}{{ log.initiator.user.us
 Comment given by {% if log.initiator %}{{ log.initiator.user.username }}{% else %}bikesurf.org{% endif %}:
 {{ log.note }}
 
-Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
+If you wish to comment or see your bike request details click on the following link:
+http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}

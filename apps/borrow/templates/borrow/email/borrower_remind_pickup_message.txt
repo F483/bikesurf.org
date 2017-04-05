@@ -1,6 +1,6 @@
 Hello {{ borrow.borrower.user.username }},
 
-You can pick up "{{ borrow.bike }}" tomorrow at "{{ borrow.src }}".
+You can pick up "{{ borrow.bike }}" tomorrow at "{{ borrow.src }}" between 09:00 and 21:00.
 
 For more information visit: http://{{ site.domain }}/borrow/view/{{ borrow.id }}
 
@@ -64,6 +64,9 @@ Give any donation you can afford to help maintain this. It costs us approximatel
 
 
 We would like to thank you trying out our project here, and would love to encourage you to start you own bikesurf team in your hometown. Stay in touch if you’re working on a project, so we can all keep sharing with each other!
+
+
+“Two legs good, free wheels better!”
 
 
 Sincerely,

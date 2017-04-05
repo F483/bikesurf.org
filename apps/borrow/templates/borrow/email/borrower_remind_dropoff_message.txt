@@ -8,6 +8,21 @@ http://{{ site.domain }}/borrow/rate/{{ borrow.id }}
 We appreciate any amount you are able to donate to help maintain our project and to ensure we have the safest bikes!
 http://bikesurf.org/berlin/donate
 
+HOW YOU CAN HELP OUR PROJECT
+ - Any suggestions you may have to improve the project.
+ - Let us know if anything is wrong with the bike.
+ - Give us a “like” us on Facebook http://www.facebook.com/BikeSurf.org
+ - Donate online: http://bikesurf.org/berlin/donate
+ - Donate a bike to a bikesurf team.
+ - Start your own bikesurf project in your area.
+Give any donation you can afford to help maintain this. It costs us approximately 0.50€ per day to maintain each bike. Unfortunately not everyone can afford to donate, so please be generous.
+
+We would like to thank you for trying out our project here, and would love to encourage you to start you own bikesurf team in your hometown. Stay in touch if you’re working on a project, so we can all keep sharing with each other!
+
+
+“Two legs good, free wheels better!”
+
+
 Sincerely,
 The team at BikeSurf
 www.bikesurf.org

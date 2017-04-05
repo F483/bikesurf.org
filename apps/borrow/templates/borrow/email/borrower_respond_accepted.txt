@@ -27,13 +27,14 @@ For more urgent matters you may call the members responsible for the stations.
 
 
 PICK-UP DETAILS
-The bike will be locked with a combination lock at: {{ log.borrow.src }}
+The bike will be locked with a combination lock (for code click go to reservation page by clicking link) at: {{ log.borrow.src }}
 Please see the borrow link above for photos of the bike so you know what to look for.
 
 
 DROP-OFF DETAILS
+
 At the end of the booked period please return the bike to: {{ log.borrow.dest }}
-Please lock the bike securely (to something secure) BEFORE 18:00.
+Please lock the bike securely (to something secure) BEFORE 18:00 and let us know that you have done so.
 
 
 BIKE SECURITY
@@ -42,17 +43,6 @@ Just a few pointers to keep our bikes safe when in your care:
  - Lock the bike in a well-lit area, preferably with plenty of pedestrian traffic during the day when biking about
  - Do NOT lock the bike on the street overnight - lock it in the backyard of where you are staying
 Please help us keep the bikes available for all BikeSurfers.  Remember, this is a shared bike from a donation and volunteer-based project, so please take the best care of this bike that you can while you are using it. 
-
-
-BIKE SAFETY
-By borrowing a bike, you are taking responsibility for your own safety and choices.
-Not all the bikes have lights yet, which is a mandatory requirement in many places and safe way to bike in general. {% if not log.borrow.bike.lights %}This bike has NO lights, please bring your own lights for your own safety!{% endif %}
-We’re working on improving the quality of all the bikes as finances and time allow, but for now please be aware that this is an ongoing project and none of the bikes are perfect until we all help make and keep them perfect together.
-Please also consider a donation to help us improve the bikes if you haven’t made one yet.
-
-
-BIKE REPAIR
-However, if you do find a big problem with your bike, and it doesn’t function properly, has been damaged, or is unsafe to use (eg puncture, brake cable, broken chain, etc.), please contact us AS SOON AS POSSIBLE. We will be able to either repair the bike, swap the bike for another one, or offer advice on where/how to repair the bike. Please keep any replaced parts (eg. damaged tubes) and leave them with the bike upon return.
 
 
 HOW YOU CAN HELP US
