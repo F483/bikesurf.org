@@ -10,7 +10,7 @@ If you wish to cancel this request or pick it up on a later day, please contact 
 
 
 BORROW INFORMATION OVERVIEW
-Bike: {{ log.borrow.bike.name }}
+Bike: {{ log.borrow.bike.name }} - very important you know what the bike looks like.
 Available: {{ log.borrow.start }} to {{ log.borrow.finish }}
 Pick-up station: {{ log.borrow.src }}
 Drop-off station: {{ log.borrow.dest }}
@@ -20,7 +20,7 @@ Borrow link: http://{{ site.domain }}/borrow/view/{{ log.borrow.id }}
 
 
 CONTACT DETAILS
-The best way to contact the team is to leave a comment at the borrow link above, all team members will see this message.
+The best way to contact the team is to leave a comment at the borrow link in this email, all team members will see this message.
 For more urgent matters you may call the members responsible for the stations.
 {{ log.borrow.src.responsible.user.username }} (Pick-up): {{ log.borrow.src.responsible.mobile }} {% if log.borrow.src != log.borrow.dest %}
 {{ log.borrow.dest.responsible.user.username }} (Drop-off): {{ log.borrow.dest.responsible.mobile }} {% endif %}
