@@ -57,6 +57,12 @@ VALID_SITE_URLS = { # TODO better match for each site profile patterns
         "^http://www\.couchsurfing\.org/",
         "^https://couchsurfing\.org/",
         "^https://www\.couchsurfing\.org/",
+        "^couchsurfing\.com/",
+        "^www\.couchsurfing\.com/",
+        "^http://couchsurfing\.com/",
+        "^http://www\.couchsurfing\.com/",
+        "^https://couchsurfing\.com/",
+        "^https://www\.couchsurfing\.com/"
     ],
 }
 
